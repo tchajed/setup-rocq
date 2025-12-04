@@ -1,10 +1,10 @@
 name: Set up Rocq
-description: Install opam, OCaml, and Rocq
+description: Install Rocq through opam
 author: Tej Chajed
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
+  icon: package
   color: red
 
 # Define your inputs here.

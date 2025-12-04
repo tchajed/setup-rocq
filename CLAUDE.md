@@ -15,11 +15,9 @@ environment for building Rocq projects.
 
 - `npm install` - Install dependencies
 - `npm test` - Run tests (uses Jest with experimental VM modules)
-- `npm run package` - Bundle TypeScript to JavaScript (must run after source
+- `npm run bundle` - Bundle TypeScript to JavaScript (must run after source
   changes)
-- `npm run bundle` - Format + package in one command
 - `npm run all` - Run format, lint, test, coverage, and package
-- `npm run local-action` - Test action locally using `@github/local-action`
 
 ### Code Quality
 
