@@ -4,7 +4,6 @@
 ![CI](https://github.com/tchajed/setup-rocq/actions/workflows/ci.yml/badge.svg)
 ![Check dist/](https://github.com/tchajed/setup-rocq/actions/workflows/check-dist.yml/badge.svg)
 ![CodeQL](https://github.com/tchajed/setup-rocq/actions/workflows/codeql-analysis.yml/badge.svg)
-![Coverage](./badges/coverage.svg)
 
 GitHub action to install Rocq with opam.
 
