@@ -152,7 +152,15 @@ export async function setupOpamEnv(): Promise<void> {
 
 export async function addRepository(name: string, url: string): Promise<void> {
   core.info(`Adding opam repository: ${name} (${url})`)
-  await exec.exec('opam', ['repository', 'add', name, url, '--yes'])
+  await exec.exec('opam', [
+    'repository',
+    'add',
+    'all-switches',
+    '--set-default',
+    name,
+    url,
+    '--yes'
+  ])
 }
 
 export async function setupRepositories(): Promise<void> {
