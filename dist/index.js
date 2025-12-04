@@ -76449,7 +76449,7 @@ function requireToolCache () {
 
 var toolCacheExports = requireToolCache();
 
-const OPAM_VERSION = '2.2.1';
+const OPAM_VERSION = '2.5.0';
 function getOpamUrl() {
     if (IS_WINDOWS) {
         return `https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-windows.zip`;
@@ -76468,23 +76468,34 @@ function getOpamUrl() {
     }
 }
 async function acquireOpam() {
-    const url = getOpamUrl();
-    coreExports.info(`Downloading opam from ${url}`);
-    let opamPath;
-    if (IS_WINDOWS) {
-        const downloadPath = await toolCacheExports.downloadTool(url);
-        const extractedPath = await toolCacheExports.extractZip(downloadPath);
-        opamPath = require$$1$2.join(extractedPath, 'opam.exe');
+    const cachedPath = toolCacheExports.find('opam', OPAM_VERSION, ARCHITECTURE);
+    const opam = IS_WINDOWS ? 'opam.exe' : 'opam';
+    if (cachedPath === '') {
+        const browserDownloadUrl = getOpamUrl();
+        let downloadedPath;
+        if (IS_WINDOWS) {
+            const zipPath = await toolCacheExports.downloadTool(browserDownloadUrl);
+            const extractedPath = await toolCacheExports.extractZip(zipPath);
+            downloadedPath = require$$1$2.join(extractedPath, opam);
+        }
+        else {
+            downloadedPath = await toolCacheExports.downloadTool(browserDownloadUrl);
+        }
+        coreExports.info(`Downloaded opam ${OPAM_VERSION} from ${browserDownloadUrl}`);
+        const cachedPath = await toolCacheExports.cacheFile(downloadedPath, opam, 'opam', OPAM_VERSION, ARCHITECTURE);
+        coreExports.info(`Successfully cached opam to ${cachedPath}`);
+        // Make the binary executable on Unix-like systems
+        if (!IS_WINDOWS) {
+            const fs = await import('fs/promises');
+            await fs.chmod(require$$1$2.join(cachedPath, opam), 0o755);
+        }
+        coreExports.addPath(cachedPath);
+        coreExports.info('Added opam to the path');
     }
     else {
-        opamPath = await toolCacheExports.downloadTool(url);
-        // Make the binary executable
-        await execExports.exec('chmod', ['+x', opamPath]);
+        coreExports.addPath(cachedPath);
+        coreExports.info('Added cached opam to the path');
     }
-    // Cache the tool
-    const cachedPath = await toolCacheExports.cacheFile(opamPath, IS_WINDOWS ? 'opam.exe' : 'opam', 'opam', OPAM_VERSION);
-    coreExports.addPath(cachedPath);
-    return cachedPath;
 }
 async function initializeOpam() {
     coreExports.info('Initializing opam');
@@ -76493,6 +76504,7 @@ async function initializeOpam() {
     coreExports.exportVariable('OPAMROOT', opamRoot);
     coreExports.exportVariable('OPAMYES', '1');
     coreExports.exportVariable('OPAMCONFIRMLEVEL', 'unsafe-yes');
+    coreExports.exportVariable('OPAMROOTISOK', 'true');
     const args = ['init', '--bare', '--disable-sandboxing'];
     {
         coreExports.info('Sandboxing is disabled');

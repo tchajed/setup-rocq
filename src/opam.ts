@@ -28,32 +28,46 @@ function getOpamUrl(): string {
   }
 }
 
-export async function acquireOpam(): Promise<string> {
-  const url = getOpamUrl()
-  core.info(`Downloading opam from ${url}`)
+export async function acquireOpam(): Promise<void> {
+  const cachedPath = tc.find('opam', OPAM_VERSION, ARCHITECTURE)
+  const opam = IS_WINDOWS ? 'opam.exe' : 'opam'
 
-  let opamPath: string
+  if (cachedPath === '') {
+    const browserDownloadUrl = getOpamUrl()
+    let downloadedPath: string
 
-  if (IS_WINDOWS) {
-    const downloadPath = await tc.downloadTool(url)
-    const extractedPath = await tc.extractZip(downloadPath)
-    opamPath = path.join(extractedPath, 'opam.exe')
+    if (IS_WINDOWS) {
+      const zipPath = await tc.downloadTool(browserDownloadUrl)
+      const extractedPath = await tc.extractZip(zipPath)
+      downloadedPath = path.join(extractedPath, opam)
+    } else {
+      downloadedPath = await tc.downloadTool(browserDownloadUrl)
+    }
+
+    core.info(`Downloaded opam ${OPAM_VERSION} from ${browserDownloadUrl}`)
+
+    const cachedPath = await tc.cacheFile(
+      downloadedPath,
+      opam,
+      'opam',
+      OPAM_VERSION,
+      ARCHITECTURE
+    )
+
+    core.info(`Successfully cached opam to ${cachedPath}`)
+
+    // Make the binary executable on Unix-like systems
+    if (!IS_WINDOWS) {
+      const fs = await import('fs/promises')
+      await fs.chmod(path.join(cachedPath, opam), 0o755)
+    }
+
+    core.addPath(cachedPath)
+    core.info('Added opam to the path')
   } else {
-    opamPath = await tc.downloadTool(url)
-    // Make the binary executable
-    await exec.exec('chmod', ['+x', opamPath])
+    core.addPath(cachedPath)
+    core.info('Added cached opam to the path')
   }
-
-  // Cache the tool
-  const cachedPath = await tc.cacheFile(
-    opamPath,
-    IS_WINDOWS ? 'opam.exe' : 'opam',
-    'opam',
-    OPAM_VERSION
-  )
-
-  core.addPath(cachedPath)
-  return cachedPath
 }
 
 export async function initializeOpam(): Promise<void> {
