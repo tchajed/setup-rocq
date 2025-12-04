@@ -77,10 +77,16 @@ export async function initializeOpam(): Promise<void> {
   await core.group('Initialising opam', async () => {
     // Set environment variables
     const opamRoot = path.join(os.homedir(), '.opam')
-    core.exportVariable('OPAMROOT', opamRoot)
-    core.exportVariable('OPAMYES', '1')
+    core.exportVariable('OPAMCOLOR', 'always')
     core.exportVariable('OPAMCONFIRMLEVEL', 'unsafe-yes')
-    core.exportVariable('OPAMROOTISOK', 'true')
+    core.exportVariable('OPAMDOWNLOADJOBS', os.availableParallelism())
+    core.exportVariable('OPAMERRLOGLEN', 0)
+    core.exportVariable('OPAMEXTERNALSOLVER', 'builtin-0install')
+    core.exportVariable('OPAMPRECISETRACKING', 1)
+    core.exportVariable('OPAMRETRIES', 10)
+    core.exportVariable('OPAMROOT', opamRoot)
+    core.exportVariable('OPAMSOLVERTIMEOUT', 600)
+    core.exportVariable('OPAMYES', 1)
 
     const args = [
       'init',
@@ -259,7 +265,7 @@ async function installRocqDev(): Promise<void> {
 
 async function installRocqLatest(): Promise<void> {
   core.info('Installing latest Rocq version')
-  // await opamInstall('dune')
+  await opamInstall('dune')
   // await opamInstall('coq')
 }
 
