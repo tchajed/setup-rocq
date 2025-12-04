@@ -2,13 +2,13 @@ import * as core from '@actions/core'
 import * as cache from '@actions/cache'
 import * as path from 'path'
 import * as os from 'os'
-import { OCAML_VERSION, PLATFORM, ARCHITECTURE } from './constants.js'
+import { PLATFORM, ARCHITECTURE, ROCQ_VERSION } from './constants.js'
 import { opamClean } from './opam.js'
 
 export const CACHE_VERSION = 'v1'
 
 function getCacheKey(): string {
-  return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}`
+  return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-rocq-${ROCQ_VERSION}`
 }
 
 function getOpamRoot(): string {

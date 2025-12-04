@@ -83706,6 +83706,7 @@ var cacheExports = requireCache();
 
 const OCAML_VERSION = '5.4.0';
 const OPAM_VERSION = '2.5.0';
+const ROCQ_VERSION = coreExports.getInput('rocq-version');
 const PLATFORM = require$$0$3.platform();
 const ARCHITECTURE = require$$0$3.arch();
 process.env.GITHUB_TOKEN || '';
@@ -92202,7 +92203,7 @@ async function installRocq(version) {
 
 const CACHE_VERSION = 'v1';
 function getCacheKey() {
-    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}`;
+    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-rocq-${ROCQ_VERSION}`;
 }
 function getOpamRoot() {
     return require$$1$1.join(require$$0$3.homedir(), '.opam');
@@ -92312,8 +92313,7 @@ async function run() {
         }
         await setupOpamEnv();
         // Install Rocq
-        const rocqVersion = coreExports.getInput('rocq-version');
-        await installRocq(rocqVersion);
+        await installRocq(ROCQ_VERSION);
         coreExports.info('Rocq development environment set up successfully');
     }
     catch (error) {

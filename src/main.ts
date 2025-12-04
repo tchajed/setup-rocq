@@ -8,6 +8,7 @@ import {
   installRocq
 } from './opam.js'
 import { installSystemPackages } from './unix.js'
+import { ROCQ_VERSION } from './constants.js'
 
 export async function run(): Promise<void> {
   try {
@@ -33,8 +34,7 @@ export async function run(): Promise<void> {
     await setupOpamEnv()
 
     // Install Rocq
-    const rocqVersion = core.getInput('rocq-version')
-    await installRocq(rocqVersion)
+    await installRocq(ROCQ_VERSION)
 
     core.info('Rocq development environment set up successfully')
   } catch (error) {
