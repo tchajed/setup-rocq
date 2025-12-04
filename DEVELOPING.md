@@ -30,7 +30,7 @@ You'll need Node.js. You can use a version manager like
 1. :white_check_mark: Run the tests
 
    ```bash
-   $ npm test
+   npm test
    ```
 
 For more useful testing, install [act](https://github.com/nektos/act) and run
