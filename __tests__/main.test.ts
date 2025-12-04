@@ -12,11 +12,13 @@ const mockCache = {
 
 // Mock opam module
 const mockSetupOpam = jest.fn<() => Promise<void>>()
+const mockSetupRepositories = jest.fn<() => Promise<void>>()
 const mockCreateSwitch = jest.fn<() => Promise<void>>()
 const mockSetupOpamEnv = jest.fn<() => Promise<void>>()
 const mockDisableDuneCache = jest.fn<() => Promise<void>>()
 const mockOpam = {
   setupOpam: mockSetupOpam,
+  setupRepositories: mockSetupRepositories,
   createSwitch: mockCreateSwitch,
   setupOpamEnv: mockSetupOpamEnv,
   disableDuneCache: mockDisableDuneCache
@@ -41,6 +43,7 @@ describe('main.ts', () => {
     // Mock all opam functions to succeed by default
     mockRestoreCache.mockResolvedValue(false)
     mockSetupOpam.mockResolvedValue(undefined)
+    mockSetupRepositories.mockResolvedValue(undefined)
     mockCreateSwitch.mockResolvedValue(undefined)
     mockSetupOpamEnv.mockResolvedValue(undefined)
     mockDisableDuneCache.mockResolvedValue(undefined)
@@ -58,6 +61,7 @@ describe('main.ts', () => {
     // Verify all setup steps were called
     expect(mockRestoreCache).toHaveBeenCalled()
     expect(mockSetupOpam).toHaveBeenCalled()
+    expect(mockSetupRepositories).toHaveBeenCalled()
     expect(mockCreateSwitch).toHaveBeenCalled()
     expect(mockSetupOpamEnv).toHaveBeenCalled()
     expect(mockDisableDuneCache).toHaveBeenCalled()
@@ -72,8 +76,9 @@ describe('main.ts', () => {
     // Verify cache restore was checked
     expect(mockRestoreCache).toHaveBeenCalled()
 
-    // Opam setup should always run
+    // Opam setup and repositories should always run
     expect(mockSetupOpam).toHaveBeenCalled()
+    expect(mockSetupRepositories).toHaveBeenCalled()
 
     // OCaml installation should be skipped
     expect(mockCreateSwitch).not.toHaveBeenCalled()

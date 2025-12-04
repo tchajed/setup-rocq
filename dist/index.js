@@ -76507,7 +76507,13 @@ async function initializeOpam() {
         coreExports.exportVariable('OPAMYES', '1');
         coreExports.exportVariable('OPAMCONFIRMLEVEL', 'unsafe-yes');
         coreExports.exportVariable('OPAMROOTISOK', 'true');
-        const args = ['init', '--bare', '--disable-sandboxing'];
+        const args = [
+            'init',
+            '--bare',
+            '--disable-sandboxing',
+            '--auto-setup',
+            '--enable-shell-hook'
+        ];
         {
             coreExports.info('Sandboxing is disabled');
         }
@@ -76560,6 +76566,33 @@ async function setupOpamEnv() {
         }
     }
 }
+async function addRepository(name, url) {
+    coreExports.info(`Adding opam repository: ${name} (${url})`);
+    await execExports.exec('opam', ['repository', 'add', name, url, '--yes']);
+}
+async function setupRepositories() {
+    await coreExports.group('Setting up opam repositories', async () => {
+        // Always add rocq-released repository
+        await addRepository('rocq-released', 'https://github.com/coq/opam-rocq-archive.git');
+        // Add any additional repositories from input
+        const opamReposInput = coreExports.getInput('opam-repositories');
+        if (opamReposInput) {
+            const repos = opamReposInput
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0);
+            for (const repo of repos) {
+                const [name, url] = repo.split(':').map(s => s.trim());
+                if (name && url) {
+                    await addRepository(name, url);
+                }
+                else {
+                    coreExports.warning(`Invalid repository format: "${repo}". Expected "name:url"`);
+                }
+            }
+        }
+    });
+}
 async function disableDuneCache() {
     await coreExports.group('Disabling dune cache', async () => {
         // Create a dune config file that disables caching
@@ -76577,24 +76610,20 @@ async function disableDuneCache() {
 async function run() {
     try {
         coreExports.info('Setting up Rocq development environment');
-        // Step 1: Restore cache (before setting up opam)
         coreExports.startGroup('Restoring opam cache');
         const cacheRestored = await restoreCache();
         coreExports.endGroup();
-        // Step 2: Always set up opam (acquire and initialize)
         await setupOpam();
-        // Step 3: Create OCaml switch (only if cache was not restored)
+        // Set up repositories (rocq-released + any additional ones)
+        await setupRepositories();
         if (!cacheRestored) {
+            coreExports.info('No cache, initializing');
             await createSwitch();
-            // Step 4: Set up opam environment
-            await setupOpamEnv();
         }
         else {
-            coreExports.info('Skipping OCaml installation (restored from cache)');
-            // Still need to set up the environment variables
-            await setupOpamEnv();
+            coreExports.info('Restored from cache');
         }
-        // Step 5: Disable dune cache
+        await setupOpamEnv();
         await disableDuneCache();
         coreExports.info('Rocq development environment set up successfully');
         // Get the rocq-version input for future use

@@ -12,6 +12,10 @@ inputs:
   rocq-version:
     description: The version of Rocq to install
     default: 'latest'
+  opam-repositories:
+    description: Additional opam repositories to add (name:url pairs, one per line)
+    required: false
+    default: ''
 
 runs:
   using: node24

@@ -149,6 +149,44 @@ export async function setupOpamEnv(): Promise<void> {
   }
 }
 
+export async function addRepository(
+  name: string,
+  url: string
+): Promise<void> {
+  core.info(`Adding opam repository: ${name} (${url})`)
+  await exec.exec('opam', ['repository', 'add', name, url, '--yes'])
+}
+
+export async function setupRepositories(): Promise<void> {
+  await core.group('Setting up opam repositories', async () => {
+    // Always add rocq-released repository
+    await addRepository(
+      'rocq-released',
+      'https://github.com/coq/opam-rocq-archive.git'
+    )
+
+    // Add any additional repositories from input
+    const opamReposInput = core.getInput('opam-repositories')
+    if (opamReposInput) {
+      const repos = opamReposInput
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+
+      for (const repo of repos) {
+        const [name, url] = repo.split(':').map(s => s.trim())
+        if (name && url) {
+          await addRepository(name, url)
+        } else {
+          core.warning(
+            `Invalid repository format: "${repo}". Expected "name:url"`
+          )
+        }
+      }
+    }
+  })
+}
+
 export async function disableDuneCache(): Promise<void> {
   await core.group('Disabling dune cache', async () => {
     // Create a dune config file that disables caching

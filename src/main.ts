@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 import { restoreCache } from './cache.js'
 import {
   setupOpam,
+  setupRepositories,
   createSwitch,
   setupOpamEnv,
   disableDuneCache
@@ -11,27 +12,23 @@ export async function run(): Promise<void> {
   try {
     core.info('Setting up Rocq development environment')
 
-    // Step 1: Restore cache (before setting up opam)
     core.startGroup('Restoring opam cache')
     const cacheRestored = await restoreCache()
     core.endGroup()
 
-    // Step 2: Always set up opam (acquire and initialize)
     await setupOpam()
 
-    // Step 3: Create OCaml switch (only if cache was not restored)
+    // Set up repositories (rocq-released + any additional ones)
+    await setupRepositories()
+
     if (!cacheRestored) {
+      core.info('No cache, initializing')
       await createSwitch()
-
-      // Step 4: Set up opam environment
-      await setupOpamEnv()
     } else {
-      core.info('Skipping OCaml installation (restored from cache)')
-      // Still need to set up the environment variables
-      await setupOpamEnv()
+      core.info('Restored from cache')
     }
+    await setupOpamEnv()
 
-    // Step 5: Disable dune cache
     await disableDuneCache()
 
     core.info('Rocq development environment set up successfully')
