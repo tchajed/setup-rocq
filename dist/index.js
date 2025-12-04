@@ -74981,7 +74981,7 @@ function requireCache () {
 
 var cacheExports = requireCache();
 
-const OCAML_VERSION = '5.4.0';
+const OCAML_VERSION = '5.2.0';
 const PLATFORM = require$$0$3.platform();
 const ARCHITECTURE = require$$0$3.arch();
 process.env.GITHUB_TOKEN || '';
@@ -83484,11 +83484,10 @@ async function opamPin(pkg, target, options = []) {
     await execExports.exec('opam', [
         'pin',
         'add',
-        '-n',
-        '-y',
+        '--no-action',
+        '--yes',
         pkg,
         target,
-        '--yes',
         ...options
     ]);
 }
@@ -83505,7 +83504,8 @@ async function installRocqDev() {
 }
 async function installRocqLatest() {
     coreExports.info('Installing latest Rocq version');
-    await opamInstall('coq');
+    // await opamInstall('coq')
+    await opamInstall('dune');
 }
 async function installRocqVersion(version) {
     coreExports.info(`Installing Rocq version ${version}`);
@@ -83522,7 +83522,6 @@ async function installRocq(version) {
         else {
             await installRocqVersion(version);
         }
-        coreExports.info('Rocq installed successfully');
     });
 }
 

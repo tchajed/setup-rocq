@@ -211,10 +211,7 @@ export async function disableDuneCache(): Promise<void> {
   })
 }
 
-async function opamInstall(
-  pkg: string,
-  options: string[] = []
-): Promise<void> {
+async function opamInstall(pkg: string, options: string[] = []): Promise<void> {
   await exec.exec('opam', ['install', pkg, '--unset-root', '--yes', ...options])
 }
 
@@ -226,11 +223,10 @@ async function opamPin(
   await exec.exec('opam', [
     'pin',
     'add',
-    '-n',
-    '-y',
+    '--no-action',
+    '--yes',
     pkg,
     target,
-    '--yes',
     ...options
   ])
 }
@@ -257,7 +253,8 @@ async function installRocqDev(): Promise<void> {
 
 async function installRocqLatest(): Promise<void> {
   core.info('Installing latest Rocq version')
-  await opamInstall('coq')
+  // await opamInstall('coq')
+  await opamInstall('dune')
 }
 
 async function installRocqVersion(version: string): Promise<void> {
@@ -274,6 +271,5 @@ export async function installRocq(version: string): Promise<void> {
     } else {
       await installRocqVersion(version)
     }
-    core.info('Rocq installed successfully')
   })
 }

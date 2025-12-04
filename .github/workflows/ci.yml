@@ -60,3 +60,4 @@ jobs:
         run: |
           echo "opam: $(opam --version)"
           echo "ocamlc: $(ocamlc --version)"
+          echo "dune: $(dune --version)"
