@@ -5,7 +5,8 @@ import {
   setupRepositories,
   createSwitch,
   setupOpamEnv,
-  disableDuneCache
+  disableDuneCache,
+  installRocq
 } from './opam.js'
 
 export async function run(): Promise<void> {
@@ -31,12 +32,11 @@ export async function run(): Promise<void> {
 
     await disableDuneCache()
 
-    core.info('Rocq development environment set up successfully')
-
-    // Get the rocq-version input for future use
+    // Install Rocq
     const rocqVersion = core.getInput('rocq-version')
-    core.info(`Rocq version requested: ${rocqVersion}`)
-    // TODO: Install Rocq in a future update
+    await installRocq(rocqVersion)
+
+    core.info('Rocq development environment set up successfully')
   } catch (error) {
     if (error instanceof Error) {
       core.setFailed(error.message)

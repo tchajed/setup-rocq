@@ -210,3 +210,89 @@ export async function disableDuneCache(): Promise<void> {
     core.info('Dune cache disabled')
   })
 }
+
+async function installRocqDev(): Promise<void> {
+  core.info('Installing Rocq dev version')
+
+  // Pin dev packages from git repositories
+  await exec.exec('opam', [
+    'pin',
+    'add',
+    '-n',
+    '-y',
+    'rocq-runtime.dev',
+    'git+https://github.com/rocq-prover/rocq.git',
+    '--yes'
+  ])
+
+  await exec.exec('opam', [
+    'pin',
+    'add',
+    '-n',
+    '-y',
+    'rocq-core.dev',
+    'git+https://github.com/rocq-prover/rocq.git',
+    '--yes'
+  ])
+
+  await exec.exec('opam', [
+    'pin',
+    'add',
+    '-n',
+    '-y',
+    'coq-core.dev',
+    'git+https://github.com/rocq-prover/rocq.git',
+    '--yes'
+  ])
+
+  await exec.exec('opam', [
+    'pin',
+    'add',
+    '-n',
+    '-y',
+    'coq-stdlib.dev',
+    'git+https://github.com/rocq-prover/stdlib.git',
+    '--yes'
+  ])
+
+  await exec.exec('opam', [
+    'pin',
+    'add',
+    '-n',
+    '-y',
+    'coq.dev',
+    '--dev-repo',
+    '--yes'
+  ])
+
+  // Install the pinned packages
+  await exec.exec('opam', ['install', 'coq.dev', '--unset-root', '--yes'])
+}
+
+async function installRocqLatest(): Promise<void> {
+  core.info('Installing latest Rocq version')
+  await exec.exec('opam', ['install', 'coq', '--unset-root', '--yes'])
+}
+
+async function installRocqVersion(version: string): Promise<void> {
+  core.info(`Installing Rocq version ${version}`)
+  await exec.exec('opam', [
+    'install',
+    `coq.${version}`,
+    '--unset-root',
+    '--yes'
+  ])
+}
+
+export async function installRocq(version: string): Promise<void> {
+  await core.group('Installing Rocq', async () => {
+    if (version === 'dev') {
+      await installRocqDev()
+    } else if (version === 'latest') {
+      await installRocqLatest()
+    } else {
+      await installRocqVersion(version)
+    }
+    core.info('Rocq installed successfully')
+  })
+}

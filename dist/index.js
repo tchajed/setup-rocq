@@ -83477,6 +83477,84 @@ async function disableDuneCache() {
         coreExports.info('Dune cache disabled');
     });
 }
+async function installRocqDev() {
+    coreExports.info('Installing Rocq dev version');
+    // Pin dev packages from git repositories
+    await execExports.exec('opam', [
+        'pin',
+        'add',
+        '-n',
+        '-y',
+        'rocq-runtime.dev',
+        'git+https://github.com/rocq-prover/rocq.git',
+        '--yes'
+    ]);
+    await execExports.exec('opam', [
+        'pin',
+        'add',
+        '-n',
+        '-y',
+        'rocq-core.dev',
+        'git+https://github.com/rocq-prover/rocq.git',
+        '--yes'
+    ]);
+    await execExports.exec('opam', [
+        'pin',
+        'add',
+        '-n',
+        '-y',
+        'coq-core.dev',
+        'git+https://github.com/rocq-prover/rocq.git',
+        '--yes'
+    ]);
+    await execExports.exec('opam', [
+        'pin',
+        'add',
+        '-n',
+        '-y',
+        'coq-stdlib.dev',
+        'git+https://github.com/rocq-prover/stdlib.git',
+        '--yes'
+    ]);
+    await execExports.exec('opam', [
+        'pin',
+        'add',
+        '-n',
+        '-y',
+        'coq.dev',
+        '--dev-repo',
+        '--yes'
+    ]);
+    // Install the pinned packages
+    await execExports.exec('opam', ['install', 'coq.dev', '--unset-root', '--yes']);
+}
+async function installRocqLatest() {
+    coreExports.info('Installing latest Rocq version');
+    await execExports.exec('opam', ['install', 'coq', '--unset-root', '--yes']);
+}
+async function installRocqVersion(version) {
+    coreExports.info(`Installing Rocq version ${version}`);
+    await execExports.exec('opam', [
+        'install',
+        `coq.${version}`,
+        '--unset-root',
+        '--yes'
+    ]);
+}
+async function installRocq(version) {
+    await coreExports.group('Installing Rocq', async () => {
+        if (version === 'dev') {
+            await installRocqDev();
+        }
+        else if (version === 'latest') {
+            await installRocqLatest();
+        }
+        else {
+            await installRocqVersion(version);
+        }
+        coreExports.info('Rocq installed successfully');
+    });
+}
 
 async function run() {
     try {
@@ -83496,11 +83574,10 @@ async function run() {
         }
         await setupOpamEnv();
         await disableDuneCache();
-        coreExports.info('Rocq development environment set up successfully');
-        // Get the rocq-version input for future use
+        // Install Rocq
         const rocqVersion = coreExports.getInput('rocq-version');
-        coreExports.info(`Rocq version requested: ${rocqVersion}`);
-        // TODO: Install Rocq in a future update
+        await installRocq(rocqVersion);
+        coreExports.info('Rocq development environment set up successfully');
     }
     catch (error) {
         if (error instanceof Error) {

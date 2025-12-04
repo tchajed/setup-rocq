@@ -16,12 +16,14 @@ const mockSetupRepositories = jest.fn<() => Promise<void>>()
 const mockCreateSwitch = jest.fn<() => Promise<void>>()
 const mockSetupOpamEnv = jest.fn<() => Promise<void>>()
 const mockDisableDuneCache = jest.fn<() => Promise<void>>()
+const mockInstallRocq = jest.fn<(version: string) => Promise<void>>()
 const mockOpam = {
   setupOpam: mockSetupOpam,
   setupRepositories: mockSetupRepositories,
   createSwitch: mockCreateSwitch,
   setupOpamEnv: mockSetupOpamEnv,
-  disableDuneCache: mockDisableDuneCache
+  disableDuneCache: mockDisableDuneCache,
+  installRocq: mockInstallRocq
 }
 
 // Mocks should be declared before the module being tested is imported.
@@ -47,6 +49,7 @@ describe('main.ts', () => {
     mockCreateSwitch.mockResolvedValue(undefined)
     mockSetupOpamEnv.mockResolvedValue(undefined)
     mockDisableDuneCache.mockResolvedValue(undefined)
+    mockInstallRocq.mockResolvedValue(undefined)
   })
 
   afterEach(() => {
@@ -65,6 +68,7 @@ describe('main.ts', () => {
     expect(mockCreateSwitch).toHaveBeenCalled()
     expect(mockSetupOpamEnv).toHaveBeenCalled()
     expect(mockDisableDuneCache).toHaveBeenCalled()
+    expect(mockInstallRocq).toHaveBeenCalledWith('latest')
     expect(core.setFailed).not.toHaveBeenCalled()
   })
 
@@ -86,6 +90,7 @@ describe('main.ts', () => {
     // But environment setup should still run
     expect(mockSetupOpamEnv).toHaveBeenCalled()
     expect(mockDisableDuneCache).toHaveBeenCalled()
+    expect(mockInstallRocq).toHaveBeenCalledWith('latest')
     expect(core.setFailed).not.toHaveBeenCalled()
   })
 
