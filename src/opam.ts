@@ -212,7 +212,13 @@ export async function disableDuneCache(): Promise<void> {
 }
 
 async function opamInstall(pkg: string, options: string[] = []): Promise<void> {
-  await exec.exec('opam', ['install', pkg, '--unset-root', '--yes', ...options])
+  await exec.exec('opam', [
+    'install',
+    pkg,
+    // '--unset-root',
+    '--yes',
+    ...options
+  ])
 }
 
 async function opamPin(
@@ -253,8 +259,9 @@ async function installRocqDev(): Promise<void> {
 
 async function installRocqLatest(): Promise<void> {
   core.info('Installing latest Rocq version')
-  // await opamInstall('coq')
-  //await opamInstall('dune')
+  // Pin to a stable dune version that works with OCaml 5.2.0
+  await opamInstall('dune.3.16.1')
+  await opamInstall('coq')
 }
 
 async function installRocqVersion(version: string): Promise<void> {

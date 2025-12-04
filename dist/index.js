@@ -83479,7 +83479,13 @@ async function disableDuneCache() {
     });
 }
 async function opamInstall(pkg, options = []) {
-    await execExports.exec('opam', ['install', pkg, '--unset-root', '--yes', ...options]);
+    await execExports.exec('opam', [
+        'install',
+        pkg,
+        // '--unset-root',
+        '--yes',
+        ...options
+    ]);
 }
 async function opamPin(pkg, target, options = []) {
     await execExports.exec('opam', [
@@ -83505,8 +83511,9 @@ async function installRocqDev() {
 }
 async function installRocqLatest() {
     coreExports.info('Installing latest Rocq version');
-    // await opamInstall('coq')
-    //await opamInstall('dune')
+    // Pin to a stable dune version that works with OCaml 5.2.0
+    await opamInstall('dune.3.16.1');
+    await opamInstall('coq');
 }
 async function installRocqVersion(version) {
     coreExports.info(`Installing Rocq version ${version}`);
