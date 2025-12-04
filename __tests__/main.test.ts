@@ -15,14 +15,12 @@ const mockSetupOpam = jest.fn<() => Promise<void>>()
 const mockSetupRepositories = jest.fn<() => Promise<void>>()
 const mockCreateSwitch = jest.fn<() => Promise<void>>()
 const mockSetupOpamEnv = jest.fn<() => Promise<void>>()
-const mockDisableDuneCache = jest.fn<() => Promise<void>>()
 const mockInstallRocq = jest.fn<(version: string) => Promise<void>>()
 const mockOpam = {
   setupOpam: mockSetupOpam,
   setupRepositories: mockSetupRepositories,
   createSwitch: mockCreateSwitch,
   setupOpamEnv: mockSetupOpamEnv,
-  disableDuneCache: mockDisableDuneCache,
   installRocq: mockInstallRocq
 }
 
@@ -56,7 +54,6 @@ describe('main.ts', () => {
     mockSetupRepositories.mockResolvedValue(undefined)
     mockCreateSwitch.mockResolvedValue(undefined)
     mockSetupOpamEnv.mockResolvedValue(undefined)
-    mockDisableDuneCache.mockResolvedValue(undefined)
     mockInstallRocq.mockResolvedValue(undefined)
   })
 
@@ -76,7 +73,6 @@ describe('main.ts', () => {
     expect(mockSetupRepositories).toHaveBeenCalled()
     expect(mockCreateSwitch).toHaveBeenCalled()
     expect(mockSetupOpamEnv).toHaveBeenCalled()
-    expect(mockDisableDuneCache).toHaveBeenCalled()
     expect(mockInstallRocq).toHaveBeenCalledWith('latest')
     expect(core.setFailed).not.toHaveBeenCalled()
   })
@@ -99,7 +95,6 @@ describe('main.ts', () => {
 
     // But environment setup should still run
     expect(mockSetupOpamEnv).toHaveBeenCalled()
-    expect(mockDisableDuneCache).toHaveBeenCalled()
     expect(mockInstallRocq).toHaveBeenCalledWith('latest')
     expect(core.setFailed).not.toHaveBeenCalled()
   })
