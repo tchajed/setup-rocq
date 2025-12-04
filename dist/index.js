@@ -92314,6 +92314,9 @@ async function run() {
             coreExports.info('Restored from cache');
         }
         await setupOpamEnv();
+        coreExports.group('list installed opam packages', async () => {
+            await execExports.exec('opam', ['list']);
+        });
         // Install Rocq
         await installRocq(ROCQ_VERSION());
         coreExports.info('Rocq development environment set up successfully');

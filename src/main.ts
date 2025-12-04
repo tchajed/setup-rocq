@@ -9,6 +9,7 @@ import {
 } from './opam.js'
 import { installSystemPackages } from './unix.js'
 import { ROCQ_VERSION } from './constants.js'
+import * as exec from '@actions/exec'
 
 export async function run(): Promise<void> {
   try {
@@ -32,6 +33,9 @@ export async function run(): Promise<void> {
       core.info('Restored from cache')
     }
     await setupOpamEnv()
+    core.group('list installed opam packages', async () => {
+      await exec.exec('opam', ['list'])
+    })
 
     // Install Rocq
     await installRocq(ROCQ_VERSION())
