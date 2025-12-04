@@ -6,7 +6,7 @@ code in this repository.
 ## Project Overview
 
 This is a GitHub Action that sets up Rocq (formerly Coq) development
-environments in CI workflows. It installs opam, OCaml 5.2.0, and configures the
+environments in CI workflows. It installs opam, OCaml, and configures the
 environment for building Rocq projects.
 
 ## Key Commands

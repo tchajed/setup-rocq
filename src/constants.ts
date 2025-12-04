@@ -1,6 +1,6 @@
 import * as os from 'os'
 
-export const OCAML_VERSION = '5.2.0'
+export const OCAML_VERSION = '5.4.0'
 
 export const OPAM_DISABLE_SANDBOXING = true
 
