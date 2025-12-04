@@ -61,4 +61,4 @@ jobs:
           echo "opam: $(opam --version)"
           echo "ocamlc: $(ocamlc --version)"
           echo "dune: $(dune --version)"
-          echo "rocq: $(rocq --print-version)"
+          # echo "rocq: $(rocq --print-version)"

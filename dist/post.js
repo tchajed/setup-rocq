@@ -1,14 +1,14 @@
 import * as require$$0$3 from 'os';
 import require$$0__default from 'os';
 import require$$0$4, { randomUUID as randomUUID$1, createHmac } from 'crypto';
-import * as require$$1$1 from 'fs';
-import require$$1__default from 'fs';
-import * as require$$1$2 from 'path';
-import require$$1__default$1 from 'path';
+import * as fs from 'fs';
+import fs__default from 'fs';
+import * as require$$1$1 from 'path';
+import require$$1__default from 'path';
 import require$$2$1 from 'http';
-import require$$1$3 from 'https';
+import require$$1$2 from 'https';
 import require$$0$6 from 'net';
-import require$$1$4 from 'tls';
+import require$$1$3 from 'tls';
 import require$$4, { EventEmitter } from 'events';
 import require$$0$5 from 'assert';
 import * as require$$0$2 from 'util';
@@ -22,7 +22,7 @@ import require$$0$8 from 'worker_threads';
 import require$$2$2 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4$1 from 'async_hooks';
-import require$$1$5 from 'console';
+import require$$1$4 from 'console';
 import require$$5$1 from 'url';
 import require$$3 from 'zlib';
 import require$$6 from 'string_decoder';
@@ -37,7 +37,7 @@ import * as http from 'node:http';
 import * as https from 'node:https';
 import * as zlib from 'node:zlib';
 import { Readable, Transform } from 'node:stream';
-import require$$1$6 from 'tty';
+import require$$1$5 from 'tty';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -262,7 +262,7 @@ function requireFileCommand () {
 	// We use any as a valid input type
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const crypto = __importStar(require$$0$4);
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const os = __importStar(require$$0__default);
 	const utils_1 = requireUtils$1();
 	function issueFileCommand(command, message) {
@@ -412,9 +412,9 @@ var hasRequiredTunnel$1;
 function requireTunnel$1 () {
 	if (hasRequiredTunnel$1) return tunnel$1;
 	hasRequiredTunnel$1 = 1;
-	var tls = require$$1$4;
+	var tls = require$$1$3;
 	var http = require$$2$1;
-	var https = require$$1$3;
+	var https = require$$1$2;
 	var events = require$$4;
 	var util = require$$0__default$1;
 
@@ -8133,7 +8133,7 @@ function requireConnect () {
 	    let socket;
 	    if (protocol === 'https:') {
 	      if (!tls) {
-	        tls = require$$1$4;
+	        tls = require$$1$3;
 	      }
 	      servername = servername || options.servername || util.getServerName(host) || null;
 
@@ -14157,7 +14157,7 @@ function requirePendingInterceptorsFormatter () {
 	hasRequiredPendingInterceptorsFormatter = 1;
 
 	const { Transform } = require$$0$7;
-	const { Console } = require$$1$5;
+	const { Console } = require$$1$4;
 
 	/**
 	 * Gets the output of `console.table(…)` as a string.
@@ -24437,7 +24437,7 @@ function requireLib () {
 	Object.defineProperty(lib, "__esModule", { value: true });
 	lib.HttpClient = lib.isHttps = lib.HttpClientResponse = lib.HttpClientError = lib.getProxyUrl = lib.MediaTypes = lib.Headers = lib.HttpCodes = void 0;
 	const http = __importStar(require$$2$1);
-	const https = __importStar(require$$1$3);
+	const https = __importStar(require$$1$2);
 	const pm = __importStar(requireProxy());
 	const tunnel = __importStar(requireTunnel());
 	const undici_1 = requireUndici();
@@ -25249,7 +25249,7 @@ function requireSummary () {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.summary = exports.markdownSummary = exports.SUMMARY_DOCS_URL = exports.SUMMARY_ENV_VAR = void 0;
 		const os_1 = require$$0__default;
-		const fs_1 = require$$1__default;
+		const fs_1 = fs__default;
 		const { access, appendFile, writeFile } = fs_1.promises;
 		exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
 		exports.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
@@ -25555,7 +25555,7 @@ function requirePathUtils () {
 	};
 	Object.defineProperty(pathUtils, "__esModule", { value: true });
 	pathUtils.toPlatformPath = pathUtils.toWin32Path = pathUtils.toPosixPath = void 0;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	/**
 	 * toPosixPath converts the given path to the posix form. On Windows, \\ will be
 	 * replaced with /.
@@ -25600,36 +25600,36 @@ var exec = {};
 
 var toolrunner = {};
 
-var io$1 = {};
+var io$2 = {};
 
-var ioUtil$1 = {};
+var ioUtil$2 = {};
 
-var hasRequiredIoUtil$1;
+var hasRequiredIoUtil$2;
 
-function requireIoUtil$1 () {
-	if (hasRequiredIoUtil$1) return ioUtil$1;
-	hasRequiredIoUtil$1 = 1;
+function requireIoUtil$2 () {
+	if (hasRequiredIoUtil$2) return ioUtil$2;
+	hasRequiredIoUtil$2 = 1;
 	(function (exports) {
-		var __createBinding = (ioUtil$1 && ioUtil$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		var __createBinding = (ioUtil$2 && ioUtil$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 		}) : (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    o[k2] = m[k];
 		}));
-		var __setModuleDefault = (ioUtil$1 && ioUtil$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+		var __setModuleDefault = (ioUtil$2 && ioUtil$2.__setModuleDefault) || (Object.create ? (function(o, v) {
 		    Object.defineProperty(o, "default", { enumerable: true, value: v });
 		}) : function(o, v) {
 		    o["default"] = v;
 		});
-		var __importStar = (ioUtil$1 && ioUtil$1.__importStar) || function (mod) {
+		var __importStar = (ioUtil$2 && ioUtil$2.__importStar) || function (mod) {
 		    if (mod && mod.__esModule) return mod;
 		    var result = {};
 		    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 		    __setModuleDefault(result, mod);
 		    return result;
 		};
-		var __awaiter = (ioUtil$1 && ioUtil$1.__awaiter) || function (thisArg, _arguments, P, generator) {
+		var __awaiter = (ioUtil$2 && ioUtil$2.__awaiter) || function (thisArg, _arguments, P, generator) {
 		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 		    return new (P || (P = Promise))(function (resolve, reject) {
 		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -25641,8 +25641,8 @@ function requireIoUtil$1 () {
 		var _a;
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-		const fs = __importStar(require$$1__default);
-		const path = __importStar(require$$1__default$1);
+		const fs = __importStar(fs__default);
+		const path = __importStar(require$$1__default);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -25792,35 +25792,35 @@ function requireIoUtil$1 () {
 		}
 		exports.getCmdPath = getCmdPath;
 		
-	} (ioUtil$1));
-	return ioUtil$1;
+	} (ioUtil$2));
+	return ioUtil$2;
 }
 
-var hasRequiredIo$1;
+var hasRequiredIo$2;
 
-function requireIo$1 () {
-	if (hasRequiredIo$1) return io$1;
-	hasRequiredIo$1 = 1;
-	var __createBinding = (io$1 && io$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+function requireIo$2 () {
+	if (hasRequiredIo$2) return io$2;
+	hasRequiredIo$2 = 1;
+	var __createBinding = (io$2 && io$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 	}) : (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (io$1 && io$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (io$2 && io$2.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (io$1 && io$1.__importStar) || function (mod) {
+	var __importStar = (io$2 && io$2.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (io$1 && io$1.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (io$2 && io$2.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -25829,11 +25829,11 @@ function requireIo$1 () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(io$1, "__esModule", { value: true });
-	io$1.findInPath = io$1.which = io$1.mkdirP = io$1.rmRF = io$1.mv = io$1.cp = void 0;
+	Object.defineProperty(io$2, "__esModule", { value: true });
+	io$2.findInPath = io$2.which = io$2.mkdirP = io$2.rmRF = io$2.mv = io$2.cp = void 0;
 	const assert_1 = require$$0$5;
-	const path = __importStar(require$$1__default$1);
-	const ioUtil = __importStar(requireIoUtil$1());
+	const path = __importStar(require$$1__default);
+	const ioUtil = __importStar(requireIoUtil$2());
 	/**
 	 * Copies a file or folder.
 	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
@@ -25875,7 +25875,7 @@ function requireIo$1 () {
 	        }
 	    });
 	}
-	io$1.cp = cp;
+	io$2.cp = cp;
 	/**
 	 * Moves a path.
 	 *
@@ -25905,7 +25905,7 @@ function requireIo$1 () {
 	        yield ioUtil.rename(source, dest);
 	    });
 	}
-	io$1.mv = mv;
+	io$2.mv = mv;
 	/**
 	 * Remove a path recursively with force
 	 *
@@ -25934,7 +25934,7 @@ function requireIo$1 () {
 	        }
 	    });
 	}
-	io$1.rmRF = rmRF;
+	io$2.rmRF = rmRF;
 	/**
 	 * Make a directory.  Creates the full path with folders in between
 	 * Will throw if it fails
@@ -25948,7 +25948,7 @@ function requireIo$1 () {
 	        yield ioUtil.mkdir(fsPath, { recursive: true });
 	    });
 	}
-	io$1.mkdirP = mkdirP;
+	io$2.mkdirP = mkdirP;
 	/**
 	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
 	 * If you check and the tool does not exist, it will throw.
@@ -25982,7 +25982,7 @@ function requireIo$1 () {
 	        return '';
 	    });
 	}
-	io$1.which = which;
+	io$2.which = which;
 	/**
 	 * Returns a list of all occurrences of the given tool on the system path.
 	 *
@@ -26039,7 +26039,7 @@ function requireIo$1 () {
 	        return matches;
 	    });
 	}
-	io$1.findInPath = findInPath;
+	io$2.findInPath = findInPath;
 	function readCopyOptions(options) {
 	    const force = options.force == null ? true : options.force;
 	    const recursive = Boolean(options.recursive);
@@ -26099,7 +26099,7 @@ function requireIo$1 () {
 	    });
 	}
 	
-	return io$1;
+	return io$2;
 }
 
 var hasRequiredToolrunner;
@@ -26140,9 +26140,9 @@ function requireToolrunner () {
 	const os = __importStar(require$$0__default);
 	const events = __importStar(require$$4);
 	const child = __importStar(require$$2$3);
-	const path = __importStar(require$$1__default$1);
-	const io = __importStar(requireIo$1());
-	const ioUtil = __importStar(requireIoUtil$1());
+	const path = __importStar(require$$1__default);
+	const io = __importStar(requireIo$2());
+	const ioUtil = __importStar(requireIoUtil$2());
 	const timers_1 = require$$6$1;
 	/* eslint-disable @typescript-eslint/unbound-method */
 	const IS_WINDOWS = process.platform === 'win32';
@@ -26984,7 +26984,7 @@ function requireCore () {
 		const file_command_1 = requireFileCommand();
 		const utils_1 = requireUtils$1();
 		const os = __importStar(require$$0__default);
-		const path = __importStar(require$$1__default$1);
+		const path = __importStar(require$$1__default);
 		const oidc_utils_1 = requireOidcUtils();
 		/**
 		 * The code to exit an action
@@ -27395,7 +27395,7 @@ function requireInternalPathHelper () {
 	};
 	Object.defineProperty(internalPathHelper, "__esModule", { value: true });
 	internalPathHelper.safeTrimTrailingSeparator = internalPathHelper.normalizeSeparators = internalPathHelper.hasRoot = internalPathHelper.hasAbsoluteRoot = internalPathHelper.ensureAbsoluteRoot = internalPathHelper.dirname = void 0;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const assert_1 = __importDefault(require$$0$5);
 	const IS_WINDOWS = process.platform === 'win32';
 	/**
@@ -28981,7 +28981,7 @@ function requireInternalPath () {
 	};
 	Object.defineProperty(internalPath, "__esModule", { value: true });
 	internalPath.Path = void 0;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const pathHelper = __importStar(requireInternalPathHelper());
 	const assert_1 = __importDefault(require$$0$5);
 	const IS_WINDOWS = process.platform === 'win32';
@@ -29102,7 +29102,7 @@ function requireInternalPattern () {
 	Object.defineProperty(internalPattern, "__esModule", { value: true });
 	internalPattern.Pattern = void 0;
 	const os = __importStar(require$$0__default);
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const pathHelper = __importStar(requireInternalPathHelper());
 	const assert_1 = __importDefault(require$$0$5);
 	const minimatch_1 = requireMinimatch();
@@ -29409,9 +29409,9 @@ function requireInternalGlobber () {
 	Object.defineProperty(internalGlobber, "__esModule", { value: true });
 	internalGlobber.DefaultGlobber = void 0;
 	const core = __importStar(requireCore());
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const globOptionsHelper = __importStar(requireInternalGlobOptionsHelper());
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const patternHelper = __importStar(requireInternalPatternHelper());
 	const internal_match_kind_1 = requireInternalMatchKind();
 	const internal_pattern_1 = requireInternalPattern();
@@ -29629,36 +29629,36 @@ function requireGlob () {
 	return glob;
 }
 
-var io = {};
+var io$1 = {};
 
-var ioUtil = {};
+var ioUtil$1 = {};
 
-var hasRequiredIoUtil;
+var hasRequiredIoUtil$1;
 
-function requireIoUtil () {
-	if (hasRequiredIoUtil) return ioUtil;
-	hasRequiredIoUtil = 1;
+function requireIoUtil$1 () {
+	if (hasRequiredIoUtil$1) return ioUtil$1;
+	hasRequiredIoUtil$1 = 1;
 	(function (exports) {
-		var __createBinding = (ioUtil && ioUtil.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		var __createBinding = (ioUtil$1 && ioUtil$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 		}) : (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    o[k2] = m[k];
 		}));
-		var __setModuleDefault = (ioUtil && ioUtil.__setModuleDefault) || (Object.create ? (function(o, v) {
+		var __setModuleDefault = (ioUtil$1 && ioUtil$1.__setModuleDefault) || (Object.create ? (function(o, v) {
 		    Object.defineProperty(o, "default", { enumerable: true, value: v });
 		}) : function(o, v) {
 		    o["default"] = v;
 		});
-		var __importStar = (ioUtil && ioUtil.__importStar) || function (mod) {
+		var __importStar = (ioUtil$1 && ioUtil$1.__importStar) || function (mod) {
 		    if (mod && mod.__esModule) return mod;
 		    var result = {};
 		    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 		    __setModuleDefault(result, mod);
 		    return result;
 		};
-		var __awaiter = (ioUtil && ioUtil.__awaiter) || function (thisArg, _arguments, P, generator) {
+		var __awaiter = (ioUtil$1 && ioUtil$1.__awaiter) || function (thisArg, _arguments, P, generator) {
 		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 		    return new (P || (P = Promise))(function (resolve, reject) {
 		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -29670,8 +29670,8 @@ function requireIoUtil () {
 		var _a;
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-		const fs = __importStar(require$$1__default);
-		const path = __importStar(require$$1__default$1);
+		const fs = __importStar(fs__default);
+		const path = __importStar(require$$1__default);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -29821,35 +29821,35 @@ function requireIoUtil () {
 		}
 		exports.getCmdPath = getCmdPath;
 		
-	} (ioUtil));
-	return ioUtil;
+	} (ioUtil$1));
+	return ioUtil$1;
 }
 
-var hasRequiredIo;
+var hasRequiredIo$1;
 
-function requireIo () {
-	if (hasRequiredIo) return io;
-	hasRequiredIo = 1;
-	var __createBinding = (io && io.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+function requireIo$1 () {
+	if (hasRequiredIo$1) return io$1;
+	hasRequiredIo$1 = 1;
+	var __createBinding = (io$1 && io$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 	}) : (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (io && io.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (io$1 && io$1.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (io && io.__importStar) || function (mod) {
+	var __importStar = (io$1 && io$1.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (io && io.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (io$1 && io$1.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -29858,11 +29858,11 @@ function requireIo () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(io, "__esModule", { value: true });
-	io.findInPath = io.which = io.mkdirP = io.rmRF = io.mv = io.cp = void 0;
+	Object.defineProperty(io$1, "__esModule", { value: true });
+	io$1.findInPath = io$1.which = io$1.mkdirP = io$1.rmRF = io$1.mv = io$1.cp = void 0;
 	const assert_1 = require$$0$5;
-	const path = __importStar(require$$1__default$1);
-	const ioUtil = __importStar(requireIoUtil());
+	const path = __importStar(require$$1__default);
+	const ioUtil = __importStar(requireIoUtil$1());
 	/**
 	 * Copies a file or folder.
 	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
@@ -29904,7 +29904,7 @@ function requireIo () {
 	        }
 	    });
 	}
-	io.cp = cp;
+	io$1.cp = cp;
 	/**
 	 * Moves a path.
 	 *
@@ -29934,7 +29934,7 @@ function requireIo () {
 	        yield ioUtil.rename(source, dest);
 	    });
 	}
-	io.mv = mv;
+	io$1.mv = mv;
 	/**
 	 * Remove a path recursively with force
 	 *
@@ -29963,7 +29963,7 @@ function requireIo () {
 	        }
 	    });
 	}
-	io.rmRF = rmRF;
+	io$1.rmRF = rmRF;
 	/**
 	 * Make a directory.  Creates the full path with folders in between
 	 * Will throw if it fails
@@ -29977,7 +29977,7 @@ function requireIo () {
 	        yield ioUtil.mkdir(fsPath, { recursive: true });
 	    });
 	}
-	io.mkdirP = mkdirP;
+	io$1.mkdirP = mkdirP;
 	/**
 	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
 	 * If you check and the tool does not exist, it will throw.
@@ -30011,7 +30011,7 @@ function requireIo () {
 	        return '';
 	    });
 	}
-	io.which = which;
+	io$1.which = which;
 	/**
 	 * Returns a list of all occurrences of the given tool on the system path.
 	 *
@@ -30068,7 +30068,7 @@ function requireIo () {
 	        return matches;
 	    });
 	}
-	io.findInPath = findInPath;
+	io$1.findInPath = findInPath;
 	function readCopyOptions(options) {
 	    const force = options.force == null ? true : options.force;
 	    const recursive = Boolean(options.recursive);
@@ -30128,7 +30128,7 @@ function requireIo () {
 	    });
 	}
 	
-	return io;
+	return io$1;
 }
 
 var semver = {exports: {}};
@@ -31881,10 +31881,10 @@ function requireCacheUtils () {
 	const core = __importStar(requireCore());
 	const exec = __importStar(requireExec());
 	const glob = __importStar(requireGlob());
-	const io = __importStar(requireIo());
+	const io = __importStar(requireIo$1());
 	const crypto = __importStar(require$$0$4);
-	const fs = __importStar(require$$1__default);
-	const path = __importStar(require$$1__default$1);
+	const fs = __importStar(fs__default);
+	const path = __importStar(require$$1__default);
 	const semver = __importStar(requireSemver());
 	const util = __importStar(require$$0__default$1);
 	const constants_1 = requireConstants();
@@ -32741,7 +32741,7 @@ const isNodeLike = typeof globalThis.process !== "undefined" &&
  * A constant that indicates whether the environment the code is running is a Node.js compatible environment.
  * @deprecated Use `isNodeLike` instead.
  */
-const isNode = isNodeLike;
+const isNode$1 = isNodeLike;
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -34684,7 +34684,7 @@ function requireSupportsColor () {
 	if (hasRequiredSupportsColor) return supportsColor_1;
 	hasRequiredSupportsColor = 1;
 	const os = require$$0__default;
-	const tty = require$$1$6;
+	const tty = require$$1$5;
 	const hasFlag = requireHasFlag();
 
 	const {env} = process;
@@ -34830,7 +34830,7 @@ function requireNode () {
 	if (hasRequiredNode) return node.exports;
 	hasRequiredNode = 1;
 	(function (module, exports) {
-		const tty = require$$1$6;
+		const tty = require$$1$5;
 		const util = require$$0__default$1;
 
 		/**
@@ -35146,7 +35146,7 @@ function requireHelpers () {
 	Object.defineProperty(helpers, "__esModule", { value: true });
 	helpers.req = helpers.json = helpers.toBuffer = void 0;
 	const http = __importStar(require$$2$1);
-	const https = __importStar(require$$1$3);
+	const https = __importStar(require$$1$2);
 	async function toBuffer(stream) {
 	    let length = 0;
 	    const chunks = [];
@@ -35224,7 +35224,7 @@ function requireDist$2 () {
 		exports.Agent = void 0;
 		const net = __importStar(require$$0$6);
 		const http = __importStar(require$$2$1);
-		const https_1 = require$$1$3;
+		const https_1 = require$$1$2;
 		__exportStar(requireHelpers(), exports);
 		const INTERNAL = Symbol('AgentBaseInternalState');
 		class Agent extends http.Agent {
@@ -35521,7 +35521,7 @@ function requireDist$1 () {
 	Object.defineProperty(dist$2, "__esModule", { value: true });
 	dist$2.HttpsProxyAgent = void 0;
 	const net = __importStar(require$$0$6);
-	const tls = __importStar(require$$1$4);
+	const tls = __importStar(require$$1$3);
 	const assert_1 = __importDefault(require$$0$5);
 	const debug_1 = __importDefault(requireSrc());
 	const agent_base_1 = requireDist$2();
@@ -35712,7 +35712,7 @@ function requireDist () {
 	Object.defineProperty(dist, "__esModule", { value: true });
 	dist.HttpProxyAgent = void 0;
 	const net = __importStar(require$$0$6);
-	const tls = __importStar(require$$1$4);
+	const tls = __importStar(require$$1$3);
 	const debug_1 = __importDefault(requireSrc());
 	const events_1 = require$$4;
 	const agent_base_1 = requireDist$2();
@@ -42726,7 +42726,7 @@ function truncatedISO8061Date(date, withMilliseconds = true) {
  * @param content -
  */
 function base64encode$1(content) {
-    return !isNode ? btoa(content) : Buffer.from(content).toString("base64");
+    return !isNode$1 ? btoa(content) : Buffer.from(content).toString("base64");
 }
 /**
  * Generate a 64 bytes base64 block ID string.
@@ -43675,7 +43675,7 @@ function storageBrowserPolicy() {
     return {
         name: storageBrowserPolicyName,
         async sendRequest(request, next) {
-            if (isNode) {
+            if (isNode$1) {
                 return next(request);
             }
             if (request.method === "GET" || request.method === "HEAD") {
@@ -44021,7 +44021,7 @@ class StorageBrowserPolicy extends BaseRequestPolicy {
      * @param request -
      */
     async sendRequest(request) {
-        if (isNode) {
+        if (isNode$1) {
             return this._nextPolicy.sendRequest(request);
         }
         if (request.method.toUpperCase() === "GET" || request.method.toUpperCase() === "HEAD") {
@@ -59518,7 +59518,7 @@ class BlobDownloadResponse {
      * @readonly
      */
     get readableStreamBody() {
-        return isNode ? this.blobDownloadStream : undefined;
+        return isNode$1 ? this.blobDownloadStream : undefined;
     }
     /**
      * The HTTP response.
@@ -60522,7 +60522,7 @@ class BlobQueryResponse {
      * @readonly
      */
     get readableStreamBody() {
-        return isNode ? this.blobDownloadStream : undefined;
+        return isNode$1 ? this.blobDownloadStream : undefined;
     }
     /**
      * The HTTP response.
@@ -61852,7 +61852,7 @@ async function streamToBuffer2(stream, buffer, encoding) {
  */
 async function readStreamToLocalFile(rs, file) {
     return new Promise((resolve, reject) => {
-        const ws = require$$1$1.createWriteStream(file);
+        const ws = fs.createWriteStream(file);
         rs.on("error", (err) => {
             reject(err);
         });
@@ -61868,8 +61868,8 @@ async function readStreamToLocalFile(rs, file) {
  *
  * Promisified version of fs.stat().
  */
-const fsStat = require$$0$2.promisify(require$$1$1.stat);
-const fsCreateReadStream = require$$1$1.createReadStream;
+const fsStat = require$$0$2.promisify(fs.stat);
+const fsCreateReadStream = fs.createReadStream;
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -61902,7 +61902,7 @@ class BlobClient extends StorageClient {
             url = urlOrConnectionString;
             pipeline = credentialOrPipelineOrContainerName;
         }
-        else if ((isNode && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
+        else if ((isNode$1 && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
             credentialOrPipelineOrContainerName instanceof AnonymousCredential ||
             isTokenCredential(credentialOrPipelineOrContainerName)) {
             // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
@@ -61929,7 +61929,7 @@ class BlobClient extends StorageClient {
             const blobName = blobNameOrOptions;
             const extractedCreds = extractConnectionStringParts(urlOrConnectionString);
             if (extractedCreds.kind === "AccountConnString") {
-                if (isNode) {
+                if (isNode$1) {
                     const sharedKeyCredential = new StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
                     url = appendToURLPath(appendToURLPath(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
                     if (!options.proxyOptions) {
@@ -62073,7 +62073,7 @@ class BlobClient extends StorageClient {
                 leaseAccessConditions: options.conditions,
                 modifiedAccessConditions: Object.assign(Object.assign({}, options.conditions), { ifTags: (_a = options.conditions) === null || _a === void 0 ? void 0 : _a.tagConditions }),
                 requestOptions: {
-                    onDownloadProgress: isNode ? undefined : options.onProgress, // for Node.js, progress is reported by RetriableReadableStream
+                    onDownloadProgress: isNode$1 ? undefined : options.onProgress, // for Node.js, progress is reported by RetriableReadableStream
                 },
                 range: offset === 0 && !count ? undefined : rangeToString({ offset, count }),
                 rangeGetContentMD5: options.rangeGetContentMD5,
@@ -62084,7 +62084,7 @@ class BlobClient extends StorageClient {
             }));
             const wrappedRes = Object.assign(Object.assign({}, res), { _response: res._response, objectReplicationDestinationPolicyId: res.objectReplicationPolicyId, objectReplicationSourceProperties: parseObjectReplicationRecord(res.objectReplicationRules) });
             // Return browser response immediately
-            if (!isNode) {
+            if (!isNode$1) {
                 return wrappedRes;
             }
             // We support retrying when download stream unexpected ends in Node.js runtime
@@ -62901,7 +62901,7 @@ class AppendBlobClient extends BlobClient {
             url = urlOrConnectionString;
             pipeline = credentialOrPipelineOrContainerName;
         }
-        else if ((isNode && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
+        else if ((isNode$1 && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
             credentialOrPipelineOrContainerName instanceof AnonymousCredential ||
             isTokenCredential(credentialOrPipelineOrContainerName)) {
             // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)      url = urlOrConnectionString;
@@ -62925,7 +62925,7 @@ class AppendBlobClient extends BlobClient {
             const blobName = blobNameOrOptions;
             const extractedCreds = extractConnectionStringParts(urlOrConnectionString);
             if (extractedCreds.kind === "AccountConnString") {
-                if (isNode) {
+                if (isNode$1) {
                     const sharedKeyCredential = new StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
                     url = appendToURLPath(appendToURLPath(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
                     if (!options.proxyOptions) {
@@ -63146,7 +63146,7 @@ class BlockBlobClient extends BlobClient {
             url = urlOrConnectionString;
             pipeline = credentialOrPipelineOrContainerName;
         }
-        else if ((isNode && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
+        else if ((isNode$1 && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
             credentialOrPipelineOrContainerName instanceof AnonymousCredential ||
             isTokenCredential(credentialOrPipelineOrContainerName)) {
             // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
@@ -63173,7 +63173,7 @@ class BlockBlobClient extends BlobClient {
             const blobName = blobNameOrOptions;
             const extractedCreds = extractConnectionStringParts(urlOrConnectionString);
             if (extractedCreds.kind === "AccountConnString") {
-                if (isNode) {
+                if (isNode$1) {
                     const sharedKeyCredential = new StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
                     url = appendToURLPath(appendToURLPath(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
                     if (!options.proxyOptions) {
@@ -63246,7 +63246,7 @@ class BlockBlobClient extends BlobClient {
      */
     async query(query, options = {}) {
         ensureCpkIfSpecified(options.customerProvidedKey, this.isHttps);
-        if (!isNode) {
+        if (!isNode$1) {
             throw new Error("This operation currently is only supported in Node.js.");
         }
         return tracingClient.withSpan("BlockBlobClient-query", options, async (updatedOptions) => {
@@ -63500,7 +63500,7 @@ class BlockBlobClient extends BlobClient {
      */
     async uploadData(data, options = {}) {
         return tracingClient.withSpan("BlockBlobClient-uploadData", options, async (updatedOptions) => {
-            if (isNode) {
+            if (isNode$1) {
                 let buffer;
                 if (data instanceof Buffer) {
                     buffer = data;
@@ -63724,7 +63724,7 @@ class PageBlobClient extends BlobClient {
             url = urlOrConnectionString;
             pipeline = credentialOrPipelineOrContainerName;
         }
-        else if ((isNode && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
+        else if ((isNode$1 && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
             credentialOrPipelineOrContainerName instanceof AnonymousCredential ||
             isTokenCredential(credentialOrPipelineOrContainerName)) {
             // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
@@ -63748,7 +63748,7 @@ class PageBlobClient extends BlobClient {
             const blobName = blobNameOrOptions;
             const extractedCreds = extractConnectionStringParts(urlOrConnectionString);
             if (extractedCreds.kind === "AccountConnString") {
-                if (isNode) {
+                if (isNode$1) {
                     const sharedKeyCredential = new StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
                     url = appendToURLPath(appendToURLPath(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
                     if (!options.proxyOptions) {
@@ -64706,7 +64706,7 @@ class BlobBatch {
         let url;
         let credential;
         if (typeof urlOrBlobClient === "string" &&
-            ((isNode && credentialOrOptions instanceof StorageSharedKeyCredential) ||
+            ((isNode$1 && credentialOrOptions instanceof StorageSharedKeyCredential) ||
                 credentialOrOptions instanceof AnonymousCredential ||
                 isTokenCredential(credentialOrOptions))) {
             // First overload
@@ -64740,7 +64740,7 @@ class BlobBatch {
         let credential;
         let tier;
         if (typeof urlOrBlobClient === "string" &&
-            ((isNode && credentialOrTier instanceof StorageSharedKeyCredential) ||
+            ((isNode$1 && credentialOrTier instanceof StorageSharedKeyCredential) ||
                 credentialOrTier instanceof AnonymousCredential ||
                 isTokenCredential(credentialOrTier))) {
             // First overload
@@ -65052,7 +65052,7 @@ class ContainerClient extends StorageClient {
             url = urlOrConnectionString;
             pipeline = credentialOrPipelineOrContainerName;
         }
-        else if ((isNode && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
+        else if ((isNode$1 && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential) ||
             credentialOrPipelineOrContainerName instanceof AnonymousCredential ||
             isTokenCredential(credentialOrPipelineOrContainerName)) {
             // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
@@ -65072,7 +65072,7 @@ class ContainerClient extends StorageClient {
             const containerName = credentialOrPipelineOrContainerName;
             const extractedCreds = extractConnectionStringParts(urlOrConnectionString);
             if (extractedCreds.kind === "AccountConnString") {
-                if (isNode) {
+                if (isNode$1) {
                     const sharedKeyCredential = new StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
                     url = appendToURLPath(extractedCreds.url, encodeURIComponent(containerName));
                     if (!options.proxyOptions) {
@@ -66721,7 +66721,7 @@ class BlobServiceClient extends StorageClient {
         options = options || {};
         const extractedCreds = extractConnectionStringParts(connectionString);
         if (extractedCreds.kind === "AccountConnString") {
-            if (isNode) {
+            if (isNode$1) {
                 const sharedKeyCredential = new StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
                 if (!options.proxyOptions) {
                     options.proxyOptions = getDefaultProxySettings(extractedCreds.proxyUri);
@@ -66749,7 +66749,7 @@ class BlobServiceClient extends StorageClient {
         if (isPipelineLike(credentialOrPipeline)) {
             pipeline = credentialOrPipeline;
         }
-        else if ((isNode && credentialOrPipeline instanceof StorageSharedKeyCredential) ||
+        else if ((isNode$1 && credentialOrPipeline instanceof StorageSharedKeyCredential) ||
             credentialOrPipeline instanceof AnonymousCredential ||
             isTokenCredential(credentialOrPipeline)) {
             pipeline = newPipeline(credentialOrPipeline, options);
@@ -68150,7 +68150,7 @@ function requireDownloadUtils () {
 	const http_client_1 = requireLib();
 	const storage_blob_1 = require$$2;
 	const buffer = __importStar(require$$7);
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const stream = __importStar(require$$0$7);
 	const util = __importStar(require$$0__default$1);
 	const utils = __importStar(requireCacheUtils());
@@ -68732,7 +68732,7 @@ function requireCacheHttpClient () {
 	const core = __importStar(requireCore());
 	const http_client_1 = requireLib();
 	const auth_1 = requireAuth();
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const url_1 = require$$5$1;
 	const utils = __importStar(requireCacheUtils());
 	const uploadUtils_1 = requireUploadUtils();
@@ -74216,9 +74216,9 @@ function requireTar () {
 	Object.defineProperty(tar, "__esModule", { value: true });
 	tar.createTar = tar.extractTar = tar.listTar = void 0;
 	const exec_1 = requireExec();
-	const io = __importStar(requireIo());
-	const fs_1 = require$$1__default;
-	const path = __importStar(require$$1__default$1);
+	const io = __importStar(requireIo$1());
+	const fs_1 = fs__default;
+	const path = __importStar(require$$1__default);
 	const utils = __importStar(requireCacheUtils());
 	const constants_1 = requireConstants();
 	const IS_WINDOWS = process.platform === 'win32';
@@ -74493,7 +74493,7 @@ function requireCache () {
 	Object.defineProperty(cache$1, "__esModule", { value: true });
 	cache$1.saveCache = cache$1.restoreCache = cache$1.isFeatureAvailable = cache$1.FinalizeCacheError = cache$1.ReserveCacheError = cache$1.ValidationError = void 0;
 	const core = __importStar(requireCore());
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const utils = __importStar(requireCacheUtils());
 	const cacheHttpClient = __importStar(requireCacheHttpClient());
 	const cacheTwirpClient = __importStar(requireCacheTwirpClient());
@@ -74985,20 +74985,3538 @@ require$$0$3.platform();
 require$$0$3.arch();
 process.env.GITHUB_TOKEN || '';
 
+var execExports = requireExec();
+
+var toolCache = {};
+
+var io = {};
+
+var ioUtil = {};
+
+var hasRequiredIoUtil;
+
+function requireIoUtil () {
+	if (hasRequiredIoUtil) return ioUtil;
+	hasRequiredIoUtil = 1;
+	(function (exports) {
+		var __createBinding = (ioUtil && ioUtil.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+		}) : (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    o[k2] = m[k];
+		}));
+		var __setModuleDefault = (ioUtil && ioUtil.__setModuleDefault) || (Object.create ? (function(o, v) {
+		    Object.defineProperty(o, "default", { enumerable: true, value: v });
+		}) : function(o, v) {
+		    o["default"] = v;
+		});
+		var __importStar = (ioUtil && ioUtil.__importStar) || function (mod) {
+		    if (mod && mod.__esModule) return mod;
+		    var result = {};
+		    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+		    __setModuleDefault(result, mod);
+		    return result;
+		};
+		var __awaiter = (ioUtil && ioUtil.__awaiter) || function (thisArg, _arguments, P, generator) {
+		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+		    return new (P || (P = Promise))(function (resolve, reject) {
+		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+		        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+		        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+		        step((generator = generator.apply(thisArg, _arguments || [])).next());
+		    });
+		};
+		var _a;
+		Object.defineProperty(exports, "__esModule", { value: true });
+		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
+		const fs = __importStar(fs__default);
+		const path = __importStar(require$$1__default);
+		_a = fs.promises
+		// export const {open} = 'fs'
+		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
+		// export const {open} = 'fs'
+		exports.IS_WINDOWS = process.platform === 'win32';
+		// See https://github.com/nodejs/node/blob/d0153aee367422d0858105abec186da4dff0a0c5/deps/uv/include/uv/win.h#L691
+		exports.UV_FS_O_EXLOCK = 0x10000000;
+		exports.READONLY = fs.constants.O_RDONLY;
+		function exists(fsPath) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        try {
+		            yield exports.stat(fsPath);
+		        }
+		        catch (err) {
+		            if (err.code === 'ENOENT') {
+		                return false;
+		            }
+		            throw err;
+		        }
+		        return true;
+		    });
+		}
+		exports.exists = exists;
+		function isDirectory(fsPath, useStat = false) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        const stats = useStat ? yield exports.stat(fsPath) : yield exports.lstat(fsPath);
+		        return stats.isDirectory();
+		    });
+		}
+		exports.isDirectory = isDirectory;
+		/**
+		 * On OSX/Linux, true if path starts with '/'. On Windows, true for paths like:
+		 * \, \hello, \\hello\share, C:, and C:\hello (and corresponding alternate separator cases).
+		 */
+		function isRooted(p) {
+		    p = normalizeSeparators(p);
+		    if (!p) {
+		        throw new Error('isRooted() parameter "p" cannot be empty');
+		    }
+		    if (exports.IS_WINDOWS) {
+		        return (p.startsWith('\\') || /^[A-Z]:/i.test(p) // e.g. \ or \hello or \\hello
+		        ); // e.g. C: or C:\hello
+		    }
+		    return p.startsWith('/');
+		}
+		exports.isRooted = isRooted;
+		/**
+		 * Best effort attempt to determine whether a file exists and is executable.
+		 * @param filePath    file path to check
+		 * @param extensions  additional file extensions to try
+		 * @return if file exists and is executable, returns the file path. otherwise empty string.
+		 */
+		function tryGetExecutablePath(filePath, extensions) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        let stats = undefined;
+		        try {
+		            // test file exists
+		            stats = yield exports.stat(filePath);
+		        }
+		        catch (err) {
+		            if (err.code !== 'ENOENT') {
+		                // eslint-disable-next-line no-console
+		                console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
+		            }
+		        }
+		        if (stats && stats.isFile()) {
+		            if (exports.IS_WINDOWS) {
+		                // on Windows, test for valid extension
+		                const upperExt = path.extname(filePath).toUpperCase();
+		                if (extensions.some(validExt => validExt.toUpperCase() === upperExt)) {
+		                    return filePath;
+		                }
+		            }
+		            else {
+		                if (isUnixExecutable(stats)) {
+		                    return filePath;
+		                }
+		            }
+		        }
+		        // try each extension
+		        const originalFilePath = filePath;
+		        for (const extension of extensions) {
+		            filePath = originalFilePath + extension;
+		            stats = undefined;
+		            try {
+		                stats = yield exports.stat(filePath);
+		            }
+		            catch (err) {
+		                if (err.code !== 'ENOENT') {
+		                    // eslint-disable-next-line no-console
+		                    console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
+		                }
+		            }
+		            if (stats && stats.isFile()) {
+		                if (exports.IS_WINDOWS) {
+		                    // preserve the case of the actual file (since an extension was appended)
+		                    try {
+		                        const directory = path.dirname(filePath);
+		                        const upperName = path.basename(filePath).toUpperCase();
+		                        for (const actualName of yield exports.readdir(directory)) {
+		                            if (upperName === actualName.toUpperCase()) {
+		                                filePath = path.join(directory, actualName);
+		                                break;
+		                            }
+		                        }
+		                    }
+		                    catch (err) {
+		                        // eslint-disable-next-line no-console
+		                        console.log(`Unexpected error attempting to determine the actual case of the file '${filePath}': ${err}`);
+		                    }
+		                    return filePath;
+		                }
+		                else {
+		                    if (isUnixExecutable(stats)) {
+		                        return filePath;
+		                    }
+		                }
+		            }
+		        }
+		        return '';
+		    });
+		}
+		exports.tryGetExecutablePath = tryGetExecutablePath;
+		function normalizeSeparators(p) {
+		    p = p || '';
+		    if (exports.IS_WINDOWS) {
+		        // convert slashes on Windows
+		        p = p.replace(/\//g, '\\');
+		        // remove redundant slashes
+		        return p.replace(/\\\\+/g, '\\');
+		    }
+		    // remove redundant slashes
+		    return p.replace(/\/\/+/g, '/');
+		}
+		// on Mac/Linux, test the execute bit
+		//     R   W  X  R  W X R W X
+		//   256 128 64 32 16 8 4 2 1
+		function isUnixExecutable(stats) {
+		    return ((stats.mode & 1) > 0 ||
+		        ((stats.mode & 8) > 0 && stats.gid === process.getgid()) ||
+		        ((stats.mode & 64) > 0 && stats.uid === process.getuid()));
+		}
+		// Get the path of cmd.exe in windows
+		function getCmdPath() {
+		    var _a;
+		    return (_a = process.env['COMSPEC']) !== null && _a !== void 0 ? _a : `cmd.exe`;
+		}
+		exports.getCmdPath = getCmdPath;
+		
+	} (ioUtil));
+	return ioUtil;
+}
+
+var hasRequiredIo;
+
+function requireIo () {
+	if (hasRequiredIo) return io;
+	hasRequiredIo = 1;
+	var __createBinding = (io && io.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (io && io.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (io && io.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (io && io.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(io, "__esModule", { value: true });
+	io.findInPath = io.which = io.mkdirP = io.rmRF = io.mv = io.cp = void 0;
+	const assert_1 = require$$0$5;
+	const path = __importStar(require$$1__default);
+	const ioUtil = __importStar(requireIoUtil());
+	/**
+	 * Copies a file or folder.
+	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
+	 *
+	 * @param     source    source path
+	 * @param     dest      destination path
+	 * @param     options   optional. See CopyOptions.
+	 */
+	function cp(source, dest, options = {}) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const { force, recursive, copySourceDirectory } = readCopyOptions(options);
+	        const destStat = (yield ioUtil.exists(dest)) ? yield ioUtil.stat(dest) : null;
+	        // Dest is an existing file, but not forcing
+	        if (destStat && destStat.isFile() && !force) {
+	            return;
+	        }
+	        // If dest is an existing directory, should copy inside.
+	        const newDest = destStat && destStat.isDirectory() && copySourceDirectory
+	            ? path.join(dest, path.basename(source))
+	            : dest;
+	        if (!(yield ioUtil.exists(source))) {
+	            throw new Error(`no such file or directory: ${source}`);
+	        }
+	        const sourceStat = yield ioUtil.stat(source);
+	        if (sourceStat.isDirectory()) {
+	            if (!recursive) {
+	                throw new Error(`Failed to copy. ${source} is a directory, but tried to copy without recursive flag.`);
+	            }
+	            else {
+	                yield cpDirRecursive(source, newDest, 0, force);
+	            }
+	        }
+	        else {
+	            if (path.relative(source, newDest) === '') {
+	                // a file cannot be copied to itself
+	                throw new Error(`'${newDest}' and '${source}' are the same file`);
+	            }
+	            yield copyFile(source, newDest, force);
+	        }
+	    });
+	}
+	io.cp = cp;
+	/**
+	 * Moves a path.
+	 *
+	 * @param     source    source path
+	 * @param     dest      destination path
+	 * @param     options   optional. See MoveOptions.
+	 */
+	function mv(source, dest, options = {}) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (yield ioUtil.exists(dest)) {
+	            let destExists = true;
+	            if (yield ioUtil.isDirectory(dest)) {
+	                // If dest is directory copy src into dest
+	                dest = path.join(dest, path.basename(source));
+	                destExists = yield ioUtil.exists(dest);
+	            }
+	            if (destExists) {
+	                if (options.force == null || options.force) {
+	                    yield rmRF(dest);
+	                }
+	                else {
+	                    throw new Error('Destination already exists');
+	                }
+	            }
+	        }
+	        yield mkdirP(path.dirname(dest));
+	        yield ioUtil.rename(source, dest);
+	    });
+	}
+	io.mv = mv;
+	/**
+	 * Remove a path recursively with force
+	 *
+	 * @param inputPath path to remove
+	 */
+	function rmRF(inputPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (ioUtil.IS_WINDOWS) {
+	            // Check for invalid characters
+	            // https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
+	            if (/[*"<>|]/.test(inputPath)) {
+	                throw new Error('File path must not contain `*`, `"`, `<`, `>` or `|` on Windows');
+	            }
+	        }
+	        try {
+	            // note if path does not exist, error is silent
+	            yield ioUtil.rm(inputPath, {
+	                force: true,
+	                maxRetries: 3,
+	                recursive: true,
+	                retryDelay: 300
+	            });
+	        }
+	        catch (err) {
+	            throw new Error(`File was unable to be removed ${err}`);
+	        }
+	    });
+	}
+	io.rmRF = rmRF;
+	/**
+	 * Make a directory.  Creates the full path with folders in between
+	 * Will throw if it fails
+	 *
+	 * @param   fsPath        path to create
+	 * @returns Promise<void>
+	 */
+	function mkdirP(fsPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        assert_1.ok(fsPath, 'a path argument must be provided');
+	        yield ioUtil.mkdir(fsPath, { recursive: true });
+	    });
+	}
+	io.mkdirP = mkdirP;
+	/**
+	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
+	 * If you check and the tool does not exist, it will throw.
+	 *
+	 * @param     tool              name of the tool
+	 * @param     check             whether to check if tool exists
+	 * @returns   Promise<string>   path to tool
+	 */
+	function which(tool, check) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!tool) {
+	            throw new Error("parameter 'tool' is required");
+	        }
+	        // recursive when check=true
+	        if (check) {
+	            const result = yield which(tool, false);
+	            if (!result) {
+	                if (ioUtil.IS_WINDOWS) {
+	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also verify the file has a valid extension for an executable file.`);
+	                }
+	                else {
+	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.`);
+	                }
+	            }
+	            return result;
+	        }
+	        const matches = yield findInPath(tool);
+	        if (matches && matches.length > 0) {
+	            return matches[0];
+	        }
+	        return '';
+	    });
+	}
+	io.which = which;
+	/**
+	 * Returns a list of all occurrences of the given tool on the system path.
+	 *
+	 * @returns   Promise<string[]>  the paths of the tool
+	 */
+	function findInPath(tool) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!tool) {
+	            throw new Error("parameter 'tool' is required");
+	        }
+	        // build the list of extensions to try
+	        const extensions = [];
+	        if (ioUtil.IS_WINDOWS && process.env['PATHEXT']) {
+	            for (const extension of process.env['PATHEXT'].split(path.delimiter)) {
+	                if (extension) {
+	                    extensions.push(extension);
+	                }
+	            }
+	        }
+	        // if it's rooted, return it if exists. otherwise return empty.
+	        if (ioUtil.isRooted(tool)) {
+	            const filePath = yield ioUtil.tryGetExecutablePath(tool, extensions);
+	            if (filePath) {
+	                return [filePath];
+	            }
+	            return [];
+	        }
+	        // if any path separators, return empty
+	        if (tool.includes(path.sep)) {
+	            return [];
+	        }
+	        // build the list of directories
+	        //
+	        // Note, technically "where" checks the current directory on Windows. From a toolkit perspective,
+	        // it feels like we should not do this. Checking the current directory seems like more of a use
+	        // case of a shell, and the which() function exposed by the toolkit should strive for consistency
+	        // across platforms.
+	        const directories = [];
+	        if (process.env.PATH) {
+	            for (const p of process.env.PATH.split(path.delimiter)) {
+	                if (p) {
+	                    directories.push(p);
+	                }
+	            }
+	        }
+	        // find all matches
+	        const matches = [];
+	        for (const directory of directories) {
+	            const filePath = yield ioUtil.tryGetExecutablePath(path.join(directory, tool), extensions);
+	            if (filePath) {
+	                matches.push(filePath);
+	            }
+	        }
+	        return matches;
+	    });
+	}
+	io.findInPath = findInPath;
+	function readCopyOptions(options) {
+	    const force = options.force == null ? true : options.force;
+	    const recursive = Boolean(options.recursive);
+	    const copySourceDirectory = options.copySourceDirectory == null
+	        ? true
+	        : Boolean(options.copySourceDirectory);
+	    return { force, recursive, copySourceDirectory };
+	}
+	function cpDirRecursive(sourceDir, destDir, currentDepth, force) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        // Ensure there is not a run away recursive copy
+	        if (currentDepth >= 255)
+	            return;
+	        currentDepth++;
+	        yield mkdirP(destDir);
+	        const files = yield ioUtil.readdir(sourceDir);
+	        for (const fileName of files) {
+	            const srcFile = `${sourceDir}/${fileName}`;
+	            const destFile = `${destDir}/${fileName}`;
+	            const srcFileStat = yield ioUtil.lstat(srcFile);
+	            if (srcFileStat.isDirectory()) {
+	                // Recurse
+	                yield cpDirRecursive(srcFile, destFile, currentDepth, force);
+	            }
+	            else {
+	                yield copyFile(srcFile, destFile, force);
+	            }
+	        }
+	        // Change the mode for the newly created directory
+	        yield ioUtil.chmod(destDir, (yield ioUtil.stat(sourceDir)).mode);
+	    });
+	}
+	// Buffered file copy
+	function copyFile(srcFile, destFile, force) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if ((yield ioUtil.lstat(srcFile)).isSymbolicLink()) {
+	            // unlink/re-link it
+	            try {
+	                yield ioUtil.lstat(destFile);
+	                yield ioUtil.unlink(destFile);
+	            }
+	            catch (e) {
+	                // Try to override file permission
+	                if (e.code === 'EPERM') {
+	                    yield ioUtil.chmod(destFile, '0666');
+	                    yield ioUtil.unlink(destFile);
+	                }
+	                // other errors = it doesn't exist, no work to do
+	            }
+	            // Copy over symlink
+	            const symlinkFull = yield ioUtil.readlink(srcFile);
+	            yield ioUtil.symlink(symlinkFull, destFile, ioUtil.IS_WINDOWS ? 'junction' : null);
+	        }
+	        else if (!(yield ioUtil.exists(destFile)) || force) {
+	            yield ioUtil.copyFile(srcFile, destFile);
+	        }
+	    });
+	}
+	
+	return io;
+}
+
+var manifest$1 = {exports: {}};
+
+var manifest = manifest$1.exports;
+
+var hasRequiredManifest;
+
+function requireManifest () {
+	if (hasRequiredManifest) return manifest$1.exports;
+	hasRequiredManifest = 1;
+	(function (module, exports) {
+		var __createBinding = (manifest && manifest.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    var desc = Object.getOwnPropertyDescriptor(m, k);
+		    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+		      desc = { enumerable: true, get: function() { return m[k]; } };
+		    }
+		    Object.defineProperty(o, k2, desc);
+		}) : (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    o[k2] = m[k];
+		}));
+		var __setModuleDefault = (manifest && manifest.__setModuleDefault) || (Object.create ? (function(o, v) {
+		    Object.defineProperty(o, "default", { enumerable: true, value: v });
+		}) : function(o, v) {
+		    o["default"] = v;
+		});
+		var __importStar = (manifest && manifest.__importStar) || function (mod) {
+		    if (mod && mod.__esModule) return mod;
+		    var result = {};
+		    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+		    __setModuleDefault(result, mod);
+		    return result;
+		};
+		var __awaiter = (manifest && manifest.__awaiter) || function (thisArg, _arguments, P, generator) {
+		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+		    return new (P || (P = Promise))(function (resolve, reject) {
+		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+		        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+		        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+		        step((generator = generator.apply(thisArg, _arguments || [])).next());
+		    });
+		};
+		Object.defineProperty(exports, "__esModule", { value: true });
+		exports._readLinuxVersionFile = exports._getOsVersion = exports._findMatch = void 0;
+		const semver = __importStar(requireSemver());
+		const core_1 = requireCore();
+		// needs to be require for core node modules to be mocked
+		/* eslint @typescript-eslint/no-require-imports: 0 */
+		const os = require$$0__default;
+		const cp = require$$2$3;
+		const fs = fs__default;
+		function _findMatch(versionSpec, stable, candidates, archFilter) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        const platFilter = os.platform();
+		        let result;
+		        let match;
+		        let file;
+		        for (const candidate of candidates) {
+		            const version = candidate.version;
+		            (0, core_1.debug)(`check ${version} satisfies ${versionSpec}`);
+		            if (semver.satisfies(version, versionSpec) &&
+		                (!stable || candidate.stable === stable)) {
+		                file = candidate.files.find(item => {
+		                    (0, core_1.debug)(`${item.arch}===${archFilter} && ${item.platform}===${platFilter}`);
+		                    let chk = item.arch === archFilter && item.platform === platFilter;
+		                    if (chk && item.platform_version) {
+		                        const osVersion = module.exports._getOsVersion();
+		                        if (osVersion === item.platform_version) {
+		                            chk = true;
+		                        }
+		                        else {
+		                            chk = semver.satisfies(osVersion, item.platform_version);
+		                        }
+		                    }
+		                    return chk;
+		                });
+		                if (file) {
+		                    (0, core_1.debug)(`matched ${candidate.version}`);
+		                    match = candidate;
+		                    break;
+		                }
+		            }
+		        }
+		        if (match && file) {
+		            // clone since we're mutating the file list to be only the file that matches
+		            result = Object.assign({}, match);
+		            result.files = [file];
+		        }
+		        return result;
+		    });
+		}
+		exports._findMatch = _findMatch;
+		function _getOsVersion() {
+		    // TODO: add windows and other linux, arm variants
+		    // right now filtering on version is only an ubuntu and macos scenario for tools we build for hosted (python)
+		    const plat = os.platform();
+		    let version = '';
+		    if (plat === 'darwin') {
+		        version = cp.execSync('sw_vers -productVersion').toString();
+		    }
+		    else if (plat === 'linux') {
+		        // lsb_release process not in some containers, readfile
+		        // Run cat /etc/lsb-release
+		        // DISTRIB_ID=Ubuntu
+		        // DISTRIB_RELEASE=18.04
+		        // DISTRIB_CODENAME=bionic
+		        // DISTRIB_DESCRIPTION="Ubuntu 18.04.4 LTS"
+		        const lsbContents = module.exports._readLinuxVersionFile();
+		        if (lsbContents) {
+		            const lines = lsbContents.split('\n');
+		            for (const line of lines) {
+		                const parts = line.split('=');
+		                if (parts.length === 2 &&
+		                    (parts[0].trim() === 'VERSION_ID' ||
+		                        parts[0].trim() === 'DISTRIB_RELEASE')) {
+		                    version = parts[1].trim().replace(/^"/, '').replace(/"$/, '');
+		                    break;
+		                }
+		            }
+		        }
+		    }
+		    return version;
+		}
+		exports._getOsVersion = _getOsVersion;
+		function _readLinuxVersionFile() {
+		    const lsbReleaseFile = '/etc/lsb-release';
+		    const osReleaseFile = '/etc/os-release';
+		    let contents = '';
+		    if (fs.existsSync(lsbReleaseFile)) {
+		        contents = fs.readFileSync(lsbReleaseFile).toString();
+		    }
+		    else if (fs.existsSync(osReleaseFile)) {
+		        contents = fs.readFileSync(osReleaseFile).toString();
+		    }
+		    return contents;
+		}
+		exports._readLinuxVersionFile = _readLinuxVersionFile;
+		
+	} (manifest$1, manifest$1.exports));
+	return manifest$1.exports;
+}
+
+var retryHelper = {};
+
+var hasRequiredRetryHelper;
+
+function requireRetryHelper () {
+	if (hasRequiredRetryHelper) return retryHelper;
+	hasRequiredRetryHelper = 1;
+	var __createBinding = (retryHelper && retryHelper.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    var desc = Object.getOwnPropertyDescriptor(m, k);
+	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+	      desc = { enumerable: true, get: function() { return m[k]; } };
+	    }
+	    Object.defineProperty(o, k2, desc);
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (retryHelper && retryHelper.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (retryHelper && retryHelper.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (retryHelper && retryHelper.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(retryHelper, "__esModule", { value: true });
+	retryHelper.RetryHelper = void 0;
+	const core = __importStar(requireCore());
+	/**
+	 * Internal class for retries
+	 */
+	class RetryHelper {
+	    constructor(maxAttempts, minSeconds, maxSeconds) {
+	        if (maxAttempts < 1) {
+	            throw new Error('max attempts should be greater than or equal to 1');
+	        }
+	        this.maxAttempts = maxAttempts;
+	        this.minSeconds = Math.floor(minSeconds);
+	        this.maxSeconds = Math.floor(maxSeconds);
+	        if (this.minSeconds > this.maxSeconds) {
+	            throw new Error('min seconds should be less than or equal to max seconds');
+	        }
+	    }
+	    execute(action, isRetryable) {
+	        return __awaiter(this, void 0, void 0, function* () {
+	            let attempt = 1;
+	            while (attempt < this.maxAttempts) {
+	                // Try
+	                try {
+	                    return yield action();
+	                }
+	                catch (err) {
+	                    if (isRetryable && !isRetryable(err)) {
+	                        throw err;
+	                    }
+	                    core.info(err.message);
+	                }
+	                // Sleep
+	                const seconds = this.getSleepAmount();
+	                core.info(`Waiting ${seconds} seconds before trying again`);
+	                yield this.sleep(seconds);
+	                attempt++;
+	            }
+	            // Last attempt
+	            return yield action();
+	        });
+	    }
+	    getSleepAmount() {
+	        return (Math.floor(Math.random() * (this.maxSeconds - this.minSeconds + 1)) +
+	            this.minSeconds);
+	    }
+	    sleep(seconds) {
+	        return __awaiter(this, void 0, void 0, function* () {
+	            return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+	        });
+	    }
+	}
+	retryHelper.RetryHelper = RetryHelper;
+	
+	return retryHelper;
+}
+
+var hasRequiredToolCache;
+
+function requireToolCache () {
+	if (hasRequiredToolCache) return toolCache;
+	hasRequiredToolCache = 1;
+	var __createBinding = (toolCache && toolCache.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    var desc = Object.getOwnPropertyDescriptor(m, k);
+	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+	      desc = { enumerable: true, get: function() { return m[k]; } };
+	    }
+	    Object.defineProperty(o, k2, desc);
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (toolCache && toolCache.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (toolCache && toolCache.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (toolCache && toolCache.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(toolCache, "__esModule", { value: true });
+	toolCache.evaluateVersions = toolCache.isExplicitVersion = toolCache.findFromManifest = toolCache.getManifestFromRepo = toolCache.findAllVersions = toolCache.find = toolCache.cacheFile = toolCache.cacheDir = toolCache.extractZip = toolCache.extractXar = toolCache.extractTar = toolCache.extract7z = toolCache.downloadTool = toolCache.HTTPError = void 0;
+	const core = __importStar(requireCore());
+	const io = __importStar(requireIo());
+	const crypto = __importStar(require$$0$4);
+	const fs = __importStar(fs__default);
+	const mm = __importStar(requireManifest());
+	const os = __importStar(require$$0__default);
+	const path = __importStar(require$$1__default);
+	const httpm = __importStar(requireLib());
+	const semver = __importStar(requireSemver());
+	const stream = __importStar(require$$0$7);
+	const util = __importStar(require$$0__default$1);
+	const assert_1 = require$$0$5;
+	const exec_1 = requireExec();
+	const retry_helper_1 = requireRetryHelper();
+	class HTTPError extends Error {
+	    constructor(httpStatusCode) {
+	        super(`Unexpected HTTP response: ${httpStatusCode}`);
+	        this.httpStatusCode = httpStatusCode;
+	        Object.setPrototypeOf(this, new.target.prototype);
+	    }
+	}
+	toolCache.HTTPError = HTTPError;
+	const IS_WINDOWS = process.platform === 'win32';
+	const IS_MAC = process.platform === 'darwin';
+	const userAgent = 'actions/tool-cache';
+	/**
+	 * Download a tool from an url and stream it into a file
+	 *
+	 * @param url       url of tool to download
+	 * @param dest      path to download tool
+	 * @param auth      authorization header
+	 * @param headers   other headers
+	 * @returns         path to downloaded tool
+	 */
+	function downloadTool(url, dest, auth, headers) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        dest = dest || path.join(_getTempDirectory(), crypto.randomUUID());
+	        yield io.mkdirP(path.dirname(dest));
+	        core.debug(`Downloading ${url}`);
+	        core.debug(`Destination ${dest}`);
+	        const maxAttempts = 3;
+	        const minSeconds = _getGlobal('TEST_DOWNLOAD_TOOL_RETRY_MIN_SECONDS', 10);
+	        const maxSeconds = _getGlobal('TEST_DOWNLOAD_TOOL_RETRY_MAX_SECONDS', 20);
+	        const retryHelper = new retry_helper_1.RetryHelper(maxAttempts, minSeconds, maxSeconds);
+	        return yield retryHelper.execute(() => __awaiter(this, void 0, void 0, function* () {
+	            return yield downloadToolAttempt(url, dest || '', auth, headers);
+	        }), (err) => {
+	            if (err instanceof HTTPError && err.httpStatusCode) {
+	                // Don't retry anything less than 500, except 408 Request Timeout and 429 Too Many Requests
+	                if (err.httpStatusCode < 500 &&
+	                    err.httpStatusCode !== 408 &&
+	                    err.httpStatusCode !== 429) {
+	                    return false;
+	                }
+	            }
+	            // Otherwise retry
+	            return true;
+	        });
+	    });
+	}
+	toolCache.downloadTool = downloadTool;
+	function downloadToolAttempt(url, dest, auth, headers) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (fs.existsSync(dest)) {
+	            throw new Error(`Destination file path ${dest} already exists`);
+	        }
+	        // Get the response headers
+	        const http = new httpm.HttpClient(userAgent, [], {
+	            allowRetries: false
+	        });
+	        if (auth) {
+	            core.debug('set auth');
+	            if (headers === undefined) {
+	                headers = {};
+	            }
+	            headers.authorization = auth;
+	        }
+	        const response = yield http.get(url, headers);
+	        if (response.message.statusCode !== 200) {
+	            const err = new HTTPError(response.message.statusCode);
+	            core.debug(`Failed to download from "${url}". Code(${response.message.statusCode}) Message(${response.message.statusMessage})`);
+	            throw err;
+	        }
+	        // Download the response body
+	        const pipeline = util.promisify(stream.pipeline);
+	        const responseMessageFactory = _getGlobal('TEST_DOWNLOAD_TOOL_RESPONSE_MESSAGE_FACTORY', () => response.message);
+	        const readStream = responseMessageFactory();
+	        let succeeded = false;
+	        try {
+	            yield pipeline(readStream, fs.createWriteStream(dest));
+	            core.debug('download complete');
+	            succeeded = true;
+	            return dest;
+	        }
+	        finally {
+	            // Error, delete dest before retry
+	            if (!succeeded) {
+	                core.debug('download failed');
+	                try {
+	                    yield io.rmRF(dest);
+	                }
+	                catch (err) {
+	                    core.debug(`Failed to delete '${dest}'. ${err.message}`);
+	                }
+	            }
+	        }
+	    });
+	}
+	/**
+	 * Extract a .7z file
+	 *
+	 * @param file     path to the .7z file
+	 * @param dest     destination directory. Optional.
+	 * @param _7zPath  path to 7zr.exe. Optional, for long path support. Most .7z archives do not have this
+	 * problem. If your .7z archive contains very long paths, you can pass the path to 7zr.exe which will
+	 * gracefully handle long paths. By default 7zdec.exe is used because it is a very small program and is
+	 * bundled with the tool lib. However it does not support long paths. 7zr.exe is the reduced command line
+	 * interface, it is smaller than the full command line interface, and it does support long paths. At the
+	 * time of this writing, it is freely available from the LZMA SDK that is available on the 7zip website.
+	 * Be sure to check the current license agreement. If 7zr.exe is bundled with your action, then the path
+	 * to 7zr.exe can be pass to this function.
+	 * @returns        path to the destination directory
+	 */
+	function extract7z(file, dest, _7zPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        (0, assert_1.ok)(IS_WINDOWS, 'extract7z() not supported on current OS');
+	        (0, assert_1.ok)(file, 'parameter "file" is required');
+	        dest = yield _createExtractFolder(dest);
+	        const originalCwd = process.cwd();
+	        process.chdir(dest);
+	        if (_7zPath) {
+	            try {
+	                const logLevel = core.isDebug() ? '-bb1' : '-bb0';
+	                const args = [
+	                    'x',
+	                    logLevel,
+	                    '-bd',
+	                    '-sccUTF-8',
+	                    file
+	                ];
+	                const options = {
+	                    silent: true
+	                };
+	                yield (0, exec_1.exec)(`"${_7zPath}"`, args, options);
+	            }
+	            finally {
+	                process.chdir(originalCwd);
+	            }
+	        }
+	        else {
+	            const escapedScript = path
+	                .join(__dirname, '..', 'scripts', 'Invoke-7zdec.ps1')
+	                .replace(/'/g, "''")
+	                .replace(/"|\n|\r/g, ''); // double-up single quotes, remove double quotes and newlines
+	            const escapedFile = file.replace(/'/g, "''").replace(/"|\n|\r/g, '');
+	            const escapedTarget = dest.replace(/'/g, "''").replace(/"|\n|\r/g, '');
+	            const command = `& '${escapedScript}' -Source '${escapedFile}' -Target '${escapedTarget}'`;
+	            const args = [
+	                '-NoLogo',
+	                '-Sta',
+	                '-NoProfile',
+	                '-NonInteractive',
+	                '-ExecutionPolicy',
+	                'Unrestricted',
+	                '-Command',
+	                command
+	            ];
+	            const options = {
+	                silent: true
+	            };
+	            try {
+	                const powershellPath = yield io.which('powershell', true);
+	                yield (0, exec_1.exec)(`"${powershellPath}"`, args, options);
+	            }
+	            finally {
+	                process.chdir(originalCwd);
+	            }
+	        }
+	        return dest;
+	    });
+	}
+	toolCache.extract7z = extract7z;
+	/**
+	 * Extract a compressed tar archive
+	 *
+	 * @param file     path to the tar
+	 * @param dest     destination directory. Optional.
+	 * @param flags    flags for the tar command to use for extraction. Defaults to 'xz' (extracting gzipped tars). Optional.
+	 * @returns        path to the destination directory
+	 */
+	function extractTar(file, dest, flags = 'xz') {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!file) {
+	            throw new Error("parameter 'file' is required");
+	        }
+	        // Create dest
+	        dest = yield _createExtractFolder(dest);
+	        // Determine whether GNU tar
+	        core.debug('Checking tar --version');
+	        let versionOutput = '';
+	        yield (0, exec_1.exec)('tar --version', [], {
+	            ignoreReturnCode: true,
+	            silent: true,
+	            listeners: {
+	                stdout: (data) => (versionOutput += data.toString()),
+	                stderr: (data) => (versionOutput += data.toString())
+	            }
+	        });
+	        core.debug(versionOutput.trim());
+	        const isGnuTar = versionOutput.toUpperCase().includes('GNU TAR');
+	        // Initialize args
+	        let args;
+	        if (flags instanceof Array) {
+	            args = flags;
+	        }
+	        else {
+	            args = [flags];
+	        }
+	        if (core.isDebug() && !flags.includes('v')) {
+	            args.push('-v');
+	        }
+	        let destArg = dest;
+	        let fileArg = file;
+	        if (IS_WINDOWS && isGnuTar) {
+	            args.push('--force-local');
+	            destArg = dest.replace(/\\/g, '/');
+	            // Technically only the dest needs to have `/` but for aesthetic consistency
+	            // convert slashes in the file arg too.
+	            fileArg = file.replace(/\\/g, '/');
+	        }
+	        if (isGnuTar) {
+	            // Suppress warnings when using GNU tar to extract archives created by BSD tar
+	            args.push('--warning=no-unknown-keyword');
+	            args.push('--overwrite');
+	        }
+	        args.push('-C', destArg, '-f', fileArg);
+	        yield (0, exec_1.exec)(`tar`, args);
+	        return dest;
+	    });
+	}
+	toolCache.extractTar = extractTar;
+	/**
+	 * Extract a xar compatible archive
+	 *
+	 * @param file     path to the archive
+	 * @param dest     destination directory. Optional.
+	 * @param flags    flags for the xar. Optional.
+	 * @returns        path to the destination directory
+	 */
+	function extractXar(file, dest, flags = []) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        (0, assert_1.ok)(IS_MAC, 'extractXar() not supported on current OS');
+	        (0, assert_1.ok)(file, 'parameter "file" is required');
+	        dest = yield _createExtractFolder(dest);
+	        let args;
+	        if (flags instanceof Array) {
+	            args = flags;
+	        }
+	        else {
+	            args = [flags];
+	        }
+	        args.push('-x', '-C', dest, '-f', file);
+	        if (core.isDebug()) {
+	            args.push('-v');
+	        }
+	        const xarPath = yield io.which('xar', true);
+	        yield (0, exec_1.exec)(`"${xarPath}"`, _unique(args));
+	        return dest;
+	    });
+	}
+	toolCache.extractXar = extractXar;
+	/**
+	 * Extract a zip
+	 *
+	 * @param file     path to the zip
+	 * @param dest     destination directory. Optional.
+	 * @returns        path to the destination directory
+	 */
+	function extractZip(file, dest) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!file) {
+	            throw new Error("parameter 'file' is required");
+	        }
+	        dest = yield _createExtractFolder(dest);
+	        if (IS_WINDOWS) {
+	            yield extractZipWin(file, dest);
+	        }
+	        else {
+	            yield extractZipNix(file, dest);
+	        }
+	        return dest;
+	    });
+	}
+	toolCache.extractZip = extractZip;
+	function extractZipWin(file, dest) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        // build the powershell command
+	        const escapedFile = file.replace(/'/g, "''").replace(/"|\n|\r/g, ''); // double-up single quotes, remove double quotes and newlines
+	        const escapedDest = dest.replace(/'/g, "''").replace(/"|\n|\r/g, '');
+	        const pwshPath = yield io.which('pwsh', false);
+	        //To match the file overwrite behavior on nix systems, we use the overwrite = true flag for ExtractToDirectory
+	        //and the -Force flag for Expand-Archive as a fallback
+	        if (pwshPath) {
+	            //attempt to use pwsh with ExtractToDirectory, if this fails attempt Expand-Archive
+	            const pwshCommand = [
+	                `$ErrorActionPreference = 'Stop' ;`,
+	                `try { Add-Type -AssemblyName System.IO.Compression.ZipFile } catch { } ;`,
+	                `try { [System.IO.Compression.ZipFile]::ExtractToDirectory('${escapedFile}', '${escapedDest}', $true) }`,
+	                `catch { if (($_.Exception.GetType().FullName -eq 'System.Management.Automation.MethodException') -or ($_.Exception.GetType().FullName -eq 'System.Management.Automation.RuntimeException') ){ Expand-Archive -LiteralPath '${escapedFile}' -DestinationPath '${escapedDest}' -Force } else { throw $_ } } ;`
+	            ].join(' ');
+	            const args = [
+	                '-NoLogo',
+	                '-NoProfile',
+	                '-NonInteractive',
+	                '-ExecutionPolicy',
+	                'Unrestricted',
+	                '-Command',
+	                pwshCommand
+	            ];
+	            core.debug(`Using pwsh at path: ${pwshPath}`);
+	            yield (0, exec_1.exec)(`"${pwshPath}"`, args);
+	        }
+	        else {
+	            const powershellCommand = [
+	                `$ErrorActionPreference = 'Stop' ;`,
+	                `try { Add-Type -AssemblyName System.IO.Compression.FileSystem } catch { } ;`,
+	                `if ((Get-Command -Name Expand-Archive -Module Microsoft.PowerShell.Archive -ErrorAction Ignore)) { Expand-Archive -LiteralPath '${escapedFile}' -DestinationPath '${escapedDest}' -Force }`,
+	                `else {[System.IO.Compression.ZipFile]::ExtractToDirectory('${escapedFile}', '${escapedDest}', $true) }`
+	            ].join(' ');
+	            const args = [
+	                '-NoLogo',
+	                '-Sta',
+	                '-NoProfile',
+	                '-NonInteractive',
+	                '-ExecutionPolicy',
+	                'Unrestricted',
+	                '-Command',
+	                powershellCommand
+	            ];
+	            const powershellPath = yield io.which('powershell', true);
+	            core.debug(`Using powershell at path: ${powershellPath}`);
+	            yield (0, exec_1.exec)(`"${powershellPath}"`, args);
+	        }
+	    });
+	}
+	function extractZipNix(file, dest) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const unzipPath = yield io.which('unzip', true);
+	        const args = [file];
+	        if (!core.isDebug()) {
+	            args.unshift('-q');
+	        }
+	        args.unshift('-o'); //overwrite with -o, otherwise a prompt is shown which freezes the run
+	        yield (0, exec_1.exec)(`"${unzipPath}"`, args, { cwd: dest });
+	    });
+	}
+	/**
+	 * Caches a directory and installs it into the tool cacheDir
+	 *
+	 * @param sourceDir    the directory to cache into tools
+	 * @param tool          tool name
+	 * @param version       version of the tool.  semver format
+	 * @param arch          architecture of the tool.  Optional.  Defaults to machine architecture
+	 */
+	function cacheDir(sourceDir, tool, version, arch) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        version = semver.clean(version) || version;
+	        arch = arch || os.arch();
+	        core.debug(`Caching tool ${tool} ${version} ${arch}`);
+	        core.debug(`source dir: ${sourceDir}`);
+	        if (!fs.statSync(sourceDir).isDirectory()) {
+	            throw new Error('sourceDir is not a directory');
+	        }
+	        // Create the tool dir
+	        const destPath = yield _createToolPath(tool, version, arch);
+	        // copy each child item. do not move. move can fail on Windows
+	        // due to anti-virus software having an open handle on a file.
+	        for (const itemName of fs.readdirSync(sourceDir)) {
+	            const s = path.join(sourceDir, itemName);
+	            yield io.cp(s, destPath, { recursive: true });
+	        }
+	        // write .complete
+	        _completeToolPath(tool, version, arch);
+	        return destPath;
+	    });
+	}
+	toolCache.cacheDir = cacheDir;
+	/**
+	 * Caches a downloaded file (GUID) and installs it
+	 * into the tool cache with a given targetName
+	 *
+	 * @param sourceFile    the file to cache into tools.  Typically a result of downloadTool which is a guid.
+	 * @param targetFile    the name of the file name in the tools directory
+	 * @param tool          tool name
+	 * @param version       version of the tool.  semver format
+	 * @param arch          architecture of the tool.  Optional.  Defaults to machine architecture
+	 */
+	function cacheFile(sourceFile, targetFile, tool, version, arch) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        version = semver.clean(version) || version;
+	        arch = arch || os.arch();
+	        core.debug(`Caching tool ${tool} ${version} ${arch}`);
+	        core.debug(`source file: ${sourceFile}`);
+	        if (!fs.statSync(sourceFile).isFile()) {
+	            throw new Error('sourceFile is not a file');
+	        }
+	        // create the tool dir
+	        const destFolder = yield _createToolPath(tool, version, arch);
+	        // copy instead of move. move can fail on Windows due to
+	        // anti-virus software having an open handle on a file.
+	        const destPath = path.join(destFolder, targetFile);
+	        core.debug(`destination file ${destPath}`);
+	        yield io.cp(sourceFile, destPath);
+	        // write .complete
+	        _completeToolPath(tool, version, arch);
+	        return destFolder;
+	    });
+	}
+	toolCache.cacheFile = cacheFile;
+	/**
+	 * Finds the path to a tool version in the local installed tool cache
+	 *
+	 * @param toolName      name of the tool
+	 * @param versionSpec   version of the tool
+	 * @param arch          optional arch.  defaults to arch of computer
+	 */
+	function find(toolName, versionSpec, arch) {
+	    if (!toolName) {
+	        throw new Error('toolName parameter is required');
+	    }
+	    if (!versionSpec) {
+	        throw new Error('versionSpec parameter is required');
+	    }
+	    arch = arch || os.arch();
+	    // attempt to resolve an explicit version
+	    if (!isExplicitVersion(versionSpec)) {
+	        const localVersions = findAllVersions(toolName, arch);
+	        const match = evaluateVersions(localVersions, versionSpec);
+	        versionSpec = match;
+	    }
+	    // check for the explicit version in the cache
+	    let toolPath = '';
+	    if (versionSpec) {
+	        versionSpec = semver.clean(versionSpec) || '';
+	        const cachePath = path.join(_getCacheDirectory(), toolName, versionSpec, arch);
+	        core.debug(`checking cache: ${cachePath}`);
+	        if (fs.existsSync(cachePath) && fs.existsSync(`${cachePath}.complete`)) {
+	            core.debug(`Found tool in cache ${toolName} ${versionSpec} ${arch}`);
+	            toolPath = cachePath;
+	        }
+	        else {
+	            core.debug('not found');
+	        }
+	    }
+	    return toolPath;
+	}
+	toolCache.find = find;
+	/**
+	 * Finds the paths to all versions of a tool that are installed in the local tool cache
+	 *
+	 * @param toolName  name of the tool
+	 * @param arch      optional arch.  defaults to arch of computer
+	 */
+	function findAllVersions(toolName, arch) {
+	    const versions = [];
+	    arch = arch || os.arch();
+	    const toolPath = path.join(_getCacheDirectory(), toolName);
+	    if (fs.existsSync(toolPath)) {
+	        const children = fs.readdirSync(toolPath);
+	        for (const child of children) {
+	            if (isExplicitVersion(child)) {
+	                const fullPath = path.join(toolPath, child, arch || '');
+	                if (fs.existsSync(fullPath) && fs.existsSync(`${fullPath}.complete`)) {
+	                    versions.push(child);
+	                }
+	            }
+	        }
+	    }
+	    return versions;
+	}
+	toolCache.findAllVersions = findAllVersions;
+	function getManifestFromRepo(owner, repo, auth, branch = 'master') {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        let releases = [];
+	        const treeUrl = `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}`;
+	        const http = new httpm.HttpClient('tool-cache');
+	        const headers = {};
+	        if (auth) {
+	            core.debug('set auth');
+	            headers.authorization = auth;
+	        }
+	        const response = yield http.getJson(treeUrl, headers);
+	        if (!response.result) {
+	            return releases;
+	        }
+	        let manifestUrl = '';
+	        for (const item of response.result.tree) {
+	            if (item.path === 'versions-manifest.json') {
+	                manifestUrl = item.url;
+	                break;
+	            }
+	        }
+	        headers['accept'] = 'application/vnd.github.VERSION.raw';
+	        let versionsRaw = yield (yield http.get(manifestUrl, headers)).readBody();
+	        if (versionsRaw) {
+	            // shouldn't be needed but protects against invalid json saved with BOM
+	            versionsRaw = versionsRaw.replace(/^\uFEFF/, '');
+	            try {
+	                releases = JSON.parse(versionsRaw);
+	            }
+	            catch (_a) {
+	                core.debug('Invalid json');
+	            }
+	        }
+	        return releases;
+	    });
+	}
+	toolCache.getManifestFromRepo = getManifestFromRepo;
+	function findFromManifest(versionSpec, stable, manifest, archFilter = os.arch()) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        // wrap the internal impl
+	        const match = yield mm._findMatch(versionSpec, stable, manifest, archFilter);
+	        return match;
+	    });
+	}
+	toolCache.findFromManifest = findFromManifest;
+	function _createExtractFolder(dest) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!dest) {
+	            // create a temp dir
+	            dest = path.join(_getTempDirectory(), crypto.randomUUID());
+	        }
+	        yield io.mkdirP(dest);
+	        return dest;
+	    });
+	}
+	function _createToolPath(tool, version, arch) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const folderPath = path.join(_getCacheDirectory(), tool, semver.clean(version) || version, arch || '');
+	        core.debug(`destination ${folderPath}`);
+	        const markerPath = `${folderPath}.complete`;
+	        yield io.rmRF(folderPath);
+	        yield io.rmRF(markerPath);
+	        yield io.mkdirP(folderPath);
+	        return folderPath;
+	    });
+	}
+	function _completeToolPath(tool, version, arch) {
+	    const folderPath = path.join(_getCacheDirectory(), tool, semver.clean(version) || version, arch || '');
+	    const markerPath = `${folderPath}.complete`;
+	    fs.writeFileSync(markerPath, '');
+	    core.debug('finished caching tool');
+	}
+	/**
+	 * Check if version string is explicit
+	 *
+	 * @param versionSpec      version string to check
+	 */
+	function isExplicitVersion(versionSpec) {
+	    const c = semver.clean(versionSpec) || '';
+	    core.debug(`isExplicit: ${c}`);
+	    const valid = semver.valid(c) != null;
+	    core.debug(`explicit? ${valid}`);
+	    return valid;
+	}
+	toolCache.isExplicitVersion = isExplicitVersion;
+	/**
+	 * Get the highest satisfiying semantic version in `versions` which satisfies `versionSpec`
+	 *
+	 * @param versions        array of versions to evaluate
+	 * @param versionSpec     semantic version spec to satisfy
+	 */
+	function evaluateVersions(versions, versionSpec) {
+	    let version = '';
+	    core.debug(`evaluating ${versions.length} versions`);
+	    versions = versions.sort((a, b) => {
+	        if (semver.gt(a, b)) {
+	            return 1;
+	        }
+	        return -1;
+	    });
+	    for (let i = versions.length - 1; i >= 0; i--) {
+	        const potential = versions[i];
+	        const satisfied = semver.satisfies(potential, versionSpec);
+	        if (satisfied) {
+	            version = potential;
+	            break;
+	        }
+	    }
+	    if (version) {
+	        core.debug(`matched: ${version}`);
+	    }
+	    else {
+	        core.debug('match not found');
+	    }
+	    return version;
+	}
+	toolCache.evaluateVersions = evaluateVersions;
+	/**
+	 * Gets RUNNER_TOOL_CACHE
+	 */
+	function _getCacheDirectory() {
+	    const cacheDirectory = process.env['RUNNER_TOOL_CACHE'] || '';
+	    (0, assert_1.ok)(cacheDirectory, 'Expected RUNNER_TOOL_CACHE to be defined');
+	    return cacheDirectory;
+	}
+	/**
+	 * Gets RUNNER_TEMP
+	 */
+	function _getTempDirectory() {
+	    const tempDirectory = process.env['RUNNER_TEMP'] || '';
+	    (0, assert_1.ok)(tempDirectory, 'Expected RUNNER_TEMP to be defined');
+	    return tempDirectory;
+	}
+	/**
+	 * Gets a global variable
+	 */
+	function _getGlobal(key, defaultValue) {
+	    /* eslint-disable @typescript-eslint/no-explicit-any */
+	    const value = commonjsGlobal[key];
+	    /* eslint-enable @typescript-eslint/no-explicit-any */
+	    return value !== undefined ? value : defaultValue;
+	}
+	/**
+	 * Returns an array of unique values.
+	 * @param values Values to make unique.
+	 */
+	function _unique(values) {
+	    return Array.from(new Set(values));
+	}
+	
+	return toolCache;
+}
+
+requireToolCache();
+
+const ALIAS = Symbol.for('yaml.alias');
+const DOC = Symbol.for('yaml.document');
+const MAP = Symbol.for('yaml.map');
+const PAIR = Symbol.for('yaml.pair');
+const SCALAR = Symbol.for('yaml.scalar');
+const SEQ = Symbol.for('yaml.seq');
+const NODE_TYPE = Symbol.for('yaml.node.type');
+const isAlias = (node) => !!node && typeof node === 'object' && node[NODE_TYPE] === ALIAS;
+const isDocument = (node) => !!node && typeof node === 'object' && node[NODE_TYPE] === DOC;
+const isMap = (node) => !!node && typeof node === 'object' && node[NODE_TYPE] === MAP;
+const isPair = (node) => !!node && typeof node === 'object' && node[NODE_TYPE] === PAIR;
+const isScalar = (node) => !!node && typeof node === 'object' && node[NODE_TYPE] === SCALAR;
+const isSeq = (node) => !!node && typeof node === 'object' && node[NODE_TYPE] === SEQ;
+function isCollection(node) {
+    if (node && typeof node === 'object')
+        switch (node[NODE_TYPE]) {
+            case MAP:
+            case SEQ:
+                return true;
+        }
+    return false;
+}
+function isNode(node) {
+    if (node && typeof node === 'object')
+        switch (node[NODE_TYPE]) {
+            case ALIAS:
+            case MAP:
+            case SCALAR:
+            case SEQ:
+                return true;
+        }
+    return false;
+}
+const hasAnchor = (node) => (isScalar(node) || isCollection(node)) && !!node.anchor;
+
+const BREAK = Symbol('break visit');
+const SKIP = Symbol('skip children');
+const REMOVE = Symbol('remove node');
+/**
+ * Apply a visitor to an AST node or document.
+ *
+ * Walks through the tree (depth-first) starting from `node`, calling a
+ * `visitor` function with three arguments:
+ *   - `key`: For sequence values and map `Pair`, the node's index in the
+ *     collection. Within a `Pair`, `'key'` or `'value'`, correspondingly.
+ *     `null` for the root node.
+ *   - `node`: The current node.
+ *   - `path`: The ancestry of the current node.
+ *
+ * The return value of the visitor may be used to control the traversal:
+ *   - `undefined` (default): Do nothing and continue
+ *   - `visit.SKIP`: Do not visit the children of this node, continue with next
+ *     sibling
+ *   - `visit.BREAK`: Terminate traversal completely
+ *   - `visit.REMOVE`: Remove the current node, then continue with the next one
+ *   - `Node`: Replace the current node, then continue by visiting it
+ *   - `number`: While iterating the items of a sequence or map, set the index
+ *     of the next step. This is useful especially if the index of the current
+ *     node has changed.
+ *
+ * If `visitor` is a single function, it will be called with all values
+ * encountered in the tree, including e.g. `null` values. Alternatively,
+ * separate visitor functions may be defined for each `Map`, `Pair`, `Seq`,
+ * `Alias` and `Scalar` node. To define the same visitor function for more than
+ * one node type, use the `Collection` (map and seq), `Value` (map, seq & scalar)
+ * and `Node` (alias, map, seq & scalar) targets. Of all these, only the most
+ * specific defined one will be used for each node.
+ */
+function visit(node, visitor) {
+    const visitor_ = initVisitor(visitor);
+    if (isDocument(node)) {
+        const cd = visit_(null, node.contents, visitor_, Object.freeze([node]));
+        if (cd === REMOVE)
+            node.contents = null;
+    }
+    else
+        visit_(null, node, visitor_, Object.freeze([]));
+}
+// Without the `as symbol` casts, TS declares these in the `visit`
+// namespace using `var`, but then complains about that because
+// `unique symbol` must be `const`.
+/** Terminate visit traversal completely */
+visit.BREAK = BREAK;
+/** Do not visit the children of the current node */
+visit.SKIP = SKIP;
+/** Remove the current node */
+visit.REMOVE = REMOVE;
+function visit_(key, node, visitor, path) {
+    const ctrl = callVisitor(key, node, visitor, path);
+    if (isNode(ctrl) || isPair(ctrl)) {
+        replaceNode(key, path, ctrl);
+        return visit_(key, ctrl, visitor, path);
+    }
+    if (typeof ctrl !== 'symbol') {
+        if (isCollection(node)) {
+            path = Object.freeze(path.concat(node));
+            for (let i = 0; i < node.items.length; ++i) {
+                const ci = visit_(i, node.items[i], visitor, path);
+                if (typeof ci === 'number')
+                    i = ci - 1;
+                else if (ci === BREAK)
+                    return BREAK;
+                else if (ci === REMOVE) {
+                    node.items.splice(i, 1);
+                    i -= 1;
+                }
+            }
+        }
+        else if (isPair(node)) {
+            path = Object.freeze(path.concat(node));
+            const ck = visit_('key', node.key, visitor, path);
+            if (ck === BREAK)
+                return BREAK;
+            else if (ck === REMOVE)
+                node.key = null;
+            const cv = visit_('value', node.value, visitor, path);
+            if (cv === BREAK)
+                return BREAK;
+            else if (cv === REMOVE)
+                node.value = null;
+        }
+    }
+    return ctrl;
+}
+function initVisitor(visitor) {
+    if (typeof visitor === 'object' &&
+        (visitor.Collection || visitor.Node || visitor.Value)) {
+        return Object.assign({
+            Alias: visitor.Node,
+            Map: visitor.Node,
+            Scalar: visitor.Node,
+            Seq: visitor.Node
+        }, visitor.Value && {
+            Map: visitor.Value,
+            Scalar: visitor.Value,
+            Seq: visitor.Value
+        }, visitor.Collection && {
+            Map: visitor.Collection,
+            Seq: visitor.Collection
+        }, visitor);
+    }
+    return visitor;
+}
+function callVisitor(key, node, visitor, path) {
+    if (typeof visitor === 'function')
+        return visitor(key, node, path);
+    if (isMap(node))
+        return visitor.Map?.(key, node, path);
+    if (isSeq(node))
+        return visitor.Seq?.(key, node, path);
+    if (isPair(node))
+        return visitor.Pair?.(key, node, path);
+    if (isScalar(node))
+        return visitor.Scalar?.(key, node, path);
+    if (isAlias(node))
+        return visitor.Alias?.(key, node, path);
+    return undefined;
+}
+function replaceNode(key, path, node) {
+    const parent = path[path.length - 1];
+    if (isCollection(parent)) {
+        parent.items[key] = node;
+    }
+    else if (isPair(parent)) {
+        if (key === 'key')
+            parent.key = node;
+        else
+            parent.value = node;
+    }
+    else if (isDocument(parent)) {
+        parent.contents = node;
+    }
+    else {
+        const pt = isAlias(parent) ? 'alias' : 'scalar';
+        throw new Error(`Cannot replace node with ${pt} parent`);
+    }
+}
+
+/**
+ * Verify that the input string is a valid anchor.
+ *
+ * Will throw on errors.
+ */
+function anchorIsValid(anchor) {
+    if (/[\x00-\x19\s,[\]{}]/.test(anchor)) {
+        const sa = JSON.stringify(anchor);
+        const msg = `Anchor must not contain whitespace or control characters: ${sa}`;
+        throw new Error(msg);
+    }
+    return true;
+}
+
+/**
+ * Applies the JSON.parse reviver algorithm as defined in the ECMA-262 spec,
+ * in section 24.5.1.1 "Runtime Semantics: InternalizeJSONProperty" of the
+ * 2021 edition: https://tc39.es/ecma262/#sec-json.parse
+ *
+ * Includes extensions for handling Map and Set objects.
+ */
+function applyReviver(reviver, obj, key, val) {
+    if (val && typeof val === 'object') {
+        if (Array.isArray(val)) {
+            for (let i = 0, len = val.length; i < len; ++i) {
+                const v0 = val[i];
+                const v1 = applyReviver(reviver, val, String(i), v0);
+                // eslint-disable-next-line @typescript-eslint/no-array-delete
+                if (v1 === undefined)
+                    delete val[i];
+                else if (v1 !== v0)
+                    val[i] = v1;
+            }
+        }
+        else if (val instanceof Map) {
+            for (const k of Array.from(val.keys())) {
+                const v0 = val.get(k);
+                const v1 = applyReviver(reviver, val, k, v0);
+                if (v1 === undefined)
+                    val.delete(k);
+                else if (v1 !== v0)
+                    val.set(k, v1);
+            }
+        }
+        else if (val instanceof Set) {
+            for (const v0 of Array.from(val)) {
+                const v1 = applyReviver(reviver, val, v0, v0);
+                if (v1 === undefined)
+                    val.delete(v0);
+                else if (v1 !== v0) {
+                    val.delete(v0);
+                    val.add(v1);
+                }
+            }
+        }
+        else {
+            for (const [k, v0] of Object.entries(val)) {
+                const v1 = applyReviver(reviver, val, k, v0);
+                if (v1 === undefined)
+                    delete val[k];
+                else if (v1 !== v0)
+                    val[k] = v1;
+            }
+        }
+    }
+    return reviver.call(obj, key, val);
+}
+
+/**
+ * Recursively convert any node or its contents to native JavaScript
+ *
+ * @param value - The input value
+ * @param arg - If `value` defines a `toJSON()` method, use this
+ *   as its first argument
+ * @param ctx - Conversion context, originally set in Document#toJS(). If
+ *   `{ keep: true }` is not set, output should be suitable for JSON
+ *   stringification.
+ */
+function toJS(value, arg, ctx) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    if (Array.isArray(value))
+        return value.map((v, i) => toJS(v, String(i), ctx));
+    if (value && typeof value.toJSON === 'function') {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        if (!ctx || !hasAnchor(value))
+            return value.toJSON(arg, ctx);
+        const data = { aliasCount: 0, count: 1, res: undefined };
+        ctx.anchors.set(value, data);
+        ctx.onCreate = res => {
+            data.res = res;
+            delete ctx.onCreate;
+        };
+        const res = value.toJSON(arg, ctx);
+        if (ctx.onCreate)
+            ctx.onCreate(res);
+        return res;
+    }
+    if (typeof value === 'bigint' && !ctx?.keep)
+        return Number(value);
+    return value;
+}
+
+class NodeBase {
+    constructor(type) {
+        Object.defineProperty(this, NODE_TYPE, { value: type });
+    }
+    /** Create a copy of this node.  */
+    clone() {
+        const copy = Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this));
+        if (this.range)
+            copy.range = this.range.slice();
+        return copy;
+    }
+    /** A plain JavaScript representation of this node. */
+    toJS(doc, { mapAsMap, maxAliasCount, onAnchor, reviver } = {}) {
+        if (!isDocument(doc))
+            throw new TypeError('A document argument is required');
+        const ctx = {
+            anchors: new Map(),
+            doc,
+            keep: true,
+            mapAsMap: mapAsMap === true,
+            mapKeyWarned: false,
+            maxAliasCount: typeof maxAliasCount === 'number' ? maxAliasCount : 100
+        };
+        const res = toJS(this, '', ctx);
+        if (typeof onAnchor === 'function')
+            for (const { count, res } of ctx.anchors.values())
+                onAnchor(res, count);
+        return typeof reviver === 'function'
+            ? applyReviver(reviver, { '': res }, '', res)
+            : res;
+    }
+}
+
+class Alias extends NodeBase {
+    constructor(source) {
+        super(ALIAS);
+        this.source = source;
+        Object.defineProperty(this, 'tag', {
+            set() {
+                throw new Error('Alias nodes cannot have tags');
+            }
+        });
+    }
+    /**
+     * Resolve the value of this alias within `doc`, finding the last
+     * instance of the `source` anchor before this node.
+     */
+    resolve(doc, ctx) {
+        let nodes;
+        if (ctx?.aliasResolveCache) {
+            nodes = ctx.aliasResolveCache;
+        }
+        else {
+            nodes = [];
+            visit(doc, {
+                Node: (_key, node) => {
+                    if (isAlias(node) || hasAnchor(node))
+                        nodes.push(node);
+                }
+            });
+            if (ctx)
+                ctx.aliasResolveCache = nodes;
+        }
+        let found = undefined;
+        for (const node of nodes) {
+            if (node === this)
+                break;
+            if (node.anchor === this.source)
+                found = node;
+        }
+        return found;
+    }
+    toJSON(_arg, ctx) {
+        if (!ctx)
+            return { source: this.source };
+        const { anchors, doc, maxAliasCount } = ctx;
+        const source = this.resolve(doc, ctx);
+        if (!source) {
+            const msg = `Unresolved alias (the anchor must be set before the alias): ${this.source}`;
+            throw new ReferenceError(msg);
+        }
+        let data = anchors.get(source);
+        if (!data) {
+            // Resolve anchors for Node.prototype.toJS()
+            toJS(source, null, ctx);
+            data = anchors.get(source);
+        }
+        /* istanbul ignore if */
+        if (data?.res === undefined) {
+            const msg = 'This should not happen: Alias anchor was not resolved?';
+            throw new ReferenceError(msg);
+        }
+        if (maxAliasCount >= 0) {
+            data.count += 1;
+            if (data.aliasCount === 0)
+                data.aliasCount = getAliasCount(doc, source, anchors);
+            if (data.count * data.aliasCount > maxAliasCount) {
+                const msg = 'Excessive alias count indicates a resource exhaustion attack';
+                throw new ReferenceError(msg);
+            }
+        }
+        return data.res;
+    }
+    toString(ctx, _onComment, _onChompKeep) {
+        const src = `*${this.source}`;
+        if (ctx) {
+            anchorIsValid(this.source);
+            if (ctx.options.verifyAliasOrder && !ctx.anchors.has(this.source)) {
+                const msg = `Unresolved alias (the anchor must be set before the alias): ${this.source}`;
+                throw new Error(msg);
+            }
+            if (ctx.implicitKey)
+                return `${src} `;
+        }
+        return src;
+    }
+}
+function getAliasCount(doc, node, anchors) {
+    if (isAlias(node)) {
+        const source = node.resolve(doc);
+        const anchor = anchors && source && anchors.get(source);
+        return anchor ? anchor.count * anchor.aliasCount : 0;
+    }
+    else if (isCollection(node)) {
+        let count = 0;
+        for (const item of node.items) {
+            const c = getAliasCount(doc, item, anchors);
+            if (c > count)
+                count = c;
+        }
+        return count;
+    }
+    else if (isPair(node)) {
+        const kc = getAliasCount(doc, node.key, anchors);
+        const vc = getAliasCount(doc, node.value, anchors);
+        return Math.max(kc, vc);
+    }
+    return 1;
+}
+
+const isScalarValue = (value) => !value || (typeof value !== 'function' && typeof value !== 'object');
+class Scalar extends NodeBase {
+    constructor(value) {
+        super(SCALAR);
+        this.value = value;
+    }
+    toJSON(arg, ctx) {
+        return ctx?.keep ? this.value : toJS(this.value, arg, ctx);
+    }
+    toString() {
+        return String(this.value);
+    }
+}
+Scalar.BLOCK_FOLDED = 'BLOCK_FOLDED';
+Scalar.BLOCK_LITERAL = 'BLOCK_LITERAL';
+Scalar.PLAIN = 'PLAIN';
+Scalar.QUOTE_DOUBLE = 'QUOTE_DOUBLE';
+Scalar.QUOTE_SINGLE = 'QUOTE_SINGLE';
+
+function findTagObject(value, tagName, tags) {
+    return tags.find(t => t.identify?.(value) && !t.format);
+}
+function createNode(value, tagName, ctx) {
+    if (isDocument(value))
+        value = value.contents;
+    if (isNode(value))
+        return value;
+    if (isPair(value)) {
+        const map = ctx.schema[MAP].createNode?.(ctx.schema, null, ctx);
+        map.items.push(value);
+        return map;
+    }
+    if (value instanceof String ||
+        value instanceof Number ||
+        value instanceof Boolean ||
+        (typeof BigInt !== 'undefined' && value instanceof BigInt) // not supported everywhere
+    ) {
+        // https://tc39.es/ecma262/#sec-serializejsonproperty
+        value = value.valueOf();
+    }
+    const { aliasDuplicateObjects, onAnchor, onTagObj, schema, sourceObjects } = ctx;
+    // Detect duplicate references to the same object & use Alias nodes for all
+    // after first. The `ref` wrapper allows for circular references to resolve.
+    let ref = undefined;
+    if (aliasDuplicateObjects && value && typeof value === 'object') {
+        ref = sourceObjects.get(value);
+        if (ref) {
+            ref.anchor ?? (ref.anchor = onAnchor(value));
+            return new Alias(ref.anchor);
+        }
+        else {
+            ref = { anchor: null, node: null };
+            sourceObjects.set(value, ref);
+        }
+    }
+    let tagObj = findTagObject(value, tagName, schema.tags);
+    if (!tagObj) {
+        if (value && typeof value.toJSON === 'function') {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            value = value.toJSON();
+        }
+        if (!value || typeof value !== 'object') {
+            const node = new Scalar(value);
+            if (ref)
+                ref.node = node;
+            return node;
+        }
+        tagObj =
+            value instanceof Map
+                ? schema[MAP]
+                : Symbol.iterator in Object(value)
+                    ? schema[SEQ]
+                    : schema[MAP];
+    }
+    if (onTagObj) {
+        onTagObj(tagObj);
+        delete ctx.onTagObj;
+    }
+    const node = tagObj?.createNode
+        ? tagObj.createNode(ctx.schema, value, ctx)
+        : typeof tagObj?.nodeClass?.from === 'function'
+            ? tagObj.nodeClass.from(ctx.schema, value, ctx)
+            : new Scalar(value);
+    if (!tagObj.default)
+        node.tag = tagObj.tag;
+    if (ref)
+        ref.node = node;
+    return node;
+}
+
+function collectionFromPath(schema, path, value) {
+    let v = value;
+    for (let i = path.length - 1; i >= 0; --i) {
+        const k = path[i];
+        if (typeof k === 'number' && Number.isInteger(k) && k >= 0) {
+            const a = [];
+            a[k] = v;
+            v = a;
+        }
+        else {
+            v = new Map([[k, v]]);
+        }
+    }
+    return createNode(v, undefined, {
+        aliasDuplicateObjects: false,
+        keepUndefined: false,
+        onAnchor: () => {
+            throw new Error('This should not happen, please report a bug.');
+        },
+        schema,
+        sourceObjects: new Map()
+    });
+}
+// Type guard is intentionally a little wrong so as to be more useful,
+// as it does not cover untypable empty non-string iterables (e.g. []).
+const isEmptyPath = (path) => path == null ||
+    (typeof path === 'object' && !!path[Symbol.iterator]().next().done);
+class Collection extends NodeBase {
+    constructor(type, schema) {
+        super(type);
+        Object.defineProperty(this, 'schema', {
+            value: schema,
+            configurable: true,
+            enumerable: false,
+            writable: true
+        });
+    }
+    /**
+     * Create a copy of this collection.
+     *
+     * @param schema - If defined, overwrites the original's schema
+     */
+    clone(schema) {
+        const copy = Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this));
+        if (schema)
+            copy.schema = schema;
+        copy.items = copy.items.map(it => isNode(it) || isPair(it) ? it.clone(schema) : it);
+        if (this.range)
+            copy.range = this.range.slice();
+        return copy;
+    }
+    /**
+     * Adds a value to the collection. For `!!map` and `!!omap` the value must
+     * be a Pair instance or a `{ key, value }` object, which may not have a key
+     * that already exists in the map.
+     */
+    addIn(path, value) {
+        if (isEmptyPath(path))
+            this.add(value);
+        else {
+            const [key, ...rest] = path;
+            const node = this.get(key, true);
+            if (isCollection(node))
+                node.addIn(rest, value);
+            else if (node === undefined && this.schema)
+                this.set(key, collectionFromPath(this.schema, rest, value));
+            else
+                throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+        }
+    }
+    /**
+     * Removes a value from the collection.
+     * @returns `true` if the item was found and removed.
+     */
+    deleteIn(path) {
+        const [key, ...rest] = path;
+        if (rest.length === 0)
+            return this.delete(key);
+        const node = this.get(key, true);
+        if (isCollection(node))
+            return node.deleteIn(rest);
+        else
+            throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+    }
+    /**
+     * Returns item at `key`, or `undefined` if not found. By default unwraps
+     * scalar values from their surrounding node; to disable set `keepScalar` to
+     * `true` (collections are always returned intact).
+     */
+    getIn(path, keepScalar) {
+        const [key, ...rest] = path;
+        const node = this.get(key, true);
+        if (rest.length === 0)
+            return !keepScalar && isScalar(node) ? node.value : node;
+        else
+            return isCollection(node) ? node.getIn(rest, keepScalar) : undefined;
+    }
+    hasAllNullValues(allowScalar) {
+        return this.items.every(node => {
+            if (!isPair(node))
+                return false;
+            const n = node.value;
+            return (n == null ||
+                (allowScalar &&
+                    isScalar(n) &&
+                    n.value == null &&
+                    !n.commentBefore &&
+                    !n.comment &&
+                    !n.tag));
+        });
+    }
+    /**
+     * Checks if the collection includes a value with the key `key`.
+     */
+    hasIn(path) {
+        const [key, ...rest] = path;
+        if (rest.length === 0)
+            return this.has(key);
+        const node = this.get(key, true);
+        return isCollection(node) ? node.hasIn(rest) : false;
+    }
+    /**
+     * Sets a value in this collection. For `!!set`, `value` needs to be a
+     * boolean to add/remove the item from the set.
+     */
+    setIn(path, value) {
+        const [key, ...rest] = path;
+        if (rest.length === 0) {
+            this.set(key, value);
+        }
+        else {
+            const node = this.get(key, true);
+            if (isCollection(node))
+                node.setIn(rest, value);
+            else if (node === undefined && this.schema)
+                this.set(key, collectionFromPath(this.schema, rest, value));
+            else
+                throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+        }
+    }
+}
+
+/**
+ * Stringifies a comment.
+ *
+ * Empty comment lines are left empty,
+ * lines consisting of a single space are replaced by `#`,
+ * and all other lines are prefixed with a `#`.
+ */
+const stringifyComment = (str) => str.replace(/^(?!$)(?: $)?/gm, '#');
+function indentComment(comment, indent) {
+    if (/^\n+$/.test(comment))
+        return comment.substring(1);
+    return indent ? comment.replace(/^(?! *$)/gm, indent) : comment;
+}
+const lineComment = (str, indent, comment) => str.endsWith('\n')
+    ? indentComment(comment, indent)
+    : comment.includes('\n')
+        ? '\n' + indentComment(comment, indent)
+        : (str.endsWith(' ') ? '' : ' ') + comment;
+
+const FOLD_FLOW = 'flow';
+const FOLD_BLOCK = 'block';
+const FOLD_QUOTED = 'quoted';
+/**
+ * Tries to keep input at up to `lineWidth` characters, splitting only on spaces
+ * not followed by newlines or spaces unless `mode` is `'quoted'`. Lines are
+ * terminated with `\n` and started with `indent`.
+ */
+function foldFlowLines(text, indent, mode = 'flow', { indentAtStart, lineWidth = 80, minContentWidth = 20, onFold, onOverflow } = {}) {
+    if (!lineWidth || lineWidth < 0)
+        return text;
+    if (lineWidth < minContentWidth)
+        minContentWidth = 0;
+    const endStep = Math.max(1 + minContentWidth, 1 + lineWidth - indent.length);
+    if (text.length <= endStep)
+        return text;
+    const folds = [];
+    const escapedFolds = {};
+    let end = lineWidth - indent.length;
+    if (typeof indentAtStart === 'number') {
+        if (indentAtStart > lineWidth - Math.max(2, minContentWidth))
+            folds.push(0);
+        else
+            end = lineWidth - indentAtStart;
+    }
+    let split = undefined;
+    let prev = undefined;
+    let overflow = false;
+    let i = -1;
+    let escStart = -1;
+    let escEnd = -1;
+    if (mode === FOLD_BLOCK) {
+        i = consumeMoreIndentedLines(text, i, indent.length);
+        if (i !== -1)
+            end = i + endStep;
+    }
+    for (let ch; (ch = text[(i += 1)]);) {
+        if (mode === FOLD_QUOTED && ch === '\\') {
+            escStart = i;
+            switch (text[i + 1]) {
+                case 'x':
+                    i += 3;
+                    break;
+                case 'u':
+                    i += 5;
+                    break;
+                case 'U':
+                    i += 9;
+                    break;
+                default:
+                    i += 1;
+            }
+            escEnd = i;
+        }
+        if (ch === '\n') {
+            if (mode === FOLD_BLOCK)
+                i = consumeMoreIndentedLines(text, i, indent.length);
+            end = i + indent.length + endStep;
+            split = undefined;
+        }
+        else {
+            if (ch === ' ' &&
+                prev &&
+                prev !== ' ' &&
+                prev !== '\n' &&
+                prev !== '\t') {
+                // space surrounded by non-space can be replaced with newline + indent
+                const next = text[i + 1];
+                if (next && next !== ' ' && next !== '\n' && next !== '\t')
+                    split = i;
+            }
+            if (i >= end) {
+                if (split) {
+                    folds.push(split);
+                    end = split + endStep;
+                    split = undefined;
+                }
+                else if (mode === FOLD_QUOTED) {
+                    // white-space collected at end may stretch past lineWidth
+                    while (prev === ' ' || prev === '\t') {
+                        prev = ch;
+                        ch = text[(i += 1)];
+                        overflow = true;
+                    }
+                    // Account for newline escape, but don't break preceding escape
+                    const j = i > escEnd + 1 ? i - 2 : escStart - 1;
+                    // Bail out if lineWidth & minContentWidth are shorter than an escape string
+                    if (escapedFolds[j])
+                        return text;
+                    folds.push(j);
+                    escapedFolds[j] = true;
+                    end = j + endStep;
+                    split = undefined;
+                }
+                else {
+                    overflow = true;
+                }
+            }
+        }
+        prev = ch;
+    }
+    if (overflow && onOverflow)
+        onOverflow();
+    if (folds.length === 0)
+        return text;
+    if (onFold)
+        onFold();
+    let res = text.slice(0, folds[0]);
+    for (let i = 0; i < folds.length; ++i) {
+        const fold = folds[i];
+        const end = folds[i + 1] || text.length;
+        if (fold === 0)
+            res = `\n${indent}${text.slice(0, end)}`;
+        else {
+            if (mode === FOLD_QUOTED && escapedFolds[fold])
+                res += `${text[fold]}\\`;
+            res += `\n${indent}${text.slice(fold + 1, end)}`;
+        }
+    }
+    return res;
+}
+/**
+ * Presumes `i + 1` is at the start of a line
+ * @returns index of last newline in more-indented block
+ */
+function consumeMoreIndentedLines(text, i, indent) {
+    let end = i;
+    let start = i + 1;
+    let ch = text[start];
+    while (ch === ' ' || ch === '\t') {
+        if (i < start + indent) {
+            ch = text[++i];
+        }
+        else {
+            do {
+                ch = text[++i];
+            } while (ch && ch !== '\n');
+            end = i;
+            start = i + 1;
+            ch = text[start];
+        }
+    }
+    return end;
+}
+
+const getFoldOptions = (ctx, isBlock) => ({
+    indentAtStart: isBlock ? ctx.indent.length : ctx.indentAtStart,
+    lineWidth: ctx.options.lineWidth,
+    minContentWidth: ctx.options.minContentWidth
+});
+// Also checks for lines starting with %, as parsing the output as YAML 1.1 will
+// presume that's starting a new document.
+const containsDocumentMarker = (str) => /^(%|---|\.\.\.)/m.test(str);
+function lineLengthOverLimit(str, lineWidth, indentLength) {
+    if (!lineWidth || lineWidth < 0)
+        return false;
+    const limit = lineWidth - indentLength;
+    const strLen = str.length;
+    if (strLen <= limit)
+        return false;
+    for (let i = 0, start = 0; i < strLen; ++i) {
+        if (str[i] === '\n') {
+            if (i - start > limit)
+                return true;
+            start = i + 1;
+            if (strLen - start <= limit)
+                return false;
+        }
+    }
+    return true;
+}
+function doubleQuotedString(value, ctx) {
+    const json = JSON.stringify(value);
+    if (ctx.options.doubleQuotedAsJSON)
+        return json;
+    const { implicitKey } = ctx;
+    const minMultiLineLength = ctx.options.doubleQuotedMinMultiLineLength;
+    const indent = ctx.indent || (containsDocumentMarker(value) ? '  ' : '');
+    let str = '';
+    let start = 0;
+    for (let i = 0, ch = json[i]; ch; ch = json[++i]) {
+        if (ch === ' ' && json[i + 1] === '\\' && json[i + 2] === 'n') {
+            // space before newline needs to be escaped to not be folded
+            str += json.slice(start, i) + '\\ ';
+            i += 1;
+            start = i;
+            ch = '\\';
+        }
+        if (ch === '\\')
+            switch (json[i + 1]) {
+                case 'u':
+                    {
+                        str += json.slice(start, i);
+                        const code = json.substr(i + 2, 4);
+                        switch (code) {
+                            case '0000':
+                                str += '\\0';
+                                break;
+                            case '0007':
+                                str += '\\a';
+                                break;
+                            case '000b':
+                                str += '\\v';
+                                break;
+                            case '001b':
+                                str += '\\e';
+                                break;
+                            case '0085':
+                                str += '\\N';
+                                break;
+                            case '00a0':
+                                str += '\\_';
+                                break;
+                            case '2028':
+                                str += '\\L';
+                                break;
+                            case '2029':
+                                str += '\\P';
+                                break;
+                            default:
+                                if (code.substr(0, 2) === '00')
+                                    str += '\\x' + code.substr(2);
+                                else
+                                    str += json.substr(i, 6);
+                        }
+                        i += 5;
+                        start = i + 1;
+                    }
+                    break;
+                case 'n':
+                    if (implicitKey ||
+                        json[i + 2] === '"' ||
+                        json.length < minMultiLineLength) {
+                        i += 1;
+                    }
+                    else {
+                        // folding will eat first newline
+                        str += json.slice(start, i) + '\n\n';
+                        while (json[i + 2] === '\\' &&
+                            json[i + 3] === 'n' &&
+                            json[i + 4] !== '"') {
+                            str += '\n';
+                            i += 2;
+                        }
+                        str += indent;
+                        // space after newline needs to be escaped to not be folded
+                        if (json[i + 2] === ' ')
+                            str += '\\';
+                        i += 1;
+                        start = i + 1;
+                    }
+                    break;
+                default:
+                    i += 1;
+            }
+    }
+    str = start ? str + json.slice(start) : json;
+    return implicitKey
+        ? str
+        : foldFlowLines(str, indent, FOLD_QUOTED, getFoldOptions(ctx, false));
+}
+function singleQuotedString(value, ctx) {
+    if (ctx.options.singleQuote === false ||
+        (ctx.implicitKey && value.includes('\n')) ||
+        /[ \t]\n|\n[ \t]/.test(value) // single quoted string can't have leading or trailing whitespace around newline
+    )
+        return doubleQuotedString(value, ctx);
+    const indent = ctx.indent || (containsDocumentMarker(value) ? '  ' : '');
+    const res = "'" + value.replace(/'/g, "''").replace(/\n+/g, `$&\n${indent}`) + "'";
+    return ctx.implicitKey
+        ? res
+        : foldFlowLines(res, indent, FOLD_FLOW, getFoldOptions(ctx, false));
+}
+function quotedString(value, ctx) {
+    const { singleQuote } = ctx.options;
+    let qs;
+    if (singleQuote === false)
+        qs = doubleQuotedString;
+    else {
+        const hasDouble = value.includes('"');
+        const hasSingle = value.includes("'");
+        if (hasDouble && !hasSingle)
+            qs = singleQuotedString;
+        else if (hasSingle && !hasDouble)
+            qs = doubleQuotedString;
+        else
+            qs = singleQuote ? singleQuotedString : doubleQuotedString;
+    }
+    return qs(value, ctx);
+}
+// The negative lookbehind avoids a polynomial search,
+// but isn't supported yet on Safari: https://caniuse.com/js-regexp-lookbehind
+let blockEndNewlines;
+try {
+    blockEndNewlines = new RegExp('(^|(?<!\n))\n+(?!\n|$)', 'g');
+}
+catch {
+    blockEndNewlines = /\n+(?!\n|$)/g;
+}
+function blockString({ comment, type, value }, ctx, onComment, onChompKeep) {
+    const { blockQuote, commentString, lineWidth } = ctx.options;
+    // 1. Block can't end in whitespace unless the last line is non-empty.
+    // 2. Strings consisting of only whitespace are best rendered explicitly.
+    if (!blockQuote || /\n[\t ]+$/.test(value)) {
+        return quotedString(value, ctx);
+    }
+    const indent = ctx.indent ||
+        (ctx.forceBlockIndent || containsDocumentMarker(value) ? '  ' : '');
+    const literal = blockQuote === 'literal'
+        ? true
+        : blockQuote === 'folded' || type === Scalar.BLOCK_FOLDED
+            ? false
+            : type === Scalar.BLOCK_LITERAL
+                ? true
+                : !lineLengthOverLimit(value, lineWidth, indent.length);
+    if (!value)
+        return literal ? '|\n' : '>\n';
+    // determine chomping from whitespace at value end
+    let chomp;
+    let endStart;
+    for (endStart = value.length; endStart > 0; --endStart) {
+        const ch = value[endStart - 1];
+        if (ch !== '\n' && ch !== '\t' && ch !== ' ')
+            break;
+    }
+    let end = value.substring(endStart);
+    const endNlPos = end.indexOf('\n');
+    if (endNlPos === -1) {
+        chomp = '-'; // strip
+    }
+    else if (value === end || endNlPos !== end.length - 1) {
+        chomp = '+'; // keep
+        if (onChompKeep)
+            onChompKeep();
+    }
+    else {
+        chomp = ''; // clip
+    }
+    if (end) {
+        value = value.slice(0, -end.length);
+        if (end[end.length - 1] === '\n')
+            end = end.slice(0, -1);
+        end = end.replace(blockEndNewlines, `$&${indent}`);
+    }
+    // determine indent indicator from whitespace at value start
+    let startWithSpace = false;
+    let startEnd;
+    let startNlPos = -1;
+    for (startEnd = 0; startEnd < value.length; ++startEnd) {
+        const ch = value[startEnd];
+        if (ch === ' ')
+            startWithSpace = true;
+        else if (ch === '\n')
+            startNlPos = startEnd;
+        else
+            break;
+    }
+    let start = value.substring(0, startNlPos < startEnd ? startNlPos + 1 : startEnd);
+    if (start) {
+        value = value.substring(start.length);
+        start = start.replace(/\n+/g, `$&${indent}`);
+    }
+    const indentSize = indent ? '2' : '1'; // root is at -1
+    // Leading | or > is added later
+    let header = (startWithSpace ? indentSize : '') + chomp;
+    if (comment) {
+        header += ' ' + commentString(comment.replace(/ ?[\r\n]+/g, ' '));
+        if (onComment)
+            onComment();
+    }
+    if (!literal) {
+        const foldedValue = value
+            .replace(/\n+/g, '\n$&')
+            .replace(/(?:^|\n)([\t ].*)(?:([\n\t ]*)\n(?![\n\t ]))?/g, '$1$2') // more-indented lines aren't folded
+            //                ^ more-ind. ^ empty     ^ capture next empty lines only at end of indent
+            .replace(/\n+/g, `$&${indent}`);
+        let literalFallback = false;
+        const foldOptions = getFoldOptions(ctx, true);
+        if (blockQuote !== 'folded' && type !== Scalar.BLOCK_FOLDED) {
+            foldOptions.onOverflow = () => {
+                literalFallback = true;
+            };
+        }
+        const body = foldFlowLines(`${start}${foldedValue}${end}`, indent, FOLD_BLOCK, foldOptions);
+        if (!literalFallback)
+            return `>${header}\n${indent}${body}`;
+    }
+    value = value.replace(/\n+/g, `$&${indent}`);
+    return `|${header}\n${indent}${start}${value}${end}`;
+}
+function plainString(item, ctx, onComment, onChompKeep) {
+    const { type, value } = item;
+    const { actualString, implicitKey, indent, indentStep, inFlow } = ctx;
+    if ((implicitKey && value.includes('\n')) ||
+        (inFlow && /[[\]{},]/.test(value))) {
+        return quotedString(value, ctx);
+    }
+    if (/^[\n\t ,[\]{}#&*!|>'"%@`]|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$/.test(value)) {
+        // not allowed:
+        // - '-' or '?'
+        // - start with an indicator character (except [?:-]) or /[?-] /
+        // - '\n ', ': ' or ' \n' anywhere
+        // - '#' not preceded by a non-space char
+        // - end with ' ' or ':'
+        return implicitKey || inFlow || !value.includes('\n')
+            ? quotedString(value, ctx)
+            : blockString(item, ctx, onComment, onChompKeep);
+    }
+    if (!implicitKey &&
+        !inFlow &&
+        type !== Scalar.PLAIN &&
+        value.includes('\n')) {
+        // Where allowed & type not set explicitly, prefer block style for multiline strings
+        return blockString(item, ctx, onComment, onChompKeep);
+    }
+    if (containsDocumentMarker(value)) {
+        if (indent === '') {
+            ctx.forceBlockIndent = true;
+            return blockString(item, ctx, onComment, onChompKeep);
+        }
+        else if (implicitKey && indent === indentStep) {
+            return quotedString(value, ctx);
+        }
+    }
+    const str = value.replace(/\n+/g, `$&\n${indent}`);
+    // Verify that output will be parsed as a string, as e.g. plain numbers and
+    // booleans get parsed with those types in v1.2 (e.g. '42', 'true' & '0.9e-3'),
+    // and others in v1.1.
+    if (actualString) {
+        const test = (tag) => tag.default && tag.tag !== 'tag:yaml.org,2002:str' && tag.test?.test(str);
+        const { compat, tags } = ctx.doc.schema;
+        if (tags.some(test) || compat?.some(test))
+            return quotedString(value, ctx);
+    }
+    return implicitKey
+        ? str
+        : foldFlowLines(str, indent, FOLD_FLOW, getFoldOptions(ctx, false));
+}
+function stringifyString(item, ctx, onComment, onChompKeep) {
+    const { implicitKey, inFlow } = ctx;
+    const ss = typeof item.value === 'string'
+        ? item
+        : Object.assign({}, item, { value: String(item.value) });
+    let { type } = item;
+    if (type !== Scalar.QUOTE_DOUBLE) {
+        // force double quotes on control characters & unpaired surrogates
+        if (/[\x00-\x08\x0b-\x1f\x7f-\x9f\u{D800}-\u{DFFF}]/u.test(ss.value))
+            type = Scalar.QUOTE_DOUBLE;
+    }
+    const _stringify = (_type) => {
+        switch (_type) {
+            case Scalar.BLOCK_FOLDED:
+            case Scalar.BLOCK_LITERAL:
+                return implicitKey || inFlow
+                    ? quotedString(ss.value, ctx) // blocks are not valid inside flow containers
+                    : blockString(ss, ctx, onComment, onChompKeep);
+            case Scalar.QUOTE_DOUBLE:
+                return doubleQuotedString(ss.value, ctx);
+            case Scalar.QUOTE_SINGLE:
+                return singleQuotedString(ss.value, ctx);
+            case Scalar.PLAIN:
+                return plainString(ss, ctx, onComment, onChompKeep);
+            default:
+                return null;
+        }
+    };
+    let res = _stringify(type);
+    if (res === null) {
+        const { defaultKeyType, defaultStringType } = ctx.options;
+        const t = (implicitKey && defaultKeyType) || defaultStringType;
+        res = _stringify(t);
+        if (res === null)
+            throw new Error(`Unsupported default string type ${t}`);
+    }
+    return res;
+}
+
+function createStringifyContext(doc, options) {
+    const opt = Object.assign({
+        blockQuote: true,
+        commentString: stringifyComment,
+        defaultKeyType: null,
+        defaultStringType: 'PLAIN',
+        directives: null,
+        doubleQuotedAsJSON: false,
+        doubleQuotedMinMultiLineLength: 40,
+        falseStr: 'false',
+        flowCollectionPadding: true,
+        indentSeq: true,
+        lineWidth: 80,
+        minContentWidth: 20,
+        nullStr: 'null',
+        simpleKeys: false,
+        singleQuote: null,
+        trueStr: 'true',
+        verifyAliasOrder: true
+    }, doc.schema.toStringOptions, options);
+    let inFlow;
+    switch (opt.collectionStyle) {
+        case 'block':
+            inFlow = false;
+            break;
+        case 'flow':
+            inFlow = true;
+            break;
+        default:
+            inFlow = null;
+    }
+    return {
+        anchors: new Set(),
+        doc,
+        flowCollectionPadding: opt.flowCollectionPadding ? ' ' : '',
+        indent: '',
+        indentStep: typeof opt.indent === 'number' ? ' '.repeat(opt.indent) : '  ',
+        inFlow,
+        options: opt
+    };
+}
+function getTagObject(tags, item) {
+    if (item.tag) {
+        const match = tags.filter(t => t.tag === item.tag);
+        if (match.length > 0)
+            return match.find(t => t.format === item.format) ?? match[0];
+    }
+    let tagObj = undefined;
+    let obj;
+    if (isScalar(item)) {
+        obj = item.value;
+        let match = tags.filter(t => t.identify?.(obj));
+        if (match.length > 1) {
+            const testMatch = match.filter(t => t.test);
+            if (testMatch.length > 0)
+                match = testMatch;
+        }
+        tagObj =
+            match.find(t => t.format === item.format) ?? match.find(t => !t.format);
+    }
+    else {
+        obj = item;
+        tagObj = tags.find(t => t.nodeClass && obj instanceof t.nodeClass);
+    }
+    if (!tagObj) {
+        const name = obj?.constructor?.name ?? (obj === null ? 'null' : typeof obj);
+        throw new Error(`Tag not resolved for ${name} value`);
+    }
+    return tagObj;
+}
+// needs to be called before value stringifier to allow for circular anchor refs
+function stringifyProps(node, tagObj, { anchors, doc }) {
+    if (!doc.directives)
+        return '';
+    const props = [];
+    const anchor = (isScalar(node) || isCollection(node)) && node.anchor;
+    if (anchor && anchorIsValid(anchor)) {
+        anchors.add(anchor);
+        props.push(`&${anchor}`);
+    }
+    const tag = node.tag ?? (tagObj.default ? null : tagObj.tag);
+    if (tag)
+        props.push(doc.directives.tagString(tag));
+    return props.join(' ');
+}
+function stringify(item, ctx, onComment, onChompKeep) {
+    if (isPair(item))
+        return item.toString(ctx, onComment, onChompKeep);
+    if (isAlias(item)) {
+        if (ctx.doc.directives)
+            return item.toString(ctx);
+        if (ctx.resolvedAliases?.has(item)) {
+            throw new TypeError(`Cannot stringify circular structure without alias nodes`);
+        }
+        else {
+            if (ctx.resolvedAliases)
+                ctx.resolvedAliases.add(item);
+            else
+                ctx.resolvedAliases = new Set([item]);
+            item = item.resolve(ctx.doc);
+        }
+    }
+    let tagObj = undefined;
+    const node = isNode(item)
+        ? item
+        : ctx.doc.createNode(item, { onTagObj: o => (tagObj = o) });
+    tagObj ?? (tagObj = getTagObject(ctx.doc.schema.tags, node));
+    const props = stringifyProps(node, tagObj, ctx);
+    if (props.length > 0)
+        ctx.indentAtStart = (ctx.indentAtStart ?? 0) + props.length + 1;
+    const str = typeof tagObj.stringify === 'function'
+        ? tagObj.stringify(node, ctx, onComment, onChompKeep)
+        : isScalar(node)
+            ? stringifyString(node, ctx, onComment, onChompKeep)
+            : node.toString(ctx, onComment, onChompKeep);
+    if (!props)
+        return str;
+    return isScalar(node) || str[0] === '{' || str[0] === '['
+        ? `${props} ${str}`
+        : `${props}\n${ctx.indent}${str}`;
+}
+
+function stringifyPair({ key, value }, ctx, onComment, onChompKeep) {
+    const { allNullValues, doc, indent, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;
+    let keyComment = (isNode(key) && key.comment) || null;
+    if (simpleKeys) {
+        if (keyComment) {
+            throw new Error('With simple keys, key nodes cannot have comments');
+        }
+        if (isCollection(key) || (!isNode(key) && typeof key === 'object')) {
+            const msg = 'With simple keys, collection cannot be used as a key value';
+            throw new Error(msg);
+        }
+    }
+    let explicitKey = !simpleKeys &&
+        (!key ||
+            (keyComment && value == null && !ctx.inFlow) ||
+            isCollection(key) ||
+            (isScalar(key)
+                ? key.type === Scalar.BLOCK_FOLDED || key.type === Scalar.BLOCK_LITERAL
+                : typeof key === 'object'));
+    ctx = Object.assign({}, ctx, {
+        allNullValues: false,
+        implicitKey: !explicitKey && (simpleKeys || !allNullValues),
+        indent: indent + indentStep
+    });
+    let keyCommentDone = false;
+    let chompKeep = false;
+    let str = stringify(key, ctx, () => (keyCommentDone = true), () => (chompKeep = true));
+    if (!explicitKey && !ctx.inFlow && str.length > 1024) {
+        if (simpleKeys)
+            throw new Error('With simple keys, single line scalar must not span more than 1024 characters');
+        explicitKey = true;
+    }
+    if (ctx.inFlow) {
+        if (allNullValues || value == null) {
+            if (keyCommentDone && onComment)
+                onComment();
+            return str === '' ? '?' : explicitKey ? `? ${str}` : str;
+        }
+    }
+    else if ((allNullValues && !simpleKeys) || (value == null && explicitKey)) {
+        str = `? ${str}`;
+        if (keyComment && !keyCommentDone) {
+            str += lineComment(str, ctx.indent, commentString(keyComment));
+        }
+        else if (chompKeep && onChompKeep)
+            onChompKeep();
+        return str;
+    }
+    if (keyCommentDone)
+        keyComment = null;
+    if (explicitKey) {
+        if (keyComment)
+            str += lineComment(str, ctx.indent, commentString(keyComment));
+        str = `? ${str}\n${indent}:`;
+    }
+    else {
+        str = `${str}:`;
+        if (keyComment)
+            str += lineComment(str, ctx.indent, commentString(keyComment));
+    }
+    let vsb, vcb, valueComment;
+    if (isNode(value)) {
+        vsb = !!value.spaceBefore;
+        vcb = value.commentBefore;
+        valueComment = value.comment;
+    }
+    else {
+        vsb = false;
+        vcb = null;
+        valueComment = null;
+        if (value && typeof value === 'object')
+            value = doc.createNode(value);
+    }
+    ctx.implicitKey = false;
+    if (!explicitKey && !keyComment && isScalar(value))
+        ctx.indentAtStart = str.length + 1;
+    chompKeep = false;
+    if (!indentSeq &&
+        indentStep.length >= 2 &&
+        !ctx.inFlow &&
+        !explicitKey &&
+        isSeq(value) &&
+        !value.flow &&
+        !value.tag &&
+        !value.anchor) {
+        // If indentSeq === false, consider '- ' as part of indentation where possible
+        ctx.indent = ctx.indent.substring(2);
+    }
+    let valueCommentDone = false;
+    const valueStr = stringify(value, ctx, () => (valueCommentDone = true), () => (chompKeep = true));
+    let ws = ' ';
+    if (keyComment || vsb || vcb) {
+        ws = vsb ? '\n' : '';
+        if (vcb) {
+            const cs = commentString(vcb);
+            ws += `\n${indentComment(cs, ctx.indent)}`;
+        }
+        if (valueStr === '' && !ctx.inFlow) {
+            if (ws === '\n' && valueComment)
+                ws = '\n\n';
+        }
+        else {
+            ws += `\n${ctx.indent}`;
+        }
+    }
+    else if (!explicitKey && isCollection(value)) {
+        const vs0 = valueStr[0];
+        const nl0 = valueStr.indexOf('\n');
+        const hasNewline = nl0 !== -1;
+        const flow = ctx.inFlow ?? value.flow ?? value.items.length === 0;
+        if (hasNewline || !flow) {
+            let hasPropsLine = false;
+            if (hasNewline && (vs0 === '&' || vs0 === '!')) {
+                let sp0 = valueStr.indexOf(' ');
+                if (vs0 === '&' &&
+                    sp0 !== -1 &&
+                    sp0 < nl0 &&
+                    valueStr[sp0 + 1] === '!') {
+                    sp0 = valueStr.indexOf(' ', sp0 + 1);
+                }
+                if (sp0 === -1 || nl0 < sp0)
+                    hasPropsLine = true;
+            }
+            if (!hasPropsLine)
+                ws = `\n${ctx.indent}`;
+        }
+    }
+    else if (valueStr === '' || valueStr[0] === '\n') {
+        ws = '';
+    }
+    str += ws + valueStr;
+    if (ctx.inFlow) {
+        if (valueCommentDone && onComment)
+            onComment();
+    }
+    else if (valueComment && !valueCommentDone) {
+        str += lineComment(str, ctx.indent, commentString(valueComment));
+    }
+    else if (chompKeep && onChompKeep) {
+        onChompKeep();
+    }
+    return str;
+}
+
+function warn(logLevel, warning) {
+    if (logLevel === 'debug' || logLevel === 'warn') {
+        console.warn(warning);
+    }
+}
+
+// If the value associated with a merge key is a single mapping node, each of
+// its key/value pairs is inserted into the current mapping, unless the key
+// already exists in it. If the value associated with the merge key is a
+// sequence, then this sequence is expected to contain mapping nodes and each
+// of these nodes is merged in turn according to its order in the sequence.
+// Keys in mapping nodes earlier in the sequence override keys specified in
+// later mapping nodes. -- http://yaml.org/type/merge.html
+const MERGE_KEY = '<<';
+const merge = {
+    identify: value => value === MERGE_KEY ||
+        (typeof value === 'symbol' && value.description === MERGE_KEY),
+    default: 'key',
+    tag: 'tag:yaml.org,2002:merge',
+    test: /^<<$/,
+    resolve: () => Object.assign(new Scalar(Symbol(MERGE_KEY)), {
+        addToJSMap: addMergeToJSMap
+    }),
+    stringify: () => MERGE_KEY
+};
+const isMergeKey = (ctx, key) => (merge.identify(key) ||
+    (isScalar(key) &&
+        (!key.type || key.type === Scalar.PLAIN) &&
+        merge.identify(key.value))) &&
+    ctx?.doc.schema.tags.some(tag => tag.tag === merge.tag && tag.default);
+function addMergeToJSMap(ctx, map, value) {
+    value = ctx && isAlias(value) ? value.resolve(ctx.doc) : value;
+    if (isSeq(value))
+        for (const it of value.items)
+            mergeValue(ctx, map, it);
+    else if (Array.isArray(value))
+        for (const it of value)
+            mergeValue(ctx, map, it);
+    else
+        mergeValue(ctx, map, value);
+}
+function mergeValue(ctx, map, value) {
+    const source = ctx && isAlias(value) ? value.resolve(ctx.doc) : value;
+    if (!isMap(source))
+        throw new Error('Merge sources must be maps or map aliases');
+    const srcMap = source.toJSON(null, ctx, Map);
+    for (const [key, value] of srcMap) {
+        if (map instanceof Map) {
+            if (!map.has(key))
+                map.set(key, value);
+        }
+        else if (map instanceof Set) {
+            map.add(key);
+        }
+        else if (!Object.prototype.hasOwnProperty.call(map, key)) {
+            Object.defineProperty(map, key, {
+                value,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            });
+        }
+    }
+    return map;
+}
+
+function addPairToJSMap(ctx, map, { key, value }) {
+    if (isNode(key) && key.addToJSMap)
+        key.addToJSMap(ctx, map, value);
+    // TODO: Should drop this special case for bare << handling
+    else if (isMergeKey(ctx, key))
+        addMergeToJSMap(ctx, map, value);
+    else {
+        const jsKey = toJS(key, '', ctx);
+        if (map instanceof Map) {
+            map.set(jsKey, toJS(value, jsKey, ctx));
+        }
+        else if (map instanceof Set) {
+            map.add(jsKey);
+        }
+        else {
+            const stringKey = stringifyKey(key, jsKey, ctx);
+            const jsValue = toJS(value, stringKey, ctx);
+            if (stringKey in map)
+                Object.defineProperty(map, stringKey, {
+                    value: jsValue,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+            else
+                map[stringKey] = jsValue;
+        }
+    }
+    return map;
+}
+function stringifyKey(key, jsKey, ctx) {
+    if (jsKey === null)
+        return '';
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    if (typeof jsKey !== 'object')
+        return String(jsKey);
+    if (isNode(key) && ctx?.doc) {
+        const strCtx = createStringifyContext(ctx.doc, {});
+        strCtx.anchors = new Set();
+        for (const node of ctx.anchors.keys())
+            strCtx.anchors.add(node.anchor);
+        strCtx.inFlow = true;
+        strCtx.inStringifyKey = true;
+        const strKey = key.toString(strCtx);
+        if (!ctx.mapKeyWarned) {
+            let jsonStr = JSON.stringify(strKey);
+            if (jsonStr.length > 40)
+                jsonStr = jsonStr.substring(0, 36) + '..."';
+            warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
+            ctx.mapKeyWarned = true;
+        }
+        return strKey;
+    }
+    return JSON.stringify(jsKey);
+}
+
+function createPair(key, value, ctx) {
+    const k = createNode(key, undefined, ctx);
+    const v = createNode(value, undefined, ctx);
+    return new Pair(k, v);
+}
+class Pair {
+    constructor(key, value = null) {
+        Object.defineProperty(this, NODE_TYPE, { value: PAIR });
+        this.key = key;
+        this.value = value;
+    }
+    clone(schema) {
+        let { key, value } = this;
+        if (isNode(key))
+            key = key.clone(schema);
+        if (isNode(value))
+            value = value.clone(schema);
+        return new Pair(key, value);
+    }
+    toJSON(_, ctx) {
+        const pair = ctx?.mapAsMap ? new Map() : {};
+        return addPairToJSMap(ctx, pair, this);
+    }
+    toString(ctx, onComment, onChompKeep) {
+        return ctx?.doc
+            ? stringifyPair(this, ctx, onComment, onChompKeep)
+            : JSON.stringify(this);
+    }
+}
+
+function stringifyCollection(collection, ctx, options) {
+    const flow = ctx.inFlow ?? collection.flow;
+    const stringify = flow ? stringifyFlowCollection : stringifyBlockCollection;
+    return stringify(collection, ctx, options);
+}
+function stringifyBlockCollection({ comment, items }, ctx, { blockItemPrefix, flowChars, itemIndent, onChompKeep, onComment }) {
+    const { indent, options: { commentString } } = ctx;
+    const itemCtx = Object.assign({}, ctx, { indent: itemIndent, type: null });
+    let chompKeep = false; // flag for the preceding node's status
+    const lines = [];
+    for (let i = 0; i < items.length; ++i) {
+        const item = items[i];
+        let comment = null;
+        if (isNode(item)) {
+            if (!chompKeep && item.spaceBefore)
+                lines.push('');
+            addCommentBefore(ctx, lines, item.commentBefore, chompKeep);
+            if (item.comment)
+                comment = item.comment;
+        }
+        else if (isPair(item)) {
+            const ik = isNode(item.key) ? item.key : null;
+            if (ik) {
+                if (!chompKeep && ik.spaceBefore)
+                    lines.push('');
+                addCommentBefore(ctx, lines, ik.commentBefore, chompKeep);
+            }
+        }
+        chompKeep = false;
+        let str = stringify(item, itemCtx, () => (comment = null), () => (chompKeep = true));
+        if (comment)
+            str += lineComment(str, itemIndent, commentString(comment));
+        if (chompKeep && comment)
+            chompKeep = false;
+        lines.push(blockItemPrefix + str);
+    }
+    let str;
+    if (lines.length === 0) {
+        str = flowChars.start + flowChars.end;
+    }
+    else {
+        str = lines[0];
+        for (let i = 1; i < lines.length; ++i) {
+            const line = lines[i];
+            str += line ? `\n${indent}${line}` : '\n';
+        }
+    }
+    if (comment) {
+        str += '\n' + indentComment(commentString(comment), indent);
+        if (onComment)
+            onComment();
+    }
+    else if (chompKeep && onChompKeep)
+        onChompKeep();
+    return str;
+}
+function stringifyFlowCollection({ items }, ctx, { flowChars, itemIndent }) {
+    const { indent, indentStep, flowCollectionPadding: fcPadding, options: { commentString } } = ctx;
+    itemIndent += indentStep;
+    const itemCtx = Object.assign({}, ctx, {
+        indent: itemIndent,
+        inFlow: true,
+        type: null
+    });
+    let reqNewline = false;
+    let linesAtValue = 0;
+    const lines = [];
+    for (let i = 0; i < items.length; ++i) {
+        const item = items[i];
+        let comment = null;
+        if (isNode(item)) {
+            if (item.spaceBefore)
+                lines.push('');
+            addCommentBefore(ctx, lines, item.commentBefore, false);
+            if (item.comment)
+                comment = item.comment;
+        }
+        else if (isPair(item)) {
+            const ik = isNode(item.key) ? item.key : null;
+            if (ik) {
+                if (ik.spaceBefore)
+                    lines.push('');
+                addCommentBefore(ctx, lines, ik.commentBefore, false);
+                if (ik.comment)
+                    reqNewline = true;
+            }
+            const iv = isNode(item.value) ? item.value : null;
+            if (iv) {
+                if (iv.comment)
+                    comment = iv.comment;
+                if (iv.commentBefore)
+                    reqNewline = true;
+            }
+            else if (item.value == null && ik?.comment) {
+                comment = ik.comment;
+            }
+        }
+        if (comment)
+            reqNewline = true;
+        let str = stringify(item, itemCtx, () => (comment = null));
+        if (i < items.length - 1)
+            str += ',';
+        if (comment)
+            str += lineComment(str, itemIndent, commentString(comment));
+        if (!reqNewline && (lines.length > linesAtValue || str.includes('\n')))
+            reqNewline = true;
+        lines.push(str);
+        linesAtValue = lines.length;
+    }
+    const { start, end } = flowChars;
+    if (lines.length === 0) {
+        return start + end;
+    }
+    else {
+        if (!reqNewline) {
+            const len = lines.reduce((sum, line) => sum + line.length + 2, 2);
+            reqNewline = ctx.options.lineWidth > 0 && len > ctx.options.lineWidth;
+        }
+        if (reqNewline) {
+            let str = start;
+            for (const line of lines)
+                str += line ? `\n${indentStep}${indent}${line}` : '\n';
+            return `${str}\n${indent}${end}`;
+        }
+        else {
+            return `${start}${fcPadding}${lines.join(' ')}${fcPadding}${end}`;
+        }
+    }
+}
+function addCommentBefore({ indent, options: { commentString } }, lines, comment, chompKeep) {
+    if (comment && chompKeep)
+        comment = comment.replace(/^\n+/, '');
+    if (comment) {
+        const ic = indentComment(commentString(comment), indent);
+        lines.push(ic.trimStart()); // Avoid double indent on first line
+    }
+}
+
+function findPair(items, key) {
+    const k = isScalar(key) ? key.value : key;
+    for (const it of items) {
+        if (isPair(it)) {
+            if (it.key === key || it.key === k)
+                return it;
+            if (isScalar(it.key) && it.key.value === k)
+                return it;
+        }
+    }
+    return undefined;
+}
+class YAMLMap extends Collection {
+    static get tagName() {
+        return 'tag:yaml.org,2002:map';
+    }
+    constructor(schema) {
+        super(MAP, schema);
+        this.items = [];
+    }
+    /**
+     * A generic collection parsing method that can be extended
+     * to other node classes that inherit from YAMLMap
+     */
+    static from(schema, obj, ctx) {
+        const { keepUndefined, replacer } = ctx;
+        const map = new this(schema);
+        const add = (key, value) => {
+            if (typeof replacer === 'function')
+                value = replacer.call(obj, key, value);
+            else if (Array.isArray(replacer) && !replacer.includes(key))
+                return;
+            if (value !== undefined || keepUndefined)
+                map.items.push(createPair(key, value, ctx));
+        };
+        if (obj instanceof Map) {
+            for (const [key, value] of obj)
+                add(key, value);
+        }
+        else if (obj && typeof obj === 'object') {
+            for (const key of Object.keys(obj))
+                add(key, obj[key]);
+        }
+        if (typeof schema.sortMapEntries === 'function') {
+            map.items.sort(schema.sortMapEntries);
+        }
+        return map;
+    }
+    /**
+     * Adds a value to the collection.
+     *
+     * @param overwrite - If not set `true`, using a key that is already in the
+     *   collection will throw. Otherwise, overwrites the previous value.
+     */
+    add(pair, overwrite) {
+        let _pair;
+        if (isPair(pair))
+            _pair = pair;
+        else if (!pair || typeof pair !== 'object' || !('key' in pair)) {
+            // In TypeScript, this never happens.
+            _pair = new Pair(pair, pair?.value);
+        }
+        else
+            _pair = new Pair(pair.key, pair.value);
+        const prev = findPair(this.items, _pair.key);
+        const sortEntries = this.schema?.sortMapEntries;
+        if (prev) {
+            if (!overwrite)
+                throw new Error(`Key ${_pair.key} already set`);
+            // For scalars, keep the old node & its comments and anchors
+            if (isScalar(prev.value) && isScalarValue(_pair.value))
+                prev.value.value = _pair.value;
+            else
+                prev.value = _pair.value;
+        }
+        else if (sortEntries) {
+            const i = this.items.findIndex(item => sortEntries(_pair, item) < 0);
+            if (i === -1)
+                this.items.push(_pair);
+            else
+                this.items.splice(i, 0, _pair);
+        }
+        else {
+            this.items.push(_pair);
+        }
+    }
+    delete(key) {
+        const it = findPair(this.items, key);
+        if (!it)
+            return false;
+        const del = this.items.splice(this.items.indexOf(it), 1);
+        return del.length > 0;
+    }
+    get(key, keepScalar) {
+        const it = findPair(this.items, key);
+        const node = it?.value;
+        return (!keepScalar && isScalar(node) ? node.value : node) ?? undefined;
+    }
+    has(key) {
+        return !!findPair(this.items, key);
+    }
+    set(key, value) {
+        this.add(new Pair(key, value), true);
+    }
+    /**
+     * @param ctx - Conversion context, originally set in Document#toJS()
+     * @param {Class} Type - If set, forces the returned collection type
+     * @returns Instance of Type, Map, or Object
+     */
+    toJSON(_, ctx, Type) {
+        const map = Type ? new Type() : ctx?.mapAsMap ? new Map() : {};
+        if (ctx?.onCreate)
+            ctx.onCreate(map);
+        for (const item of this.items)
+            addPairToJSMap(ctx, map, item);
+        return map;
+    }
+    toString(ctx, onComment, onChompKeep) {
+        if (!ctx)
+            return JSON.stringify(this);
+        for (const item of this.items) {
+            if (!isPair(item))
+                throw new Error(`Map items must all be pairs; found ${JSON.stringify(item)} instead`);
+        }
+        if (!ctx.allNullValues && this.hasAllNullValues(false))
+            ctx = Object.assign({}, ctx, { allNullValues: true });
+        return stringifyCollection(this, ctx, {
+            blockItemPrefix: '',
+            flowChars: { start: '{', end: '}' },
+            itemIndent: ctx.indent || '',
+            onChompKeep,
+            onComment
+        });
+    }
+}
+
+class YAMLSeq extends Collection {
+    static get tagName() {
+        return 'tag:yaml.org,2002:seq';
+    }
+    constructor(schema) {
+        super(SEQ, schema);
+        this.items = [];
+    }
+    add(value) {
+        this.items.push(value);
+    }
+    /**
+     * Removes a value from the collection.
+     *
+     * `key` must contain a representation of an integer for this to succeed.
+     * It may be wrapped in a `Scalar`.
+     *
+     * @returns `true` if the item was found and removed.
+     */
+    delete(key) {
+        const idx = asItemIndex(key);
+        if (typeof idx !== 'number')
+            return false;
+        const del = this.items.splice(idx, 1);
+        return del.length > 0;
+    }
+    get(key, keepScalar) {
+        const idx = asItemIndex(key);
+        if (typeof idx !== 'number')
+            return undefined;
+        const it = this.items[idx];
+        return !keepScalar && isScalar(it) ? it.value : it;
+    }
+    /**
+     * Checks if the collection includes a value with the key `key`.
+     *
+     * `key` must contain a representation of an integer for this to succeed.
+     * It may be wrapped in a `Scalar`.
+     */
+    has(key) {
+        const idx = asItemIndex(key);
+        return typeof idx === 'number' && idx < this.items.length;
+    }
+    /**
+     * Sets a value in this collection. For `!!set`, `value` needs to be a
+     * boolean to add/remove the item from the set.
+     *
+     * If `key` does not contain a representation of an integer, this will throw.
+     * It may be wrapped in a `Scalar`.
+     */
+    set(key, value) {
+        const idx = asItemIndex(key);
+        if (typeof idx !== 'number')
+            throw new Error(`Expected a valid index, not ${key}.`);
+        const prev = this.items[idx];
+        if (isScalar(prev) && isScalarValue(value))
+            prev.value = value;
+        else
+            this.items[idx] = value;
+    }
+    toJSON(_, ctx) {
+        const seq = [];
+        if (ctx?.onCreate)
+            ctx.onCreate(seq);
+        let i = 0;
+        for (const item of this.items)
+            seq.push(toJS(item, String(i++), ctx));
+        return seq;
+    }
+    toString(ctx, onComment, onChompKeep) {
+        if (!ctx)
+            return JSON.stringify(this);
+        return stringifyCollection(this, ctx, {
+            blockItemPrefix: '- ',
+            flowChars: { start: '[', end: ']' },
+            itemIndent: (ctx.indent || '') + '  ',
+            onChompKeep,
+            onComment
+        });
+    }
+    static from(schema, obj, ctx) {
+        const { replacer } = ctx;
+        const seq = new this(schema);
+        if (obj && Symbol.iterator in Object(obj)) {
+            let i = 0;
+            for (let it of obj) {
+                if (typeof replacer === 'function') {
+                    const key = obj instanceof Set ? it : String(i++);
+                    it = replacer.call(obj, key, it);
+                }
+                seq.items.push(createNode(it, undefined, ctx));
+            }
+        }
+        return seq;
+    }
+}
+function asItemIndex(key) {
+    let idx = isScalar(key) ? key.value : key;
+    if (idx && typeof idx === 'string')
+        idx = Number(idx);
+    return typeof idx === 'number' && Number.isInteger(idx) && idx >= 0
+        ? idx
+        : null;
+}
+
+function createPairs(schema, iterable, ctx) {
+    const { replacer } = ctx;
+    const pairs = new YAMLSeq(schema);
+    pairs.tag = 'tag:yaml.org,2002:pairs';
+    let i = 0;
+    if (iterable && Symbol.iterator in Object(iterable))
+        for (let it of iterable) {
+            if (typeof replacer === 'function')
+                it = replacer.call(iterable, String(i++), it);
+            let key, value;
+            if (Array.isArray(it)) {
+                if (it.length === 2) {
+                    key = it[0];
+                    value = it[1];
+                }
+                else
+                    throw new TypeError(`Expected [key, value] tuple: ${it}`);
+            }
+            else if (it && it instanceof Object) {
+                const keys = Object.keys(it);
+                if (keys.length === 1) {
+                    key = keys[0];
+                    value = it[key];
+                }
+                else {
+                    throw new TypeError(`Expected tuple with one key, not ${keys.length} keys`);
+                }
+            }
+            else {
+                key = it;
+            }
+            pairs.items.push(createPair(key, value, ctx));
+        }
+    return pairs;
+}
+
+class YAMLOMap extends YAMLSeq {
+    constructor() {
+        super();
+        this.add = YAMLMap.prototype.add.bind(this);
+        this.delete = YAMLMap.prototype.delete.bind(this);
+        this.get = YAMLMap.prototype.get.bind(this);
+        this.has = YAMLMap.prototype.has.bind(this);
+        this.set = YAMLMap.prototype.set.bind(this);
+        this.tag = YAMLOMap.tag;
+    }
+    /**
+     * If `ctx` is given, the return type is actually `Map<unknown, unknown>`,
+     * but TypeScript won't allow widening the signature of a child method.
+     */
+    toJSON(_, ctx) {
+        if (!ctx)
+            return super.toJSON(_);
+        const map = new Map();
+        if (ctx?.onCreate)
+            ctx.onCreate(map);
+        for (const pair of this.items) {
+            let key, value;
+            if (isPair(pair)) {
+                key = toJS(pair.key, '', ctx);
+                value = toJS(pair.value, key, ctx);
+            }
+            else {
+                key = toJS(pair, '', ctx);
+            }
+            if (map.has(key))
+                throw new Error('Ordered maps must not include duplicate keys');
+            map.set(key, value);
+        }
+        return map;
+    }
+    static from(schema, iterable, ctx) {
+        const pairs = createPairs(schema, iterable, ctx);
+        const omap = new this();
+        omap.items = pairs.items;
+        return omap;
+    }
+}
+YAMLOMap.tag = 'tag:yaml.org,2002:omap';
+
+class YAMLSet extends YAMLMap {
+    constructor(schema) {
+        super(schema);
+        this.tag = YAMLSet.tag;
+    }
+    add(key) {
+        let pair;
+        if (isPair(key))
+            pair = key;
+        else if (key &&
+            typeof key === 'object' &&
+            'key' in key &&
+            'value' in key &&
+            key.value === null)
+            pair = new Pair(key.key, null);
+        else
+            pair = new Pair(key, null);
+        const prev = findPair(this.items, pair.key);
+        if (!prev)
+            this.items.push(pair);
+    }
+    /**
+     * If `keepPair` is `true`, returns the Pair matching `key`.
+     * Otherwise, returns the value of that Pair's key.
+     */
+    get(key, keepPair) {
+        const pair = findPair(this.items, key);
+        return !keepPair && isPair(pair)
+            ? isScalar(pair.key)
+                ? pair.key.value
+                : pair.key
+            : pair;
+    }
+    set(key, value) {
+        if (typeof value !== 'boolean')
+            throw new Error(`Expected boolean value for set(key, value) in a YAML set, not ${typeof value}`);
+        const prev = findPair(this.items, key);
+        if (prev && !value) {
+            this.items.splice(this.items.indexOf(prev), 1);
+        }
+        else if (!prev && value) {
+            this.items.push(new Pair(key));
+        }
+    }
+    toJSON(_, ctx) {
+        return super.toJSON(_, ctx, Set);
+    }
+    toString(ctx, onComment, onChompKeep) {
+        if (!ctx)
+            return JSON.stringify(this);
+        if (this.hasAllNullValues(true))
+            return super.toString(Object.assign({}, ctx, { allNullValues: true }), onComment, onChompKeep);
+        else
+            throw new Error('Set items must all have null values');
+    }
+    static from(schema, iterable, ctx) {
+        const { replacer } = ctx;
+        const set = new this(schema);
+        if (iterable && Symbol.iterator in Object(iterable))
+            for (let value of iterable) {
+                if (typeof replacer === 'function')
+                    value = replacer.call(iterable, value, value);
+                set.items.push(createPair(value, null, ctx));
+            }
+        return set;
+    }
+}
+YAMLSet.tag = 'tag:yaml.org,2002:set';
+
+new Set('0123456789ABCDEFabcdef');
+new Set("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-#;/?:@&=+$_.!~*'()");
+new Set(',[]{}');
+new Set(' ,[]{}\n\r\t');
+
+async function opamClean() {
+    await execExports.exec('opam', ['clean', '--logs', '--switch-cleanup']);
+}
+
 function getOpamRoot() {
-    return require$$1$2.join(require$$0$3.homedir(), '.opam');
+    return require$$1$1.join(require$$0$3.homedir(), '.opam');
 }
 async function saveCache() {
-    const cacheRestored = coreExports.getState('CACHE_RESTORED');
     const cacheKey = coreExports.getState('CACHE_KEY');
-    if (cacheRestored === 'true') {
-        coreExports.info('Cache was restored, skipping save');
-        return;
-    }
     if (!cacheKey) {
         coreExports.warning('No cache key found, skipping save');
         return;
     }
+    await opamClean();
     const opamRoot = getOpamRoot();
     coreExports.info(`Saving cache with key: ${cacheKey}`);
     coreExports.info(`Cache paths: ${opamRoot}`);

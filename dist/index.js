@@ -1,14 +1,14 @@
 import * as require$$0$3 from 'os';
 import require$$0__default from 'os';
 import require$$0$4, { randomUUID as randomUUID$1, createHmac } from 'crypto';
-import * as require$$1$1 from 'fs';
-import require$$1__default from 'fs';
-import * as require$$1$2 from 'path';
-import require$$1__default$1 from 'path';
+import * as fs from 'fs';
+import fs__default from 'fs';
+import * as require$$1$1 from 'path';
+import require$$1__default from 'path';
 import require$$2$1 from 'http';
-import require$$1$3 from 'https';
+import require$$1$2 from 'https';
 import require$$0$6 from 'net';
-import require$$1$4 from 'tls';
+import require$$1$3 from 'tls';
 import require$$4, { EventEmitter } from 'events';
 import require$$0$5 from 'assert';
 import * as require$$0$2 from 'util';
@@ -22,7 +22,7 @@ import require$$0$8 from 'worker_threads';
 import require$$2$2 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4$1 from 'async_hooks';
-import require$$1$5 from 'console';
+import require$$1$4 from 'console';
 import require$$5$1 from 'url';
 import require$$3 from 'zlib';
 import require$$6 from 'string_decoder';
@@ -37,7 +37,7 @@ import * as http from 'node:http';
 import * as https from 'node:https';
 import * as zlib from 'node:zlib';
 import { Readable, Transform } from 'node:stream';
-import require$$1$6 from 'tty';
+import require$$1$5 from 'tty';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -262,7 +262,7 @@ function requireFileCommand () {
 	// We use any as a valid input type
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const crypto = __importStar(require$$0$4);
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const os = __importStar(require$$0__default);
 	const utils_1 = requireUtils$1();
 	function issueFileCommand(command, message) {
@@ -412,9 +412,9 @@ var hasRequiredTunnel$1;
 function requireTunnel$1 () {
 	if (hasRequiredTunnel$1) return tunnel$1;
 	hasRequiredTunnel$1 = 1;
-	var tls = require$$1$4;
+	var tls = require$$1$3;
 	var http = require$$2$1;
-	var https = require$$1$3;
+	var https = require$$1$2;
 	var events = require$$4;
 	var util = require$$0__default$1;
 
@@ -8133,7 +8133,7 @@ function requireConnect () {
 	    let socket;
 	    if (protocol === 'https:') {
 	      if (!tls) {
-	        tls = require$$1$4;
+	        tls = require$$1$3;
 	      }
 	      servername = servername || options.servername || util.getServerName(host) || null;
 
@@ -14157,7 +14157,7 @@ function requirePendingInterceptorsFormatter () {
 	hasRequiredPendingInterceptorsFormatter = 1;
 
 	const { Transform } = require$$0$7;
-	const { Console } = require$$1$5;
+	const { Console } = require$$1$4;
 
 	/**
 	 * Gets the output of `console.table(…)` as a string.
@@ -24437,7 +24437,7 @@ function requireLib () {
 	Object.defineProperty(lib, "__esModule", { value: true });
 	lib.HttpClient = lib.isHttps = lib.HttpClientResponse = lib.HttpClientError = lib.getProxyUrl = lib.MediaTypes = lib.Headers = lib.HttpCodes = void 0;
 	const http = __importStar(require$$2$1);
-	const https = __importStar(require$$1$3);
+	const https = __importStar(require$$1$2);
 	const pm = __importStar(requireProxy());
 	const tunnel = __importStar(requireTunnel());
 	const undici_1 = requireUndici();
@@ -25249,7 +25249,7 @@ function requireSummary () {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.summary = exports.markdownSummary = exports.SUMMARY_DOCS_URL = exports.SUMMARY_ENV_VAR = void 0;
 		const os_1 = require$$0__default;
-		const fs_1 = require$$1__default;
+		const fs_1 = fs__default;
 		const { access, appendFile, writeFile } = fs_1.promises;
 		exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
 		exports.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
@@ -25555,7 +25555,7 @@ function requirePathUtils () {
 	};
 	Object.defineProperty(pathUtils, "__esModule", { value: true });
 	pathUtils.toPlatformPath = pathUtils.toWin32Path = pathUtils.toPosixPath = void 0;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	/**
 	 * toPosixPath converts the given path to the posix form. On Windows, \\ will be
 	 * replaced with /.
@@ -25641,8 +25641,8 @@ function requireIoUtil$2 () {
 		var _a;
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-		const fs = __importStar(require$$1__default);
-		const path = __importStar(require$$1__default$1);
+		const fs = __importStar(fs__default);
+		const path = __importStar(require$$1__default);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -25832,7 +25832,7 @@ function requireIo$2 () {
 	Object.defineProperty(io$2, "__esModule", { value: true });
 	io$2.findInPath = io$2.which = io$2.mkdirP = io$2.rmRF = io$2.mv = io$2.cp = void 0;
 	const assert_1 = require$$0$5;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const ioUtil = __importStar(requireIoUtil$2());
 	/**
 	 * Copies a file or folder.
@@ -26140,7 +26140,7 @@ function requireToolrunner () {
 	const os = __importStar(require$$0__default);
 	const events = __importStar(require$$4);
 	const child = __importStar(require$$2$3);
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const io = __importStar(requireIo$2());
 	const ioUtil = __importStar(requireIoUtil$2());
 	const timers_1 = require$$6$1;
@@ -26984,7 +26984,7 @@ function requireCore () {
 		const file_command_1 = requireFileCommand();
 		const utils_1 = requireUtils$1();
 		const os = __importStar(require$$0__default);
-		const path = __importStar(require$$1__default$1);
+		const path = __importStar(require$$1__default);
 		const oidc_utils_1 = requireOidcUtils();
 		/**
 		 * The code to exit an action
@@ -27395,7 +27395,7 @@ function requireInternalPathHelper () {
 	};
 	Object.defineProperty(internalPathHelper, "__esModule", { value: true });
 	internalPathHelper.safeTrimTrailingSeparator = internalPathHelper.normalizeSeparators = internalPathHelper.hasRoot = internalPathHelper.hasAbsoluteRoot = internalPathHelper.ensureAbsoluteRoot = internalPathHelper.dirname = void 0;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const assert_1 = __importDefault(require$$0$5);
 	const IS_WINDOWS = process.platform === 'win32';
 	/**
@@ -28981,7 +28981,7 @@ function requireInternalPath () {
 	};
 	Object.defineProperty(internalPath, "__esModule", { value: true });
 	internalPath.Path = void 0;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const pathHelper = __importStar(requireInternalPathHelper());
 	const assert_1 = __importDefault(require$$0$5);
 	const IS_WINDOWS = process.platform === 'win32';
@@ -29102,7 +29102,7 @@ function requireInternalPattern () {
 	Object.defineProperty(internalPattern, "__esModule", { value: true });
 	internalPattern.Pattern = void 0;
 	const os = __importStar(require$$0__default);
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const pathHelper = __importStar(requireInternalPathHelper());
 	const assert_1 = __importDefault(require$$0$5);
 	const minimatch_1 = requireMinimatch();
@@ -29409,9 +29409,9 @@ function requireInternalGlobber () {
 	Object.defineProperty(internalGlobber, "__esModule", { value: true });
 	internalGlobber.DefaultGlobber = void 0;
 	const core = __importStar(requireCore());
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const globOptionsHelper = __importStar(requireInternalGlobOptionsHelper());
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const patternHelper = __importStar(requireInternalPatternHelper());
 	const internal_match_kind_1 = requireInternalMatchKind();
 	const internal_pattern_1 = requireInternalPattern();
@@ -29670,8 +29670,8 @@ function requireIoUtil$1 () {
 		var _a;
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-		const fs = __importStar(require$$1__default);
-		const path = __importStar(require$$1__default$1);
+		const fs = __importStar(fs__default);
+		const path = __importStar(require$$1__default);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -29861,7 +29861,7 @@ function requireIo$1 () {
 	Object.defineProperty(io$1, "__esModule", { value: true });
 	io$1.findInPath = io$1.which = io$1.mkdirP = io$1.rmRF = io$1.mv = io$1.cp = void 0;
 	const assert_1 = require$$0$5;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const ioUtil = __importStar(requireIoUtil$1());
 	/**
 	 * Copies a file or folder.
@@ -31883,8 +31883,8 @@ function requireCacheUtils () {
 	const glob = __importStar(requireGlob());
 	const io = __importStar(requireIo$1());
 	const crypto = __importStar(require$$0$4);
-	const fs = __importStar(require$$1__default);
-	const path = __importStar(require$$1__default$1);
+	const fs = __importStar(fs__default);
+	const path = __importStar(require$$1__default);
 	const semver = __importStar(requireSemver());
 	const util = __importStar(require$$0__default$1);
 	const constants_1 = requireConstants();
@@ -34684,7 +34684,7 @@ function requireSupportsColor () {
 	if (hasRequiredSupportsColor) return supportsColor_1;
 	hasRequiredSupportsColor = 1;
 	const os = require$$0__default;
-	const tty = require$$1$6;
+	const tty = require$$1$5;
 	const hasFlag = requireHasFlag();
 
 	const {env} = process;
@@ -34830,7 +34830,7 @@ function requireNode () {
 	if (hasRequiredNode) return node.exports;
 	hasRequiredNode = 1;
 	(function (module, exports) {
-		const tty = require$$1$6;
+		const tty = require$$1$5;
 		const util = require$$0__default$1;
 
 		/**
@@ -35146,7 +35146,7 @@ function requireHelpers () {
 	Object.defineProperty(helpers, "__esModule", { value: true });
 	helpers.req = helpers.json = helpers.toBuffer = void 0;
 	const http = __importStar(require$$2$1);
-	const https = __importStar(require$$1$3);
+	const https = __importStar(require$$1$2);
 	async function toBuffer(stream) {
 	    let length = 0;
 	    const chunks = [];
@@ -35224,7 +35224,7 @@ function requireDist$2 () {
 		exports.Agent = void 0;
 		const net = __importStar(require$$0$6);
 		const http = __importStar(require$$2$1);
-		const https_1 = require$$1$3;
+		const https_1 = require$$1$2;
 		__exportStar(requireHelpers(), exports);
 		const INTERNAL = Symbol('AgentBaseInternalState');
 		class Agent extends http.Agent {
@@ -35521,7 +35521,7 @@ function requireDist$1 () {
 	Object.defineProperty(dist$2, "__esModule", { value: true });
 	dist$2.HttpsProxyAgent = void 0;
 	const net = __importStar(require$$0$6);
-	const tls = __importStar(require$$1$4);
+	const tls = __importStar(require$$1$3);
 	const assert_1 = __importDefault(require$$0$5);
 	const debug_1 = __importDefault(requireSrc());
 	const agent_base_1 = requireDist$2();
@@ -35712,7 +35712,7 @@ function requireDist () {
 	Object.defineProperty(dist, "__esModule", { value: true });
 	dist.HttpProxyAgent = void 0;
 	const net = __importStar(require$$0$6);
-	const tls = __importStar(require$$1$4);
+	const tls = __importStar(require$$1$3);
 	const debug_1 = __importDefault(requireSrc());
 	const events_1 = require$$4;
 	const agent_base_1 = requireDist$2();
@@ -61852,7 +61852,7 @@ async function streamToBuffer2(stream, buffer, encoding) {
  */
 async function readStreamToLocalFile(rs, file) {
     return new Promise((resolve, reject) => {
-        const ws = require$$1$1.createWriteStream(file);
+        const ws = fs.createWriteStream(file);
         rs.on("error", (err) => {
             reject(err);
         });
@@ -61868,8 +61868,8 @@ async function readStreamToLocalFile(rs, file) {
  *
  * Promisified version of fs.stat().
  */
-const fsStat = require$$0$2.promisify(require$$1$1.stat);
-const fsCreateReadStream = require$$1$1.createReadStream;
+const fsStat = require$$0$2.promisify(fs.stat);
+const fsCreateReadStream = fs.createReadStream;
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -68150,7 +68150,7 @@ function requireDownloadUtils () {
 	const http_client_1 = requireLib();
 	const storage_blob_1 = require$$2;
 	const buffer = __importStar(require$$7);
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const stream = __importStar(require$$0$7);
 	const util = __importStar(require$$0__default$1);
 	const utils = __importStar(requireCacheUtils());
@@ -68732,7 +68732,7 @@ function requireCacheHttpClient () {
 	const core = __importStar(requireCore());
 	const http_client_1 = requireLib();
 	const auth_1 = requireAuth();
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const url_1 = require$$5$1;
 	const utils = __importStar(requireCacheUtils());
 	const uploadUtils_1 = requireUploadUtils();
@@ -74217,8 +74217,8 @@ function requireTar () {
 	tar.createTar = tar.extractTar = tar.listTar = void 0;
 	const exec_1 = requireExec();
 	const io = __importStar(requireIo$1());
-	const fs_1 = require$$1__default;
-	const path = __importStar(require$$1__default$1);
+	const fs_1 = fs__default;
+	const path = __importStar(require$$1__default);
 	const utils = __importStar(requireCacheUtils());
 	const constants_1 = requireConstants();
 	const IS_WINDOWS = process.platform === 'win32';
@@ -74493,7 +74493,7 @@ function requireCache () {
 	Object.defineProperty(cache$1, "__esModule", { value: true });
 	cache$1.saveCache = cache$1.restoreCache = cache$1.isFeatureAvailable = cache$1.FinalizeCacheError = cache$1.ReserveCacheError = cache$1.ValidationError = void 0;
 	const core = __importStar(requireCore());
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const utils = __importStar(requireCacheUtils());
 	const cacheHttpClient = __importStar(requireCacheHttpClient());
 	const cacheTwirpClient = __importStar(requireCacheTwirpClient());
@@ -74982,54 +74982,13 @@ function requireCache () {
 var cacheExports = requireCache();
 
 const OCAML_VERSION = '5.4.0';
+const OPAM_VERSION = '2.5.0';
 const PLATFORM = require$$0$3.platform();
 const ARCHITECTURE = require$$0$3.arch();
 process.env.GITHUB_TOKEN || '';
 const IS_WINDOWS = PLATFORM === 'win32';
 const IS_MACOS = PLATFORM === 'darwin';
 const IS_LINUX = PLATFORM === 'linux';
-
-const CACHE_VERSION = 'v1';
-function getCacheKey() {
-    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}`;
-}
-function getOpamRoot() {
-    return require$$1$2.join(require$$0$3.homedir(), '.opam');
-}
-async function restoreCache() {
-    const opamRoot = getOpamRoot();
-    const cacheKey = getCacheKey();
-    coreExports.info(`Attempting to restore cache with key: ${cacheKey}`);
-    coreExports.info(`Cache paths: ${opamRoot}`);
-    try {
-        const restoredKey = await cacheExports.restoreCache([opamRoot], cacheKey, [
-            `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
-            `setup-rocq-${CACHE_VERSION}-${PLATFORM}-`,
-            `setup-rocq-${CACHE_VERSION}-`
-        ]);
-        if (restoredKey) {
-            coreExports.info(`Cache restored from key: ${restoredKey}`);
-            // Set a state variable to indicate cache was restored
-            coreExports.saveState('CACHE_RESTORED', 'true');
-            coreExports.saveState('CACHE_KEY', cacheKey);
-            return true;
-        }
-        else {
-            coreExports.info('Cache not found');
-            coreExports.saveState('CACHE_RESTORED', 'false');
-            coreExports.saveState('CACHE_KEY', cacheKey);
-            return false;
-        }
-    }
-    catch (error) {
-        if (error instanceof Error) {
-            coreExports.warning(`Failed to restore cache: ${error.message}`);
-        }
-        coreExports.saveState('CACHE_RESTORED', 'false');
-        coreExports.saveState('CACHE_KEY', cacheKey);
-        return false;
-    }
-}
 
 var execExports = requireExec();
 
@@ -75076,8 +75035,8 @@ function requireIoUtil () {
 		var _a;
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
-		const fs = __importStar(require$$1__default);
-		const path = __importStar(require$$1__default$1);
+		const fs = __importStar(fs__default);
+		const path = __importStar(require$$1__default);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -75267,7 +75226,7 @@ function requireIo () {
 	Object.defineProperty(io, "__esModule", { value: true });
 	io.findInPath = io.which = io.mkdirP = io.rmRF = io.mv = io.cp = void 0;
 	const assert_1 = require$$0$5;
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const ioUtil = __importStar(requireIoUtil());
 	/**
 	 * Copies a file or folder.
@@ -75587,7 +75546,7 @@ function requireManifest () {
 		/* eslint @typescript-eslint/no-require-imports: 0 */
 		const os = require$$0__default;
 		const cp = require$$2$3;
-		const fs = require$$1__default;
+		const fs = fs__default;
 		function _findMatch(versionSpec, stable, candidates, archFilter) {
 		    return __awaiter(this, void 0, void 0, function* () {
 		        const platFilter = os.platform();
@@ -75817,10 +75776,10 @@ function requireToolCache () {
 	const core = __importStar(requireCore());
 	const io = __importStar(requireIo());
 	const crypto = __importStar(require$$0$4);
-	const fs = __importStar(require$$1__default);
+	const fs = __importStar(fs__default);
 	const mm = __importStar(requireManifest());
 	const os = __importStar(require$$0__default);
-	const path = __importStar(require$$1__default$1);
+	const path = __importStar(require$$1__default);
 	const httpm = __importStar(requireLib());
 	const semver = __importStar(requireSemver());
 	const stream = __importStar(require$$0$7);
@@ -83314,7 +83273,6 @@ function parse(src, reviver, options) {
     return doc.toJS(Object.assign({ reviver: _reviver }, options));
 }
 
-const OPAM_VERSION = '2.5.0';
 function getOpamUrl() {
     if (IS_WINDOWS) {
         return `https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-windows.zip`;
@@ -83342,7 +83300,7 @@ async function acquireOpam() {
             if (IS_WINDOWS) {
                 const zipPath = await toolCacheExports.downloadTool(browserDownloadUrl);
                 const extractedPath = await toolCacheExports.extractZip(zipPath);
-                downloadedPath = require$$1$2.join(extractedPath, opam);
+                downloadedPath = require$$1$1.join(extractedPath, opam);
             }
             else {
                 downloadedPath = await toolCacheExports.downloadTool(browserDownloadUrl);
@@ -83353,7 +83311,7 @@ async function acquireOpam() {
             // Make the binary executable on Unix-like systems
             if (!IS_WINDOWS) {
                 const fs = await import('fs/promises');
-                await fs.chmod(require$$1$2.join(cachedPath, opam), 0o755);
+                await fs.chmod(require$$1$1.join(cachedPath, opam), 0o755);
             }
             coreExports.addPath(cachedPath);
             coreExports.info('Added opam to the path');
@@ -83367,7 +83325,7 @@ async function acquireOpam() {
 async function initializeOpam() {
     await coreExports.group('Initialising opam', async () => {
         // Set environment variables
-        const opamRoot = require$$1$2.join(require$$0$3.homedir(), '.opam');
+        const opamRoot = require$$1$1.join(require$$0$3.homedir(), '.opam');
         if (coreExports.isDebug()) {
             coreExports.exportVariable('OPAMVERBOSE', 1);
         }
@@ -83382,14 +83340,16 @@ async function initializeOpam() {
         coreExports.exportVariable('OPAMSOLVERTIMEOUT', 600);
         coreExports.exportVariable('OPAMYES', 1);
         coreExports.exportVariable('OPAMROOTISOK', true);
-        const args = [
+        if (fs.existsSync(opamRoot)) {
+            return;
+        }
+        await execExports.exec('opam', [
             'init',
             '--bare',
             '--disable-sandboxing',
             '--auto-setup',
             '--enable-shell-hook'
-        ];
-        await execExports.exec('opam', args);
+        ]);
     });
 }
 async function setupOpam() {
@@ -83403,8 +83363,7 @@ async function createSwitch() {
             'switch',
             'create',
             'default',
-            `ocaml-base-compiler.${OCAML_VERSION}`,
-            '--yes'
+            `ocaml-base-compiler.${OCAML_VERSION}`
         ]);
     });
 }
@@ -83428,7 +83387,7 @@ async function setupOpamEnv() {
             coreExports.exportVariable(varName, value);
             // Special handling for PATH
             if (varName === 'PATH') {
-                const paths = value.split(require$$1$2.delimiter);
+                const paths = value.split(require$$1$1.delimiter);
                 for (const p of paths) {
                     if (p && !process.env.PATH?.includes(p)) {
                         coreExports.addPath(p);
@@ -83446,8 +83405,7 @@ async function addRepository(name, url) {
         '--all-switches',
         '--set-default',
         name,
-        url,
-        '--yes'
+        url
     ]);
 }
 async function setupRepositories() {
@@ -83473,20 +83431,13 @@ async function setupRepositories() {
     });
 }
 async function opamInstall(pkg, options = []) {
-    await execExports.exec('opam', [
-        'install',
-        pkg,
-        // '--unset-root',
-        '--yes',
-        ...options
-    ]);
+    await execExports.exec('opam', ['install', pkg, ...options]);
 }
 async function opamPin(pkg, target, options = []) {
     await execExports.exec('opam', [
         'pin',
         'add',
         '--no-action',
-        '--yes',
         pkg,
         target,
         ...options
@@ -83501,15 +83452,15 @@ async function installRocqDev() {
     await opamPin('coq-stdlib.dev', 'git+https://github.com/rocq-prover/stdlib.git');
     await opamPin('coq.dev', '--dev-repo');
     // Install the pinned packages
-    await opamInstall('coq.dev');
+    await opamInstall('coq.dev', ['--unset-root']);
 }
 async function installRocqLatest() {
     coreExports.info('Installing latest Rocq version');
-    await opamInstall('coq');
+    await opamInstall('coq', ['--unset-root']);
 }
 async function installRocqVersion(version) {
     coreExports.info(`Installing Rocq version ${version}`);
-    await opamInstall(`coq.${version}`);
+    await opamInstall(`coq.${version}`, ['--unset-root']);
 }
 async function installRocq(version) {
     await coreExports.group('Installing Rocq', async () => {
@@ -83523,6 +83474,48 @@ async function installRocq(version) {
             await installRocqVersion(version);
         }
     });
+}
+
+const CACHE_VERSION = 'v1';
+function getCacheKey() {
+    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}`;
+}
+function getOpamRoot() {
+    return require$$1$1.join(require$$0$3.homedir(), '.opam');
+}
+async function restoreCache() {
+    const opamRoot = getOpamRoot();
+    const cacheKey = getCacheKey();
+    coreExports.info(`Attempting to restore cache with key: ${cacheKey}`);
+    coreExports.info(`Cache paths: ${opamRoot}`);
+    try {
+        const restoredKey = await cacheExports.restoreCache([opamRoot], cacheKey, [
+            `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
+            `setup-rocq-${CACHE_VERSION}-${PLATFORM}-`,
+            `setup-rocq-${CACHE_VERSION}-`
+        ]);
+        if (restoredKey) {
+            coreExports.info(`Cache restored from key: ${restoredKey}`);
+            // Set a state variable to indicate cache was restored
+            coreExports.saveState('CACHE_RESTORED', 'true');
+            coreExports.saveState('CACHE_KEY', cacheKey);
+            return true;
+        }
+        else {
+            coreExports.info('Cache not found');
+            coreExports.saveState('CACHE_RESTORED', 'false');
+            coreExports.saveState('CACHE_KEY', cacheKey);
+            return false;
+        }
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            coreExports.warning(`Failed to restore cache: ${error.message}`);
+        }
+        coreExports.saveState('CACHE_RESTORED', 'false');
+        coreExports.saveState('CACHE_KEY', cacheKey);
+        return false;
+    }
 }
 
 const MANDATORY_LINUX_PACKAGES = [

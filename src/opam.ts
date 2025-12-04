@@ -4,6 +4,7 @@ import * as tc from '@actions/tool-cache'
 import * as path from 'path'
 import * as os from 'os'
 import * as yaml from 'yaml'
+import * as fs from 'fs'
 import {
   OCAML_VERSION,
   OPAM_VERSION,
@@ -90,15 +91,17 @@ export async function initializeOpam(): Promise<void> {
     core.exportVariable('OPAMYES', 1)
     core.exportVariable('OPAMROOTISOK', true)
 
-    const args = [
+    if (fs.existsSync(opamRoot)) {
+      return
+    }
+
+    await exec.exec('opam', [
       'init',
       '--bare',
       '--disable-sandboxing',
       '--auto-setup',
       '--enable-shell-hook'
-    ]
-
-    await exec.exec('opam', args)
+    ])
   })
 }
 
@@ -197,7 +200,7 @@ export async function setupRepositories(): Promise<void> {
 }
 
 async function opamInstall(pkg: string, options: string[] = []): Promise<void> {
-  await exec.exec('opam', ['install', pkg, '--unset-root', ...options])
+  await exec.exec('opam', ['install', pkg, ...options])
 }
 
 async function opamPin(
@@ -232,17 +235,17 @@ async function installRocqDev(): Promise<void> {
   await opamPin('coq.dev', '--dev-repo')
 
   // Install the pinned packages
-  await opamInstall('coq.dev')
+  await opamInstall('coq.dev', ['--unset-root'])
 }
 
 async function installRocqLatest(): Promise<void> {
   core.info('Installing latest Rocq version')
-  await opamInstall('coq')
+  await opamInstall('coq', ['--unset-root'])
 }
 
 async function installRocqVersion(version: string): Promise<void> {
   core.info(`Installing Rocq version ${version}`)
-  await opamInstall(`coq.${version}`)
+  await opamInstall(`coq.${version}`, ['--unset-root'])
 }
 
 export async function installRocq(version: string): Promise<void> {
@@ -255,4 +258,8 @@ export async function installRocq(version: string): Promise<void> {
       await installRocqVersion(version)
     }
   })
+}
+
+export async function opamClean(): Promise<void> {
+  await exec.exec('opam', ['clean', '--logs', '--switch-cleanup'])
 }

@@ -3,6 +3,7 @@ import * as cache from '@actions/cache'
 import * as path from 'path'
 import * as os from 'os'
 import { OCAML_VERSION, PLATFORM, ARCHITECTURE } from './constants.js'
+import { opamClean } from './opam.js'
 
 export const CACHE_VERSION = 'v1'
 
@@ -51,19 +52,14 @@ export async function restoreCache(): Promise<boolean> {
 }
 
 export async function saveCache(): Promise<void> {
-  const cacheRestored = core.getState('CACHE_RESTORED')
   const cacheKey = core.getState('CACHE_KEY')
-
-  if (cacheRestored === 'true') {
-    core.info('Cache was restored, skipping save')
-    return
-  }
 
   if (!cacheKey) {
     core.warning('No cache key found, skipping save')
     return
   }
 
+  await opamClean()
   const opamRoot = getOpamRoot()
 
   core.info(`Saving cache with key: ${cacheKey}`)
