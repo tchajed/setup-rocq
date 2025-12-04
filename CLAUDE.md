@@ -62,12 +62,12 @@ The action follows this sequence (see `src/main.ts:run()`):
 
 ### Module Responsibilities
 
-**src/main.ts**
+src/main.ts:
 
 - Entry point and orchestration
 - Coordinates cache, opam setup, and error handling
 
-**src/opam.ts**
+src/opam.ts:
 
 - Core opam operations wrapped in `core.group()` for logging
 - `setupOpam()` orchestrator (calls `acquireOpam()` + `initializeOpam()`)
@@ -77,24 +77,24 @@ The action follows this sequence (see `src/main.ts:run()`):
 - `createSwitch()`: Installs OCaml compiler
 - `setupOpamEnv()`: Parses `opam env` and exports variables
 
-**src/cache.ts**
+src/cache.ts:
 
 - Cache key generation based on platform/arch/OCaml version
 - `restoreCache()`: Restores `~/.opam` with fallback keys
 - `saveCache()`: Saves cache in post-action (skips if restored)
 - Uses `core.saveState()` to track cache status between main/post
 
-**src/constants.ts**
+src/constants.ts:
 
 - Platform detection (IS_WINDOWS, IS_MACOS, IS_LINUX)
 - Fixed OCaml version (5.4.0)
 - Configuration flags
 
-**src/post.ts**
+src/post.ts:
 
 - Post-action entry point that calls `saveCache()`
 
-**src/unix.ts**
+src/unix.ts:
 
 - System package installation following setup-ocaml patterns
 - `installSystemPackages()`: Installs required system packages based on platform
@@ -132,6 +132,7 @@ Defined in `action.yml`:
 
 - `rocq-version` (default: 'latest') - Currently unused, planned for future
 - `opam-repositories` (optional) - YAML object with additional repos
+
   ```yaml
   opam-repositories: |
     custom: https://example.com/repo.git
@@ -166,7 +167,7 @@ Both use the same plugins (TypeScript, JSON, CommonJS, Node Resolve).
 
 Follow conventional format with Claude Code footer:
 
-```
+```txt
 <type>: <subject>
 
 <body>
