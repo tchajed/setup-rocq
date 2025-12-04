@@ -92074,7 +92074,7 @@ async function initializeOpam() {
             '--bare',
             '--disable-sandboxing',
             '--auto-setup',
-            '--enable-shell-hook'
+            '--enable-shell-hook',
         ]);
     });
 }
@@ -92089,7 +92089,7 @@ async function createSwitch() {
             'switch',
             'create',
             'default',
-            `ocaml-base-compiler.${OCAML_VERSION}`
+            `ocaml-base-compiler.${OCAML_VERSION}`,
         ]);
     });
 }
@@ -92100,8 +92100,8 @@ async function setupOpamEnv() {
         listeners: {
             stdout: (data) => {
                 output += data.toString();
-            }
-        }
+            },
+        },
     });
     // Parse the output and set environment variables
     const lines = output.split('\n');
@@ -92131,7 +92131,7 @@ async function addRepository(name, url) {
         '--all-switches',
         '--set-default',
         name,
-        url
+        url,
     ]);
 }
 async function setupRepositories() {
@@ -92167,7 +92167,7 @@ async function opamPin(pkg, target, options = []) {
         '--no-action',
         pkg,
         target,
-        ...options
+        ...options,
     ]);
 }
 async function installRocqDev() {
@@ -92224,7 +92224,7 @@ async function restoreCache() {
         const restoredKey = await cacheExports.restoreCache([opamRoot], cacheKey, [
             `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
             `setup-rocq-${CACHE_VERSION}-${PLATFORM}-`,
-            `setup-rocq-${CACHE_VERSION}-`
+            `setup-rocq-${CACHE_VERSION}-`,
         ]);
         if (restoredKey) {
             coreExports.info(`Cache restored from key: ${restoredKey}`);
@@ -92256,7 +92256,7 @@ const MANDATORY_LINUX_PACKAGES = [
     'rsync',
     'libgmp-dev',
     'pkg-config',
-    'sqlite3'
+    'sqlite3',
 ];
 const MACOS_PACKAGES = ['darcs', 'mercurial'];
 async function installLinuxPackages() {
@@ -92268,7 +92268,7 @@ async function installLinuxPackages() {
                 'apt-get',
                 'install',
                 '-y',
-                ...packagesToInstall
+                ...packagesToInstall,
             ]);
         }
         catch {
@@ -92278,7 +92278,7 @@ async function installLinuxPackages() {
                 'apt-get',
                 'install',
                 '-y',
-                ...packagesToInstall
+                ...packagesToInstall,
             ]);
         }
     }
