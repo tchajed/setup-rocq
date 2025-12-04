@@ -31,7 +31,6 @@ async function cloneOrUpdateRepo(
     // Repository exists, update it
     core.info(`Updating repository at ${repoPath}`)
     await exec.exec('git', ['-C', repoPath, 'fetch', 'origin'])
-    await exec.exec('git', ['-C', repoPath, 'reset', '--hard', 'origin/main'])
   } catch {
     // Repository doesn't exist, clone it
     core.info(`Cloning ${repoUrl} to ${repoPath}`)
@@ -64,36 +63,33 @@ async function getMondayCommitHash(repoPath: string): Promise<string> {
   core.info(`Finding commit before Monday midnight CT: ${cutoffDate}`)
 
   // Get the commit hash
-  let commitHash = ''
-  await exec.exec(
-    'git',
-    ['-C', repoPath, 'log', '-1', '--before', cutoffDate, '--format=%H'],
-    {
-      listeners: {
-        stdout: (data: Buffer) => {
-          commitHash += data.toString().trim()
-        },
-      },
-    },
-  )
+  const hashResult = await exec.getExecOutput('git', [
+    '-C',
+    repoPath,
+    'log',
+    '-1',
+    '--before',
+    cutoffDate,
+    '--format=%H',
+  ])
+
+  const commitHash = hashResult.stdout.trim()
 
   if (!commitHash) {
     throw new Error(`No commit found before ${cutoffDate}`)
   }
 
   // Get commit info (date and message)
-  let commitInfo = ''
-  await exec.exec(
-    'git',
-    ['-C', repoPath, 'log', '-1', commitHash, '--format=%ci - %s'],
-    {
-      listeners: {
-        stdout: (data: Buffer) => {
-          commitInfo += data.toString().trim()
-        },
-      },
-    },
-  )
+  const infoResult = await exec.getExecOutput('git', [
+    '-C',
+    repoPath,
+    'log',
+    '-1',
+    commitHash,
+    '--format=%ci - %s',
+  ])
+
+  const commitInfo = infoResult.stdout.trim()
 
   core.info(`Found commit: ${commitHash}`)
   core.info(`  ${commitInfo}`)
