@@ -11,6 +11,7 @@ import {
   ARCHITECTURE,
   IS_WINDOWS,
   IS_MACOS,
+  ROCQ_VERSION,
 } from './constants.js'
 
 function getOpamUrl(): string {
@@ -174,10 +175,12 @@ export async function setupRepositories(): Promise<void> {
       'rocq-released',
       'https://rocq-prover.org/opam/released',
     )
-    await addRepository(
-      'rocq-core-dev',
-      'https://rocq-prover.github.io/opam/core-dev',
-    )
+    if (ROCQ_VERSION() == 'dev') {
+      await addRepository(
+        'rocq-core-dev',
+        'https://rocq-prover.github.io/opam/core-dev',
+      )
+    }
 
     // Add any additional repositories from input
     const opamReposInput = core.getInput('opam-repositories')

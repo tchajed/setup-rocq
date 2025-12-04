@@ -92138,7 +92138,9 @@ async function setupRepositories() {
     await coreExports.group('Setting up opam repositories', async () => {
         // Always add rocq-released repository
         await addRepository('rocq-released', 'https://rocq-prover.org/opam/released');
-        await addRepository('rocq-core-dev', 'https://rocq-prover.github.io/opam/core-dev');
+        if (ROCQ_VERSION() == 'dev') {
+            await addRepository('rocq-core-dev', 'https://rocq-prover.github.io/opam/core-dev');
+        }
         // Add any additional repositories from input
         const opamReposInput = coreExports.getInput('opam-repositories');
         if (opamReposInput) {
