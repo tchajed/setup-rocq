@@ -81,7 +81,22 @@ async function getMondayCommitHash(repoPath: string): Promise<string> {
     throw new Error(`No commit found before ${cutoffDate}`)
   }
 
+  // Get commit info (date and message)
+  let commitInfo = ''
+  await exec.exec(
+    'git',
+    ['-C', repoPath, 'log', '-1', commitHash, '--format=%ci - %s'],
+    {
+      listeners: {
+        stdout: (data: Buffer) => {
+          commitInfo += data.toString().trim()
+        },
+      },
+    },
+  )
+
   core.info(`Found commit: ${commitHash}`)
+  core.info(`  ${commitInfo}`)
   return commitHash
 }
 

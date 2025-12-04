@@ -92234,7 +92234,17 @@ async function getMondayCommitHash(repoPath) {
     if (!commitHash) {
         throw new Error(`No commit found before ${cutoffDate}`);
     }
+    // Get commit info (date and message)
+    let commitInfo = '';
+    await execExports.exec('git', ['-C', repoPath, 'log', '-1', commitHash, '--format=%ci - %s'], {
+        listeners: {
+            stdout: (data) => {
+                commitInfo += data.toString().trim();
+            },
+        },
+    });
     coreExports.info(`Found commit: ${commitHash}`);
+    coreExports.info(`  ${commitInfo}`);
     return commitHash;
 }
 async function installRocqWeekly() {
