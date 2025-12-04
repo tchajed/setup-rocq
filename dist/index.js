@@ -16,19 +16,29 @@ import require$$0$9 from 'stream';
 import require$$7 from 'buffer';
 import require$$8 from 'querystring';
 import require$$14 from 'stream/web';
-import { createRequire } from 'node:module';
-import require$$0$a from 'worker_threads';
+import require$$0$b from 'node:stream';
+import require$$1$5 from 'node:util';
+import require$$0$a from 'node:events';
+import require$$0$c from 'worker_threads';
 import require$$2$1 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4 from 'async_hooks';
-import require$$1$5 from 'console';
+import require$$1$6 from 'console';
 import require$$5$1 from 'url';
 import require$$3 from 'zlib';
 import require$$6 from 'string_decoder';
-import require$$0$b from 'diagnostics_channel';
+import require$$0$d from 'diagnostics_channel';
 import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
-import require$$1$6 from 'tty';
+import require$$1$7 from 'node:os';
+import require$$2$3 from 'node:process';
+import require$$1$8 from 'node:http';
+import require$$2$4 from 'node:https';
+import require$$3$1 from 'node:zlib';
+import require$$1$9 from 'tty';
+import require$$0$e from 'node:crypto';
+import require$$2$5 from 'node:buffer';
+import require$$1$a from 'node:fs';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -1751,15 +1761,6 @@ function requireTimers () {
 
 var main = {exports: {}};
 
-const require$b = createRequire(import.meta.url);
-function __require$a() { return require$b("node:stream"); }
-
-const require$a = createRequire(import.meta.url);
-function __require$9() { return require$a("node:util"); }
-
-const require$9 = createRequire(import.meta.url);
-function __require$8() { return require$9("node:events"); }
-
 var sbmh;
 var hasRequiredSbmh;
 
@@ -1793,8 +1794,8 @@ function requireSbmh () {
 	 * Based heavily on the Streaming Boyer-Moore-Horspool C++ implementation
 	 * by Hongli Lai at: https://github.com/FooBarWidget/boyer-moore-horspool
 	 */
-	const EventEmitter = __require$8().EventEmitter;
-	const inherits = __require$9().inherits;
+	const EventEmitter = require$$0$a.EventEmitter;
+	const inherits = require$$1$5.inherits;
 
 	function SBMH (needle) {
 	  if (typeof needle === 'string') {
@@ -2003,8 +2004,8 @@ function requirePartStream () {
 	if (hasRequiredPartStream) return PartStream_1;
 	hasRequiredPartStream = 1;
 
-	const inherits = __require$9().inherits;
-	const ReadableStream = __require$a().Readable;
+	const inherits = require$$1$5.inherits;
+	const ReadableStream = require$$0$b.Readable;
 
 	function PartStream (opts) {
 	  ReadableStream.call(this, opts);
@@ -2048,8 +2049,8 @@ function requireHeaderParser () {
 	if (hasRequiredHeaderParser) return HeaderParser_1;
 	hasRequiredHeaderParser = 1;
 
-	const EventEmitter = __require$8().EventEmitter;
-	const inherits = __require$9().inherits;
+	const EventEmitter = require$$0$a.EventEmitter;
+	const inherits = require$$1$5.inherits;
 	const getLimit = requireGetLimit();
 
 	const StreamSearch = requireSbmh();
@@ -2156,8 +2157,8 @@ function requireDicer () {
 	if (hasRequiredDicer) return Dicer_1;
 	hasRequiredDicer = 1;
 
-	const WritableStream = __require$a().Writable;
-	const inherits = __require$9().inherits;
+	const WritableStream = require$$0$b.Writable;
+	const inherits = require$$1$5.inherits;
 
 	const StreamSearch = requireSbmh();
 
@@ -2733,8 +2734,8 @@ function requireMultipart$1 () {
 	//  * support limits.fieldNameSize
 	//     -- this will require modifications to utils.parseParams
 
-	const { Readable } = __require$a();
-	const { inherits } = __require$9();
+	const { Readable } = require$$0$b;
+	const { inherits } = require$$1$5;
 
 	const Dicer = requireDicer();
 
@@ -3299,8 +3300,8 @@ function requireMain () {
 	if (hasRequiredMain) return main.exports;
 	hasRequiredMain = 1;
 
-	const WritableStream = __require$a().Writable;
-	const { inherits } = __require$9();
+	const WritableStream = require$$0$b.Writable;
+	const { inherits } = require$$1$5;
 	const Dicer = requireDicer();
 
 	const MultipartParser = requireMultipart$1();
@@ -3392,7 +3393,7 @@ function requireConstants$9 () {
 	if (hasRequiredConstants$9) return constants$9;
 	hasRequiredConstants$9 = 1;
 
-	const { MessageChannel, receiveMessageOnPort } = require$$0$a;
+	const { MessageChannel, receiveMessageOnPort } = require$$0$c;
 
 	const corsSafeListedMethods = ['GET', 'HEAD', 'POST'];
 	const corsSafeListedMethodsSet = new Set(corsSafeListedMethods);
@@ -14148,7 +14149,7 @@ function requirePendingInterceptorsFormatter () {
 	hasRequiredPendingInterceptorsFormatter = 1;
 
 	const { Transform } = require$$0$9;
-	const { Console } = require$$1$5;
+	const { Console } = require$$1$6;
 
 	/**
 	 * Gets the output of `console.table(…)` as a string.
@@ -22325,7 +22326,7 @@ function requireEvents () {
 
 	const { webidl } = requireWebidl();
 	const { kEnumerableProperty } = requireUtil$8();
-	const { MessagePort } = require$$0$a;
+	const { MessagePort } = require$$0$c;
 
 	/**
 	 * @see https://html.spec.whatwg.org/multipage/comms.html#messageevent
@@ -22842,7 +22843,7 @@ function requireConnection () {
 	if (hasRequiredConnection) return connection;
 	hasRequiredConnection = 1;
 
-	const diagnosticsChannel = require$$0$b;
+	const diagnosticsChannel = require$$0$d;
 	const { uid, states } = requireConstants$6();
 	const {
 	  kReadyState,
@@ -23223,7 +23224,7 @@ function requireReceiver () {
 	hasRequiredReceiver = 1;
 
 	const { Writable } = require$$0$9;
-	const diagnosticsChannel = require$$0$b;
+	const diagnosticsChannel = require$$0$d;
 	const { parserStates, opcodes, states, emptyBuffer } = requireConstants$6();
 	const { kReadyState, kSentClose, kResponse, kReceivedClose } = requireSymbols();
 	const { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = requireUtil$2();
@@ -32552,12 +32553,6 @@ var debug = {};
 
 var log$5 = {};
 
-const require$8 = createRequire(import.meta.url);
-function __require$7() { return require$8("node:os"); }
-
-const require$7 = createRequire(import.meta.url);
-function __require$6() { return require$7("node:process"); }
-
 var hasRequiredLog$5;
 
 function requireLog$5 () {
@@ -32568,9 +32563,9 @@ function requireLog$5 () {
 	Object.defineProperty(log$5, "__esModule", { value: true });
 	log$5.log = log;
 	const tslib_1 = require$$0$2;
-	const node_os_1 = __require$7();
-	const node_util_1 = tslib_1.__importDefault(__require$9());
-	const node_process_1 = tslib_1.__importDefault(__require$6());
+	const node_os_1 = require$$1$7;
+	const node_util_1 = tslib_1.__importDefault(require$$1$5);
+	const node_process_1 = tslib_1.__importDefault(require$$2$3);
 	function log(message, ...args) {
 	    node_process_1.default.stderr.write(`${node_util_1.default.format(message, ...args)}${node_os_1.EOL}`);
 	}
@@ -33472,7 +33467,7 @@ function requireInspect () {
 	// Licensed under the MIT License.
 	Object.defineProperty(inspect, "__esModule", { value: true });
 	inspect.custom = void 0;
-	const node_util_1 = __require$9();
+	const node_util_1 = require$$1$5;
 	inspect.custom = node_util_1.inspect.custom;
 	
 	return inspect;
@@ -33785,15 +33780,6 @@ var defaultHttpClient$1 = {};
 
 var nodeHttpClient = {};
 
-const require$6 = createRequire(import.meta.url);
-function __require$5() { return require$6("node:http"); }
-
-const require$5 = createRequire(import.meta.url);
-function __require$4() { return require$5("node:https"); }
-
-const require$4 = createRequire(import.meta.url);
-function __require$3() { return require$4("node:zlib"); }
-
 var log$4 = {};
 
 var hasRequiredLog$4;
@@ -33822,10 +33808,10 @@ function requireNodeHttpClient () {
 	nodeHttpClient.getBodyLength = getBodyLength;
 	nodeHttpClient.createNodeHttpClient = createNodeHttpClient;
 	const tslib_1 = require$$0$2;
-	const node_http_1 = tslib_1.__importDefault(__require$5());
-	const node_https_1 = tslib_1.__importDefault(__require$4());
-	const node_zlib_1 = tslib_1.__importDefault(__require$3());
-	const node_stream_1 = __require$a();
+	const node_http_1 = tslib_1.__importDefault(require$$1$8);
+	const node_https_1 = tslib_1.__importDefault(require$$2$4);
+	const node_zlib_1 = tslib_1.__importDefault(require$$3$1);
+	const node_stream_1 = require$$0$b;
 	const AbortError_js_1 = requireAbortError$3();
 	const httpHeaders_js_1 = requireHttpHeaders$1();
 	const restError_js_1 = requireRestError$2();
@@ -34328,8 +34314,8 @@ function requireUserAgentPlatform$1 () {
 	userAgentPlatform$1.getHeaderName = getHeaderName;
 	userAgentPlatform$1.setPlatformSpecificData = setPlatformSpecificData;
 	const tslib_1 = require$$0$2;
-	const node_os_1 = tslib_1.__importDefault(__require$7());
-	const node_process_1 = tslib_1.__importDefault(__require$6());
+	const node_os_1 = tslib_1.__importDefault(require$$1$7);
+	const node_process_1 = tslib_1.__importDefault(require$$2$3);
 	/**
 	 * @internal
 	 */
@@ -35901,7 +35887,7 @@ function requireSupportsColor () {
 	if (hasRequiredSupportsColor) return supportsColor_1;
 	hasRequiredSupportsColor = 1;
 	const os = require$$0__default;
-	const tty = require$$1$6;
+	const tty = require$$1$9;
 	const hasFlag = requireHasFlag();
 
 	const {env} = process;
@@ -36047,7 +36033,7 @@ function requireNode () {
 	if (hasRequiredNode) return node.exports;
 	hasRequiredNode = 1;
 	(function (module, exports$1) {
-		const tty = require$$1$6;
+		const tty = require$$1$9;
 		const util = require$$0$5;
 
 		/**
@@ -39079,8 +39065,8 @@ function requireUserAgentPlatform () {
 	userAgentPlatform.getHeaderName = getHeaderName;
 	userAgentPlatform.setPlatformSpecificData = setPlatformSpecificData;
 	const tslib_1 = require$$0$2;
-	const node_os_1 = tslib_1.__importDefault(__require$7());
-	const node_process_1 = tslib_1.__importDefault(__require$6());
+	const node_os_1 = tslib_1.__importDefault(require$$1$7);
+	const node_process_1 = tslib_1.__importDefault(require$$2$3);
 	/**
 	 * @internal
 	 */
@@ -39216,9 +39202,6 @@ var internal = {};
 
 var sha256 = {};
 
-const require$3 = createRequire(import.meta.url);
-function __require$2() { return require$3("node:crypto"); }
-
 var hasRequiredSha256;
 
 function requireSha256 () {
@@ -39229,7 +39212,7 @@ function requireSha256 () {
 	Object.defineProperty(sha256, "__esModule", { value: true });
 	sha256.computeSha256Hmac = computeSha256Hmac;
 	sha256.computeSha256Hash = computeSha256Hash;
-	const node_crypto_1 = __require$2();
+	const node_crypto_1 = require$$0$e;
 	/**
 	 * Generates a SHA-256 HMAC signature.
 	 * @param key - The HMAC key represented as a base64 string, used to generate the cryptographic HMAC hash.
@@ -46936,7 +46919,7 @@ function requireStorageSharedKeyCredential$1 () {
 	// Licensed under the MIT License.
 	Object.defineProperty(StorageSharedKeyCredential$1, "__esModule", { value: true });
 	StorageSharedKeyCredential$1.StorageSharedKeyCredential = void 0;
-	const node_crypto_1 = __require$2();
+	const node_crypto_1 = require$$0$e;
 	const StorageSharedKeyCredentialPolicy_js_1 = requireStorageSharedKeyCredentialPolicy$1();
 	const Credential_js_1 = requireCredential$1();
 	/**
@@ -47071,7 +47054,7 @@ function requireBuffersStream () {
 	// Licensed under the MIT License.
 	Object.defineProperty(BuffersStream, "__esModule", { value: true });
 	BuffersStream.BuffersStream = void 0;
-	const node_stream_1 = __require$a();
+	const node_stream_1 = require$$0$b;
 	/**
 	 * This class generates a readable stream from the data in an array of buffers.
 	 */
@@ -47170,9 +47153,6 @@ function requireBuffersStream () {
 	return BuffersStream;
 }
 
-const require$2 = createRequire(import.meta.url);
-function __require$1() { return require$2("node:buffer"); }
-
 var hasRequiredPooledBuffer;
 
 function requirePooledBuffer () {
@@ -47184,7 +47164,7 @@ function requirePooledBuffer () {
 	PooledBuffer.PooledBuffer = void 0;
 	const tslib_1 = require$$0$2;
 	const BuffersStream_js_1 = requireBuffersStream();
-	const node_buffer_1 = tslib_1.__importDefault(__require$1());
+	const node_buffer_1 = tslib_1.__importDefault(require$$2$5);
 	/**
 	 * maxBufferLength is max size of each buffer in the pooled buffers.
 	 */
@@ -48794,7 +48774,7 @@ function requireStorageSharedKeyCredential () {
 	// Licensed under the MIT License.
 	Object.defineProperty(StorageSharedKeyCredential, "__esModule", { value: true });
 	StorageSharedKeyCredential.StorageSharedKeyCredential = void 0;
-	const node_crypto_1 = __require$2();
+	const node_crypto_1 = require$$0$e;
 	const StorageSharedKeyCredentialPolicy_js_1 = requireStorageSharedKeyCredentialPolicy();
 	const Credential_js_1 = requireCredential();
 	/**
@@ -49509,7 +49489,7 @@ function requireStorageSharedKeyCredentialPolicyV2$1 () {
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.storageSharedKeyCredentialPolicyName = void 0;
 		exports$1.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
-		const node_crypto_1 = __require$2();
+		const node_crypto_1 = require$$0$e;
 		const constants_js_1 = requireConstants$1();
 		const utils_common_js_1 = requireUtils_common$1();
 		const SharedKeyComparator_js_1 = requireSharedKeyComparator();
@@ -49968,7 +49948,7 @@ function requireStorageSharedKeyCredentialPolicyV2 () {
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.storageSharedKeyCredentialPolicyName = void 0;
 		exports$1.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
-		const node_crypto_1 = __require$2();
+		const node_crypto_1 = require$$0$e;
 		const constants_js_1 = requireConstants$2();
 		const utils_common_js_1 = requireUtils_common$2();
 		const SharedKeyComparator_js_1 = requireSharedKeyComparator$1();
@@ -64826,7 +64806,7 @@ function requireUserDelegationKeyCredential () {
 	// Licensed under the MIT License.
 	Object.defineProperty(UserDelegationKeyCredential, "__esModule", { value: true });
 	UserDelegationKeyCredential.UserDelegationKeyCredential = void 0;
-	const node_crypto_1 = __require$2();
+	const node_crypto_1 = require$$0$e;
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
 	 *
@@ -66167,7 +66147,7 @@ function requireRetriableReadableStream () {
 	Object.defineProperty(RetriableReadableStream, "__esModule", { value: true });
 	RetriableReadableStream.RetriableReadableStream = void 0;
 	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
-	const node_stream_1 = __require$a();
+	const node_stream_1 = require$$0$b;
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
 	 *
@@ -67437,7 +67417,7 @@ function requireBlobQuickQueryStream () {
 	// Licensed under the MIT License.
 	Object.defineProperty(BlobQuickQueryStream, "__esModule", { value: true });
 	BlobQuickQueryStream.BlobQuickQueryStream = void 0;
-	const node_stream_1 = __require$a();
+	const node_stream_1 = require$$0$b;
 	const index_js_1 = requireInternalAvro();
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
@@ -69821,9 +69801,6 @@ function requireBatch () {
 
 var utils = {};
 
-const require$1 = createRequire(import.meta.url);
-function __require() { return require$1("node:fs"); }
-
 var hasRequiredUtils;
 
 function requireUtils () {
@@ -69838,8 +69815,8 @@ function requireUtils () {
 	utils.streamToBuffer3 = streamToBuffer3;
 	utils.readStreamToLocalFile = readStreamToLocalFile;
 	const tslib_1 = require$$0$2;
-	const node_fs_1 = tslib_1.__importDefault(__require());
-	const node_util_1 = tslib_1.__importDefault(__require$9());
+	const node_fs_1 = tslib_1.__importDefault(require$$1$a);
+	const node_util_1 = tslib_1.__importDefault(require$$1$5);
 	const constants_js_1 = requireConstants$2();
 	/**
 	 * Reads a readable stream into buffer. Fill the buffer from offset to end.
