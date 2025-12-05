@@ -11,7 +11,7 @@ import { getRocqWeeklyDir } from './rocq.js'
 export const CACHE_VERSION = 'v1'
 
 function getCacheKey(): string {
-  return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-rocq-${ROCQ_VERSION}`
+  return `setup-rocq-${CACHE_VERSION}-${PLATFORM}${ARCHITECTURE}-rocq-${ROCQ_VERSION}`
 }
 
 function getOpamRoot(): string {
@@ -167,7 +167,7 @@ export async function restoreCache(): Promise<boolean> {
 
   try {
     const restoredKey = await cache.restoreCache(cachePaths, cacheKey, [
-      `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
+      `setup-rocq-${CACHE_VERSION}-${PLATFORM}${ARCHITECTURE}-`,
     ])
 
     if (restoredKey) {
