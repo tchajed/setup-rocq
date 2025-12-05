@@ -12,16 +12,18 @@ const mockCache = {
 
 // Mock opam module
 const mockSetupOpam = jest.fn<() => Promise<void>>()
-const mockSetupRepositories = jest.fn<() => Promise<void>>()
+const mockSetupOpamRepositories = jest.fn<() => Promise<void>>()
 const mockCreateSwitch = jest.fn<() => Promise<void>>()
 const mockSetupOpamEnv = jest.fn<() => Promise<void>>()
 const mockOpamList = jest.fn<() => Promise<void>>()
+const mockOpamUpdate = jest.fn<() => Promise<void>>()
 const mockOpam = {
   setupOpam: mockSetupOpam,
-  setupRepositories: mockSetupRepositories,
+  setupOpamRepositories: mockSetupOpamRepositories,
   createSwitch: mockCreateSwitch,
   setupOpamEnv: mockSetupOpamEnv,
   opamList: mockOpamList,
+  opamUpdate: mockOpamUpdate,
 }
 
 // Mock rocq module
@@ -59,9 +61,10 @@ describe('main.ts', () => {
     mockInstallSystemPackages.mockResolvedValue(undefined)
     mockSetupOpam.mockResolvedValue(undefined)
     mockOpamList.mockResolvedValue(undefined)
-    mockSetupRepositories.mockResolvedValue(undefined)
+    mockSetupOpamRepositories.mockResolvedValue(undefined)
     mockCreateSwitch.mockResolvedValue(undefined)
     mockSetupOpamEnv.mockResolvedValue(undefined)
+    mockOpamUpdate.mockResolvedValue(undefined)
     mockInstallRocq.mockResolvedValue(undefined)
   })
 
@@ -78,9 +81,10 @@ describe('main.ts', () => {
     expect(mockRestoreCache).toHaveBeenCalled()
     expect(mockInstallSystemPackages).toHaveBeenCalled()
     expect(mockSetupOpam).toHaveBeenCalled()
-    expect(mockSetupRepositories).toHaveBeenCalled()
+    expect(mockSetupOpamRepositories).toHaveBeenCalled()
     expect(mockCreateSwitch).toHaveBeenCalled()
     expect(mockSetupOpamEnv).toHaveBeenCalled()
+    expect(mockOpamUpdate).not.toHaveBeenCalled()
     expect(mockInstallRocq).toHaveBeenCalledWith('latest')
     expect(core.setFailed).not.toHaveBeenCalled()
   })
@@ -96,12 +100,15 @@ describe('main.ts', () => {
     // System packages and opam setup should always run
     expect(mockInstallSystemPackages).toHaveBeenCalled()
     expect(mockSetupOpam).toHaveBeenCalled()
-    expect(mockSetupRepositories).toHaveBeenCalled()
+    expect(mockSetupOpamRepositories).toHaveBeenCalled()
 
     // OCaml installation should be skipped
     expect(mockCreateSwitch).not.toHaveBeenCalled()
 
-    // But environment setup should still run
+    // But opam update should run on cache restore
+    expect(mockOpamUpdate).toHaveBeenCalled()
+
+    // And environment setup should still run
     expect(mockSetupOpamEnv).toHaveBeenCalled()
     expect(mockInstallRocq).toHaveBeenCalledWith('latest')
     expect(core.setFailed).not.toHaveBeenCalled()

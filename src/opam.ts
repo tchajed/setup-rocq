@@ -168,7 +168,7 @@ export async function addRepository(name: string, url: string): Promise<void> {
   ])
 }
 
-export async function setupRepositories(): Promise<void> {
+export async function setupOpamRepositories(): Promise<void> {
   await core.group('Setting up opam repositories', async () => {
     // Always add rocq-released repository
     await addRepository(
@@ -206,6 +206,12 @@ export async function setupRepositories(): Promise<void> {
   })
 }
 
+export async function opamUpdate(): Promise<void> {
+  await core.group('Updating opam repositories', async () => {
+    await exec.exec('opam', ['update', '--development'])
+  })
+}
+
 export async function opamInstall(
   pkg: string,
   options: string[] = [],
@@ -230,7 +236,7 @@ export async function opamPin(
 
 export async function opamList(): Promise<void> {
   await core.group('List installed opam packages', async () => {
-    await exec.exec('opam', ['list', '--installed'])
+    await exec.exec('opam', ['list', '--installed', '--wrap'])
   })
 }
 

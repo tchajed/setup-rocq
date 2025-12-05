@@ -2,10 +2,11 @@ import * as core from '@actions/core'
 import { restoreCache } from './cache.js'
 import {
   setupOpam,
-  setupRepositories,
+  setupOpamRepositories,
   createSwitch,
   setupOpamEnv,
   opamList,
+  opamUpdate,
 } from './opam.js'
 import { installRocq } from './rocq.js'
 import { installSystemPackages } from './unix.js'
@@ -20,17 +21,15 @@ export async function run(): Promise<void> {
     core.endGroup()
 
     await installSystemPackages()
-
     await setupOpam()
-
-    // Set up repositories (rocq-released + any additional ones)
-    await setupRepositories()
+    await setupOpamRepositories()
 
     if (!cacheRestored) {
       core.info('No cache, initializing')
       await createSwitch()
     } else {
       core.info('Restored from cache')
+      await opamUpdate()
     }
     await setupOpamEnv()
     await opamList()

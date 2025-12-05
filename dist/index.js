@@ -92133,7 +92133,7 @@ async function addRepository(name, url) {
         url,
     ]);
 }
-async function setupRepositories() {
+async function setupOpamRepositories() {
     await coreExports.group('Setting up opam repositories', async () => {
         // Always add rocq-released repository
         await addRepository('rocq-released', 'https://rocq-prover.org/opam/released');
@@ -92158,6 +92158,11 @@ async function setupRepositories() {
         }
     });
 }
+async function opamUpdate() {
+    await coreExports.group('Updating opam repositories', async () => {
+        await execExports.exec('opam', ['update', '--development']);
+    });
+}
 async function opamInstall(pkg, options = []) {
     await execExports.exec('opam', ['install', pkg, ...options]);
 }
@@ -92173,7 +92178,7 @@ async function opamPin(pkg, target, options = []) {
 }
 async function opamList() {
     await coreExports.group('List installed opam packages', async () => {
-        await execExports.exec('opam', ['list', '--installed']);
+        await execExports.exec('opam', ['list', '--installed', '--wrap']);
     });
 }
 
@@ -92463,14 +92468,14 @@ async function run() {
         coreExports.endGroup();
         await installSystemPackages();
         await setupOpam();
-        // Set up repositories (rocq-released + any additional ones)
-        await setupRepositories();
+        await setupOpamRepositories();
         if (!cacheRestored) {
             coreExports.info('No cache, initializing');
             await createSwitch();
         }
         else {
             coreExports.info('Restored from cache');
+            await opamUpdate();
         }
         await setupOpamEnv();
         await opamList();
