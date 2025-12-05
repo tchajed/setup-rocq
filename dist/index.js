@@ -92315,9 +92315,9 @@ async function installRocq(version) {
     });
 }
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 function getCacheKey() {
-    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}${ARCHITECTURE}-rocq-${ROCQ_VERSION}`;
+    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-rocq-${ROCQ_VERSION}`;
 }
 function getOpamRoot() {
     return path.join(os.homedir(), '.opam');
@@ -92386,7 +92386,7 @@ async function restoreCache() {
     coreExports.info(`Cache paths: ${cachePaths.join(', ')}`);
     try {
         const restoredKey = await cacheExports.restoreCache(cachePaths, cacheKey, [
-            `setup-rocq-${CACHE_VERSION}-${PLATFORM}${ARCHITECTURE}-`,
+            `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
         ]);
         if (restoredKey) {
             coreExports.info(`Cache restored from key: ${restoredKey}`);
