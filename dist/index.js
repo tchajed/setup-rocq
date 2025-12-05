@@ -92182,6 +92182,24 @@ async function opamList() {
     });
 }
 
+function getMondayDate() {
+    // Get current date/time
+    const now = new Date();
+    // Calculate this Monday midnight Central Time
+    const dayOfWeek = now.getUTCDay(); // 0 = Sunday, 1 = Monday, etc.
+    const daysToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const thisMonday = new Date(now);
+    thisMonday.setUTCDate(now.getUTCDate() + daysToMonday);
+    // Set to midnight Central Time (UTC-6 in standard time, UTC-5 in daylight time)
+    // To be safe, we'll use UTC-6 and set to 06:00 UTC which is midnight CT
+    thisMonday.setUTCHours(6, 0, 0, 0);
+    // If thisMonday is in the future, go back one week
+    if (thisMonday > now) {
+        thisMonday.setUTCDate(thisMonday.getUTCDate() - 7);
+    }
+    return thisMonday;
+}
+
 // Get the directory containing weekly rocq clones
 function getRocqWeeklyDir() {
     return path.join(os.homedir(), 'rocq-weekly');
@@ -92211,21 +92229,7 @@ async function cloneOrUpdateRepo(repoUrl, repoPath) {
 }
 // Get the most recent commit before Monday midnight Central Time
 async function getMondayCommitHash(repoPath) {
-    // Get current date/time
-    const now = new Date();
-    // Calculate this Monday midnight Central Time
-    const dayOfWeek = now.getUTCDay(); // 0 = Sunday, 1 = Monday, etc.
-    const daysToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    const thisMonday = new Date(now);
-    thisMonday.setUTCDate(now.getUTCDate() + daysToMonday);
-    // Set to midnight Central Time (UTC-6 in standard time, UTC-5 in daylight time)
-    // To be safe, we'll use UTC-6 and set to 06:00 UTC which is midnight CT
-    thisMonday.setUTCHours(6, 0, 0, 0);
-    // If thisMonday is in the future, go back one week
-    if (thisMonday > now) {
-        thisMonday.setUTCDate(thisMonday.getUTCDate() - 7);
-    }
-    const cutoffDate = thisMonday.toISOString();
+    const cutoffDate = getMondayDate().toISOString();
     coreExports.info(`Finding commit before Monday midnight CT: ${cutoffDate}`);
     // Get the commit hash
     const hashResult = await execExports.getExecOutput('git', [
@@ -92316,8 +92320,14 @@ async function installRocq(version) {
 }
 
 const CACHE_VERSION = 'v2';
+const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}`;
 function getCacheKey() {
-    return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-rocq-${ROCQ_VERSION}`;
+    const cachePrefix = `${CACHE_PLATFORM_PREFIX}-rocq-${ROCQ_VERSION}`;
+    if (ROCQ_VERSION === 'weekly') {
+        const date = getMondayDate().toISOString().split('T')[0];
+        return `${cachePrefix}-${date}`;
+    }
+    return cachePrefix;
 }
 function getOpamRoot() {
     return path.join(os.homedir(), '.opam');
@@ -92380,13 +92390,17 @@ async function restoreAptCache() {
     }
 }
 async function restoreCache() {
+    if (!cacheExports.isFeatureAvailable()) {
+        coreExports.warning('cache feature is not available, not restoring');
+        return false;
+    }
     const cachePaths = getCachePaths();
     const cacheKey = getCacheKey();
     coreExports.info(`Attempting to restore cache with key: ${cacheKey}`);
     coreExports.info(`Cache paths: ${cachePaths.join(', ')}`);
     try {
         const restoredKey = await cacheExports.restoreCache(cachePaths, cacheKey, [
-            `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
+            `${CACHE_PLATFORM_PREFIX}-`,
         ]);
         if (restoredKey) {
             coreExports.info(`Cache restored from key: ${restoredKey}`);

@@ -87330,7 +87330,10 @@ async function saveCache() {
     coreExports.info(`Saving cache with key: ${cacheKey}`);
     coreExports.info(`Cache paths: ${cachePaths.join(', ')}`);
     try {
-        await cacheExports.saveCache(cachePaths, cacheKey);
+        const cacheId = await cacheExports.saveCache(cachePaths, cacheKey);
+        if (cacheId < 0) {
+            return;
+        }
         coreExports.info('Cache saved successfully');
     }
     catch (error) {

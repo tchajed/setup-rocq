@@ -3,6 +3,7 @@ import * as exec from '@actions/exec'
 import * as path from 'path'
 import * as os from 'os'
 import { opamPin, opamInstall } from './opam.js'
+import { getMondayDate } from './weekly.js'
 
 // Get the directory containing weekly rocq clones
 function getRocqWeeklyDir(): string {
@@ -40,25 +41,7 @@ async function cloneOrUpdateRepo(
 
 // Get the most recent commit before Monday midnight Central Time
 async function getMondayCommitHash(repoPath: string): Promise<string> {
-  // Get current date/time
-  const now = new Date()
-
-  // Calculate this Monday midnight Central Time
-  const dayOfWeek = now.getUTCDay() // 0 = Sunday, 1 = Monday, etc.
-  const daysToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek
-  const thisMonday = new Date(now)
-  thisMonday.setUTCDate(now.getUTCDate() + daysToMonday)
-
-  // Set to midnight Central Time (UTC-6 in standard time, UTC-5 in daylight time)
-  // To be safe, we'll use UTC-6 and set to 06:00 UTC which is midnight CT
-  thisMonday.setUTCHours(6, 0, 0, 0)
-
-  // If thisMonday is in the future, go back one week
-  if (thisMonday > now) {
-    thisMonday.setUTCDate(thisMonday.getUTCDate() - 7)
-  }
-
-  const cutoffDate = thisMonday.toISOString()
+  const cutoffDate = getMondayDate().toISOString()
 
   core.info(`Finding commit before Monday midnight CT: ${cutoffDate}`)
 

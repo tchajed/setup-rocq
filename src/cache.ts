@@ -7,11 +7,19 @@ import * as fs from 'fs/promises'
 import { PLATFORM, ARCHITECTURE, ROCQ_VERSION, IS_LINUX } from './constants.js'
 import { opamClean } from './opam.js'
 import { getRocqWeeklyDir } from './rocq.js'
+import { getMondayDate } from './weekly.js'
 
 export const CACHE_VERSION = 'v2'
 
+const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}`
+
 function getCacheKey(): string {
-  return `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-rocq-${ROCQ_VERSION}`
+  const cachePrefix = `${CACHE_PLATFORM_PREFIX}-rocq-${ROCQ_VERSION}`
+  if (ROCQ_VERSION === 'weekly') {
+    const date = getMondayDate().toISOString().split('T')[0]
+    return `${cachePrefix}-${date}`
+  }
+  return cachePrefix
 }
 
 function getOpamRoot(): string {
@@ -159,6 +167,11 @@ async function restoreAptCache(): Promise<void> {
 }
 
 export async function restoreCache(): Promise<boolean> {
+  if (!cache.isFeatureAvailable()) {
+    core.warning('cache feature is not available, not restoring')
+    return false
+  }
+
   const cachePaths = getCachePaths()
   const cacheKey = getCacheKey()
 
@@ -167,7 +180,7 @@ export async function restoreCache(): Promise<boolean> {
 
   try {
     const restoredKey = await cache.restoreCache(cachePaths, cacheKey, [
-      `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-`,
+      `${CACHE_PLATFORM_PREFIX}-`,
     ])
 
     if (restoredKey) {
@@ -213,7 +226,10 @@ export async function saveCache(): Promise<void> {
   core.info(`Cache paths: ${cachePaths.join(', ')}`)
 
   try {
-    await cache.saveCache(cachePaths, cacheKey)
+    const cacheId = await cache.saveCache(cachePaths, cacheKey)
+    if (cacheId < 0) {
+      return
+    }
     core.info('Cache saved successfully')
   } catch (error) {
     if (error instanceof Error) {
