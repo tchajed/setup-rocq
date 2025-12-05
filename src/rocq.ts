@@ -114,6 +114,7 @@ async function installRocqWeekly(): Promise<void> {
   // Pin dev packages to specific commits
   await opamPin('rocq-runtime.dev', `git+file://${rocqRepoPath}#${rocqCommit}`)
   await opamPin('rocq-core.dev', `git+file://${rocqRepoPath}#${rocqCommit}`)
+  await opamPin('coqide-server.dev', `git+file://${rocqRepoPath}#${rocqCommit}`)
   await opamPin('coq-core.dev', `git+file://${rocqRepoPath}#${rocqCommit}`)
   await opamPin(
     'coq-stdlib.dev',
@@ -128,17 +129,17 @@ async function installRocqWeekly(): Promise<void> {
 async function installRocqDev(): Promise<void> {
   core.info('Installing Rocq dev version')
 
+  const rocqUrl = 'git+https://github.com/rocq-prover/rocq.git'
+  const stdlibUrl = 'git+https://github.com/rocq-prover/stdlib.git'
+
   // Pin dev packages from git repositories
-  await opamPin(
-    'rocq-runtime.dev',
-    'git+https://github.com/rocq-prover/rocq.git',
-  )
-  await opamPin('rocq-core.dev', 'git+https://github.com/rocq-prover/rocq.git')
-  await opamPin('coq-core.dev', 'git+https://github.com/rocq-prover/rocq.git')
-  await opamPin(
-    'coq-stdlib.dev',
-    'git+https://github.com/rocq-prover/stdlib.git',
-  )
+  await opamPin('rocq-runtime.dev', rocqUrl)
+  await opamPin('rocq-core.dev', rocqUrl)
+  await opamPin('coqide-server.dev', rocqUrl)
+  await opamPin('coq-core.dev', rocqUrl)
+  await opamPin('coq-stdlib.dev', stdlibUrl)
+  // NOTE: this meta package is not in any rocq source repo; only found in rocq
+  // core-dev opam repo
   await opamPin('coq.dev', '--dev-repo')
 
   // Install the pinned packages
