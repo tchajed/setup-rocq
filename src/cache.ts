@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import * as glob from '@actions/glob'
 import * as cache from '@actions/cache'
 import * as exec from '@actions/exec'
 import * as path from 'path'
@@ -13,13 +14,20 @@ export const CACHE_VERSION = 'v2'
 
 const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}`
 
-function getCacheKey(): string {
-  const cachePrefix = `${CACHE_PLATFORM_PREFIX}-rocq-${ROCQ_VERSION}`
+function getRocqVersionCacheKey(): string {
+  let cacheKey = `${CACHE_PLATFORM_PREFIX}-rocq-${ROCQ_VERSION}`
   if (ROCQ_VERSION === 'weekly') {
     const date = getMondayDate().toISOString().split('T')[0]
-    return `${cachePrefix}-${date}`
+    cacheKey += `-${date}`
   }
-  return cachePrefix
+  return cacheKey
+}
+
+async function getCacheKey(): Promise<string> {
+  let cacheKey = getRocqVersionCacheKey()
+  const depHash = await glob.hashFiles('*.opam')
+  cacheKey += `-${depHash}`
+  return cacheKey
 }
 
 function getOpamRoot(): string {
@@ -173,13 +181,16 @@ export async function restoreCache(): Promise<boolean> {
   }
 
   const cachePaths = getCachePaths()
-  const cacheKey = getCacheKey()
+  const cacheKey = await getCacheKey()
+  // used to save cache
+  core.saveState('CACHE_KEY', cacheKey)
 
   core.info(`Attempting to restore cache with key: ${cacheKey}`)
   core.info(`Cache paths: ${cachePaths.join(', ')}`)
 
   try {
     const restoredKey = await cache.restoreCache(cachePaths, cacheKey, [
+      `${getRocqVersionCacheKey()}-`,
       `${CACHE_PLATFORM_PREFIX}-`,
     ])
 
@@ -187,22 +198,15 @@ export async function restoreCache(): Promise<boolean> {
       core.info(`Cache restored from key: ${restoredKey}`)
       // Restore apt cache to system directories
       await restoreAptCache()
-      // Set a state variable to indicate cache was restored
-      core.saveState('CACHE_RESTORED', 'true')
-      core.saveState('CACHE_KEY', cacheKey)
       return true
     } else {
       core.info('Cache not found')
-      core.saveState('CACHE_RESTORED', 'false')
-      core.saveState('CACHE_KEY', cacheKey)
       return false
     }
   } catch (error) {
     if (error instanceof Error) {
       core.warning(`Failed to restore cache: ${error.message}`)
     }
-    core.saveState('CACHE_RESTORED', 'false')
-    core.saveState('CACHE_KEY', cacheKey)
     return false
   }
 }
