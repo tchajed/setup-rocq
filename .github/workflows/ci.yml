@@ -67,3 +67,17 @@ jobs:
       - name: Test installed tools
         run: |
           echo "rocq: $(rocq --print-version)"
+  test-action-version:
+    name: Run action (rocq v9.0)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run local action
+        id: test-action
+        uses: ./
+        with:
+          rocq-version: '9.0.0'
+      - name: Test installed tools
+        run: |
+          echo "rocq: $(rocq --print-version)"
