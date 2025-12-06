@@ -84969,6 +84969,12 @@ process.env.GITHUB_TOKEN || '';
 const IS_WINDOWS = PLATFORM === 'win32';
 const IS_MACOS = PLATFORM === 'darwin';
 const IS_LINUX = PLATFORM === 'linux';
+// keys for action state
+var State;
+(function (State) {
+    State["CachePrimaryKey"] = "CACHE_KEY";
+    State["CacheMatchedKey"] = "CACHE_RESULT";
+})(State || (State = {}));
 
 var toolCache = {};
 
@@ -93655,8 +93661,8 @@ async function restoreCache() {
     }
     const cachePaths = getCachePaths();
     const cacheKey = await getCacheKey();
-    // used to save cache
-    coreExports.saveState('CACHE_KEY', cacheKey);
+    // remember key used to later save cache
+    coreExports.saveState(State.CachePrimaryKey, cacheKey);
     coreExports.info(`Attempting to restore cache with key: ${cacheKey}`);
     coreExports.info(`Cache paths: ${cachePaths.join(', ')}`);
     try {
@@ -93666,6 +93672,7 @@ async function restoreCache() {
         ]);
         if (restoredKey) {
             coreExports.info(`Cache restored from key: ${restoredKey}`);
+            coreExports.saveState(State.CacheMatchedKey, restoredKey);
             // Restore apt cache to system directories
             await restoreAptCache();
             return true;

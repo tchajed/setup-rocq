@@ -5,7 +5,13 @@ import * as exec from '@actions/exec'
 import * as path from 'path'
 import * as os from 'os'
 import * as fs from 'fs/promises'
-import { PLATFORM, ARCHITECTURE, ROCQ_VERSION, IS_LINUX } from './constants.js'
+import {
+  PLATFORM,
+  ARCHITECTURE,
+  ROCQ_VERSION,
+  IS_LINUX,
+  State,
+} from './constants.js'
 import { opamClean } from './opam.js'
 import { getRocqWeeklyDir } from './rocq.js'
 import { getMondayDate } from './weekly.js'
@@ -182,8 +188,8 @@ export async function restoreCache(): Promise<boolean> {
 
   const cachePaths = getCachePaths()
   const cacheKey = await getCacheKey()
-  // used to save cache
-  core.saveState('CACHE_KEY', cacheKey)
+  // remember key used to later save cache
+  core.saveState(State.CachePrimaryKey, cacheKey)
 
   core.info(`Attempting to restore cache with key: ${cacheKey}`)
   core.info(`Cache paths: ${cachePaths.join(', ')}`)
@@ -196,6 +202,7 @@ export async function restoreCache(): Promise<boolean> {
 
     if (restoredKey) {
       core.info(`Cache restored from key: ${restoredKey}`)
+      core.saveState(State.CacheMatchedKey, restoredKey)
       // Restore apt cache to system directories
       await restoreAptCache()
       return true
@@ -212,10 +219,16 @@ export async function restoreCache(): Promise<boolean> {
 }
 
 export async function saveCache(): Promise<void> {
-  const cacheKey = core.getState('CACHE_KEY')
+  const cacheKey = core.getState(State.CachePrimaryKey)
+  const restoredKey = core.getState(State.CacheMatchedKey)
 
   if (!cacheKey) {
     core.warning('No cache key found, skipping save')
+    return
+  }
+
+  if (restoredKey === cacheKey) {
+    core.info('Cache matched exactly, skipping save')
     return
   }
 
@@ -237,11 +250,7 @@ export async function saveCache(): Promise<void> {
     core.info('Cache saved successfully')
   } catch (error) {
     if (error instanceof Error) {
-      if (error.message.includes('already exists')) {
-        core.info('Cache already exists, skipping save')
-      } else {
-        core.warning(`Failed to save cache: ${error.message}`)
-      }
+      core.warning(`Failed to save cache: ${error.message}`)
     }
   }
 }

@@ -16,3 +16,9 @@ export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
 export const IS_WINDOWS = PLATFORM === 'win32'
 export const IS_MACOS = PLATFORM === 'darwin'
 export const IS_LINUX = PLATFORM === 'linux'
+
+// keys for action state
+export enum State {
+  CachePrimaryKey = 'CACHE_KEY',
+  CacheMatchedKey = 'CACHE_RESULT',
+}

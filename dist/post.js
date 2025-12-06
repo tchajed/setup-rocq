@@ -84964,6 +84964,12 @@ const PLATFORM = require$$0$3.platform();
 require$$0$3.arch();
 process.env.GITHUB_TOKEN || '';
 const IS_LINUX = PLATFORM === 'linux';
+// keys for action state
+var State;
+(function (State) {
+    State["CachePrimaryKey"] = "CACHE_KEY";
+    State["CacheMatchedKey"] = "CACHE_RESULT";
+})(State || (State = {}));
 
 var toolCache = {};
 
@@ -88571,9 +88577,14 @@ async function copyAptCache() {
     }
 }
 async function saveCache() {
-    const cacheKey = coreExports.getState('CACHE_KEY');
+    const cacheKey = coreExports.getState(State.CachePrimaryKey);
+    const restoredKey = coreExports.getState(State.CacheMatchedKey);
     if (!cacheKey) {
         coreExports.warning('No cache key found, skipping save');
+        return;
+    }
+    if (restoredKey === cacheKey) {
+        coreExports.info('Cache matched exactly, skipping save');
         return;
     }
     await opamClean();
@@ -88591,12 +88602,7 @@ async function saveCache() {
     }
     catch (error) {
         if (error instanceof Error) {
-            if (error.message.includes('already exists')) {
-                coreExports.info('Cache already exists, skipping save');
-            }
-            else {
-                coreExports.warning(`Failed to save cache: ${error.message}`);
-            }
+            coreExports.warning(`Failed to save cache: ${error.message}`);
         }
     }
 }
