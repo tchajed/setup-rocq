@@ -88607,6 +88607,7 @@ async function saveCache() {
         return;
     }
     await opamClean();
+    await fs.mkdir(DUNE_CACHE_ROOT, { recursive: true });
     // Copy apt cache from system directories before saving
     await copyAptCache();
     const cachePaths = getCachePaths();
