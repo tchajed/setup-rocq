@@ -135,7 +135,7 @@ async function setupOpamEnv(): Promise<void> {
 }
 
 export async function setupOpam(): Promise<void> {
-  core.group('Installing opam', async () => {
+  await core.group('Installing opam', async () => {
     await acquireOpam()
     await initializeOpam()
     await setupOpamEnv()

@@ -93373,7 +93373,7 @@ async function setupOpamEnv() {
     }
 }
 async function setupOpam() {
-    coreExports.group('Installing opam', async () => {
+    await coreExports.group('Installing opam', async () => {
         await acquireOpam();
         await initializeOpam();
         await setupOpamEnv();
