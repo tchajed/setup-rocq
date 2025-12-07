@@ -93346,6 +93346,11 @@ async function initializeOpam() {
         ]);
     });
 }
+async function configureDune() {
+    const configPath = path.join(os.homedir(), '.config/dune/config');
+    require$$1$1.promises.mkdir(path.dirname(configPath), { recursive: true });
+    await require$$1$1.promises.writeFile(configPath, '(lang dune 3.20)\n(display short)\n');
+}
 async function setupOpam() {
     await acquireOpam();
     await initializeOpam();
@@ -93610,6 +93615,7 @@ async function installRocq(version) {
         else {
             await installRocqVersion(version);
         }
+        await configureDune();
     });
 }
 

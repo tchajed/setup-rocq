@@ -2,11 +2,11 @@ import * as core from '@actions/core'
 import * as exec from '@actions/exec'
 import * as path from 'path'
 import * as os from 'os'
-import { opamPin, opamInstall } from './opam.js'
+import { opamPin, opamInstall, configureDune } from './opam.js'
 import { getMondayDate } from './weekly.js'
 
 // Get the directory containing weekly rocq clones
-function getRocqWeeklyDir(): string {
+export function getRocqWeeklyDir(): string {
   return path.join(os.homedir(), 'rocq-weekly')
 }
 
@@ -179,8 +179,6 @@ export async function installRocq(version: string): Promise<void> {
     } else {
       await installRocqVersion(version)
     }
+    await configureDune()
   })
 }
-
-// Export the weekly directory path for use in cache.ts
-export { getRocqWeeklyDir }

@@ -107,6 +107,12 @@ export async function initializeOpam(): Promise<void> {
   })
 }
 
+export async function configureDune(): Promise<void> {
+  const configPath = path.join(os.homedir(), '.config/dune/config')
+  fs.promises.mkdir(path.dirname(configPath), { recursive: true })
+  await fs.promises.writeFile(configPath, '(lang dune 3.20)\n(display short)\n')
+}
+
 export async function setupOpam(): Promise<void> {
   await acquireOpam()
   await initializeOpam()
