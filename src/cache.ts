@@ -192,13 +192,16 @@ export async function restoreCache(): Promise<boolean> {
   core.info(`Cache paths: ${cachePaths.join(', ')}`)
 
   try {
+    const start = Date.now()
     const restoredKey = await cache.restoreCache(cachePaths, cacheKey, [
       `${getRocqVersionCacheKey()}-`,
       `${CACHE_PLATFORM_PREFIX}-`,
     ])
+    const elapsedMs = Date.now() - start
+    const elapsedSec = Math.floor(elapsedMs / 1000)
 
     if (restoredKey) {
-      core.info(`Cache restored from key: ${restoredKey}`)
+      core.info(`Cache restored from key: ${restoredKey} (took ${elapsedSec}s)`)
       core.saveState(State.CacheMatchedKey, restoredKey)
       // Restore apt cache to system directories
       await restoreAptCache()
