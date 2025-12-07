@@ -12,6 +12,7 @@ import {
   IS_LINUX,
   State,
   DUNE_CACHE_ROOT,
+  APT_CACHE_DIR,
 } from './constants.js'
 import { opamClean } from './opam.js'
 import { getRocqWeeklyDir } from './rocq.js'
@@ -41,10 +42,6 @@ function getOpamRoot(): string {
   return path.join(os.homedir(), '.opam')
 }
 
-function getAptCacheDir(): string {
-  return path.join(os.homedir(), '.apt-cache')
-}
-
 function getCachePaths(): string[] {
   const paths = [getOpamRoot(), DUNE_CACHE_ROOT]
 
@@ -55,7 +52,7 @@ function getCachePaths(): string[] {
 
   // On Linux, cache apt packages in user-accessible directory
   if (IS_LINUX) {
-    paths.push(getAptCacheDir())
+    paths.push(APT_CACHE_DIR)
   }
 
   return paths
@@ -96,20 +93,19 @@ async function copyAptCache(): Promise<void> {
     return
   }
 
-  const aptCacheDir = getAptCacheDir()
-  const archivesDir = path.join(aptCacheDir, 'archives')
-  const listsDir = path.join(aptCacheDir, 'lists')
+  const archivesDir = path.join(APT_CACHE_DIR, 'archives')
+  const listsDir = path.join(APT_CACHE_DIR, 'lists')
+  await fs.mkdir(APT_CACHE_DIR, { recursive: true })
 
   try {
-    // Create cache directories
-    await fs.mkdir(aptCacheDir, { recursive: true })
-
-    // Ensure system directories exist and copy apt archives
+    // Copy from user-accessible cache to system cache. Copies with mkdir and cp
+    // -r rather than using node libraries in order to run with sudo.
     try {
       await fs.access('/var/cache/apt/archives')
     } catch {
-      core.info('Creating /var/cache/apt/archives')
-      await exec.exec('sudo', ['mkdir', '-p', '/var/cache/apt/archives'])
+      await exec.exec('sudo', ['mkdir', '-p', '/var/cache/apt/archives'], {
+        silent: true,
+      })
     }
     await copyDirectory('/var/cache/apt/archives', archivesDir, [
       'lock',
@@ -120,12 +116,11 @@ async function copyAptCache(): Promise<void> {
     try {
       await fs.access('/var/lib/apt/lists')
     } catch {
-      core.info('Creating /var/lib/apt/lists')
-      await exec.exec('sudo', ['mkdir', '-p', '/var/lib/apt/lists'])
+      await exec.exec('sudo', ['mkdir', '-p', '/var/lib/apt/lists'], {
+        silent: true,
+      })
     }
     await copyDirectory('/var/lib/apt/lists', listsDir, ['lock', 'partial'])
-
-    core.info('Copied apt cache to user directory')
   } catch (error) {
     if (error instanceof Error) {
       core.warning(`Failed to copy apt cache: ${error.message}`)
@@ -138,9 +133,8 @@ async function restoreAptCache(): Promise<void> {
     return
   }
 
-  const aptCacheDir = getAptCacheDir()
-  const archivesDir = path.join(aptCacheDir, 'archives')
-  const listsDir = path.join(aptCacheDir, 'lists')
+  const archivesDir = path.join(APT_CACHE_DIR, 'archives')
+  const listsDir = path.join(APT_CACHE_DIR, 'lists')
 
   try {
     // Check if cached directories exist
@@ -152,7 +146,9 @@ async function restoreAptCache(): Promise<void> {
     }
 
     // Ensure /var/cache/apt/archives exists
-    await exec.exec('sudo', ['mkdir', '-p', '/var/cache/apt/archives'])
+    await exec.exec('sudo', ['mkdir', '-p', '/var/cache/apt/archives'], {
+      silent: true,
+    })
 
     // Restore archives
     await exec.exec('sudo', [
@@ -163,7 +159,9 @@ async function restoreAptCache(): Promise<void> {
     ])
 
     // Ensure /var/lib/apt/lists exists
-    await exec.exec('sudo', ['mkdir', '-p', '/var/lib/apt/lists'])
+    await exec.exec('sudo', ['mkdir', '-p', '/var/lib/apt/lists'], {
+      silent: true,
+    })
 
     // Restore lists
     await exec.exec('sudo', [
@@ -172,8 +170,6 @@ async function restoreAptCache(): Promise<void> {
       listsDir + '/.',
       '/var/lib/apt/lists/',
     ])
-
-    core.info('Restored apt cache from user directory')
   } catch (error) {
     if (error instanceof Error) {
       core.warning(`Failed to restore apt cache: ${error.message}`)

@@ -84973,6 +84973,7 @@ const DUNE_CACHE_ROOT = (() => {
     }
     return path__default.join(os.homedir(), '.cache', 'dune');
 })();
+const APT_CACHE_DIR = path__default.join(os.homedir(), '.apt-cache');
 process.env.GITHUB_TOKEN || '';
 const IS_LINUX = PLATFORM === 'linux';
 // keys for action state
@@ -88518,9 +88519,6 @@ function getRocqWeeklyDir() {
 function getOpamRoot() {
     return path.join(os.homedir(), '.opam');
 }
-function getAptCacheDir() {
-    return path.join(os.homedir(), '.apt-cache');
-}
 function getCachePaths() {
     const paths = [getOpamRoot(), DUNE_CACHE_ROOT];
     // For weekly version, also cache the directory with cloned repositories
@@ -88529,7 +88527,7 @@ function getCachePaths() {
     }
     // On Linux, cache apt packages in user-accessible directory
     if (IS_LINUX) {
-        paths.push(getAptCacheDir());
+        paths.push(APT_CACHE_DIR);
     }
     return paths;
 }
@@ -88560,19 +88558,19 @@ async function copyAptCache() {
     if (!IS_LINUX) {
         return;
     }
-    const aptCacheDir = getAptCacheDir();
-    const archivesDir = path.join(aptCacheDir, 'archives');
-    const listsDir = path.join(aptCacheDir, 'lists');
+    const archivesDir = path.join(APT_CACHE_DIR, 'archives');
+    const listsDir = path.join(APT_CACHE_DIR, 'lists');
+    await fs.mkdir(APT_CACHE_DIR, { recursive: true });
     try {
-        // Create cache directories
-        await fs.mkdir(aptCacheDir, { recursive: true });
-        // Ensure system directories exist and copy apt archives
+        // Copy from user-accessible cache to system cache. Copies with mkdir and cp
+        // -r rather than using node libraries in order to run with sudo.
         try {
             await fs.access('/var/cache/apt/archives');
         }
         catch {
-            coreExports.info('Creating /var/cache/apt/archives');
-            await execExports.exec('sudo', ['mkdir', '-p', '/var/cache/apt/archives']);
+            await execExports.exec('sudo', ['mkdir', '-p', '/var/cache/apt/archives'], {
+                silent: true,
+            });
         }
         await copyDirectory('/var/cache/apt/archives', archivesDir, [
             'lock',
@@ -88583,11 +88581,11 @@ async function copyAptCache() {
             await fs.access('/var/lib/apt/lists');
         }
         catch {
-            coreExports.info('Creating /var/lib/apt/lists');
-            await execExports.exec('sudo', ['mkdir', '-p', '/var/lib/apt/lists']);
+            await execExports.exec('sudo', ['mkdir', '-p', '/var/lib/apt/lists'], {
+                silent: true,
+            });
         }
         await copyDirectory('/var/lib/apt/lists', listsDir, ['lock', 'partial']);
-        coreExports.info('Copied apt cache to user directory');
     }
     catch (error) {
         if (error instanceof Error) {

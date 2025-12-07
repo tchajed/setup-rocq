@@ -3,8 +3,7 @@ import { restoreCache } from './cache.js'
 import {
   setupOpam,
   setupOpamRepositories,
-  createSwitch,
-  setupOpamEnv,
+  opamSwitchCreate,
   opamList,
   opamUpdate,
 } from './opam.js'
@@ -25,13 +24,10 @@ export async function run(): Promise<void> {
     await setupOpamRepositories()
 
     if (!cacheRestored) {
-      core.info('No cache, initializing')
-      await createSwitch()
+      await opamSwitchCreate()
     } else {
-      core.info('Restored from cache')
       await opamUpdate()
     }
-    await setupOpamEnv()
     await opamList()
 
     // Install Rocq

@@ -25,6 +25,8 @@ export const DUNE_CACHE_ROOT = (() => {
   return path.join(os.homedir(), '.cache', 'dune')
 })()
 
+export const APT_CACHE_DIR = path.join(os.homedir(), '.apt-cache')
+
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
 
 export const IS_WINDOWS = PLATFORM === 'win32'
