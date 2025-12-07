@@ -2,8 +2,9 @@ import * as core from '@actions/core'
 import * as exec from '@actions/exec'
 import * as path from 'path'
 import * as os from 'os'
-import { opamPin, opamInstall, configureDune } from './opam.js'
+import { opamPin, opamInstall, configureDune, setupOpamEnv } from './opam.js'
 import { getMondayDate } from './weekly.js'
+import { DUNE_VERSION } from './constants.js'
 
 // Get the directory containing weekly rocq clones
 export function getRocqWeeklyDir(): string {
@@ -170,6 +171,8 @@ async function installRocqVersion(version: string): Promise<void> {
 
 export async function installRocq(version: string): Promise<void> {
   await core.group('Installing Rocq', async () => {
+    // install dune: make this explicit and use a fixed version
+    await opamInstall(`dune.${DUNE_VERSION}`)
     if (version === 'dev') {
       await installRocqDev()
     } else if (version === 'weekly') {
@@ -179,6 +182,7 @@ export async function installRocq(version: string): Promise<void> {
     } else {
       await installRocqVersion(version)
     }
+    await setupOpamEnv()
     await configureDune()
   })
 }

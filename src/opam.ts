@@ -105,7 +105,7 @@ async function initializeOpam(): Promise<void> {
 // Set environment variables specified by `opam env`.
 //
 // This has a similar effect to adding `eval $(opam env)` to ~/.profile.
-async function setupOpamEnv(): Promise<void> {
+export async function setupOpamEnv(): Promise<void> {
   core.info('setting environment specified by opam env')
   const output = await exec.getExecOutput('opam', ['env'], {
     silent: true,
@@ -118,6 +118,7 @@ async function setupOpamEnv(): Promise<void> {
     const match = line.match(/^(?:export\s+)?([A-Z_]+)='([^']*)'/)
     if (match) {
       const [, varName, value] = match
+      core.exportVariable(varName, value)
 
       // Special handling for PATH
       if (varName === 'PATH') {
@@ -127,8 +128,6 @@ async function setupOpamEnv(): Promise<void> {
             core.addPath(p)
           }
         }
-      } else {
-        core.exportVariable(varName, value)
       }
     }
   }
@@ -138,7 +137,6 @@ export async function setupOpam(): Promise<void> {
   await core.group('Installing opam', async () => {
     await acquireOpam()
     await initializeOpam()
-    await setupOpamEnv()
   })
 }
 

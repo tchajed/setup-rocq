@@ -84962,6 +84962,7 @@ var execExports = requireExec();
 
 const OCAML_VERSION = '5.4.0';
 const OPAM_VERSION = '2.5.0';
+const DUNE_VERSION = '3.20.2';
 const ROCQ_VERSION = coreExports.getInput('rocq-version');
 const PLATFORM = os.platform();
 const ARCHITECTURE = os.arch();
@@ -93357,6 +93358,7 @@ async function setupOpamEnv() {
         const match = line.match(/^(?:export\s+)?([A-Z_]+)='([^']*)'/);
         if (match) {
             const [, varName, value] = match;
+            coreExports.exportVariable(varName, value);
             // Special handling for PATH
             if (varName === 'PATH') {
                 const paths = value.split(path.delimiter);
@@ -93366,9 +93368,6 @@ async function setupOpamEnv() {
                     }
                 }
             }
-            else {
-                coreExports.exportVariable(varName, value);
-            }
         }
     }
 }
@@ -93376,7 +93375,6 @@ async function setupOpam() {
     await coreExports.group('Installing opam', async () => {
         await acquireOpam();
         await initializeOpam();
-        await setupOpamEnv();
     });
 }
 async function opamSwitchCreate() {
@@ -93600,6 +93598,8 @@ async function installRocqVersion(version) {
 }
 async function installRocq(version) {
     await coreExports.group('Installing Rocq', async () => {
+        // install dune: make this explicit and use a fixed version
+        await opamInstall(`dune.${DUNE_VERSION}`);
         if (version === 'dev') {
             await installRocqDev();
         }
@@ -93612,6 +93612,7 @@ async function installRocq(version) {
         else {
             await installRocqVersion(version);
         }
+        await setupOpamEnv();
         await configureDune();
     });
 }
