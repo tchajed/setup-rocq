@@ -241,5 +241,12 @@ export async function opamList(): Promise<void> {
 }
 
 export async function opamClean(): Promise<void> {
-  await exec.exec('opam', ['clean', '--logs', '--switch-cleanup'])
+  await exec.exec('opam', [
+    'clean',
+    '--all-switches',
+    '--download-cache',
+    '--untracked',
+    '--logs',
+    '--unused-repositories',
+  ])
 }

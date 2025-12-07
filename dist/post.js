@@ -88488,7 +88488,14 @@ new Set(',[]{}');
 new Set(' ,[]{}\n\r\t');
 
 async function opamClean() {
-    await execExports.exec('opam', ['clean', '--logs', '--switch-cleanup']);
+    await execExports.exec('opam', [
+        'clean',
+        '--all-switches',
+        '--download-cache',
+        '--untracked',
+        '--logs',
+        '--unused-repositories',
+    ]);
 }
 
 // Get the directory containing weekly rocq clones

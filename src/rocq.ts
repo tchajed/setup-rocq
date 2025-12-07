@@ -35,7 +35,29 @@ async function cloneOrUpdateRepo(
   } catch {
     // Repository doesn't exist, clone it
     core.info(`Cloning ${repoUrl} to ${repoPath}`)
-    await exec.exec('git', ['clone', '--no-checkout', repoUrl, repoPath])
+    const retCode = await exec.exec(
+      'git',
+      [
+        'clone',
+        '--shallow-since=8.days.ago',
+        '--no-checkout',
+        repoUrl,
+        repoPath,
+      ],
+      {
+        ignoreReturnCode: true,
+      },
+    )
+    if (retCode == 128) {
+      // shallow clones fail if there are no commits in the provided range
+      await exec.exec('git', [
+        'clone',
+        '--depth=10',
+        '--no-checkout',
+        repoUrl,
+        repoPath,
+      ])
+    }
   }
 }
 
@@ -56,10 +78,17 @@ async function getMondayCommitHash(repoPath: string): Promise<string> {
     '--format=%H',
   ])
 
-  const commitHash = hashResult.stdout.trim()
+  let commitHash = hashResult.stdout.trim()
 
   if (!commitHash) {
-    throw new Error(`No commit found before ${cutoffDate}`)
+    // no earlier commit; get HEAD commit
+    const headResult = await exec.getExecOutput('git', [
+      '-C',
+      repoPath,
+      'rev-parse',
+      'HEAD',
+    ])
+    commitHash = headResult.stdout.trim()
   }
 
   // Show commit info (date and message)

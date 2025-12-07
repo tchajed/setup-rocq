@@ -93483,7 +93483,25 @@ async function cloneOrUpdateRepo(repoUrl, repoPath) {
     catch {
         // Repository doesn't exist, clone it
         coreExports.info(`Cloning ${repoUrl} to ${repoPath}`);
-        await execExports.exec('git', ['clone', '--no-checkout', repoUrl, repoPath]);
+        const retCode = await execExports.exec('git', [
+            'clone',
+            '--shallow-since=8.days.ago',
+            '--no-checkout',
+            repoUrl,
+            repoPath,
+        ], {
+            ignoreReturnCode: true,
+        });
+        if (retCode == 128) {
+            // shallow clones fail if there are no commits in the provided range
+            await execExports.exec('git', [
+                'clone',
+                '--depth=10',
+                '--no-checkout',
+                repoUrl,
+                repoPath,
+            ]);
+        }
     }
 }
 // Get the most recent commit before Monday midnight Central Time
@@ -93500,9 +93518,16 @@ async function getMondayCommitHash(repoPath) {
         cutoffDate,
         '--format=%H',
     ]);
-    const commitHash = hashResult.stdout.trim();
+    let commitHash = hashResult.stdout.trim();
     if (!commitHash) {
-        throw new Error(`No commit found before ${cutoffDate}`);
+        // no earlier commit; get HEAD commit
+        const headResult = await execExports.getExecOutput('git', [
+            '-C',
+            repoPath,
+            'rev-parse',
+            'HEAD',
+        ]);
+        commitHash = headResult.stdout.trim();
     }
     // Show commit info (date and message)
     await execExports.exec('git', [
