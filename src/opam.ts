@@ -12,6 +12,7 @@ import {
   IS_WINDOWS,
   IS_MACOS,
   ROCQ_VERSION,
+  DUNE_MAX_CACHE_SIZE,
 } from './constants.js'
 
 function getOpamUrl(): string {
@@ -241,6 +242,7 @@ export async function opamList(): Promise<void> {
 }
 
 export async function opamClean(): Promise<void> {
+  await exec.exec('dune', ['cache', 'trim', `--size=${DUNE_MAX_CACHE_SIZE}`])
   await exec.exec('opam', [
     'clean',
     '--all-switches',

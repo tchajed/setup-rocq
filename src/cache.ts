@@ -11,6 +11,7 @@ import {
   ROCQ_VERSION,
   IS_LINUX,
   State,
+  DUNE_CACHE_ROOT,
 } from './constants.js'
 import { opamClean } from './opam.js'
 import { getRocqWeeklyDir } from './rocq.js'
@@ -45,7 +46,7 @@ function getAptCacheDir(): string {
 }
 
 function getCachePaths(): string[] {
-  const paths = [getOpamRoot()]
+  const paths = [getOpamRoot(), DUNE_CACHE_ROOT]
 
   // For weekly version, also cache the directory with cloned repositories
   if (ROCQ_VERSION === 'weekly') {
@@ -233,6 +234,7 @@ export async function saveCache(): Promise<void> {
   }
 
   await opamClean()
+  await fs.mkdir(DUNE_CACHE_ROOT, { recursive: true })
 
   // Copy apt cache from system directories before saving
   await copyAptCache()
