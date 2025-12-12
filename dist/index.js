@@ -93324,6 +93324,7 @@ async function initializeOpam() {
     }
     coreExports.exportVariable('OPAMCOLOR', 'always');
     coreExports.exportVariable('OPAMDOWNLOADJOBS', os.availableParallelism());
+    coreExports.exportVariable('OPAMJOBS', os.availableParallelism());
     coreExports.exportVariable('OPAMERRLOGLEN', 0);
     coreExports.exportVariable('OPAMEXTERNALSOLVER', 'builtin-0install');
     coreExports.exportVariable('OPAMPRECISETRACKING', 1);

@@ -80,6 +80,7 @@ async function initializeOpam(): Promise<void> {
   }
   core.exportVariable('OPAMCOLOR', 'always')
   core.exportVariable('OPAMDOWNLOADJOBS', os.availableParallelism())
+  core.exportVariable('OPAMJOBS', os.availableParallelism())
   core.exportVariable('OPAMERRLOGLEN', 0)
   core.exportVariable('OPAMEXTERNALSOLVER', 'builtin-0install')
   core.exportVariable('OPAMPRECISETRACKING', 1)
