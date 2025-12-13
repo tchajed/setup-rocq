@@ -18,6 +18,11 @@ inputs:
     description: 'Additional opam repositories to add (YAML name:url object)'
     required: false
     default: ''
+  cache-key-opam-files:
+    description:
+      'Opam files to use for cache key. Separate patterns with newlines.'
+    required: false
+    default: '*.opam'
 
 runs:
   using: node24

@@ -32,8 +32,9 @@ function getRocqVersionCacheKey(): string {
 }
 
 async function getCacheKey(): Promise<string> {
+  const cacheKeyFiles = core.getInput('cache-key-opam-files')
   let cacheKey = getRocqVersionCacheKey()
-  const depHash = await glob.hashFiles('*.opam')
+  const depHash = await glob.hashFiles(cacheKeyFiles)
   cacheKey += `-${depHash}`
   return cacheKey
 }

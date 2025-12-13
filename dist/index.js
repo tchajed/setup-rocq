@@ -93629,8 +93629,9 @@ function getRocqVersionCacheKey() {
     return cacheKey;
 }
 async function getCacheKey() {
+    const cacheKeyFiles = coreExports.getInput('cache-key-opam-files');
     let cacheKey = getRocqVersionCacheKey();
-    const depHash = await globExports.hashFiles('*.opam');
+    const depHash = await globExports.hashFiles(cacheKeyFiles);
     cacheKey += `-${depHash}`;
     return cacheKey;
 }
