@@ -19,10 +19,11 @@ GitHub action to install Rocq with opam. Supports caching of opam dependencies.
 
 ### Inputs
 
-| Input               | Description                                                | Required | Default  |
-| ------------------- | ---------------------------------------------------------- | -------- | -------- |
-| `rocq-version`      | The version of Rocq to install                             | No       | `latest` |
-| `opam-repositories` | Additional opam repositories to add (YAML name:url object) | No       | `''`     |
+| Input                  | Description                                                | Required | Default    |
+| ---------------------- | ---------------------------------------------------------- | -------- | ---------- |
+| `rocq-version`         | The version of Rocq to install                             | No       | `latest`   |
+| `opam-repositories`    | Additional opam repositories to add (YAML name:url object) | No       | `''`       |
+| `cache-key-opam-files` | Opam files to hash for the cache key.                      | No       | `'*.opam'` |
 
 `rocq-version` supports these special strings, in addition to full Rocq versions
 (as used by `opam install`):
@@ -30,6 +31,13 @@ GitHub action to install Rocq with opam. Supports caching of opam dependencies.
 - "latest" installs the most recent stable release
 - "dev" installs the latest git version of Rocq
 - "weekly" installs the git version of Rocq from this Monday
+
+The Rocq opam repository is always available (the equivalent of running
+`opam repo add rocq-released https://rocq-prover.org/opam/released`).
+
+`cache-key-opam-files` uses
+[actions/glob](https://www.npmjs.com/package/@actions/glob), which takes
+newline-separated patterns.
 
 ### Examples
 
@@ -39,4 +47,5 @@ GitHub action to install Rocq with opam. Supports caching of opam dependencies.
     rocq-version: dev
     opam-repositories: |
       iris-dev: https://gitlab.mpi-sws.org/iris/opam.git
+    cache-key-opam-files: **.opam
 ```
