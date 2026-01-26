@@ -1,6 +1,6 @@
-import * as os from 'os';
-import os__default from 'os';
-import require$$0$3 from 'crypto';
+import * as require$$0$3 from 'os';
+import require$$0__default from 'os';
+import require$$0$4 from 'crypto';
 import * as require$$1$1 from 'fs';
 import require$$1__default from 'fs';
 import * as path from 'path';
@@ -8,37 +8,37 @@ import path__default from 'path';
 import require$$2 from 'http';
 import require$$1$2 from 'https';
 import require$$0$7 from 'net';
-import require$$1$3 from 'tls';
-import require$$0$5 from 'events';
+import require$$1$4 from 'tls';
+import require$$1$3 from 'events';
 import require$$0$6 from 'assert';
-import require$$0$4 from 'util';
+import require$$0$5 from 'util';
 import require$$0$8 from 'stream';
 import require$$7 from 'buffer';
 import require$$8 from 'querystring';
 import require$$14 from 'stream/web';
 import require$$0$a from 'node:stream';
-import require$$1$4 from 'node:util';
+import require$$1$5 from 'node:util';
 import require$$0$9 from 'node:events';
 import require$$0$b from 'worker_threads';
 import require$$2$1 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4 from 'async_hooks';
-import require$$1$5 from 'console';
+import require$$1$6 from 'console';
 import require$$5$1 from 'url';
 import require$$3 from 'zlib';
-import require$$6 from 'string_decoder';
-import require$$0$c from 'diagnostics_channel';
+import require$$0$c from 'string_decoder';
+import require$$0$d from 'diagnostics_channel';
 import require$$2$2 from 'child_process';
-import require$$6$1 from 'timers';
-import require$$1$6 from 'node:os';
+import require$$6 from 'timers';
+import require$$1$7 from 'node:os';
 import require$$2$3 from 'node:process';
-import require$$1$7 from 'node:http';
+import require$$1$8 from 'node:http';
 import require$$2$4 from 'node:https';
 import require$$3$1 from 'node:zlib';
-import require$$1$8 from 'tty';
-import require$$0$d from 'node:crypto';
+import require$$1$9 from 'tty';
+import require$$0$e from 'node:crypto';
 import require$$2$5 from 'node:buffer';
-import require$$1$9 from 'node:fs';
+import require$$1$a from 'node:fs';
 import * as fs from 'fs/promises';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -155,7 +155,7 @@ function requireCommand () {
 	};
 	Object.defineProperty(command, "__esModule", { value: true });
 	command.issue = command.issueCommand = void 0;
-	const os = __importStar(os__default);
+	const os = __importStar(require$$0__default);
 	const utils_1 = requireUtils$3();
 	/**
 	 * Commands
@@ -263,9 +263,9 @@ function requireFileCommand () {
 	fileCommand.prepareKeyValueMessage = fileCommand.issueFileCommand = void 0;
 	// We use any as a valid input type
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	const crypto = __importStar(require$$0$3);
+	const crypto = __importStar(require$$0$4);
 	const fs = __importStar(require$$1__default);
-	const os = __importStar(os__default);
+	const os = __importStar(require$$0__default);
 	const utils_1 = requireUtils$3();
 	function issueFileCommand(command, message) {
 	    const filePath = process.env[`GITHUB_${command}`];
@@ -414,11 +414,11 @@ var hasRequiredTunnel$1;
 function requireTunnel$1 () {
 	if (hasRequiredTunnel$1) return tunnel$1;
 	hasRequiredTunnel$1 = 1;
-	var tls = require$$1$3;
+	var tls = require$$1$4;
 	var http = require$$2;
 	var https = require$$1$2;
-	var events = require$$0$5;
-	var util = require$$0$4;
+	var events = require$$1$3;
+	var util = require$$0$5;
 
 
 	tunnel$1.httpOverHttp = httpOverHttp;
@@ -1139,7 +1139,7 @@ function requireUtil$8 () {
 	const net = require$$0$7;
 	const { InvalidArgumentError } = requireErrors$1();
 	const { Blob } = require$$7;
-	const nodeUtil = require$$0$4;
+	const nodeUtil = require$$0$5;
 	const { stringify } = require$$8;
 	const { headerNameLowerCasedRecord } = requireConstants$a();
 
@@ -1796,7 +1796,7 @@ function requireSbmh () {
 	 * by Hongli Lai at: https://github.com/FooBarWidget/boyer-moore-horspool
 	 */
 	const EventEmitter = require$$0$9.EventEmitter;
-	const inherits = require$$1$4.inherits;
+	const inherits = require$$1$5.inherits;
 
 	function SBMH (needle) {
 	  if (typeof needle === 'string') {
@@ -2005,7 +2005,7 @@ function requirePartStream () {
 	if (hasRequiredPartStream) return PartStream_1;
 	hasRequiredPartStream = 1;
 
-	const inherits = require$$1$4.inherits;
+	const inherits = require$$1$5.inherits;
 	const ReadableStream = require$$0$a.Readable;
 
 	function PartStream (opts) {
@@ -2051,7 +2051,7 @@ function requireHeaderParser () {
 	hasRequiredHeaderParser = 1;
 
 	const EventEmitter = require$$0$9.EventEmitter;
-	const inherits = require$$1$4.inherits;
+	const inherits = require$$1$5.inherits;
 	const getLimit = requireGetLimit();
 
 	const StreamSearch = requireSbmh();
@@ -2159,7 +2159,7 @@ function requireDicer () {
 	hasRequiredDicer = 1;
 
 	const WritableStream = require$$0$a.Writable;
-	const inherits = require$$1$4.inherits;
+	const inherits = require$$1$5.inherits;
 
 	const StreamSearch = requireSbmh();
 
@@ -2736,7 +2736,7 @@ function requireMultipart$1 () {
 	//     -- this will require modifications to utils.parseParams
 
 	const { Readable } = require$$0$a;
-	const { inherits } = require$$1$4;
+	const { inherits } = require$$1$5;
 
 	const Dicer = requireDicer();
 
@@ -3302,7 +3302,7 @@ function requireMain () {
 	hasRequiredMain = 1;
 
 	const WritableStream = require$$0$a.Writable;
-	const { inherits } = require$$1$4;
+	const { inherits } = require$$1$5;
 	const Dicer = requireDicer();
 
 	const MultipartParser = requireMultipart$1();
@@ -4770,7 +4770,7 @@ function requireWebidl () {
 	if (hasRequiredWebidl) return webidl_1;
 	hasRequiredWebidl = 1;
 
-	const { types } = require$$0$4;
+	const { types } = require$$0$5;
 	const { hasOwn, toUSVString } = requireUtil$7();
 
 	/** @type {import('../../types/webidl').Webidl} */
@@ -6061,7 +6061,7 @@ function requireFile$1 () {
 	hasRequiredFile$1 = 1;
 
 	const { Blob, File: NativeFile } = require$$7;
-	const { types } = require$$0$4;
+	const { types } = require$$0$5;
 	const { kState } = requireSymbols$3();
 	const { isBlobLike } = requireUtil$7();
 	const { webidl } = requireWebidl();
@@ -7813,7 +7813,7 @@ function requireDispatcher () {
 	if (hasRequiredDispatcher) return dispatcher;
 	hasRequiredDispatcher = 1;
 
-	const EventEmitter = require$$0$5;
+	const EventEmitter = require$$1$3;
 
 	class Dispatcher extends EventEmitter {
 	  dispatch () {
@@ -8126,7 +8126,7 @@ function requireConnect () {
 	    let socket;
 	    if (protocol === 'https:') {
 	      if (!tls) {
-	        tls = require$$1$3;
+	        tls = require$$1$4;
 	      }
 	      servername = servername || options.servername || util.getServerName(host) || null;
 
@@ -8548,7 +8548,7 @@ function requireRedirectHandler () {
 	const { kBodyUsed } = requireSymbols$4();
 	const assert = require$$0$6;
 	const { InvalidArgumentError } = requireErrors$1();
-	const EE = require$$0$5;
+	const EE = require$$1$3;
 
 	const redirectableStatusCodes = [300, 301, 302, 303, 307, 308];
 
@@ -13418,7 +13418,7 @@ function requireMockUtils () {
 	  types: {
 	    isPromise
 	  }
-	} = require$$0$4;
+	} = require$$0$5;
 
 	function matchValue (match, value) {
 	  if (typeof match === 'string') {
@@ -13978,7 +13978,7 @@ function requireMockClient () {
 	if (hasRequiredMockClient) return mockClient;
 	hasRequiredMockClient = 1;
 
-	const { promisify } = require$$0$4;
+	const { promisify } = require$$0$5;
 	const Client = requireClient();
 	const { buildMockDispatch } = requireMockUtils();
 	const {
@@ -14045,7 +14045,7 @@ function requireMockPool () {
 	if (hasRequiredMockPool) return mockPool;
 	hasRequiredMockPool = 1;
 
-	const { promisify } = require$$0$4;
+	const { promisify } = require$$0$5;
 	const Pool = requirePool();
 	const { buildMockDispatch } = requireMockUtils();
 	const {
@@ -14150,7 +14150,7 @@ function requirePendingInterceptorsFormatter () {
 	hasRequiredPendingInterceptorsFormatter = 1;
 
 	const { Transform } = require$$0$8;
-	const { Console } = require$$1$5;
+	const { Console } = require$$1$6;
 
 	/**
 	 * Gets the output of `console.table(…)` as a string.
@@ -15009,7 +15009,7 @@ function requireHeaders () {
 	  isValidHeaderName,
 	  isValidHeaderValue
 	} = requireUtil$7();
-	const util = require$$0$4;
+	const util = require$$0$5;
 	const { webidl } = requireWebidl();
 	const assert = require$$0$6;
 
@@ -15618,7 +15618,7 @@ function requireResponse$1 () {
 	const { URLSerializer } = requireDataURL();
 	const { kHeadersList, kConstruct } = requireSymbols$4();
 	const assert = require$$0$6;
-	const { types } = require$$0$4;
+	const { types } = require$$0$5;
 
 	const ReadableStream = globalThis.ReadableStream || require$$14.ReadableStream;
 	const textEncoder = new TextEncoder('utf-8');
@@ -16202,7 +16202,7 @@ function requireRequest () {
 	const { URLSerializer } = requireDataURL();
 	const { kHeadersList, kConstruct } = requireSymbols$4();
 	const assert = require$$0$6;
-	const { getMaxListeners, setMaxListeners, getEventListeners, defaultMaxListeners } = require$$0$5;
+	const { getMaxListeners, setMaxListeners, getEventListeners, defaultMaxListeners } = require$$1$3;
 
 	let TransformStream = globalThis.TransformStream;
 
@@ -17178,7 +17178,7 @@ function requireFetch () {
 	  DOMException
 	} = requireConstants$9();
 	const { kHeadersList } = requireSymbols$4();
-	const EE = require$$0$5;
+	const EE = require$$1$3;
 	const { Readable, pipeline } = require$$0$8;
 	const { addAbortListener, isErrored, isReadable, nodeMajor, nodeMinor } = requireUtil$8();
 	const { dataURLProcessor, serializeAMimeType } = requireDataURL();
@@ -19619,8 +19619,8 @@ function requireUtil$5 () {
 	const { getEncoding } = requireEncoding();
 	const { DOMException } = requireConstants$9();
 	const { serializeAMimeType, parseMIMEType } = requireDataURL();
-	const { types } = require$$0$4;
-	const { StringDecoder } = require$$6;
+	const { types } = require$$0$5;
+	const { StringDecoder } = require$$0$c;
 	const { btoa } = require$$7;
 
 	/** @type {PropertyDescriptor} */
@@ -22844,7 +22844,7 @@ function requireConnection () {
 	if (hasRequiredConnection) return connection;
 	hasRequiredConnection = 1;
 
-	const diagnosticsChannel = require$$0$c;
+	const diagnosticsChannel = require$$0$d;
 	const { uid, states } = requireConstants$6();
 	const {
 	  kReadyState,
@@ -23225,7 +23225,7 @@ function requireReceiver () {
 	hasRequiredReceiver = 1;
 
 	const { Writable } = require$$0$8;
-	const diagnosticsChannel = require$$0$c;
+	const diagnosticsChannel = require$$0$d;
 	const { parserStates, opcodes, states, emptyBuffer } = requireConstants$6();
 	const { kReadyState, kSentClose, kResponse, kReceivedClose } = requireSymbols();
 	const { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = requireUtil$2();
@@ -23596,7 +23596,7 @@ function requireWebsocket () {
 	const { ByteParser } = requireReceiver();
 	const { kEnumerableProperty, isBlobLike } = requireUtil$8();
 	const { getGlobalDispatcher } = requireGlobal();
-	const { types } = require$$0$4;
+	const { types } = require$$0$5;
 
 	let experimentalWarned = false;
 
@@ -25241,7 +25241,7 @@ function requireSummary () {
 		};
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.summary = exports$1.markdownSummary = exports$1.SUMMARY_DOCS_URL = exports$1.SUMMARY_ENV_VAR = void 0;
-		const os_1 = os__default;
+		const os_1 = require$$0__default;
 		const fs_1 = require$$1__default;
 		const { access, appendFile, writeFile } = fs_1.promises;
 		exports$1.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
@@ -25589,40 +25589,40 @@ function requirePathUtils () {
 
 var platform = {};
 
-var exec = {};
+var exec$3 = {};
 
-var toolrunner = {};
+var toolrunner$3 = {};
 
-var io$2 = {};
+var io$3 = {};
 
-var ioUtil$2 = {};
+var ioUtil$3 = {};
 
-var hasRequiredIoUtil$2;
+var hasRequiredIoUtil$3;
 
-function requireIoUtil$2 () {
-	if (hasRequiredIoUtil$2) return ioUtil$2;
-	hasRequiredIoUtil$2 = 1;
+function requireIoUtil$3 () {
+	if (hasRequiredIoUtil$3) return ioUtil$3;
+	hasRequiredIoUtil$3 = 1;
 	(function (exports$1) {
-		var __createBinding = (ioUtil$2 && ioUtil$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		var __createBinding = (ioUtil$3 && ioUtil$3.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 		}) : (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    o[k2] = m[k];
 		}));
-		var __setModuleDefault = (ioUtil$2 && ioUtil$2.__setModuleDefault) || (Object.create ? (function(o, v) {
+		var __setModuleDefault = (ioUtil$3 && ioUtil$3.__setModuleDefault) || (Object.create ? (function(o, v) {
 		    Object.defineProperty(o, "default", { enumerable: true, value: v });
 		}) : function(o, v) {
 		    o["default"] = v;
 		});
-		var __importStar = (ioUtil$2 && ioUtil$2.__importStar) || function (mod) {
+		var __importStar = (ioUtil$3 && ioUtil$3.__importStar) || function (mod) {
 		    if (mod && mod.__esModule) return mod;
 		    var result = {};
 		    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 		    __setModuleDefault(result, mod);
 		    return result;
 		};
-		var __awaiter = (ioUtil$2 && ioUtil$2.__awaiter) || function (thisArg, _arguments, P, generator) {
+		var __awaiter = (ioUtil$3 && ioUtil$3.__awaiter) || function (thisArg, _arguments, P, generator) {
 		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 		    return new (P || (P = Promise))(function (resolve, reject) {
 		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -25785,35 +25785,35 @@ function requireIoUtil$2 () {
 		}
 		exports$1.getCmdPath = getCmdPath;
 		
-	} (ioUtil$2));
-	return ioUtil$2;
+	} (ioUtil$3));
+	return ioUtil$3;
 }
 
-var hasRequiredIo$2;
+var hasRequiredIo$3;
 
-function requireIo$2 () {
-	if (hasRequiredIo$2) return io$2;
-	hasRequiredIo$2 = 1;
-	var __createBinding = (io$2 && io$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+function requireIo$3 () {
+	if (hasRequiredIo$3) return io$3;
+	hasRequiredIo$3 = 1;
+	var __createBinding = (io$3 && io$3.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 	}) : (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (io$2 && io$2.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (io$3 && io$3.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (io$2 && io$2.__importStar) || function (mod) {
+	var __importStar = (io$3 && io$3.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (io$2 && io$2.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (io$3 && io$3.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -25822,11 +25822,11 @@ function requireIo$2 () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(io$2, "__esModule", { value: true });
-	io$2.findInPath = io$2.which = io$2.mkdirP = io$2.rmRF = io$2.mv = io$2.cp = void 0;
+	Object.defineProperty(io$3, "__esModule", { value: true });
+	io$3.findInPath = io$3.which = io$3.mkdirP = io$3.rmRF = io$3.mv = io$3.cp = void 0;
 	const assert_1 = require$$0$6;
 	const path = __importStar(path__default);
-	const ioUtil = __importStar(requireIoUtil$2());
+	const ioUtil = __importStar(requireIoUtil$3());
 	/**
 	 * Copies a file or folder.
 	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
@@ -25868,7 +25868,7 @@ function requireIo$2 () {
 	        }
 	    });
 	}
-	io$2.cp = cp;
+	io$3.cp = cp;
 	/**
 	 * Moves a path.
 	 *
@@ -25898,7 +25898,7 @@ function requireIo$2 () {
 	        yield ioUtil.rename(source, dest);
 	    });
 	}
-	io$2.mv = mv;
+	io$3.mv = mv;
 	/**
 	 * Remove a path recursively with force
 	 *
@@ -25927,7 +25927,7 @@ function requireIo$2 () {
 	        }
 	    });
 	}
-	io$2.rmRF = rmRF;
+	io$3.rmRF = rmRF;
 	/**
 	 * Make a directory.  Creates the full path with folders in between
 	 * Will throw if it fails
@@ -25941,7 +25941,7 @@ function requireIo$2 () {
 	        yield ioUtil.mkdir(fsPath, { recursive: true });
 	    });
 	}
-	io$2.mkdirP = mkdirP;
+	io$3.mkdirP = mkdirP;
 	/**
 	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
 	 * If you check and the tool does not exist, it will throw.
@@ -25975,7 +25975,7 @@ function requireIo$2 () {
 	        return '';
 	    });
 	}
-	io$2.which = which;
+	io$3.which = which;
 	/**
 	 * Returns a list of all occurrences of the given tool on the system path.
 	 *
@@ -26032,7 +26032,7 @@ function requireIo$2 () {
 	        return matches;
 	    });
 	}
-	io$2.findInPath = findInPath;
+	io$3.findInPath = findInPath;
 	function readCopyOptions(options) {
 	    const force = options.force == null ? true : options.force;
 	    const recursive = Boolean(options.recursive);
@@ -26092,34 +26092,34 @@ function requireIo$2 () {
 	    });
 	}
 	
-	return io$2;
+	return io$3;
 }
 
-var hasRequiredToolrunner;
+var hasRequiredToolrunner$3;
 
-function requireToolrunner () {
-	if (hasRequiredToolrunner) return toolrunner;
-	hasRequiredToolrunner = 1;
-	var __createBinding = (toolrunner && toolrunner.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+function requireToolrunner$3 () {
+	if (hasRequiredToolrunner$3) return toolrunner$3;
+	hasRequiredToolrunner$3 = 1;
+	var __createBinding = (toolrunner$3 && toolrunner$3.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 	}) : (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (toolrunner && toolrunner.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (toolrunner$3 && toolrunner$3.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (toolrunner && toolrunner.__importStar) || function (mod) {
+	var __importStar = (toolrunner$3 && toolrunner$3.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (toolrunner && toolrunner.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (toolrunner$3 && toolrunner$3.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -26128,15 +26128,15 @@ function requireToolrunner () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(toolrunner, "__esModule", { value: true });
-	toolrunner.argStringToArray = toolrunner.ToolRunner = void 0;
-	const os = __importStar(os__default);
-	const events = __importStar(require$$0$5);
+	Object.defineProperty(toolrunner$3, "__esModule", { value: true });
+	toolrunner$3.argStringToArray = toolrunner$3.ToolRunner = void 0;
+	const os = __importStar(require$$0__default);
+	const events = __importStar(require$$1$3);
 	const child = __importStar(require$$2$2);
 	const path = __importStar(path__default);
-	const io = __importStar(requireIo$2());
-	const ioUtil = __importStar(requireIoUtil$2());
-	const timers_1 = require$$6$1;
+	const io = __importStar(requireIo$3());
+	const ioUtil = __importStar(requireIoUtil$3());
+	const timers_1 = require$$6;
 	/* eslint-disable @typescript-eslint/unbound-method */
 	const IS_WINDOWS = process.platform === 'win32';
 	/*
@@ -26594,7 +26594,7 @@ function requireToolrunner () {
 	        });
 	    }
 	}
-	toolrunner.ToolRunner = ToolRunner;
+	toolrunner$3.ToolRunner = ToolRunner;
 	/**
 	 * Convert an arg string to an array of args. Handles escaping
 	 *
@@ -26647,7 +26647,7 @@ function requireToolrunner () {
 	    }
 	    return args;
 	}
-	toolrunner.argStringToArray = argStringToArray;
+	toolrunner$3.argStringToArray = argStringToArray;
 	class ExecState extends events.EventEmitter {
 	    constructor(options, toolPath) {
 	        super();
@@ -26717,34 +26717,34 @@ function requireToolrunner () {
 	    }
 	}
 	
-	return toolrunner;
+	return toolrunner$3;
 }
 
-var hasRequiredExec;
+var hasRequiredExec$3;
 
-function requireExec () {
-	if (hasRequiredExec) return exec;
-	hasRequiredExec = 1;
-	var __createBinding = (exec && exec.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+function requireExec$3 () {
+	if (hasRequiredExec$3) return exec$3;
+	hasRequiredExec$3 = 1;
+	var __createBinding = (exec$3 && exec$3.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 	}) : (function(o, m, k, k2) {
 	    if (k2 === undefined) k2 = k;
 	    o[k2] = m[k];
 	}));
-	var __setModuleDefault = (exec && exec.__setModuleDefault) || (Object.create ? (function(o, v) {
+	var __setModuleDefault = (exec$3 && exec$3.__setModuleDefault) || (Object.create ? (function(o, v) {
 	    Object.defineProperty(o, "default", { enumerable: true, value: v });
 	}) : function(o, v) {
 	    o["default"] = v;
 	});
-	var __importStar = (exec && exec.__importStar) || function (mod) {
+	var __importStar = (exec$3 && exec$3.__importStar) || function (mod) {
 	    if (mod && mod.__esModule) return mod;
 	    var result = {};
 	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
 	    __setModuleDefault(result, mod);
 	    return result;
 	};
-	var __awaiter = (exec && exec.__awaiter) || function (thisArg, _arguments, P, generator) {
+	var __awaiter = (exec$3 && exec$3.__awaiter) || function (thisArg, _arguments, P, generator) {
 	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 	    return new (P || (P = Promise))(function (resolve, reject) {
 	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -26753,10 +26753,10 @@ function requireExec () {
 	        step((generator = generator.apply(thisArg, _arguments || [])).next());
 	    });
 	};
-	Object.defineProperty(exec, "__esModule", { value: true });
-	exec.getExecOutput = exec.exec = void 0;
-	const string_decoder_1 = require$$6;
-	const tr = __importStar(requireToolrunner());
+	Object.defineProperty(exec$3, "__esModule", { value: true });
+	exec$3.getExecOutput = exec$3.exec = void 0;
+	const string_decoder_1 = require$$0$c;
+	const tr = __importStar(requireToolrunner$3());
 	/**
 	 * Exec a command.
 	 * Output will be streamed to the live console.
@@ -26767,7 +26767,7 @@ function requireExec () {
 	 * @param     options            optional exec options.  See ExecOptions
 	 * @returns   Promise<number>    exit code
 	 */
-	function exec$1(commandLine, args, options) {
+	function exec(commandLine, args, options) {
 	    return __awaiter(this, void 0, void 0, function* () {
 	        const commandArgs = tr.argStringToArray(commandLine);
 	        if (commandArgs.length === 0) {
@@ -26780,7 +26780,7 @@ function requireExec () {
 	        return runner.exec();
 	    });
 	}
-	exec.exec = exec$1;
+	exec$3.exec = exec;
 	/**
 	 * Exec a command and get the output.
 	 * Output will be streamed to the live console.
@@ -26814,7 +26814,7 @@ function requireExec () {
 	            }
 	        };
 	        const listeners = Object.assign(Object.assign({}, options === null || options === void 0 ? void 0 : options.listeners), { stdout: stdOutListener, stderr: stdErrListener });
-	        const exitCode = yield exec$1(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
+	        const exitCode = yield exec(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
 	        //flush any remaining characters
 	        stdout += stdoutDecoder.end();
 	        stderr += stderrDecoder.end();
@@ -26825,9 +26825,9 @@ function requireExec () {
 	        };
 	    });
 	}
-	exec.getExecOutput = getExecOutput;
+	exec$3.getExecOutput = getExecOutput;
 	
-	return exec;
+	return exec$3;
 }
 
 var hasRequiredPlatform;
@@ -26873,8 +26873,8 @@ function requirePlatform () {
 		};
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.getDetails = exports$1.isLinux = exports$1.isMacOS = exports$1.isWindows = exports$1.arch = exports$1.platform = void 0;
-		const os_1 = __importDefault(os__default);
-		const exec = __importStar(requireExec());
+		const os_1 = __importDefault(require$$0__default);
+		const exec = __importStar(requireExec$3());
 		const getWindowsInfo = () => __awaiter(void 0, void 0, void 0, function* () {
 		    const { stdout: version } = yield exec.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Version"', undefined, {
 		        silent: true
@@ -26976,7 +26976,7 @@ function requireCore () {
 		const command_1 = requireCommand();
 		const file_command_1 = requireFileCommand();
 		const utils_1 = requireUtils$3();
-		const os = __importStar(os__default);
+		const os = __importStar(require$$0__default);
 		const path = __importStar(path__default);
 		const oidc_utils_1 = requireOidcUtils();
 		/**
@@ -29122,7 +29122,7 @@ function requireInternalPattern$1 () {
 	};
 	Object.defineProperty(internalPattern$1, "__esModule", { value: true });
 	internalPattern$1.Pattern = void 0;
-	const os = __importStar(os__default);
+	const os = __importStar(require$$0__default);
 	const path = __importStar(path__default);
 	const pathHelper = __importStar(requireInternalPathHelper$1());
 	const assert_1 = __importDefault(require$$0$6);
@@ -29675,11 +29675,11 @@ function requireInternalHashFiles () {
 	};
 	Object.defineProperty(internalHashFiles, "__esModule", { value: true });
 	internalHashFiles.hashFiles = void 0;
-	const crypto = __importStar(require$$0$3);
+	const crypto = __importStar(require$$0$4);
 	const core = __importStar(requireCore());
 	const fs = __importStar(require$$1__default);
 	const stream = __importStar(require$$0$8);
-	const util = __importStar(require$$0$4);
+	const util = __importStar(require$$0$5);
 	const path = __importStar(path__default);
 	function hashFiles(globber, currentWorkspace, verbose = false) {
 	    var _a, e_1, _b, _c;
@@ -29797,6 +29797,1247 @@ var globExports = requireGlob$1();
 var cache$2 = {};
 
 var cacheUtils = {};
+
+var exec$2 = {};
+
+var toolrunner$2 = {};
+
+var io$2 = {};
+
+var ioUtil$2 = {};
+
+var hasRequiredIoUtil$2;
+
+function requireIoUtil$2 () {
+	if (hasRequiredIoUtil$2) return ioUtil$2;
+	hasRequiredIoUtil$2 = 1;
+	(function (exports$1) {
+		var __createBinding = (ioUtil$2 && ioUtil$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+		}) : (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    o[k2] = m[k];
+		}));
+		var __setModuleDefault = (ioUtil$2 && ioUtil$2.__setModuleDefault) || (Object.create ? (function(o, v) {
+		    Object.defineProperty(o, "default", { enumerable: true, value: v });
+		}) : function(o, v) {
+		    o["default"] = v;
+		});
+		var __importStar = (ioUtil$2 && ioUtil$2.__importStar) || function (mod) {
+		    if (mod && mod.__esModule) return mod;
+		    var result = {};
+		    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+		    __setModuleDefault(result, mod);
+		    return result;
+		};
+		var __awaiter = (ioUtil$2 && ioUtil$2.__awaiter) || function (thisArg, _arguments, P, generator) {
+		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+		    return new (P || (P = Promise))(function (resolve, reject) {
+		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+		        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+		        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+		        step((generator = generator.apply(thisArg, _arguments || [])).next());
+		    });
+		};
+		var _a;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.getCmdPath = exports$1.tryGetExecutablePath = exports$1.isRooted = exports$1.isDirectory = exports$1.exists = exports$1.READONLY = exports$1.UV_FS_O_EXLOCK = exports$1.IS_WINDOWS = exports$1.unlink = exports$1.symlink = exports$1.stat = exports$1.rmdir = exports$1.rm = exports$1.rename = exports$1.readlink = exports$1.readdir = exports$1.open = exports$1.mkdir = exports$1.lstat = exports$1.copyFile = exports$1.chmod = void 0;
+		const fs = __importStar(require$$1__default);
+		const path = __importStar(path__default);
+		_a = fs.promises
+		// export const {open} = 'fs'
+		, exports$1.chmod = _a.chmod, exports$1.copyFile = _a.copyFile, exports$1.lstat = _a.lstat, exports$1.mkdir = _a.mkdir, exports$1.open = _a.open, exports$1.readdir = _a.readdir, exports$1.readlink = _a.readlink, exports$1.rename = _a.rename, exports$1.rm = _a.rm, exports$1.rmdir = _a.rmdir, exports$1.stat = _a.stat, exports$1.symlink = _a.symlink, exports$1.unlink = _a.unlink;
+		// export const {open} = 'fs'
+		exports$1.IS_WINDOWS = process.platform === 'win32';
+		// See https://github.com/nodejs/node/blob/d0153aee367422d0858105abec186da4dff0a0c5/deps/uv/include/uv/win.h#L691
+		exports$1.UV_FS_O_EXLOCK = 0x10000000;
+		exports$1.READONLY = fs.constants.O_RDONLY;
+		function exists(fsPath) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        try {
+		            yield exports$1.stat(fsPath);
+		        }
+		        catch (err) {
+		            if (err.code === 'ENOENT') {
+		                return false;
+		            }
+		            throw err;
+		        }
+		        return true;
+		    });
+		}
+		exports$1.exists = exists;
+		function isDirectory(fsPath, useStat = false) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        const stats = useStat ? yield exports$1.stat(fsPath) : yield exports$1.lstat(fsPath);
+		        return stats.isDirectory();
+		    });
+		}
+		exports$1.isDirectory = isDirectory;
+		/**
+		 * On OSX/Linux, true if path starts with '/'. On Windows, true for paths like:
+		 * \, \hello, \\hello\share, C:, and C:\hello (and corresponding alternate separator cases).
+		 */
+		function isRooted(p) {
+		    p = normalizeSeparators(p);
+		    if (!p) {
+		        throw new Error('isRooted() parameter "p" cannot be empty');
+		    }
+		    if (exports$1.IS_WINDOWS) {
+		        return (p.startsWith('\\') || /^[A-Z]:/i.test(p) // e.g. \ or \hello or \\hello
+		        ); // e.g. C: or C:\hello
+		    }
+		    return p.startsWith('/');
+		}
+		exports$1.isRooted = isRooted;
+		/**
+		 * Best effort attempt to determine whether a file exists and is executable.
+		 * @param filePath    file path to check
+		 * @param extensions  additional file extensions to try
+		 * @return if file exists and is executable, returns the file path. otherwise empty string.
+		 */
+		function tryGetExecutablePath(filePath, extensions) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        let stats = undefined;
+		        try {
+		            // test file exists
+		            stats = yield exports$1.stat(filePath);
+		        }
+		        catch (err) {
+		            if (err.code !== 'ENOENT') {
+		                // eslint-disable-next-line no-console
+		                console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
+		            }
+		        }
+		        if (stats && stats.isFile()) {
+		            if (exports$1.IS_WINDOWS) {
+		                // on Windows, test for valid extension
+		                const upperExt = path.extname(filePath).toUpperCase();
+		                if (extensions.some(validExt => validExt.toUpperCase() === upperExt)) {
+		                    return filePath;
+		                }
+		            }
+		            else {
+		                if (isUnixExecutable(stats)) {
+		                    return filePath;
+		                }
+		            }
+		        }
+		        // try each extension
+		        const originalFilePath = filePath;
+		        for (const extension of extensions) {
+		            filePath = originalFilePath + extension;
+		            stats = undefined;
+		            try {
+		                stats = yield exports$1.stat(filePath);
+		            }
+		            catch (err) {
+		                if (err.code !== 'ENOENT') {
+		                    // eslint-disable-next-line no-console
+		                    console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
+		                }
+		            }
+		            if (stats && stats.isFile()) {
+		                if (exports$1.IS_WINDOWS) {
+		                    // preserve the case of the actual file (since an extension was appended)
+		                    try {
+		                        const directory = path.dirname(filePath);
+		                        const upperName = path.basename(filePath).toUpperCase();
+		                        for (const actualName of yield exports$1.readdir(directory)) {
+		                            if (upperName === actualName.toUpperCase()) {
+		                                filePath = path.join(directory, actualName);
+		                                break;
+		                            }
+		                        }
+		                    }
+		                    catch (err) {
+		                        // eslint-disable-next-line no-console
+		                        console.log(`Unexpected error attempting to determine the actual case of the file '${filePath}': ${err}`);
+		                    }
+		                    return filePath;
+		                }
+		                else {
+		                    if (isUnixExecutable(stats)) {
+		                        return filePath;
+		                    }
+		                }
+		            }
+		        }
+		        return '';
+		    });
+		}
+		exports$1.tryGetExecutablePath = tryGetExecutablePath;
+		function normalizeSeparators(p) {
+		    p = p || '';
+		    if (exports$1.IS_WINDOWS) {
+		        // convert slashes on Windows
+		        p = p.replace(/\//g, '\\');
+		        // remove redundant slashes
+		        return p.replace(/\\\\+/g, '\\');
+		    }
+		    // remove redundant slashes
+		    return p.replace(/\/\/+/g, '/');
+		}
+		// on Mac/Linux, test the execute bit
+		//     R   W  X  R  W X R W X
+		//   256 128 64 32 16 8 4 2 1
+		function isUnixExecutable(stats) {
+		    return ((stats.mode & 1) > 0 ||
+		        ((stats.mode & 8) > 0 && stats.gid === process.getgid()) ||
+		        ((stats.mode & 64) > 0 && stats.uid === process.getuid()));
+		}
+		// Get the path of cmd.exe in windows
+		function getCmdPath() {
+		    var _a;
+		    return (_a = process.env['COMSPEC']) !== null && _a !== void 0 ? _a : `cmd.exe`;
+		}
+		exports$1.getCmdPath = getCmdPath;
+		
+	} (ioUtil$2));
+	return ioUtil$2;
+}
+
+var hasRequiredIo$2;
+
+function requireIo$2 () {
+	if (hasRequiredIo$2) return io$2;
+	hasRequiredIo$2 = 1;
+	var __createBinding = (io$2 && io$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (io$2 && io$2.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (io$2 && io$2.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (io$2 && io$2.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(io$2, "__esModule", { value: true });
+	io$2.findInPath = io$2.which = io$2.mkdirP = io$2.rmRF = io$2.mv = io$2.cp = void 0;
+	const assert_1 = require$$0$6;
+	const path = __importStar(path__default);
+	const ioUtil = __importStar(requireIoUtil$2());
+	/**
+	 * Copies a file or folder.
+	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
+	 *
+	 * @param     source    source path
+	 * @param     dest      destination path
+	 * @param     options   optional. See CopyOptions.
+	 */
+	function cp(source, dest, options = {}) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const { force, recursive, copySourceDirectory } = readCopyOptions(options);
+	        const destStat = (yield ioUtil.exists(dest)) ? yield ioUtil.stat(dest) : null;
+	        // Dest is an existing file, but not forcing
+	        if (destStat && destStat.isFile() && !force) {
+	            return;
+	        }
+	        // If dest is an existing directory, should copy inside.
+	        const newDest = destStat && destStat.isDirectory() && copySourceDirectory
+	            ? path.join(dest, path.basename(source))
+	            : dest;
+	        if (!(yield ioUtil.exists(source))) {
+	            throw new Error(`no such file or directory: ${source}`);
+	        }
+	        const sourceStat = yield ioUtil.stat(source);
+	        if (sourceStat.isDirectory()) {
+	            if (!recursive) {
+	                throw new Error(`Failed to copy. ${source} is a directory, but tried to copy without recursive flag.`);
+	            }
+	            else {
+	                yield cpDirRecursive(source, newDest, 0, force);
+	            }
+	        }
+	        else {
+	            if (path.relative(source, newDest) === '') {
+	                // a file cannot be copied to itself
+	                throw new Error(`'${newDest}' and '${source}' are the same file`);
+	            }
+	            yield copyFile(source, newDest, force);
+	        }
+	    });
+	}
+	io$2.cp = cp;
+	/**
+	 * Moves a path.
+	 *
+	 * @param     source    source path
+	 * @param     dest      destination path
+	 * @param     options   optional. See MoveOptions.
+	 */
+	function mv(source, dest, options = {}) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (yield ioUtil.exists(dest)) {
+	            let destExists = true;
+	            if (yield ioUtil.isDirectory(dest)) {
+	                // If dest is directory copy src into dest
+	                dest = path.join(dest, path.basename(source));
+	                destExists = yield ioUtil.exists(dest);
+	            }
+	            if (destExists) {
+	                if (options.force == null || options.force) {
+	                    yield rmRF(dest);
+	                }
+	                else {
+	                    throw new Error('Destination already exists');
+	                }
+	            }
+	        }
+	        yield mkdirP(path.dirname(dest));
+	        yield ioUtil.rename(source, dest);
+	    });
+	}
+	io$2.mv = mv;
+	/**
+	 * Remove a path recursively with force
+	 *
+	 * @param inputPath path to remove
+	 */
+	function rmRF(inputPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (ioUtil.IS_WINDOWS) {
+	            // Check for invalid characters
+	            // https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
+	            if (/[*"<>|]/.test(inputPath)) {
+	                throw new Error('File path must not contain `*`, `"`, `<`, `>` or `|` on Windows');
+	            }
+	        }
+	        try {
+	            // note if path does not exist, error is silent
+	            yield ioUtil.rm(inputPath, {
+	                force: true,
+	                maxRetries: 3,
+	                recursive: true,
+	                retryDelay: 300
+	            });
+	        }
+	        catch (err) {
+	            throw new Error(`File was unable to be removed ${err}`);
+	        }
+	    });
+	}
+	io$2.rmRF = rmRF;
+	/**
+	 * Make a directory.  Creates the full path with folders in between
+	 * Will throw if it fails
+	 *
+	 * @param   fsPath        path to create
+	 * @returns Promise<void>
+	 */
+	function mkdirP(fsPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        assert_1.ok(fsPath, 'a path argument must be provided');
+	        yield ioUtil.mkdir(fsPath, { recursive: true });
+	    });
+	}
+	io$2.mkdirP = mkdirP;
+	/**
+	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
+	 * If you check and the tool does not exist, it will throw.
+	 *
+	 * @param     tool              name of the tool
+	 * @param     check             whether to check if tool exists
+	 * @returns   Promise<string>   path to tool
+	 */
+	function which(tool, check) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!tool) {
+	            throw new Error("parameter 'tool' is required");
+	        }
+	        // recursive when check=true
+	        if (check) {
+	            const result = yield which(tool, false);
+	            if (!result) {
+	                if (ioUtil.IS_WINDOWS) {
+	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also verify the file has a valid extension for an executable file.`);
+	                }
+	                else {
+	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.`);
+	                }
+	            }
+	            return result;
+	        }
+	        const matches = yield findInPath(tool);
+	        if (matches && matches.length > 0) {
+	            return matches[0];
+	        }
+	        return '';
+	    });
+	}
+	io$2.which = which;
+	/**
+	 * Returns a list of all occurrences of the given tool on the system path.
+	 *
+	 * @returns   Promise<string[]>  the paths of the tool
+	 */
+	function findInPath(tool) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!tool) {
+	            throw new Error("parameter 'tool' is required");
+	        }
+	        // build the list of extensions to try
+	        const extensions = [];
+	        if (ioUtil.IS_WINDOWS && process.env['PATHEXT']) {
+	            for (const extension of process.env['PATHEXT'].split(path.delimiter)) {
+	                if (extension) {
+	                    extensions.push(extension);
+	                }
+	            }
+	        }
+	        // if it's rooted, return it if exists. otherwise return empty.
+	        if (ioUtil.isRooted(tool)) {
+	            const filePath = yield ioUtil.tryGetExecutablePath(tool, extensions);
+	            if (filePath) {
+	                return [filePath];
+	            }
+	            return [];
+	        }
+	        // if any path separators, return empty
+	        if (tool.includes(path.sep)) {
+	            return [];
+	        }
+	        // build the list of directories
+	        //
+	        // Note, technically "where" checks the current directory on Windows. From a toolkit perspective,
+	        // it feels like we should not do this. Checking the current directory seems like more of a use
+	        // case of a shell, and the which() function exposed by the toolkit should strive for consistency
+	        // across platforms.
+	        const directories = [];
+	        if (process.env.PATH) {
+	            for (const p of process.env.PATH.split(path.delimiter)) {
+	                if (p) {
+	                    directories.push(p);
+	                }
+	            }
+	        }
+	        // find all matches
+	        const matches = [];
+	        for (const directory of directories) {
+	            const filePath = yield ioUtil.tryGetExecutablePath(path.join(directory, tool), extensions);
+	            if (filePath) {
+	                matches.push(filePath);
+	            }
+	        }
+	        return matches;
+	    });
+	}
+	io$2.findInPath = findInPath;
+	function readCopyOptions(options) {
+	    const force = options.force == null ? true : options.force;
+	    const recursive = Boolean(options.recursive);
+	    const copySourceDirectory = options.copySourceDirectory == null
+	        ? true
+	        : Boolean(options.copySourceDirectory);
+	    return { force, recursive, copySourceDirectory };
+	}
+	function cpDirRecursive(sourceDir, destDir, currentDepth, force) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        // Ensure there is not a run away recursive copy
+	        if (currentDepth >= 255)
+	            return;
+	        currentDepth++;
+	        yield mkdirP(destDir);
+	        const files = yield ioUtil.readdir(sourceDir);
+	        for (const fileName of files) {
+	            const srcFile = `${sourceDir}/${fileName}`;
+	            const destFile = `${destDir}/${fileName}`;
+	            const srcFileStat = yield ioUtil.lstat(srcFile);
+	            if (srcFileStat.isDirectory()) {
+	                // Recurse
+	                yield cpDirRecursive(srcFile, destFile, currentDepth, force);
+	            }
+	            else {
+	                yield copyFile(srcFile, destFile, force);
+	            }
+	        }
+	        // Change the mode for the newly created directory
+	        yield ioUtil.chmod(destDir, (yield ioUtil.stat(sourceDir)).mode);
+	    });
+	}
+	// Buffered file copy
+	function copyFile(srcFile, destFile, force) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if ((yield ioUtil.lstat(srcFile)).isSymbolicLink()) {
+	            // unlink/re-link it
+	            try {
+	                yield ioUtil.lstat(destFile);
+	                yield ioUtil.unlink(destFile);
+	            }
+	            catch (e) {
+	                // Try to override file permission
+	                if (e.code === 'EPERM') {
+	                    yield ioUtil.chmod(destFile, '0666');
+	                    yield ioUtil.unlink(destFile);
+	                }
+	                // other errors = it doesn't exist, no work to do
+	            }
+	            // Copy over symlink
+	            const symlinkFull = yield ioUtil.readlink(srcFile);
+	            yield ioUtil.symlink(symlinkFull, destFile, ioUtil.IS_WINDOWS ? 'junction' : null);
+	        }
+	        else if (!(yield ioUtil.exists(destFile)) || force) {
+	            yield ioUtil.copyFile(srcFile, destFile);
+	        }
+	    });
+	}
+	
+	return io$2;
+}
+
+var hasRequiredToolrunner$2;
+
+function requireToolrunner$2 () {
+	if (hasRequiredToolrunner$2) return toolrunner$2;
+	hasRequiredToolrunner$2 = 1;
+	var __createBinding = (toolrunner$2 && toolrunner$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (toolrunner$2 && toolrunner$2.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (toolrunner$2 && toolrunner$2.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (toolrunner$2 && toolrunner$2.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(toolrunner$2, "__esModule", { value: true });
+	toolrunner$2.argStringToArray = toolrunner$2.ToolRunner = void 0;
+	const os = __importStar(require$$0__default);
+	const events = __importStar(require$$1$3);
+	const child = __importStar(require$$2$2);
+	const path = __importStar(path__default);
+	const io = __importStar(requireIo$2());
+	const ioUtil = __importStar(requireIoUtil$2());
+	const timers_1 = require$$6;
+	/* eslint-disable @typescript-eslint/unbound-method */
+	const IS_WINDOWS = process.platform === 'win32';
+	/*
+	 * Class for running command line tools. Handles quoting and arg parsing in a platform agnostic way.
+	 */
+	class ToolRunner extends events.EventEmitter {
+	    constructor(toolPath, args, options) {
+	        super();
+	        if (!toolPath) {
+	            throw new Error("Parameter 'toolPath' cannot be null or empty.");
+	        }
+	        this.toolPath = toolPath;
+	        this.args = args || [];
+	        this.options = options || {};
+	    }
+	    _debug(message) {
+	        if (this.options.listeners && this.options.listeners.debug) {
+	            this.options.listeners.debug(message);
+	        }
+	    }
+	    _getCommandString(options, noPrefix) {
+	        const toolPath = this._getSpawnFileName();
+	        const args = this._getSpawnArgs(options);
+	        let cmd = noPrefix ? '' : '[command]'; // omit prefix when piped to a second tool
+	        if (IS_WINDOWS) {
+	            // Windows + cmd file
+	            if (this._isCmdFile()) {
+	                cmd += toolPath;
+	                for (const a of args) {
+	                    cmd += ` ${a}`;
+	                }
+	            }
+	            // Windows + verbatim
+	            else if (options.windowsVerbatimArguments) {
+	                cmd += `"${toolPath}"`;
+	                for (const a of args) {
+	                    cmd += ` ${a}`;
+	                }
+	            }
+	            // Windows (regular)
+	            else {
+	                cmd += this._windowsQuoteCmdArg(toolPath);
+	                for (const a of args) {
+	                    cmd += ` ${this._windowsQuoteCmdArg(a)}`;
+	                }
+	            }
+	        }
+	        else {
+	            // OSX/Linux - this can likely be improved with some form of quoting.
+	            // creating processes on Unix is fundamentally different than Windows.
+	            // on Unix, execvp() takes an arg array.
+	            cmd += toolPath;
+	            for (const a of args) {
+	                cmd += ` ${a}`;
+	            }
+	        }
+	        return cmd;
+	    }
+	    _processLineBuffer(data, strBuffer, onLine) {
+	        try {
+	            let s = strBuffer + data.toString();
+	            let n = s.indexOf(os.EOL);
+	            while (n > -1) {
+	                const line = s.substring(0, n);
+	                onLine(line);
+	                // the rest of the string ...
+	                s = s.substring(n + os.EOL.length);
+	                n = s.indexOf(os.EOL);
+	            }
+	            return s;
+	        }
+	        catch (err) {
+	            // streaming lines to console is best effort.  Don't fail a build.
+	            this._debug(`error processing line. Failed with error ${err}`);
+	            return '';
+	        }
+	    }
+	    _getSpawnFileName() {
+	        if (IS_WINDOWS) {
+	            if (this._isCmdFile()) {
+	                return process.env['COMSPEC'] || 'cmd.exe';
+	            }
+	        }
+	        return this.toolPath;
+	    }
+	    _getSpawnArgs(options) {
+	        if (IS_WINDOWS) {
+	            if (this._isCmdFile()) {
+	                let argline = `/D /S /C "${this._windowsQuoteCmdArg(this.toolPath)}`;
+	                for (const a of this.args) {
+	                    argline += ' ';
+	                    argline += options.windowsVerbatimArguments
+	                        ? a
+	                        : this._windowsQuoteCmdArg(a);
+	                }
+	                argline += '"';
+	                return [argline];
+	            }
+	        }
+	        return this.args;
+	    }
+	    _endsWith(str, end) {
+	        return str.endsWith(end);
+	    }
+	    _isCmdFile() {
+	        const upperToolPath = this.toolPath.toUpperCase();
+	        return (this._endsWith(upperToolPath, '.CMD') ||
+	            this._endsWith(upperToolPath, '.BAT'));
+	    }
+	    _windowsQuoteCmdArg(arg) {
+	        // for .exe, apply the normal quoting rules that libuv applies
+	        if (!this._isCmdFile()) {
+	            return this._uvQuoteCmdArg(arg);
+	        }
+	        // otherwise apply quoting rules specific to the cmd.exe command line parser.
+	        // the libuv rules are generic and are not designed specifically for cmd.exe
+	        // command line parser.
+	        //
+	        // for a detailed description of the cmd.exe command line parser, refer to
+	        // http://stackoverflow.com/questions/4094699/how-does-the-windows-command-interpreter-cmd-exe-parse-scripts/7970912#7970912
+	        // need quotes for empty arg
+	        if (!arg) {
+	            return '""';
+	        }
+	        // determine whether the arg needs to be quoted
+	        const cmdSpecialChars = [
+	            ' ',
+	            '\t',
+	            '&',
+	            '(',
+	            ')',
+	            '[',
+	            ']',
+	            '{',
+	            '}',
+	            '^',
+	            '=',
+	            ';',
+	            '!',
+	            "'",
+	            '+',
+	            ',',
+	            '`',
+	            '~',
+	            '|',
+	            '<',
+	            '>',
+	            '"'
+	        ];
+	        let needsQuotes = false;
+	        for (const char of arg) {
+	            if (cmdSpecialChars.some(x => x === char)) {
+	                needsQuotes = true;
+	                break;
+	            }
+	        }
+	        // short-circuit if quotes not needed
+	        if (!needsQuotes) {
+	            return arg;
+	        }
+	        // the following quoting rules are very similar to the rules that by libuv applies.
+	        //
+	        // 1) wrap the string in quotes
+	        //
+	        // 2) double-up quotes - i.e. " => ""
+	        //
+	        //    this is different from the libuv quoting rules. libuv replaces " with \", which unfortunately
+	        //    doesn't work well with a cmd.exe command line.
+	        //
+	        //    note, replacing " with "" also works well if the arg is passed to a downstream .NET console app.
+	        //    for example, the command line:
+	        //          foo.exe "myarg:""my val"""
+	        //    is parsed by a .NET console app into an arg array:
+	        //          [ "myarg:\"my val\"" ]
+	        //    which is the same end result when applying libuv quoting rules. although the actual
+	        //    command line from libuv quoting rules would look like:
+	        //          foo.exe "myarg:\"my val\""
+	        //
+	        // 3) double-up slashes that precede a quote,
+	        //    e.g.  hello \world    => "hello \world"
+	        //          hello\"world    => "hello\\""world"
+	        //          hello\\"world   => "hello\\\\""world"
+	        //          hello world\    => "hello world\\"
+	        //
+	        //    technically this is not required for a cmd.exe command line, or the batch argument parser.
+	        //    the reasons for including this as a .cmd quoting rule are:
+	        //
+	        //    a) this is optimized for the scenario where the argument is passed from the .cmd file to an
+	        //       external program. many programs (e.g. .NET console apps) rely on the slash-doubling rule.
+	        //
+	        //    b) it's what we've been doing previously (by deferring to node default behavior) and we
+	        //       haven't heard any complaints about that aspect.
+	        //
+	        // note, a weakness of the quoting rules chosen here, is that % is not escaped. in fact, % cannot be
+	        // escaped when used on the command line directly - even though within a .cmd file % can be escaped
+	        // by using %%.
+	        //
+	        // the saving grace is, on the command line, %var% is left as-is if var is not defined. this contrasts
+	        // the line parsing rules within a .cmd file, where if var is not defined it is replaced with nothing.
+	        //
+	        // one option that was explored was replacing % with ^% - i.e. %var% => ^%var^%. this hack would
+	        // often work, since it is unlikely that var^ would exist, and the ^ character is removed when the
+	        // variable is used. the problem, however, is that ^ is not removed when %* is used to pass the args
+	        // to an external program.
+	        //
+	        // an unexplored potential solution for the % escaping problem, is to create a wrapper .cmd file.
+	        // % can be escaped within a .cmd file.
+	        let reverse = '"';
+	        let quoteHit = true;
+	        for (let i = arg.length; i > 0; i--) {
+	            // walk the string in reverse
+	            reverse += arg[i - 1];
+	            if (quoteHit && arg[i - 1] === '\\') {
+	                reverse += '\\'; // double the slash
+	            }
+	            else if (arg[i - 1] === '"') {
+	                quoteHit = true;
+	                reverse += '"'; // double the quote
+	            }
+	            else {
+	                quoteHit = false;
+	            }
+	        }
+	        reverse += '"';
+	        return reverse
+	            .split('')
+	            .reverse()
+	            .join('');
+	    }
+	    _uvQuoteCmdArg(arg) {
+	        // Tool runner wraps child_process.spawn() and needs to apply the same quoting as
+	        // Node in certain cases where the undocumented spawn option windowsVerbatimArguments
+	        // is used.
+	        //
+	        // Since this function is a port of quote_cmd_arg from Node 4.x (technically, lib UV,
+	        // see https://github.com/nodejs/node/blob/v4.x/deps/uv/src/win/process.c for details),
+	        // pasting copyright notice from Node within this function:
+	        //
+	        //      Copyright Joyent, Inc. and other Node contributors. All rights reserved.
+	        //
+	        //      Permission is hereby granted, free of charge, to any person obtaining a copy
+	        //      of this software and associated documentation files (the "Software"), to
+	        //      deal in the Software without restriction, including without limitation the
+	        //      rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+	        //      sell copies of the Software, and to permit persons to whom the Software is
+	        //      furnished to do so, subject to the following conditions:
+	        //
+	        //      The above copyright notice and this permission notice shall be included in
+	        //      all copies or substantial portions of the Software.
+	        //
+	        //      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	        //      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	        //      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	        //      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	        //      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	        //      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+	        //      IN THE SOFTWARE.
+	        if (!arg) {
+	            // Need double quotation for empty argument
+	            return '""';
+	        }
+	        if (!arg.includes(' ') && !arg.includes('\t') && !arg.includes('"')) {
+	            // No quotation needed
+	            return arg;
+	        }
+	        if (!arg.includes('"') && !arg.includes('\\')) {
+	            // No embedded double quotes or backslashes, so I can just wrap
+	            // quote marks around the whole thing.
+	            return `"${arg}"`;
+	        }
+	        // Expected input/output:
+	        //   input : hello"world
+	        //   output: "hello\"world"
+	        //   input : hello""world
+	        //   output: "hello\"\"world"
+	        //   input : hello\world
+	        //   output: hello\world
+	        //   input : hello\\world
+	        //   output: hello\\world
+	        //   input : hello\"world
+	        //   output: "hello\\\"world"
+	        //   input : hello\\"world
+	        //   output: "hello\\\\\"world"
+	        //   input : hello world\
+	        //   output: "hello world\\" - note the comment in libuv actually reads "hello world\"
+	        //                             but it appears the comment is wrong, it should be "hello world\\"
+	        let reverse = '"';
+	        let quoteHit = true;
+	        for (let i = arg.length; i > 0; i--) {
+	            // walk the string in reverse
+	            reverse += arg[i - 1];
+	            if (quoteHit && arg[i - 1] === '\\') {
+	                reverse += '\\';
+	            }
+	            else if (arg[i - 1] === '"') {
+	                quoteHit = true;
+	                reverse += '\\';
+	            }
+	            else {
+	                quoteHit = false;
+	            }
+	        }
+	        reverse += '"';
+	        return reverse
+	            .split('')
+	            .reverse()
+	            .join('');
+	    }
+	    _cloneExecOptions(options) {
+	        options = options || {};
+	        const result = {
+	            cwd: options.cwd || process.cwd(),
+	            env: options.env || process.env,
+	            silent: options.silent || false,
+	            windowsVerbatimArguments: options.windowsVerbatimArguments || false,
+	            failOnStdErr: options.failOnStdErr || false,
+	            ignoreReturnCode: options.ignoreReturnCode || false,
+	            delay: options.delay || 10000
+	        };
+	        result.outStream = options.outStream || process.stdout;
+	        result.errStream = options.errStream || process.stderr;
+	        return result;
+	    }
+	    _getSpawnOptions(options, toolPath) {
+	        options = options || {};
+	        const result = {};
+	        result.cwd = options.cwd;
+	        result.env = options.env;
+	        result['windowsVerbatimArguments'] =
+	            options.windowsVerbatimArguments || this._isCmdFile();
+	        if (options.windowsVerbatimArguments) {
+	            result.argv0 = `"${toolPath}"`;
+	        }
+	        return result;
+	    }
+	    /**
+	     * Exec a tool.
+	     * Output will be streamed to the live console.
+	     * Returns promise with return code
+	     *
+	     * @param     tool     path to tool to exec
+	     * @param     options  optional exec options.  See ExecOptions
+	     * @returns   number
+	     */
+	    exec() {
+	        return __awaiter(this, void 0, void 0, function* () {
+	            // root the tool path if it is unrooted and contains relative pathing
+	            if (!ioUtil.isRooted(this.toolPath) &&
+	                (this.toolPath.includes('/') ||
+	                    (IS_WINDOWS && this.toolPath.includes('\\')))) {
+	                // prefer options.cwd if it is specified, however options.cwd may also need to be rooted
+	                this.toolPath = path.resolve(process.cwd(), this.options.cwd || process.cwd(), this.toolPath);
+	            }
+	            // if the tool is only a file name, then resolve it from the PATH
+	            // otherwise verify it exists (add extension on Windows if necessary)
+	            this.toolPath = yield io.which(this.toolPath, true);
+	            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+	                this._debug(`exec tool: ${this.toolPath}`);
+	                this._debug('arguments:');
+	                for (const arg of this.args) {
+	                    this._debug(`   ${arg}`);
+	                }
+	                const optionsNonNull = this._cloneExecOptions(this.options);
+	                if (!optionsNonNull.silent && optionsNonNull.outStream) {
+	                    optionsNonNull.outStream.write(this._getCommandString(optionsNonNull) + os.EOL);
+	                }
+	                const state = new ExecState(optionsNonNull, this.toolPath);
+	                state.on('debug', (message) => {
+	                    this._debug(message);
+	                });
+	                if (this.options.cwd && !(yield ioUtil.exists(this.options.cwd))) {
+	                    return reject(new Error(`The cwd: ${this.options.cwd} does not exist!`));
+	                }
+	                const fileName = this._getSpawnFileName();
+	                const cp = child.spawn(fileName, this._getSpawnArgs(optionsNonNull), this._getSpawnOptions(this.options, fileName));
+	                let stdbuffer = '';
+	                if (cp.stdout) {
+	                    cp.stdout.on('data', (data) => {
+	                        if (this.options.listeners && this.options.listeners.stdout) {
+	                            this.options.listeners.stdout(data);
+	                        }
+	                        if (!optionsNonNull.silent && optionsNonNull.outStream) {
+	                            optionsNonNull.outStream.write(data);
+	                        }
+	                        stdbuffer = this._processLineBuffer(data, stdbuffer, (line) => {
+	                            if (this.options.listeners && this.options.listeners.stdline) {
+	                                this.options.listeners.stdline(line);
+	                            }
+	                        });
+	                    });
+	                }
+	                let errbuffer = '';
+	                if (cp.stderr) {
+	                    cp.stderr.on('data', (data) => {
+	                        state.processStderr = true;
+	                        if (this.options.listeners && this.options.listeners.stderr) {
+	                            this.options.listeners.stderr(data);
+	                        }
+	                        if (!optionsNonNull.silent &&
+	                            optionsNonNull.errStream &&
+	                            optionsNonNull.outStream) {
+	                            const s = optionsNonNull.failOnStdErr
+	                                ? optionsNonNull.errStream
+	                                : optionsNonNull.outStream;
+	                            s.write(data);
+	                        }
+	                        errbuffer = this._processLineBuffer(data, errbuffer, (line) => {
+	                            if (this.options.listeners && this.options.listeners.errline) {
+	                                this.options.listeners.errline(line);
+	                            }
+	                        });
+	                    });
+	                }
+	                cp.on('error', (err) => {
+	                    state.processError = err.message;
+	                    state.processExited = true;
+	                    state.processClosed = true;
+	                    state.CheckComplete();
+	                });
+	                cp.on('exit', (code) => {
+	                    state.processExitCode = code;
+	                    state.processExited = true;
+	                    this._debug(`Exit code ${code} received from tool '${this.toolPath}'`);
+	                    state.CheckComplete();
+	                });
+	                cp.on('close', (code) => {
+	                    state.processExitCode = code;
+	                    state.processExited = true;
+	                    state.processClosed = true;
+	                    this._debug(`STDIO streams have closed for tool '${this.toolPath}'`);
+	                    state.CheckComplete();
+	                });
+	                state.on('done', (error, exitCode) => {
+	                    if (stdbuffer.length > 0) {
+	                        this.emit('stdline', stdbuffer);
+	                    }
+	                    if (errbuffer.length > 0) {
+	                        this.emit('errline', errbuffer);
+	                    }
+	                    cp.removeAllListeners();
+	                    if (error) {
+	                        reject(error);
+	                    }
+	                    else {
+	                        resolve(exitCode);
+	                    }
+	                });
+	                if (this.options.input) {
+	                    if (!cp.stdin) {
+	                        throw new Error('child process missing stdin');
+	                    }
+	                    cp.stdin.end(this.options.input);
+	                }
+	            }));
+	        });
+	    }
+	}
+	toolrunner$2.ToolRunner = ToolRunner;
+	/**
+	 * Convert an arg string to an array of args. Handles escaping
+	 *
+	 * @param    argString   string of arguments
+	 * @returns  string[]    array of arguments
+	 */
+	function argStringToArray(argString) {
+	    const args = [];
+	    let inQuotes = false;
+	    let escaped = false;
+	    let arg = '';
+	    function append(c) {
+	        // we only escape double quotes.
+	        if (escaped && c !== '"') {
+	            arg += '\\';
+	        }
+	        arg += c;
+	        escaped = false;
+	    }
+	    for (let i = 0; i < argString.length; i++) {
+	        const c = argString.charAt(i);
+	        if (c === '"') {
+	            if (!escaped) {
+	                inQuotes = !inQuotes;
+	            }
+	            else {
+	                append(c);
+	            }
+	            continue;
+	        }
+	        if (c === '\\' && escaped) {
+	            append(c);
+	            continue;
+	        }
+	        if (c === '\\' && inQuotes) {
+	            escaped = true;
+	            continue;
+	        }
+	        if (c === ' ' && !inQuotes) {
+	            if (arg.length > 0) {
+	                args.push(arg);
+	                arg = '';
+	            }
+	            continue;
+	        }
+	        append(c);
+	    }
+	    if (arg.length > 0) {
+	        args.push(arg.trim());
+	    }
+	    return args;
+	}
+	toolrunner$2.argStringToArray = argStringToArray;
+	class ExecState extends events.EventEmitter {
+	    constructor(options, toolPath) {
+	        super();
+	        this.processClosed = false; // tracks whether the process has exited and stdio is closed
+	        this.processError = '';
+	        this.processExitCode = 0;
+	        this.processExited = false; // tracks whether the process has exited
+	        this.processStderr = false; // tracks whether stderr was written to
+	        this.delay = 10000; // 10 seconds
+	        this.done = false;
+	        this.timeout = null;
+	        if (!toolPath) {
+	            throw new Error('toolPath must not be empty');
+	        }
+	        this.options = options;
+	        this.toolPath = toolPath;
+	        if (options.delay) {
+	            this.delay = options.delay;
+	        }
+	    }
+	    CheckComplete() {
+	        if (this.done) {
+	            return;
+	        }
+	        if (this.processClosed) {
+	            this._setResult();
+	        }
+	        else if (this.processExited) {
+	            this.timeout = timers_1.setTimeout(ExecState.HandleTimeout, this.delay, this);
+	        }
+	    }
+	    _debug(message) {
+	        this.emit('debug', message);
+	    }
+	    _setResult() {
+	        // determine whether there is an error
+	        let error;
+	        if (this.processExited) {
+	            if (this.processError) {
+	                error = new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
+	            }
+	            else if (this.processExitCode !== 0 && !this.options.ignoreReturnCode) {
+	                error = new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
+	            }
+	            else if (this.processStderr && this.options.failOnStdErr) {
+	                error = new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
+	            }
+	        }
+	        // clear the timeout
+	        if (this.timeout) {
+	            clearTimeout(this.timeout);
+	            this.timeout = null;
+	        }
+	        this.done = true;
+	        this.emit('done', error, this.processExitCode);
+	    }
+	    static HandleTimeout(state) {
+	        if (state.done) {
+	            return;
+	        }
+	        if (!state.processClosed && state.processExited) {
+	            const message = `The STDIO streams did not close within ${state.delay /
+	                1000} seconds of the exit event from process '${state.toolPath}'. This may indicate a child process inherited the STDIO streams and has not yet exited.`;
+	            state._debug(message);
+	        }
+	        state._setResult();
+	    }
+	}
+	
+	return toolrunner$2;
+}
+
+var hasRequiredExec$2;
+
+function requireExec$2 () {
+	if (hasRequiredExec$2) return exec$2;
+	hasRequiredExec$2 = 1;
+	var __createBinding = (exec$2 && exec$2.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (exec$2 && exec$2.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (exec$2 && exec$2.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (exec$2 && exec$2.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(exec$2, "__esModule", { value: true });
+	exec$2.getExecOutput = exec$2.exec = void 0;
+	const string_decoder_1 = require$$0$c;
+	const tr = __importStar(requireToolrunner$2());
+	/**
+	 * Exec a command.
+	 * Output will be streamed to the live console.
+	 * Returns promise with return code
+	 *
+	 * @param     commandLine        command to execute (can include additional args). Must be correctly escaped.
+	 * @param     args               optional arguments for tool. Escaping is handled by the lib.
+	 * @param     options            optional exec options.  See ExecOptions
+	 * @returns   Promise<number>    exit code
+	 */
+	function exec(commandLine, args, options) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const commandArgs = tr.argStringToArray(commandLine);
+	        if (commandArgs.length === 0) {
+	            throw new Error(`Parameter 'commandLine' cannot be null or empty.`);
+	        }
+	        // Path to tool to execute should be first arg
+	        const toolPath = commandArgs[0];
+	        args = commandArgs.slice(1).concat(args || []);
+	        const runner = new tr.ToolRunner(toolPath, args, options);
+	        return runner.exec();
+	    });
+	}
+	exec$2.exec = exec;
+	/**
+	 * Exec a command and get the output.
+	 * Output will be streamed to the live console.
+	 * Returns promise with the exit code and collected stdout and stderr
+	 *
+	 * @param     commandLine           command to execute (can include additional args). Must be correctly escaped.
+	 * @param     args                  optional arguments for tool. Escaping is handled by the lib.
+	 * @param     options               optional exec options.  See ExecOptions
+	 * @returns   Promise<ExecOutput>   exit code, stdout, and stderr
+	 */
+	function getExecOutput(commandLine, args, options) {
+	    var _a, _b;
+	    return __awaiter(this, void 0, void 0, function* () {
+	        let stdout = '';
+	        let stderr = '';
+	        //Using string decoder covers the case where a mult-byte character is split
+	        const stdoutDecoder = new string_decoder_1.StringDecoder('utf8');
+	        const stderrDecoder = new string_decoder_1.StringDecoder('utf8');
+	        const originalStdoutListener = (_a = options === null || options === void 0 ? void 0 : options.listeners) === null || _a === void 0 ? void 0 : _a.stdout;
+	        const originalStdErrListener = (_b = options === null || options === void 0 ? void 0 : options.listeners) === null || _b === void 0 ? void 0 : _b.stderr;
+	        const stdErrListener = (data) => {
+	            stderr += stderrDecoder.write(data);
+	            if (originalStdErrListener) {
+	                originalStdErrListener(data);
+	            }
+	        };
+	        const stdOutListener = (data) => {
+	            stdout += stdoutDecoder.write(data);
+	            if (originalStdoutListener) {
+	                originalStdoutListener(data);
+	            }
+	        };
+	        const listeners = Object.assign(Object.assign({}, options === null || options === void 0 ? void 0 : options.listeners), { stdout: stdOutListener, stderr: stdErrListener });
+	        const exitCode = yield exec(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
+	        //flush any remaining characters
+	        stdout += stdoutDecoder.end();
+	        stderr += stderrDecoder.end();
+	        return {
+	            exitCode,
+	            stdout,
+	            stderr
+	        };
+	    });
+	}
+	exec$2.getExecOutput = getExecOutput;
+	
+	return exec$2;
+}
 
 var glob = {};
 
@@ -30347,7 +31588,7 @@ function requireInternalPattern () {
 	};
 	Object.defineProperty(internalPattern, "__esModule", { value: true });
 	internalPattern.Pattern = void 0;
-	const os = __importStar(os__default);
+	const os = __importStar(require$$0__default);
 	const path = __importStar(path__default);
 	const pathHelper = __importStar(requireInternalPathHelper());
 	const assert_1 = __importDefault(require$$0$6);
@@ -30873,508 +32114,6 @@ function requireGlob () {
 	glob.create = create;
 	
 	return glob;
-}
-
-var io$1 = {};
-
-var ioUtil$1 = {};
-
-var hasRequiredIoUtil$1;
-
-function requireIoUtil$1 () {
-	if (hasRequiredIoUtil$1) return ioUtil$1;
-	hasRequiredIoUtil$1 = 1;
-	(function (exports$1) {
-		var __createBinding = (ioUtil$1 && ioUtil$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-		    if (k2 === undefined) k2 = k;
-		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-		}) : (function(o, m, k, k2) {
-		    if (k2 === undefined) k2 = k;
-		    o[k2] = m[k];
-		}));
-		var __setModuleDefault = (ioUtil$1 && ioUtil$1.__setModuleDefault) || (Object.create ? (function(o, v) {
-		    Object.defineProperty(o, "default", { enumerable: true, value: v });
-		}) : function(o, v) {
-		    o["default"] = v;
-		});
-		var __importStar = (ioUtil$1 && ioUtil$1.__importStar) || function (mod) {
-		    if (mod && mod.__esModule) return mod;
-		    var result = {};
-		    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-		    __setModuleDefault(result, mod);
-		    return result;
-		};
-		var __awaiter = (ioUtil$1 && ioUtil$1.__awaiter) || function (thisArg, _arguments, P, generator) {
-		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-		    return new (P || (P = Promise))(function (resolve, reject) {
-		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-		        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-		        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-		        step((generator = generator.apply(thisArg, _arguments || [])).next());
-		    });
-		};
-		var _a;
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.getCmdPath = exports$1.tryGetExecutablePath = exports$1.isRooted = exports$1.isDirectory = exports$1.exists = exports$1.READONLY = exports$1.UV_FS_O_EXLOCK = exports$1.IS_WINDOWS = exports$1.unlink = exports$1.symlink = exports$1.stat = exports$1.rmdir = exports$1.rm = exports$1.rename = exports$1.readlink = exports$1.readdir = exports$1.open = exports$1.mkdir = exports$1.lstat = exports$1.copyFile = exports$1.chmod = void 0;
-		const fs = __importStar(require$$1__default);
-		const path = __importStar(path__default);
-		_a = fs.promises
-		// export const {open} = 'fs'
-		, exports$1.chmod = _a.chmod, exports$1.copyFile = _a.copyFile, exports$1.lstat = _a.lstat, exports$1.mkdir = _a.mkdir, exports$1.open = _a.open, exports$1.readdir = _a.readdir, exports$1.readlink = _a.readlink, exports$1.rename = _a.rename, exports$1.rm = _a.rm, exports$1.rmdir = _a.rmdir, exports$1.stat = _a.stat, exports$1.symlink = _a.symlink, exports$1.unlink = _a.unlink;
-		// export const {open} = 'fs'
-		exports$1.IS_WINDOWS = process.platform === 'win32';
-		// See https://github.com/nodejs/node/blob/d0153aee367422d0858105abec186da4dff0a0c5/deps/uv/include/uv/win.h#L691
-		exports$1.UV_FS_O_EXLOCK = 0x10000000;
-		exports$1.READONLY = fs.constants.O_RDONLY;
-		function exists(fsPath) {
-		    return __awaiter(this, void 0, void 0, function* () {
-		        try {
-		            yield exports$1.stat(fsPath);
-		        }
-		        catch (err) {
-		            if (err.code === 'ENOENT') {
-		                return false;
-		            }
-		            throw err;
-		        }
-		        return true;
-		    });
-		}
-		exports$1.exists = exists;
-		function isDirectory(fsPath, useStat = false) {
-		    return __awaiter(this, void 0, void 0, function* () {
-		        const stats = useStat ? yield exports$1.stat(fsPath) : yield exports$1.lstat(fsPath);
-		        return stats.isDirectory();
-		    });
-		}
-		exports$1.isDirectory = isDirectory;
-		/**
-		 * On OSX/Linux, true if path starts with '/'. On Windows, true for paths like:
-		 * \, \hello, \\hello\share, C:, and C:\hello (and corresponding alternate separator cases).
-		 */
-		function isRooted(p) {
-		    p = normalizeSeparators(p);
-		    if (!p) {
-		        throw new Error('isRooted() parameter "p" cannot be empty');
-		    }
-		    if (exports$1.IS_WINDOWS) {
-		        return (p.startsWith('\\') || /^[A-Z]:/i.test(p) // e.g. \ or \hello or \\hello
-		        ); // e.g. C: or C:\hello
-		    }
-		    return p.startsWith('/');
-		}
-		exports$1.isRooted = isRooted;
-		/**
-		 * Best effort attempt to determine whether a file exists and is executable.
-		 * @param filePath    file path to check
-		 * @param extensions  additional file extensions to try
-		 * @return if file exists and is executable, returns the file path. otherwise empty string.
-		 */
-		function tryGetExecutablePath(filePath, extensions) {
-		    return __awaiter(this, void 0, void 0, function* () {
-		        let stats = undefined;
-		        try {
-		            // test file exists
-		            stats = yield exports$1.stat(filePath);
-		        }
-		        catch (err) {
-		            if (err.code !== 'ENOENT') {
-		                // eslint-disable-next-line no-console
-		                console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
-		            }
-		        }
-		        if (stats && stats.isFile()) {
-		            if (exports$1.IS_WINDOWS) {
-		                // on Windows, test for valid extension
-		                const upperExt = path.extname(filePath).toUpperCase();
-		                if (extensions.some(validExt => validExt.toUpperCase() === upperExt)) {
-		                    return filePath;
-		                }
-		            }
-		            else {
-		                if (isUnixExecutable(stats)) {
-		                    return filePath;
-		                }
-		            }
-		        }
-		        // try each extension
-		        const originalFilePath = filePath;
-		        for (const extension of extensions) {
-		            filePath = originalFilePath + extension;
-		            stats = undefined;
-		            try {
-		                stats = yield exports$1.stat(filePath);
-		            }
-		            catch (err) {
-		                if (err.code !== 'ENOENT') {
-		                    // eslint-disable-next-line no-console
-		                    console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
-		                }
-		            }
-		            if (stats && stats.isFile()) {
-		                if (exports$1.IS_WINDOWS) {
-		                    // preserve the case of the actual file (since an extension was appended)
-		                    try {
-		                        const directory = path.dirname(filePath);
-		                        const upperName = path.basename(filePath).toUpperCase();
-		                        for (const actualName of yield exports$1.readdir(directory)) {
-		                            if (upperName === actualName.toUpperCase()) {
-		                                filePath = path.join(directory, actualName);
-		                                break;
-		                            }
-		                        }
-		                    }
-		                    catch (err) {
-		                        // eslint-disable-next-line no-console
-		                        console.log(`Unexpected error attempting to determine the actual case of the file '${filePath}': ${err}`);
-		                    }
-		                    return filePath;
-		                }
-		                else {
-		                    if (isUnixExecutable(stats)) {
-		                        return filePath;
-		                    }
-		                }
-		            }
-		        }
-		        return '';
-		    });
-		}
-		exports$1.tryGetExecutablePath = tryGetExecutablePath;
-		function normalizeSeparators(p) {
-		    p = p || '';
-		    if (exports$1.IS_WINDOWS) {
-		        // convert slashes on Windows
-		        p = p.replace(/\//g, '\\');
-		        // remove redundant slashes
-		        return p.replace(/\\\\+/g, '\\');
-		    }
-		    // remove redundant slashes
-		    return p.replace(/\/\/+/g, '/');
-		}
-		// on Mac/Linux, test the execute bit
-		//     R   W  X  R  W X R W X
-		//   256 128 64 32 16 8 4 2 1
-		function isUnixExecutable(stats) {
-		    return ((stats.mode & 1) > 0 ||
-		        ((stats.mode & 8) > 0 && stats.gid === process.getgid()) ||
-		        ((stats.mode & 64) > 0 && stats.uid === process.getuid()));
-		}
-		// Get the path of cmd.exe in windows
-		function getCmdPath() {
-		    var _a;
-		    return (_a = process.env['COMSPEC']) !== null && _a !== void 0 ? _a : `cmd.exe`;
-		}
-		exports$1.getCmdPath = getCmdPath;
-		
-	} (ioUtil$1));
-	return ioUtil$1;
-}
-
-var hasRequiredIo$1;
-
-function requireIo$1 () {
-	if (hasRequiredIo$1) return io$1;
-	hasRequiredIo$1 = 1;
-	var __createBinding = (io$1 && io$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-	    if (k2 === undefined) k2 = k;
-	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-	}) : (function(o, m, k, k2) {
-	    if (k2 === undefined) k2 = k;
-	    o[k2] = m[k];
-	}));
-	var __setModuleDefault = (io$1 && io$1.__setModuleDefault) || (Object.create ? (function(o, v) {
-	    Object.defineProperty(o, "default", { enumerable: true, value: v });
-	}) : function(o, v) {
-	    o["default"] = v;
-	});
-	var __importStar = (io$1 && io$1.__importStar) || function (mod) {
-	    if (mod && mod.__esModule) return mod;
-	    var result = {};
-	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-	    __setModuleDefault(result, mod);
-	    return result;
-	};
-	var __awaiter = (io$1 && io$1.__awaiter) || function (thisArg, _arguments, P, generator) {
-	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-	    return new (P || (P = Promise))(function (resolve, reject) {
-	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-	        step((generator = generator.apply(thisArg, _arguments || [])).next());
-	    });
-	};
-	Object.defineProperty(io$1, "__esModule", { value: true });
-	io$1.findInPath = io$1.which = io$1.mkdirP = io$1.rmRF = io$1.mv = io$1.cp = void 0;
-	const assert_1 = require$$0$6;
-	const path = __importStar(path__default);
-	const ioUtil = __importStar(requireIoUtil$1());
-	/**
-	 * Copies a file or folder.
-	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
-	 *
-	 * @param     source    source path
-	 * @param     dest      destination path
-	 * @param     options   optional. See CopyOptions.
-	 */
-	function cp(source, dest, options = {}) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        const { force, recursive, copySourceDirectory } = readCopyOptions(options);
-	        const destStat = (yield ioUtil.exists(dest)) ? yield ioUtil.stat(dest) : null;
-	        // Dest is an existing file, but not forcing
-	        if (destStat && destStat.isFile() && !force) {
-	            return;
-	        }
-	        // If dest is an existing directory, should copy inside.
-	        const newDest = destStat && destStat.isDirectory() && copySourceDirectory
-	            ? path.join(dest, path.basename(source))
-	            : dest;
-	        if (!(yield ioUtil.exists(source))) {
-	            throw new Error(`no such file or directory: ${source}`);
-	        }
-	        const sourceStat = yield ioUtil.stat(source);
-	        if (sourceStat.isDirectory()) {
-	            if (!recursive) {
-	                throw new Error(`Failed to copy. ${source} is a directory, but tried to copy without recursive flag.`);
-	            }
-	            else {
-	                yield cpDirRecursive(source, newDest, 0, force);
-	            }
-	        }
-	        else {
-	            if (path.relative(source, newDest) === '') {
-	                // a file cannot be copied to itself
-	                throw new Error(`'${newDest}' and '${source}' are the same file`);
-	            }
-	            yield copyFile(source, newDest, force);
-	        }
-	    });
-	}
-	io$1.cp = cp;
-	/**
-	 * Moves a path.
-	 *
-	 * @param     source    source path
-	 * @param     dest      destination path
-	 * @param     options   optional. See MoveOptions.
-	 */
-	function mv(source, dest, options = {}) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        if (yield ioUtil.exists(dest)) {
-	            let destExists = true;
-	            if (yield ioUtil.isDirectory(dest)) {
-	                // If dest is directory copy src into dest
-	                dest = path.join(dest, path.basename(source));
-	                destExists = yield ioUtil.exists(dest);
-	            }
-	            if (destExists) {
-	                if (options.force == null || options.force) {
-	                    yield rmRF(dest);
-	                }
-	                else {
-	                    throw new Error('Destination already exists');
-	                }
-	            }
-	        }
-	        yield mkdirP(path.dirname(dest));
-	        yield ioUtil.rename(source, dest);
-	    });
-	}
-	io$1.mv = mv;
-	/**
-	 * Remove a path recursively with force
-	 *
-	 * @param inputPath path to remove
-	 */
-	function rmRF(inputPath) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        if (ioUtil.IS_WINDOWS) {
-	            // Check for invalid characters
-	            // https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
-	            if (/[*"<>|]/.test(inputPath)) {
-	                throw new Error('File path must not contain `*`, `"`, `<`, `>` or `|` on Windows');
-	            }
-	        }
-	        try {
-	            // note if path does not exist, error is silent
-	            yield ioUtil.rm(inputPath, {
-	                force: true,
-	                maxRetries: 3,
-	                recursive: true,
-	                retryDelay: 300
-	            });
-	        }
-	        catch (err) {
-	            throw new Error(`File was unable to be removed ${err}`);
-	        }
-	    });
-	}
-	io$1.rmRF = rmRF;
-	/**
-	 * Make a directory.  Creates the full path with folders in between
-	 * Will throw if it fails
-	 *
-	 * @param   fsPath        path to create
-	 * @returns Promise<void>
-	 */
-	function mkdirP(fsPath) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        assert_1.ok(fsPath, 'a path argument must be provided');
-	        yield ioUtil.mkdir(fsPath, { recursive: true });
-	    });
-	}
-	io$1.mkdirP = mkdirP;
-	/**
-	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
-	 * If you check and the tool does not exist, it will throw.
-	 *
-	 * @param     tool              name of the tool
-	 * @param     check             whether to check if tool exists
-	 * @returns   Promise<string>   path to tool
-	 */
-	function which(tool, check) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        if (!tool) {
-	            throw new Error("parameter 'tool' is required");
-	        }
-	        // recursive when check=true
-	        if (check) {
-	            const result = yield which(tool, false);
-	            if (!result) {
-	                if (ioUtil.IS_WINDOWS) {
-	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also verify the file has a valid extension for an executable file.`);
-	                }
-	                else {
-	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.`);
-	                }
-	            }
-	            return result;
-	        }
-	        const matches = yield findInPath(tool);
-	        if (matches && matches.length > 0) {
-	            return matches[0];
-	        }
-	        return '';
-	    });
-	}
-	io$1.which = which;
-	/**
-	 * Returns a list of all occurrences of the given tool on the system path.
-	 *
-	 * @returns   Promise<string[]>  the paths of the tool
-	 */
-	function findInPath(tool) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        if (!tool) {
-	            throw new Error("parameter 'tool' is required");
-	        }
-	        // build the list of extensions to try
-	        const extensions = [];
-	        if (ioUtil.IS_WINDOWS && process.env['PATHEXT']) {
-	            for (const extension of process.env['PATHEXT'].split(path.delimiter)) {
-	                if (extension) {
-	                    extensions.push(extension);
-	                }
-	            }
-	        }
-	        // if it's rooted, return it if exists. otherwise return empty.
-	        if (ioUtil.isRooted(tool)) {
-	            const filePath = yield ioUtil.tryGetExecutablePath(tool, extensions);
-	            if (filePath) {
-	                return [filePath];
-	            }
-	            return [];
-	        }
-	        // if any path separators, return empty
-	        if (tool.includes(path.sep)) {
-	            return [];
-	        }
-	        // build the list of directories
-	        //
-	        // Note, technically "where" checks the current directory on Windows. From a toolkit perspective,
-	        // it feels like we should not do this. Checking the current directory seems like more of a use
-	        // case of a shell, and the which() function exposed by the toolkit should strive for consistency
-	        // across platforms.
-	        const directories = [];
-	        if (process.env.PATH) {
-	            for (const p of process.env.PATH.split(path.delimiter)) {
-	                if (p) {
-	                    directories.push(p);
-	                }
-	            }
-	        }
-	        // find all matches
-	        const matches = [];
-	        for (const directory of directories) {
-	            const filePath = yield ioUtil.tryGetExecutablePath(path.join(directory, tool), extensions);
-	            if (filePath) {
-	                matches.push(filePath);
-	            }
-	        }
-	        return matches;
-	    });
-	}
-	io$1.findInPath = findInPath;
-	function readCopyOptions(options) {
-	    const force = options.force == null ? true : options.force;
-	    const recursive = Boolean(options.recursive);
-	    const copySourceDirectory = options.copySourceDirectory == null
-	        ? true
-	        : Boolean(options.copySourceDirectory);
-	    return { force, recursive, copySourceDirectory };
-	}
-	function cpDirRecursive(sourceDir, destDir, currentDepth, force) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        // Ensure there is not a run away recursive copy
-	        if (currentDepth >= 255)
-	            return;
-	        currentDepth++;
-	        yield mkdirP(destDir);
-	        const files = yield ioUtil.readdir(sourceDir);
-	        for (const fileName of files) {
-	            const srcFile = `${sourceDir}/${fileName}`;
-	            const destFile = `${destDir}/${fileName}`;
-	            const srcFileStat = yield ioUtil.lstat(srcFile);
-	            if (srcFileStat.isDirectory()) {
-	                // Recurse
-	                yield cpDirRecursive(srcFile, destFile, currentDepth, force);
-	            }
-	            else {
-	                yield copyFile(srcFile, destFile, force);
-	            }
-	        }
-	        // Change the mode for the newly created directory
-	        yield ioUtil.chmod(destDir, (yield ioUtil.stat(sourceDir)).mode);
-	    });
-	}
-	// Buffered file copy
-	function copyFile(srcFile, destFile, force) {
-	    return __awaiter(this, void 0, void 0, function* () {
-	        if ((yield ioUtil.lstat(srcFile)).isSymbolicLink()) {
-	            // unlink/re-link it
-	            try {
-	                yield ioUtil.lstat(destFile);
-	                yield ioUtil.unlink(destFile);
-	            }
-	            catch (e) {
-	                // Try to override file permission
-	                if (e.code === 'EPERM') {
-	                    yield ioUtil.chmod(destFile, '0666');
-	                    yield ioUtil.unlink(destFile);
-	                }
-	                // other errors = it doesn't exist, no work to do
-	            }
-	            // Copy over symlink
-	            const symlinkFull = yield ioUtil.readlink(srcFile);
-	            yield ioUtil.symlink(symlinkFull, destFile, ioUtil.IS_WINDOWS ? 'junction' : null);
-	        }
-	        else if (!(yield ioUtil.exists(destFile)) || force) {
-	            yield ioUtil.copyFile(srcFile, destFile);
-	        }
-	    });
-	}
-	
-	return io$1;
 }
 
 var semver = {exports: {}};
@@ -33125,14 +33864,14 @@ function requireCacheUtils () {
 	Object.defineProperty(cacheUtils, "__esModule", { value: true });
 	cacheUtils.getRuntimeToken = cacheUtils.getCacheVersion = cacheUtils.assertDefined = cacheUtils.getGnuTarPathOnWindows = cacheUtils.getCacheFileName = cacheUtils.getCompressionMethod = cacheUtils.unlinkFile = cacheUtils.resolvePaths = cacheUtils.getArchiveFileSizeInBytes = cacheUtils.createTempDirectory = void 0;
 	const core = __importStar(requireCore());
-	const exec = __importStar(requireExec());
+	const exec = __importStar(requireExec$2());
 	const glob = __importStar(requireGlob());
-	const io = __importStar(requireIo$1());
-	const crypto = __importStar(require$$0$3);
+	const io = __importStar(requireIo$2());
+	const crypto = __importStar(require$$0$4);
 	const fs = __importStar(require$$1__default);
 	const path = __importStar(path__default);
 	const semver = __importStar(requireSemver());
-	const util = __importStar(require$$0$4);
+	const util = __importStar(require$$0$5);
 	const constants_1 = requireConstants$5();
 	const versionSalt = '1.0';
 	// From https://github.com/actions/toolkit/blob/main/packages/tool-cache/src/tool-cache.ts#L23
@@ -33817,8 +34556,8 @@ function requireLog$5 () {
 	Object.defineProperty(log$5, "__esModule", { value: true });
 	log$5.log = log;
 	const tslib_1 = require$$0$2;
-	const node_os_1 = require$$1$6;
-	const node_util_1 = tslib_1.__importDefault(require$$1$4);
+	const node_os_1 = require$$1$7;
+	const node_util_1 = tslib_1.__importDefault(require$$1$5);
 	const node_process_1 = tslib_1.__importDefault(require$$2$3);
 	function log(message, ...args) {
 	    node_process_1.default.stderr.write(`${node_util_1.default.format(message, ...args)}${node_os_1.EOL}`);
@@ -34721,7 +35460,7 @@ function requireInspect () {
 	// Licensed under the MIT License.
 	Object.defineProperty(inspect, "__esModule", { value: true });
 	inspect.custom = void 0;
-	const node_util_1 = require$$1$4;
+	const node_util_1 = require$$1$5;
 	inspect.custom = node_util_1.inspect.custom;
 	
 	return inspect;
@@ -35062,7 +35801,7 @@ function requireNodeHttpClient () {
 	nodeHttpClient.getBodyLength = getBodyLength;
 	nodeHttpClient.createNodeHttpClient = createNodeHttpClient;
 	const tslib_1 = require$$0$2;
-	const node_http_1 = tslib_1.__importDefault(require$$1$7);
+	const node_http_1 = tslib_1.__importDefault(require$$1$8);
 	const node_https_1 = tslib_1.__importDefault(require$$2$4);
 	const node_zlib_1 = tslib_1.__importDefault(require$$3$1);
 	const node_stream_1 = require$$0$a;
@@ -35568,7 +36307,7 @@ function requireUserAgentPlatform$1 () {
 	userAgentPlatform$1.getHeaderName = getHeaderName;
 	userAgentPlatform$1.setPlatformSpecificData = setPlatformSpecificData;
 	const tslib_1 = require$$0$2;
-	const node_os_1 = tslib_1.__importDefault(require$$1$6);
+	const node_os_1 = tslib_1.__importDefault(require$$1$7);
 	const node_process_1 = tslib_1.__importDefault(require$$2$3);
 	/**
 	 * @internal
@@ -37140,8 +37879,8 @@ var hasRequiredSupportsColor;
 function requireSupportsColor () {
 	if (hasRequiredSupportsColor) return supportsColor_1;
 	hasRequiredSupportsColor = 1;
-	const os = os__default;
-	const tty = require$$1$8;
+	const os = require$$0__default;
+	const tty = require$$1$9;
 	const hasFlag = requireHasFlag();
 
 	const {env} = process;
@@ -37287,8 +38026,8 @@ function requireNode () {
 	if (hasRequiredNode) return node.exports;
 	hasRequiredNode = 1;
 	(function (module, exports$1) {
-		const tty = require$$1$8;
-		const util = require$$0$4;
+		const tty = require$$1$9;
+		const util = require$$0$5;
 
 		/**
 		 * This is the Node.js implementation of `debug()`.
@@ -37976,7 +38715,7 @@ function requireDist$1 () {
 	Object.defineProperty(dist$2, "__esModule", { value: true });
 	dist$2.HttpsProxyAgent = void 0;
 	const net = __importStar(require$$0$7);
-	const tls = __importStar(require$$1$3);
+	const tls = __importStar(require$$1$4);
 	const assert_1 = __importDefault(require$$0$6);
 	const debug_1 = __importDefault(requireSrc$1());
 	const agent_base_1 = requireDist$2();
@@ -38165,9 +38904,9 @@ function requireDist () {
 	Object.defineProperty(dist, "__esModule", { value: true });
 	dist.HttpProxyAgent = void 0;
 	const net = __importStar(require$$0$7);
-	const tls = __importStar(require$$1$3);
+	const tls = __importStar(require$$1$4);
 	const debug_1 = __importDefault(requireSrc$1());
-	const events_1 = require$$0$5;
+	const events_1 = require$$1$3;
 	const agent_base_1 = requireDist$2();
 	const url_1 = require$$5$1;
 	const debug = (0, debug_1.default)('http-proxy-agent');
@@ -40319,7 +41058,7 @@ function requireUserAgentPlatform () {
 	userAgentPlatform.getHeaderName = getHeaderName;
 	userAgentPlatform.setPlatformSpecificData = setPlatformSpecificData;
 	const tslib_1 = require$$0$2;
-	const node_os_1 = tslib_1.__importDefault(require$$1$6);
+	const node_os_1 = tslib_1.__importDefault(require$$1$7);
 	const node_process_1 = tslib_1.__importDefault(require$$2$3);
 	/**
 	 * @internal
@@ -40466,7 +41205,7 @@ function requireSha256 () {
 	Object.defineProperty(sha256, "__esModule", { value: true });
 	sha256.computeSha256Hmac = computeSha256Hmac;
 	sha256.computeSha256Hash = computeSha256Hash;
-	const node_crypto_1 = require$$0$d;
+	const node_crypto_1 = require$$0$e;
 	/**
 	 * Generates a SHA-256 HMAC signature.
 	 * @param key - The HMAC key represented as a base64 string, used to generate the cryptographic HMAC hash.
@@ -46228,7 +46967,7 @@ var hasRequiredFxp;
 function requireFxp () {
 	if (hasRequiredFxp) return fxp.exports;
 	hasRequiredFxp = 1;
-	(()=>{var t={d:(e,i)=>{for(var n in i)t.o(i,n)&&!t.o(e,n)&&Object.defineProperty(e,n,{enumerable:true,get:i[n]});},o:(t,e)=>Object.prototype.hasOwnProperty.call(t,e),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:true});}},e={};t.r(e),t.d(e,{XMLBuilder:()=>lt,XMLParser:()=>tt,XMLValidator:()=>pt});const i=":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD",n=new RegExp("^["+i+"]["+i+"\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$");function s(t,e){const i=[];let n=e.exec(t);for(;n;){const s=[];s.startIndex=e.lastIndex-n[0].length;const r=n.length;for(let t=0;t<r;t++)s.push(n[t]);i.push(s),n=e.exec(t);}return i}const r=function(t){return !(null==n.exec(t))},o={allowBooleanAttributes:false,unpairedTags:[]};function a(t,e){e=Object.assign({},o,e);const i=[];let n=false,s=false;"\ufeff"===t[0]&&(t=t.substr(1));for(let o=0;o<t.length;o++)if("<"===t[o]&&"?"===t[o+1]){if(o+=2,o=u(t,o),o.err)return o}else {if("<"!==t[o]){if(l(t[o]))continue;return x("InvalidChar","char '"+t[o]+"' is not expected.",b(t,o))}{let a=o;if(o++,"!"===t[o]){o=h(t,o);continue}{let d=false;"/"===t[o]&&(d=true,o++);let p="";for(;o<t.length&&">"!==t[o]&&" "!==t[o]&&"\t"!==t[o]&&"\n"!==t[o]&&"\r"!==t[o];o++)p+=t[o];if(p=p.trim(),"/"===p[p.length-1]&&(p=p.substring(0,p.length-1),o--),!r(p)){let e;return e=0===p.trim().length?"Invalid space after '<'.":"Tag '"+p+"' is an invalid name.",x("InvalidTag",e,b(t,o))}const c=f(t,o);if(false===c)return x("InvalidAttr","Attributes for '"+p+"' have open quote.",b(t,o));let N=c.value;if(o=c.index,"/"===N[N.length-1]){const i=o-N.length;N=N.substring(0,N.length-1);const s=g(N,e);if(true!==s)return x(s.err.code,s.err.msg,b(t,i+s.err.line));n=true;}else if(d){if(!c.tagClosed)return x("InvalidTag","Closing tag '"+p+"' doesn't have proper closing.",b(t,o));if(N.trim().length>0)return x("InvalidTag","Closing tag '"+p+"' can't have attributes or invalid starting.",b(t,a));if(0===i.length)return x("InvalidTag","Closing tag '"+p+"' has not been opened.",b(t,a));{const e=i.pop();if(p!==e.tagName){let i=b(t,e.tagStartPos);return x("InvalidTag","Expected closing tag '"+e.tagName+"' (opened in line "+i.line+", col "+i.col+") instead of closing tag '"+p+"'.",b(t,a))}0==i.length&&(s=true);}}else {const r=g(N,e);if(true!==r)return x(r.err.code,r.err.msg,b(t,o-N.length+r.err.line));if(true===s)return x("InvalidXml","Multiple possible root nodes found.",b(t,o));-1!==e.unpairedTags.indexOf(p)||i.push({tagName:p,tagStartPos:a}),n=true;}for(o++;o<t.length;o++)if("<"===t[o]){if("!"===t[o+1]){o++,o=h(t,o);continue}if("?"!==t[o+1])break;if(o=u(t,++o),o.err)return o}else if("&"===t[o]){const e=m(t,o);if(-1==e)return x("InvalidChar","char '&' is not expected.",b(t,o));o=e;}else if(true===s&&!l(t[o]))return x("InvalidXml","Extra text at the end",b(t,o));"<"===t[o]&&o--;}}}return n?1==i.length?x("InvalidTag","Unclosed tag '"+i[0].tagName+"'.",b(t,i[0].tagStartPos)):!(i.length>0)||x("InvalidXml","Invalid '"+JSON.stringify(i.map((t=>t.tagName)),null,4).replace(/\r?\n/g,"")+"' found.",{line:1,col:1}):x("InvalidXml","Start tag expected.",1)}function l(t){return " "===t||"\t"===t||"\n"===t||"\r"===t}function u(t,e){const i=e;for(;e<t.length;e++)if("?"!=t[e]&&" "!=t[e]);else {const n=t.substr(i,e-i);if(e>5&&"xml"===n)return x("InvalidXml","XML declaration allowed only at the start of the document.",b(t,e));if("?"==t[e]&&">"==t[e+1]){e++;break}}return e}function h(t,e){if(t.length>e+5&&"-"===t[e+1]&&"-"===t[e+2]){for(e+=3;e<t.length;e++)if("-"===t[e]&&"-"===t[e+1]&&">"===t[e+2]){e+=2;break}}else if(t.length>e+8&&"D"===t[e+1]&&"O"===t[e+2]&&"C"===t[e+3]&&"T"===t[e+4]&&"Y"===t[e+5]&&"P"===t[e+6]&&"E"===t[e+7]){let i=1;for(e+=8;e<t.length;e++)if("<"===t[e])i++;else if(">"===t[e]&&(i--,0===i))break}else if(t.length>e+9&&"["===t[e+1]&&"C"===t[e+2]&&"D"===t[e+3]&&"A"===t[e+4]&&"T"===t[e+5]&&"A"===t[e+6]&&"["===t[e+7])for(e+=8;e<t.length;e++)if("]"===t[e]&&"]"===t[e+1]&&">"===t[e+2]){e+=2;break}return e}const d='"',p="'";function f(t,e){let i="",n="",s=false;for(;e<t.length;e++){if(t[e]===d||t[e]===p)""===n?n=t[e]:n!==t[e]||(n="");else if(">"===t[e]&&""===n){s=true;break}i+=t[e];}return ""===n&&{value:i,index:e,tagClosed:s}}const c=new RegExp("(\\s*)([^\\s=]+)(\\s*=)?(\\s*(['\"])(([\\s\\S])*?)\\5)?","g");function g(t,e){const i=s(t,c),n={};for(let t=0;t<i.length;t++){if(0===i[t][1].length)return x("InvalidAttr","Attribute '"+i[t][2]+"' has no space in starting.",E(i[t]));if(void 0!==i[t][3]&&void 0===i[t][4])return x("InvalidAttr","Attribute '"+i[t][2]+"' is without value.",E(i[t]));if(void 0===i[t][3]&&!e.allowBooleanAttributes)return x("InvalidAttr","boolean attribute '"+i[t][2]+"' is not allowed.",E(i[t]));const s=i[t][2];if(!N(s))return x("InvalidAttr","Attribute '"+s+"' is an invalid name.",E(i[t]));if(n.hasOwnProperty(s))return x("InvalidAttr","Attribute '"+s+"' is repeated.",E(i[t]));n[s]=1;}return  true}function m(t,e){if(";"===t[++e])return  -1;if("#"===t[e])return function(t,e){let i=/\d/;for("x"===t[e]&&(e++,i=/[\da-fA-F]/);e<t.length;e++){if(";"===t[e])return e;if(!t[e].match(i))break}return  -1}(t,++e);let i=0;for(;e<t.length;e++,i++)if(!(t[e].match(/\w/)&&i<20)){if(";"===t[e])break;return  -1}return e}function x(t,e,i){return {err:{code:t,msg:e,line:i.line||i,col:i.col}}}function N(t){return r(t)}function b(t,e){const i=t.substring(0,e).split(/\r?\n/);return {line:i.length,col:i[i.length-1].length+1}}function E(t){return t.startIndex+t[1].length}const v={preserveOrder:false,attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,removeNSPrefix:false,allowBooleanAttributes:false,parseTagValue:true,parseAttributeValue:false,trimValues:true,cdataPropName:false,numberParseOptions:{hex:true,leadingZeros:true,eNotation:true},tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},stopNodes:[],alwaysCreateTextNode:false,isArray:()=>false,commentPropName:false,unpairedTags:[],processEntities:true,htmlEntities:false,ignoreDeclaration:false,ignorePiTags:false,transformTagName:false,transformAttributeName:false,updateTag:function(t,e,i){return t},captureMetaData:false};let T;T="function"!=typeof Symbol?"@@xmlMetadata":Symbol("XML Node Metadata");class y{constructor(t){this.tagname=t,this.child=[],this[":@"]={};}add(t,e){"__proto__"===t&&(t="#__proto__"),this.child.push({[t]:e});}addChild(t,e){"__proto__"===t.tagname&&(t.tagname="#__proto__"),t[":@"]&&Object.keys(t[":@"]).length>0?this.child.push({[t.tagname]:t.child,":@":t[":@"]}):this.child.push({[t.tagname]:t.child}),void 0!==e&&(this.child[this.child.length-1][T]={startIndex:e});}static getMetaDataSymbol(){return T}}class w{constructor(t){this.suppressValidationErr=!t;}readDocType(t,e){const i={};if("O"!==t[e+3]||"C"!==t[e+4]||"T"!==t[e+5]||"Y"!==t[e+6]||"P"!==t[e+7]||"E"!==t[e+8])throw new Error("Invalid Tag instead of DOCTYPE");{e+=9;let n=1,s=false,r=false,o="";for(;e<t.length;e++)if("<"!==t[e]||r)if(">"===t[e]){if(r?"-"===t[e-1]&&"-"===t[e-2]&&(r=false,n--):n--,0===n)break}else "["===t[e]?s=true:o+=t[e];else {if(s&&P(t,"!ENTITY",e)){let n,s;e+=7,[n,s,e]=this.readEntityExp(t,e+1,this.suppressValidationErr),-1===s.indexOf("&")&&(i[n]={regx:RegExp(`&${n};`,"g"),val:s});}else if(s&&P(t,"!ELEMENT",e)){e+=8;const{index:i}=this.readElementExp(t,e+1);e=i;}else if(s&&P(t,"!ATTLIST",e))e+=8;else if(s&&P(t,"!NOTATION",e)){e+=9;const{index:i}=this.readNotationExp(t,e+1,this.suppressValidationErr);e=i;}else {if(!P(t,"!--",e))throw new Error("Invalid DOCTYPE");r=true;}n++,o="";}if(0!==n)throw new Error("Unclosed DOCTYPE")}return {entities:i,i:e}}readEntityExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e])&&'"'!==t[e]&&"'"!==t[e];)i+=t[e],e++;if(O(i),e=I(t,e),!this.suppressValidationErr){if("SYSTEM"===t.substring(e,e+6).toUpperCase())throw new Error("External entities are not supported");if("%"===t[e])throw new Error("Parameter entities are not supported")}let n="";return [e,n]=this.readIdentifierVal(t,e,"entity"),[i,n,--e]}readNotationExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;!this.suppressValidationErr&&O(i),e=I(t,e);const n=t.substring(e,e+6).toUpperCase();if(!this.suppressValidationErr&&"SYSTEM"!==n&&"PUBLIC"!==n)throw new Error(`Expected SYSTEM or PUBLIC, found "${n}"`);e+=n.length,e=I(t,e);let s=null,r=null;if("PUBLIC"===n)[e,s]=this.readIdentifierVal(t,e,"publicIdentifier"),'"'!==t[e=I(t,e)]&&"'"!==t[e]||([e,r]=this.readIdentifierVal(t,e,"systemIdentifier"));else if("SYSTEM"===n&&([e,r]=this.readIdentifierVal(t,e,"systemIdentifier"),!this.suppressValidationErr&&!r))throw new Error("Missing mandatory system identifier for SYSTEM notation");return {notationName:i,publicIdentifier:s,systemIdentifier:r,index:--e}}readIdentifierVal(t,e,i){let n="";const s=t[e];if('"'!==s&&"'"!==s)throw new Error(`Expected quoted string, found "${s}"`);for(e++;e<t.length&&t[e]!==s;)n+=t[e],e++;if(t[e]!==s)throw new Error(`Unterminated ${i} value`);return [++e,n]}readElementExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;if(!this.suppressValidationErr&&!r(i))throw new Error(`Invalid element name: "${i}"`);let n="";if("E"===t[e=I(t,e)]&&P(t,"MPTY",e))e+=4;else if("A"===t[e]&&P(t,"NY",e))e+=2;else if("("===t[e]){for(e++;e<t.length&&")"!==t[e];)n+=t[e],e++;if(")"!==t[e])throw new Error("Unterminated content model")}else if(!this.suppressValidationErr)throw new Error(`Invalid Element Expression, found "${t[e]}"`);return {elementName:i,contentModel:n.trim(),index:e}}readAttlistExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;O(i),e=I(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;if(!O(n))throw new Error(`Invalid attribute name: "${n}"`);e=I(t,e);let s="";if("NOTATION"===t.substring(e,e+8).toUpperCase()){if(s="NOTATION","("!==t[e=I(t,e+=8)])throw new Error(`Expected '(', found "${t[e]}"`);e++;let i=[];for(;e<t.length&&")"!==t[e];){let n="";for(;e<t.length&&"|"!==t[e]&&")"!==t[e];)n+=t[e],e++;if(n=n.trim(),!O(n))throw new Error(`Invalid notation name: "${n}"`);i.push(n),"|"===t[e]&&(e++,e=I(t,e));}if(")"!==t[e])throw new Error("Unterminated list of notations");e++,s+=" ("+i.join("|")+")";}else {for(;e<t.length&&!/\s/.test(t[e]);)s+=t[e],e++;const i=["CDATA","ID","IDREF","IDREFS","ENTITY","ENTITIES","NMTOKEN","NMTOKENS"];if(!this.suppressValidationErr&&!i.includes(s.toUpperCase()))throw new Error(`Invalid attribute type: "${s}"`)}e=I(t,e);let r="";return "#REQUIRED"===t.substring(e,e+8).toUpperCase()?(r="#REQUIRED",e+=8):"#IMPLIED"===t.substring(e,e+7).toUpperCase()?(r="#IMPLIED",e+=7):[e,r]=this.readIdentifierVal(t,e,"ATTLIST"),{elementName:i,attributeName:n,attributeType:s,defaultValue:r,index:e}}}const I=(t,e)=>{for(;e<t.length&&/\s/.test(t[e]);)e++;return e};function P(t,e,i){for(let n=0;n<e.length;n++)if(e[n]!==t[i+n+1])return  false;return  true}function O(t){if(r(t))return t;throw new Error(`Invalid entity name ${t}`)}const A=/^[-+]?0x[a-fA-F0-9]+$/,S=/^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/,C={hex:true,leadingZeros:true,decimalPoint:".",eNotation:true};const V=/^([-+])?(0*)(\d*(\.\d*)?[eE][-\+]?\d+)$/;function $(t){return "function"==typeof t?t:Array.isArray(t)?e=>{for(const i of t){if("string"==typeof i&&e===i)return  true;if(i instanceof RegExp&&i.test(e))return  true}}:()=>false}class D{constructor(t){if(this.options=t,this.currentNode=null,this.tagsNodeStack=[],this.docTypeEntities={},this.lastEntities={apos:{regex:/&(apos|#39|#x27);/g,val:"'"},gt:{regex:/&(gt|#62|#x3E);/g,val:">"},lt:{regex:/&(lt|#60|#x3C);/g,val:"<"},quot:{regex:/&(quot|#34|#x22);/g,val:'"'}},this.ampEntity={regex:/&(amp|#38|#x26);/g,val:"&"},this.htmlEntities={space:{regex:/&(nbsp|#160);/g,val:" "},cent:{regex:/&(cent|#162);/g,val:"¢"},pound:{regex:/&(pound|#163);/g,val:"£"},yen:{regex:/&(yen|#165);/g,val:"¥"},euro:{regex:/&(euro|#8364);/g,val:"€"},copyright:{regex:/&(copy|#169);/g,val:"©"},reg:{regex:/&(reg|#174);/g,val:"®"},inr:{regex:/&(inr|#8377);/g,val:"₹"},num_dec:{regex:/&#([0-9]{1,7});/g,val:(t,e)=>String.fromCodePoint(Number.parseInt(e,10))},num_hex:{regex:/&#x([0-9a-fA-F]{1,6});/g,val:(t,e)=>String.fromCodePoint(Number.parseInt(e,16))}},this.addExternalEntities=j,this.parseXml=L,this.parseTextData=M,this.resolveNameSpace=F,this.buildAttributesMap=k,this.isItStopNode=Y,this.replaceEntitiesValue=B,this.readStopNodeData=W,this.saveTextToParentTag=R,this.addChild=U,this.ignoreAttributesFn=$(this.options.ignoreAttributes),this.options.stopNodes&&this.options.stopNodes.length>0){this.stopNodesExact=new Set,this.stopNodesWildcard=new Set;for(let t=0;t<this.options.stopNodes.length;t++){const e=this.options.stopNodes[t];"string"==typeof e&&(e.startsWith("*.")?this.stopNodesWildcard.add(e.substring(2)):this.stopNodesExact.add(e));}}}}function j(t){const e=Object.keys(t);for(let i=0;i<e.length;i++){const n=e[i];this.lastEntities[n]={regex:new RegExp("&"+n+";","g"),val:t[n]};}}function M(t,e,i,n,s,r,o){if(void 0!==t&&(this.options.trimValues&&!n&&(t=t.trim()),t.length>0)){o||(t=this.replaceEntitiesValue(t));const n=this.options.tagValueProcessor(e,t,i,s,r);return null==n?t:typeof n!=typeof t||n!==t?n:this.options.trimValues||t.trim()===t?q(t,this.options.parseTagValue,this.options.numberParseOptions):t}}function F(t){if(this.options.removeNSPrefix){const e=t.split(":"),i="/"===t.charAt(0)?"/":"";if("xmlns"===e[0])return "";2===e.length&&(t=i+e[1]);}return t}const _=new RegExp("([^\\s=]+)\\s*(=\\s*(['\"])([\\s\\S]*?)\\3)?","gm");function k(t,e,i){if(true!==this.options.ignoreAttributes&&"string"==typeof t){const i=s(t,_),n=i.length,r={};for(let t=0;t<n;t++){const n=this.resolveNameSpace(i[t][1]);if(this.ignoreAttributesFn(n,e))continue;let s=i[t][4],o=this.options.attributeNamePrefix+n;if(n.length)if(this.options.transformAttributeName&&(o=this.options.transformAttributeName(o)),"__proto__"===o&&(o="#__proto__"),void 0!==s){this.options.trimValues&&(s=s.trim()),s=this.replaceEntitiesValue(s);const t=this.options.attributeValueProcessor(n,s,e);r[o]=null==t?s:typeof t!=typeof s||t!==s?t:q(s,this.options.parseAttributeValue,this.options.numberParseOptions);}else this.options.allowBooleanAttributes&&(r[o]=true);}if(!Object.keys(r).length)return;if(this.options.attributesGroupName){const t={};return t[this.options.attributesGroupName]=r,t}return r}}const L=function(t){t=t.replace(/\r\n?/g,"\n");const e=new y("!xml");let i=e,n="",s="";const r=new w(this.options.processEntities);for(let o=0;o<t.length;o++)if("<"===t[o])if("/"===t[o+1]){const e=G(t,">",o,"Closing Tag is not closed.");let r=t.substring(o+2,e).trim();if(this.options.removeNSPrefix){const t=r.indexOf(":");-1!==t&&(r=r.substr(t+1));}this.options.transformTagName&&(r=this.options.transformTagName(r)),i&&(n=this.saveTextToParentTag(n,i,s));const a=s.substring(s.lastIndexOf(".")+1);if(r&&-1!==this.options.unpairedTags.indexOf(r))throw new Error(`Unpaired tag can not be used as closing tag: </${r}>`);let l=0;a&&-1!==this.options.unpairedTags.indexOf(a)?(l=s.lastIndexOf(".",s.lastIndexOf(".")-1),this.tagsNodeStack.pop()):l=s.lastIndexOf("."),s=s.substring(0,l),i=this.tagsNodeStack.pop(),n="",o=e;}else if("?"===t[o+1]){let e=X(t,o,false,"?>");if(!e)throw new Error("Pi Tag is not closed.");if(n=this.saveTextToParentTag(n,i,s),this.options.ignoreDeclaration&&"?xml"===e.tagName||this.options.ignorePiTags);else {const t=new y(e.tagName);t.add(this.options.textNodeName,""),e.tagName!==e.tagExp&&e.attrExpPresent&&(t[":@"]=this.buildAttributesMap(e.tagExp,s,e.tagName)),this.addChild(i,t,s,o);}o=e.closeIndex+1;}else if("!--"===t.substr(o+1,3)){const e=G(t,"--\x3e",o+4,"Comment is not closed.");if(this.options.commentPropName){const r=t.substring(o+4,e-2);n=this.saveTextToParentTag(n,i,s),i.add(this.options.commentPropName,[{[this.options.textNodeName]:r}]);}o=e;}else if("!D"===t.substr(o+1,2)){const e=r.readDocType(t,o);this.docTypeEntities=e.entities,o=e.i;}else if("!["===t.substr(o+1,2)){const e=G(t,"]]>",o,"CDATA is not closed.")-2,r=t.substring(o+9,e);n=this.saveTextToParentTag(n,i,s);let a=this.parseTextData(r,i.tagname,s,true,false,true,true);null==a&&(a=""),this.options.cdataPropName?i.add(this.options.cdataPropName,[{[this.options.textNodeName]:r}]):i.add(this.options.textNodeName,a),o=e+2;}else {let r=X(t,o,this.options.removeNSPrefix),a=r.tagName;const l=r.rawTagName;let u=r.tagExp,h=r.attrExpPresent,d=r.closeIndex;this.options.transformTagName&&(a=this.options.transformTagName(a)),i&&n&&"!xml"!==i.tagname&&(n=this.saveTextToParentTag(n,i,s,false));const p=i;p&&-1!==this.options.unpairedTags.indexOf(p.tagname)&&(i=this.tagsNodeStack.pop(),s=s.substring(0,s.lastIndexOf("."))),a!==e.tagname&&(s+=s?"."+a:a);const f=o;if(this.isItStopNode(this.stopNodesExact,this.stopNodesWildcard,s,a)){let e="";if(u.length>0&&u.lastIndexOf("/")===u.length-1)"/"===a[a.length-1]?(a=a.substr(0,a.length-1),s=s.substr(0,s.length-1),u=a):u=u.substr(0,u.length-1),o=r.closeIndex;else if(-1!==this.options.unpairedTags.indexOf(a))o=r.closeIndex;else {const i=this.readStopNodeData(t,l,d+1);if(!i)throw new Error(`Unexpected end of ${l}`);o=i.i,e=i.tagContent;}const n=new y(a);a!==u&&h&&(n[":@"]=this.buildAttributesMap(u,s,a)),e&&(e=this.parseTextData(e,a,s,true,h,true,true)),s=s.substr(0,s.lastIndexOf(".")),n.add(this.options.textNodeName,e),this.addChild(i,n,s,f);}else {if(u.length>0&&u.lastIndexOf("/")===u.length-1){"/"===a[a.length-1]?(a=a.substr(0,a.length-1),s=s.substr(0,s.length-1),u=a):u=u.substr(0,u.length-1),this.options.transformTagName&&(a=this.options.transformTagName(a));const t=new y(a);a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,s,a)),this.addChild(i,t,s,f),s=s.substr(0,s.lastIndexOf("."));}else {const t=new y(a);this.tagsNodeStack.push(i),a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,s,a)),this.addChild(i,t,s,f),i=t;}n="",o=d;}}else n+=t[o];return e.child};function U(t,e,i,n){this.options.captureMetaData||(n=void 0);const s=this.options.updateTag(e.tagname,i,e[":@"]);false===s||("string"==typeof s?(e.tagname=s,t.addChild(e,n)):t.addChild(e,n));}const B=function(t){if(this.options.processEntities){for(let e in this.docTypeEntities){const i=this.docTypeEntities[e];t=t.replace(i.regx,i.val);}for(let e in this.lastEntities){const i=this.lastEntities[e];t=t.replace(i.regex,i.val);}if(this.options.htmlEntities)for(let e in this.htmlEntities){const i=this.htmlEntities[e];t=t.replace(i.regex,i.val);}t=t.replace(this.ampEntity.regex,this.ampEntity.val);}return t};function R(t,e,i,n){return t&&(void 0===n&&(n=0===e.child.length),void 0!==(t=this.parseTextData(t,e.tagname,i,false,!!e[":@"]&&0!==Object.keys(e[":@"]).length,n))&&""!==t&&e.add(this.options.textNodeName,t),t=""),t}function Y(t,e,i,n){return !(!e||!e.has(n))||!(!t||!t.has(i))}function G(t,e,i,n){const s=t.indexOf(e,i);if(-1===s)throw new Error(n);return s+e.length-1}function X(t,e,i,n=">"){const s=function(t,e,i=">"){let n,s="";for(let r=e;r<t.length;r++){let e=t[r];if(n)e===n&&(n="");else if('"'===e||"'"===e)n=e;else if(e===i[0]){if(!i[1])return {data:s,index:r};if(t[r+1]===i[1])return {data:s,index:r}}else "\t"===e&&(e=" ");s+=e;}}(t,e+1,n);if(!s)return;let r=s.data;const o=s.index,a=r.search(/\s/);let l=r,u=true;-1!==a&&(l=r.substring(0,a),r=r.substring(a+1).trimStart());const h=l;if(i){const t=l.indexOf(":");-1!==t&&(l=l.substr(t+1),u=l!==s.data.substr(t+1));}return {tagName:l,tagExp:r,closeIndex:o,attrExpPresent:u,rawTagName:h}}function W(t,e,i){const n=i;let s=1;for(;i<t.length;i++)if("<"===t[i])if("/"===t[i+1]){const r=G(t,">",i,`${e} is not closed`);if(t.substring(i+2,r).trim()===e&&(s--,0===s))return {tagContent:t.substring(n,i),i:r};i=r;}else if("?"===t[i+1])i=G(t,"?>",i+1,"StopNode is not closed.");else if("!--"===t.substr(i+1,3))i=G(t,"--\x3e",i+3,"StopNode is not closed.");else if("!["===t.substr(i+1,2))i=G(t,"]]>",i,"StopNode is not closed.")-2;else {const n=X(t,i,">");n&&((n&&n.tagName)===e&&"/"!==n.tagExp[n.tagExp.length-1]&&s++,i=n.closeIndex);}}function q(t,e,i){if(e&&"string"==typeof t){const e=t.trim();return "true"===e||"false"!==e&&function(t,e={}){if(e=Object.assign({},C,e),!t||"string"!=typeof t)return t;let i=t.trim();if(void 0!==e.skipLike&&e.skipLike.test(i))return t;if("0"===t)return 0;if(e.hex&&A.test(i))return function(t){if(parseInt)return parseInt(t,16);if(Number.parseInt)return Number.parseInt(t,16);if(window&&window.parseInt)return window.parseInt(t,16);throw new Error("parseInt, Number.parseInt, window.parseInt are not supported")}(i);if(-1!==i.search(/.+[eE].+/))return function(t,e,i){if(!i.eNotation)return t;const n=e.match(V);if(n){let s=n[1]||"";const r=-1===n[3].indexOf("e")?"E":"e",o=n[2],a=s?t[o.length+1]===r:t[o.length]===r;return o.length>1&&a?t:1!==o.length||!n[3].startsWith(`.${r}`)&&n[3][0]!==r?i.leadingZeros&&!a?(e=(n[1]||"")+n[3],Number(e)):t:Number(e)}return t}(t,i,e);{const s=S.exec(i);if(s){const r=s[1]||"",o=s[2];let a=(n=s[3])&&-1!==n.indexOf(".")?("."===(n=n.replace(/0+$/,""))?n="0":"."===n[0]?n="0"+n:"."===n[n.length-1]&&(n=n.substring(0,n.length-1)),n):n;const l=r?"."===t[o.length+1]:"."===t[o.length];if(!e.leadingZeros&&(o.length>1||1===o.length&&!l))return t;{const n=Number(i),s=String(n);if(0===n||-0===n)return n;if(-1!==s.search(/[eE]/))return e.eNotation?n:t;if(-1!==i.indexOf("."))return "0"===s||s===a||s===`${r}${a}`?n:t;let l=o?a:i;return o?l===s||r+l===s?n:t:l===s||l===r+s?n:t}}return t}var n;}(t,i)}return void 0!==t?t:""}const Z=y.getMetaDataSymbol();function K(t,e){return Q(t,e)}function Q(t,e,i){let n;const s={};for(let r=0;r<t.length;r++){const o=t[r],a=z(o);let l="";if(l=void 0===i?a:i+"."+a,a===e.textNodeName) void 0===n?n=o[a]:n+=""+o[a];else {if(void 0===a)continue;if(o[a]){let t=Q(o[a],e,l);const i=H(t,e);void 0!==o[Z]&&(t[Z]=o[Z]),o[":@"]?J(t,o[":@"],l,e):1!==Object.keys(t).length||void 0===t[e.textNodeName]||e.alwaysCreateTextNode?0===Object.keys(t).length&&(e.alwaysCreateTextNode?t[e.textNodeName]="":t=""):t=t[e.textNodeName],void 0!==s[a]&&s.hasOwnProperty(a)?(Array.isArray(s[a])||(s[a]=[s[a]]),s[a].push(t)):e.isArray(a,l,i)?s[a]=[t]:s[a]=t;}}}return "string"==typeof n?n.length>0&&(s[e.textNodeName]=n):void 0!==n&&(s[e.textNodeName]=n),s}function z(t){const e=Object.keys(t);for(let t=0;t<e.length;t++){const i=e[t];if(":@"!==i)return i}}function J(t,e,i,n){if(e){const s=Object.keys(e),r=s.length;for(let o=0;o<r;o++){const r=s[o];n.isArray(r,i+"."+r,true,true)?t[r]=[e[r]]:t[r]=e[r];}}}function H(t,e){const{textNodeName:i}=e,n=Object.keys(t).length;return 0===n||!(1!==n||!t[i]&&"boolean"!=typeof t[i]&&0!==t[i])}class tt{constructor(t){this.externalEntities={},this.options=function(t){return Object.assign({},v,t)}(t);}parse(t,e){if("string"!=typeof t&&t.toString)t=t.toString();else if("string"!=typeof t)throw new Error("XML data is accepted in String or Bytes[] form.");if(e){ true===e&&(e={});const i=a(t,e);if(true!==i)throw Error(`${i.err.msg}:${i.err.line}:${i.err.col}`)}const i=new D(this.options);i.addExternalEntities(this.externalEntities);const n=i.parseXml(t);return this.options.preserveOrder||void 0===n?n:K(n,this.options)}addEntity(t,e){if(-1!==e.indexOf("&"))throw new Error("Entity value can't have '&'");if(-1!==t.indexOf("&")||-1!==t.indexOf(";"))throw new Error("An entity must be set without '&' and ';'. Eg. use '#xD' for '&#xD;'");if("&"===e)throw new Error("An entity with value '&' is not permitted");this.externalEntities[t]=e;}static getMetaDataSymbol(){return y.getMetaDataSymbol()}}function et(t,e){let i="";return e.format&&e.indentBy.length>0&&(i="\n"),it(t,e,"",i)}function it(t,e,i,n){let s="",r=false;for(let o=0;o<t.length;o++){const a=t[o],l=nt(a);if(void 0===l)continue;let u="";if(u=0===i.length?l:`${i}.${l}`,l===e.textNodeName){let t=a[l];rt(u,e)||(t=e.tagValueProcessor(l,t),t=ot(t,e)),r&&(s+=n),s+=t,r=false;continue}if(l===e.cdataPropName){r&&(s+=n),s+=`<![CDATA[${a[l][0][e.textNodeName]}]]>`,r=false;continue}if(l===e.commentPropName){s+=n+`\x3c!--${a[l][0][e.textNodeName]}--\x3e`,r=true;continue}if("?"===l[0]){const t=st(a[":@"],e),i="?xml"===l?"":n;let o=a[l][0][e.textNodeName];o=0!==o.length?" "+o:"",s+=i+`<${l}${o}${t}?>`,r=true;continue}let h=n;""!==h&&(h+=e.indentBy);const d=n+`<${l}${st(a[":@"],e)}`,p=it(a[l],e,u,h);-1!==e.unpairedTags.indexOf(l)?e.suppressUnpairedNode?s+=d+">":s+=d+"/>":p&&0!==p.length||!e.suppressEmptyNode?p&&p.endsWith(">")?s+=d+`>${p}${n}</${l}>`:(s+=d+">",p&&""!==n&&(p.includes("/>")||p.includes("</"))?s+=n+e.indentBy+p+n:s+=p,s+=`</${l}>`):s+=d+"/>",r=true;}return s}function nt(t){const e=Object.keys(t);for(let i=0;i<e.length;i++){const n=e[i];if(t.hasOwnProperty(n)&&":@"!==n)return n}}function st(t,e){let i="";if(t&&!e.ignoreAttributes)for(let n in t){if(!t.hasOwnProperty(n))continue;let s=e.attributeValueProcessor(n,t[n]);s=ot(s,e),true===s&&e.suppressBooleanAttributes?i+=` ${n.substr(e.attributeNamePrefix.length)}`:i+=` ${n.substr(e.attributeNamePrefix.length)}="${s}"`;}return i}function rt(t,e){let i=(t=t.substr(0,t.length-e.textNodeName.length-1)).substr(t.lastIndexOf(".")+1);for(let n in e.stopNodes)if(e.stopNodes[n]===t||e.stopNodes[n]==="*."+i)return  true;return  false}function ot(t,e){if(t&&t.length>0&&e.processEntities)for(let i=0;i<e.entities.length;i++){const n=e.entities[i];t=t.replace(n.regex,n.val);}return t}const at={attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,cdataPropName:false,format:false,indentBy:"  ",suppressEmptyNode:false,suppressUnpairedNode:true,suppressBooleanAttributes:true,tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},preserveOrder:false,commentPropName:false,unpairedTags:[],entities:[{regex:new RegExp("&","g"),val:"&amp;"},{regex:new RegExp(">","g"),val:"&gt;"},{regex:new RegExp("<","g"),val:"&lt;"},{regex:new RegExp("'","g"),val:"&apos;"},{regex:new RegExp('"',"g"),val:"&quot;"}],processEntities:true,stopNodes:[],oneListGroup:false};function lt(t){this.options=Object.assign({},at,t),true===this.options.ignoreAttributes||this.options.attributesGroupName?this.isAttribute=function(){return  false}:(this.ignoreAttributesFn=$(this.options.ignoreAttributes),this.attrPrefixLen=this.options.attributeNamePrefix.length,this.isAttribute=dt),this.processTextOrObjNode=ut,this.options.format?(this.indentate=ht,this.tagEndChar=">\n",this.newLine="\n"):(this.indentate=function(){return ""},this.tagEndChar=">",this.newLine="");}function ut(t,e,i,n){const s=this.j2x(t,i+1,n.concat(e));return void 0!==t[this.options.textNodeName]&&1===Object.keys(t).length?this.buildTextValNode(t[this.options.textNodeName],e,s.attrStr,i):this.buildObjectNode(s.val,e,s.attrStr,i)}function ht(t){return this.options.indentBy.repeat(t)}function dt(t){return !(!t.startsWith(this.options.attributeNamePrefix)||t===this.options.textNodeName)&&t.substr(this.attrPrefixLen)}lt.prototype.build=function(t){return this.options.preserveOrder?et(t,this.options):(Array.isArray(t)&&this.options.arrayNodeName&&this.options.arrayNodeName.length>1&&(t={[this.options.arrayNodeName]:t}),this.j2x(t,0,[]).val)},lt.prototype.j2x=function(t,e,i){let n="",s="";const r=i.join(".");for(let o in t)if(Object.prototype.hasOwnProperty.call(t,o))if(void 0===t[o])this.isAttribute(o)&&(s+="");else if(null===t[o])this.isAttribute(o)||o===this.options.cdataPropName?s+="":"?"===o[0]?s+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:s+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if(t[o]instanceof Date)s+=this.buildTextValNode(t[o],o,"",e);else if("object"!=typeof t[o]){const i=this.isAttribute(o);if(i&&!this.ignoreAttributesFn(i,r))n+=this.buildAttrPairStr(i,""+t[o]);else if(!i)if(o===this.options.textNodeName){let e=this.options.tagValueProcessor(o,""+t[o]);s+=this.replaceEntitiesValue(e);}else s+=this.buildTextValNode(t[o],o,"",e);}else if(Array.isArray(t[o])){const n=t[o].length;let r="",a="";for(let l=0;l<n;l++){const n=t[o][l];if(void 0===n);else if(null===n)"?"===o[0]?s+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:s+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if("object"==typeof n)if(this.options.oneListGroup){const t=this.j2x(n,e+1,i.concat(o));r+=t.val,this.options.attributesGroupName&&n.hasOwnProperty(this.options.attributesGroupName)&&(a+=t.attrStr);}else r+=this.processTextOrObjNode(n,o,e,i);else if(this.options.oneListGroup){let t=this.options.tagValueProcessor(o,n);t=this.replaceEntitiesValue(t),r+=t;}else r+=this.buildTextValNode(n,o,"",e);}this.options.oneListGroup&&(r=this.buildObjectNode(r,o,a,e)),s+=r;}else if(this.options.attributesGroupName&&o===this.options.attributesGroupName){const e=Object.keys(t[o]),i=e.length;for(let s=0;s<i;s++)n+=this.buildAttrPairStr(e[s],""+t[o][e[s]]);}else s+=this.processTextOrObjNode(t[o],o,e,i);return {attrStr:n,val:s}},lt.prototype.buildAttrPairStr=function(t,e){return e=this.options.attributeValueProcessor(t,""+e),e=this.replaceEntitiesValue(e),this.options.suppressBooleanAttributes&&"true"===e?" "+t:" "+t+'="'+e+'"'},lt.prototype.buildObjectNode=function(t,e,i,n){if(""===t)return "?"===e[0]?this.indentate(n)+"<"+e+i+"?"+this.tagEndChar:this.indentate(n)+"<"+e+i+this.closeTag(e)+this.tagEndChar;{let s="</"+e+this.tagEndChar,r="";return "?"===e[0]&&(r="?",s=""),!i&&""!==i||-1!==t.indexOf("<")?false!==this.options.commentPropName&&e===this.options.commentPropName&&0===r.length?this.indentate(n)+`\x3c!--${t}--\x3e`+this.newLine:this.indentate(n)+"<"+e+i+r+this.tagEndChar+t+this.indentate(n)+s:this.indentate(n)+"<"+e+i+r+">"+t+s}},lt.prototype.closeTag=function(t){let e="";return  -1!==this.options.unpairedTags.indexOf(t)?this.options.suppressUnpairedNode||(e="/"):e=this.options.suppressEmptyNode?"/":`></${t}`,e},lt.prototype.buildTextValNode=function(t,e,i,n){if(false!==this.options.cdataPropName&&e===this.options.cdataPropName)return this.indentate(n)+`<![CDATA[${t}]]>`+this.newLine;if(false!==this.options.commentPropName&&e===this.options.commentPropName)return this.indentate(n)+`\x3c!--${t}--\x3e`+this.newLine;if("?"===e[0])return this.indentate(n)+"<"+e+i+"?"+this.tagEndChar;{let s=this.options.tagValueProcessor(e,t);return s=this.replaceEntitiesValue(s),""===s?this.indentate(n)+"<"+e+i+this.closeTag(e)+this.tagEndChar:this.indentate(n)+"<"+e+i+">"+s+"</"+e+this.tagEndChar}},lt.prototype.replaceEntitiesValue=function(t){if(t&&t.length>0&&this.options.processEntities)for(let e=0;e<this.options.entities.length;e++){const i=this.options.entities[e];t=t.replace(i.regex,i.val);}return t};const pt={validate:a};fxp.exports=e;})();
+	(()=>{var t={d:(e,i)=>{for(var n in i)t.o(i,n)&&!t.o(e,n)&&Object.defineProperty(e,n,{enumerable:true,get:i[n]});},o:(t,e)=>Object.prototype.hasOwnProperty.call(t,e),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:true});}},e={};t.r(e),t.d(e,{XMLBuilder:()=>lt,XMLParser:()=>tt,XMLValidator:()=>pt});const i=":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD",n=new RegExp("^["+i+"]["+i+"\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$");function s(t,e){const i=[];let n=e.exec(t);for(;n;){const s=[];s.startIndex=e.lastIndex-n[0].length;const r=n.length;for(let t=0;t<r;t++)s.push(n[t]);i.push(s),n=e.exec(t);}return i}const r=function(t){return !(null==n.exec(t))},o={allowBooleanAttributes:false,unpairedTags:[]};function a(t,e){e=Object.assign({},o,e);const i=[];let n=false,s=false;"\ufeff"===t[0]&&(t=t.substr(1));for(let o=0;o<t.length;o++)if("<"===t[o]&&"?"===t[o+1]){if(o+=2,o=u(t,o),o.err)return o}else {if("<"!==t[o]){if(l(t[o]))continue;return x("InvalidChar","char '"+t[o]+"' is not expected.",b(t,o))}{let a=o;if(o++,"!"===t[o]){o=h(t,o);continue}{let d=false;"/"===t[o]&&(d=true,o++);let p="";for(;o<t.length&&">"!==t[o]&&" "!==t[o]&&"\t"!==t[o]&&"\n"!==t[o]&&"\r"!==t[o];o++)p+=t[o];if(p=p.trim(),"/"===p[p.length-1]&&(p=p.substring(0,p.length-1),o--),!r(p)){let e;return e=0===p.trim().length?"Invalid space after '<'.":"Tag '"+p+"' is an invalid name.",x("InvalidTag",e,b(t,o))}const c=f(t,o);if(false===c)return x("InvalidAttr","Attributes for '"+p+"' have open quote.",b(t,o));let N=c.value;if(o=c.index,"/"===N[N.length-1]){const i=o-N.length;N=N.substring(0,N.length-1);const s=g(N,e);if(true!==s)return x(s.err.code,s.err.msg,b(t,i+s.err.line));n=true;}else if(d){if(!c.tagClosed)return x("InvalidTag","Closing tag '"+p+"' doesn't have proper closing.",b(t,o));if(N.trim().length>0)return x("InvalidTag","Closing tag '"+p+"' can't have attributes or invalid starting.",b(t,a));if(0===i.length)return x("InvalidTag","Closing tag '"+p+"' has not been opened.",b(t,a));{const e=i.pop();if(p!==e.tagName){let i=b(t,e.tagStartPos);return x("InvalidTag","Expected closing tag '"+e.tagName+"' (opened in line "+i.line+", col "+i.col+") instead of closing tag '"+p+"'.",b(t,a))}0==i.length&&(s=true);}}else {const r=g(N,e);if(true!==r)return x(r.err.code,r.err.msg,b(t,o-N.length+r.err.line));if(true===s)return x("InvalidXml","Multiple possible root nodes found.",b(t,o));-1!==e.unpairedTags.indexOf(p)||i.push({tagName:p,tagStartPos:a}),n=true;}for(o++;o<t.length;o++)if("<"===t[o]){if("!"===t[o+1]){o++,o=h(t,o);continue}if("?"!==t[o+1])break;if(o=u(t,++o),o.err)return o}else if("&"===t[o]){const e=m(t,o);if(-1==e)return x("InvalidChar","char '&' is not expected.",b(t,o));o=e;}else if(true===s&&!l(t[o]))return x("InvalidXml","Extra text at the end",b(t,o));"<"===t[o]&&o--;}}}return n?1==i.length?x("InvalidTag","Unclosed tag '"+i[0].tagName+"'.",b(t,i[0].tagStartPos)):!(i.length>0)||x("InvalidXml","Invalid '"+JSON.stringify(i.map((t=>t.tagName)),null,4).replace(/\r?\n/g,"")+"' found.",{line:1,col:1}):x("InvalidXml","Start tag expected.",1)}function l(t){return " "===t||"\t"===t||"\n"===t||"\r"===t}function u(t,e){const i=e;for(;e<t.length;e++)if("?"!=t[e]&&" "!=t[e]);else {const n=t.substr(i,e-i);if(e>5&&"xml"===n)return x("InvalidXml","XML declaration allowed only at the start of the document.",b(t,e));if("?"==t[e]&&">"==t[e+1]){e++;break}}return e}function h(t,e){if(t.length>e+5&&"-"===t[e+1]&&"-"===t[e+2]){for(e+=3;e<t.length;e++)if("-"===t[e]&&"-"===t[e+1]&&">"===t[e+2]){e+=2;break}}else if(t.length>e+8&&"D"===t[e+1]&&"O"===t[e+2]&&"C"===t[e+3]&&"T"===t[e+4]&&"Y"===t[e+5]&&"P"===t[e+6]&&"E"===t[e+7]){let i=1;for(e+=8;e<t.length;e++)if("<"===t[e])i++;else if(">"===t[e]&&(i--,0===i))break}else if(t.length>e+9&&"["===t[e+1]&&"C"===t[e+2]&&"D"===t[e+3]&&"A"===t[e+4]&&"T"===t[e+5]&&"A"===t[e+6]&&"["===t[e+7])for(e+=8;e<t.length;e++)if("]"===t[e]&&"]"===t[e+1]&&">"===t[e+2]){e+=2;break}return e}const d='"',p="'";function f(t,e){let i="",n="",s=false;for(;e<t.length;e++){if(t[e]===d||t[e]===p)""===n?n=t[e]:n!==t[e]||(n="");else if(">"===t[e]&&""===n){s=true;break}i+=t[e];}return ""===n&&{value:i,index:e,tagClosed:s}}const c=new RegExp("(\\s*)([^\\s=]+)(\\s*=)?(\\s*(['\"])(([\\s\\S])*?)\\5)?","g");function g(t,e){const i=s(t,c),n={};for(let t=0;t<i.length;t++){if(0===i[t][1].length)return x("InvalidAttr","Attribute '"+i[t][2]+"' has no space in starting.",E(i[t]));if(void 0!==i[t][3]&&void 0===i[t][4])return x("InvalidAttr","Attribute '"+i[t][2]+"' is without value.",E(i[t]));if(void 0===i[t][3]&&!e.allowBooleanAttributes)return x("InvalidAttr","boolean attribute '"+i[t][2]+"' is not allowed.",E(i[t]));const s=i[t][2];if(!N(s))return x("InvalidAttr","Attribute '"+s+"' is an invalid name.",E(i[t]));if(n.hasOwnProperty(s))return x("InvalidAttr","Attribute '"+s+"' is repeated.",E(i[t]));n[s]=1;}return  true}function m(t,e){if(";"===t[++e])return  -1;if("#"===t[e])return function(t,e){let i=/\d/;for("x"===t[e]&&(e++,i=/[\da-fA-F]/);e<t.length;e++){if(";"===t[e])return e;if(!t[e].match(i))break}return  -1}(t,++e);let i=0;for(;e<t.length;e++,i++)if(!(t[e].match(/\w/)&&i<20)){if(";"===t[e])break;return  -1}return e}function x(t,e,i){return {err:{code:t,msg:e,line:i.line||i,col:i.col}}}function N(t){return r(t)}function b(t,e){const i=t.substring(0,e).split(/\r?\n/);return {line:i.length,col:i[i.length-1].length+1}}function E(t){return t.startIndex+t[1].length}const v={preserveOrder:false,attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,removeNSPrefix:false,allowBooleanAttributes:false,parseTagValue:true,parseAttributeValue:false,trimValues:true,cdataPropName:false,numberParseOptions:{hex:true,leadingZeros:true,eNotation:true},tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},stopNodes:[],alwaysCreateTextNode:false,isArray:()=>false,commentPropName:false,unpairedTags:[],processEntities:true,htmlEntities:false,ignoreDeclaration:false,ignorePiTags:false,transformTagName:false,transformAttributeName:false,updateTag:function(t,e,i){return t},captureMetaData:false};let T;T="function"!=typeof Symbol?"@@xmlMetadata":Symbol("XML Node Metadata");class y{constructor(t){this.tagname=t,this.child=[],this[":@"]={};}add(t,e){"__proto__"===t&&(t="#__proto__"),this.child.push({[t]:e});}addChild(t,e){"__proto__"===t.tagname&&(t.tagname="#__proto__"),t[":@"]&&Object.keys(t[":@"]).length>0?this.child.push({[t.tagname]:t.child,":@":t[":@"]}):this.child.push({[t.tagname]:t.child}),void 0!==e&&(this.child[this.child.length-1][T]={startIndex:e});}static getMetaDataSymbol(){return T}}class w{constructor(t){this.suppressValidationErr=!t;}readDocType(t,e){const i={};if("O"!==t[e+3]||"C"!==t[e+4]||"T"!==t[e+5]||"Y"!==t[e+6]||"P"!==t[e+7]||"E"!==t[e+8])throw new Error("Invalid Tag instead of DOCTYPE");{e+=9;let n=1,s=false,r=false,o="";for(;e<t.length;e++)if("<"!==t[e]||r)if(">"===t[e]){if(r?"-"===t[e-1]&&"-"===t[e-2]&&(r=false,n--):n--,0===n)break}else "["===t[e]?s=true:o+=t[e];else {if(s&&P(t,"!ENTITY",e)){let n,s;e+=7,[n,s,e]=this.readEntityExp(t,e+1,this.suppressValidationErr),-1===s.indexOf("&")&&(i[n]={regx:RegExp(`&${n};`,"g"),val:s});}else if(s&&P(t,"!ELEMENT",e)){e+=8;const{index:i}=this.readElementExp(t,e+1);e=i;}else if(s&&P(t,"!ATTLIST",e))e+=8;else if(s&&P(t,"!NOTATION",e)){e+=9;const{index:i}=this.readNotationExp(t,e+1,this.suppressValidationErr);e=i;}else {if(!P(t,"!--",e))throw new Error("Invalid DOCTYPE");r=true;}n++,o="";}if(0!==n)throw new Error("Unclosed DOCTYPE")}return {entities:i,i:e}}readEntityExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e])&&'"'!==t[e]&&"'"!==t[e];)i+=t[e],e++;if(O(i),e=I(t,e),!this.suppressValidationErr){if("SYSTEM"===t.substring(e,e+6).toUpperCase())throw new Error("External entities are not supported");if("%"===t[e])throw new Error("Parameter entities are not supported")}let n="";return [e,n]=this.readIdentifierVal(t,e,"entity"),[i,n,--e]}readNotationExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;!this.suppressValidationErr&&O(i),e=I(t,e);const n=t.substring(e,e+6).toUpperCase();if(!this.suppressValidationErr&&"SYSTEM"!==n&&"PUBLIC"!==n)throw new Error(`Expected SYSTEM or PUBLIC, found "${n}"`);e+=n.length,e=I(t,e);let s=null,r=null;if("PUBLIC"===n)[e,s]=this.readIdentifierVal(t,e,"publicIdentifier"),'"'!==t[e=I(t,e)]&&"'"!==t[e]||([e,r]=this.readIdentifierVal(t,e,"systemIdentifier"));else if("SYSTEM"===n&&([e,r]=this.readIdentifierVal(t,e,"systemIdentifier"),!this.suppressValidationErr&&!r))throw new Error("Missing mandatory system identifier for SYSTEM notation");return {notationName:i,publicIdentifier:s,systemIdentifier:r,index:--e}}readIdentifierVal(t,e,i){let n="";const s=t[e];if('"'!==s&&"'"!==s)throw new Error(`Expected quoted string, found "${s}"`);for(e++;e<t.length&&t[e]!==s;)n+=t[e],e++;if(t[e]!==s)throw new Error(`Unterminated ${i} value`);return [++e,n]}readElementExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;if(!this.suppressValidationErr&&!r(i))throw new Error(`Invalid element name: "${i}"`);let n="";if("E"===t[e=I(t,e)]&&P(t,"MPTY",e))e+=4;else if("A"===t[e]&&P(t,"NY",e))e+=2;else if("("===t[e]){for(e++;e<t.length&&")"!==t[e];)n+=t[e],e++;if(")"!==t[e])throw new Error("Unterminated content model")}else if(!this.suppressValidationErr)throw new Error(`Invalid Element Expression, found "${t[e]}"`);return {elementName:i,contentModel:n.trim(),index:e}}readAttlistExp(t,e){e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;O(i),e=I(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;if(!O(n))throw new Error(`Invalid attribute name: "${n}"`);e=I(t,e);let s="";if("NOTATION"===t.substring(e,e+8).toUpperCase()){if(s="NOTATION","("!==t[e=I(t,e+=8)])throw new Error(`Expected '(', found "${t[e]}"`);e++;let i=[];for(;e<t.length&&")"!==t[e];){let n="";for(;e<t.length&&"|"!==t[e]&&")"!==t[e];)n+=t[e],e++;if(n=n.trim(),!O(n))throw new Error(`Invalid notation name: "${n}"`);i.push(n),"|"===t[e]&&(e++,e=I(t,e));}if(")"!==t[e])throw new Error("Unterminated list of notations");e++,s+=" ("+i.join("|")+")";}else {for(;e<t.length&&!/\s/.test(t[e]);)s+=t[e],e++;const i=["CDATA","ID","IDREF","IDREFS","ENTITY","ENTITIES","NMTOKEN","NMTOKENS"];if(!this.suppressValidationErr&&!i.includes(s.toUpperCase()))throw new Error(`Invalid attribute type: "${s}"`)}e=I(t,e);let r="";return "#REQUIRED"===t.substring(e,e+8).toUpperCase()?(r="#REQUIRED",e+=8):"#IMPLIED"===t.substring(e,e+7).toUpperCase()?(r="#IMPLIED",e+=7):[e,r]=this.readIdentifierVal(t,e,"ATTLIST"),{elementName:i,attributeName:n,attributeType:s,defaultValue:r,index:e}}}const I=(t,e)=>{for(;e<t.length&&/\s/.test(t[e]);)e++;return e};function P(t,e,i){for(let n=0;n<e.length;n++)if(e[n]!==t[i+n+1])return  false;return  true}function O(t){if(r(t))return t;throw new Error(`Invalid entity name ${t}`)}const A=/^[-+]?0x[a-fA-F0-9]+$/,S=/^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/,C={hex:true,leadingZeros:true,decimalPoint:".",eNotation:true};const V=/^([-+])?(0*)(\d*(\.\d*)?[eE][-\+]?\d+)$/;function $(t){return "function"==typeof t?t:Array.isArray(t)?e=>{for(const i of t){if("string"==typeof i&&e===i)return  true;if(i instanceof RegExp&&i.test(e))return  true}}:()=>false}class D{constructor(t){if(this.options=t,this.currentNode=null,this.tagsNodeStack=[],this.docTypeEntities={},this.lastEntities={apos:{regex:/&(apos|#39|#x27);/g,val:"'"},gt:{regex:/&(gt|#62|#x3E);/g,val:">"},lt:{regex:/&(lt|#60|#x3C);/g,val:"<"},quot:{regex:/&(quot|#34|#x22);/g,val:'"'}},this.ampEntity={regex:/&(amp|#38|#x26);/g,val:"&"},this.htmlEntities={space:{regex:/&(nbsp|#160);/g,val:" "},cent:{regex:/&(cent|#162);/g,val:"¢"},pound:{regex:/&(pound|#163);/g,val:"£"},yen:{regex:/&(yen|#165);/g,val:"¥"},euro:{regex:/&(euro|#8364);/g,val:"€"},copyright:{regex:/&(copy|#169);/g,val:"©"},reg:{regex:/&(reg|#174);/g,val:"®"},inr:{regex:/&(inr|#8377);/g,val:"₹"},num_dec:{regex:/&#([0-9]{1,7});/g,val:(t,e)=>String.fromCodePoint(Number.parseInt(e,10))},num_hex:{regex:/&#x([0-9a-fA-F]{1,6});/g,val:(t,e)=>String.fromCodePoint(Number.parseInt(e,16))}},this.addExternalEntities=j,this.parseXml=L,this.parseTextData=M,this.resolveNameSpace=F,this.buildAttributesMap=k,this.isItStopNode=Y,this.replaceEntitiesValue=B,this.readStopNodeData=W,this.saveTextToParentTag=R,this.addChild=U,this.ignoreAttributesFn=$(this.options.ignoreAttributes),this.options.stopNodes&&this.options.stopNodes.length>0){this.stopNodesExact=new Set,this.stopNodesWildcard=new Set;for(let t=0;t<this.options.stopNodes.length;t++){const e=this.options.stopNodes[t];"string"==typeof e&&(e.startsWith("*.")?this.stopNodesWildcard.add(e.substring(2)):this.stopNodesExact.add(e));}}}}function j(t){const e=Object.keys(t);for(let i=0;i<e.length;i++){const n=e[i];this.lastEntities[n]={regex:new RegExp("&"+n+";","g"),val:t[n]};}}function M(t,e,i,n,s,r,o){if(void 0!==t&&(this.options.trimValues&&!n&&(t=t.trim()),t.length>0)){o||(t=this.replaceEntitiesValue(t));const n=this.options.tagValueProcessor(e,t,i,s,r);return null==n?t:typeof n!=typeof t||n!==t?n:this.options.trimValues||t.trim()===t?q(t,this.options.parseTagValue,this.options.numberParseOptions):t}}function F(t){if(this.options.removeNSPrefix){const e=t.split(":"),i="/"===t.charAt(0)?"/":"";if("xmlns"===e[0])return "";2===e.length&&(t=i+e[1]);}return t}const _=new RegExp("([^\\s=]+)\\s*(=\\s*(['\"])([\\s\\S]*?)\\3)?","gm");function k(t,e){if(true!==this.options.ignoreAttributes&&"string"==typeof t){const i=s(t,_),n=i.length,r={};for(let t=0;t<n;t++){const n=this.resolveNameSpace(i[t][1]);if(this.ignoreAttributesFn(n,e))continue;let s=i[t][4],o=this.options.attributeNamePrefix+n;if(n.length)if(this.options.transformAttributeName&&(o=this.options.transformAttributeName(o)),"__proto__"===o&&(o="#__proto__"),void 0!==s){this.options.trimValues&&(s=s.trim()),s=this.replaceEntitiesValue(s);const t=this.options.attributeValueProcessor(n,s,e);r[o]=null==t?s:typeof t!=typeof s||t!==s?t:q(s,this.options.parseAttributeValue,this.options.numberParseOptions);}else this.options.allowBooleanAttributes&&(r[o]=true);}if(!Object.keys(r).length)return;if(this.options.attributesGroupName){const t={};return t[this.options.attributesGroupName]=r,t}return r}}const L=function(t){t=t.replace(/\r\n?/g,"\n");const e=new y("!xml");let i=e,n="",s="";const r=new w(this.options.processEntities);for(let o=0;o<t.length;o++)if("<"===t[o])if("/"===t[o+1]){const e=G(t,">",o,"Closing Tag is not closed.");let r=t.substring(o+2,e).trim();if(this.options.removeNSPrefix){const t=r.indexOf(":");-1!==t&&(r=r.substr(t+1));}this.options.transformTagName&&(r=this.options.transformTagName(r)),i&&(n=this.saveTextToParentTag(n,i,s));const a=s.substring(s.lastIndexOf(".")+1);if(r&&-1!==this.options.unpairedTags.indexOf(r))throw new Error(`Unpaired tag can not be used as closing tag: </${r}>`);let l=0;a&&-1!==this.options.unpairedTags.indexOf(a)?(l=s.lastIndexOf(".",s.lastIndexOf(".")-1),this.tagsNodeStack.pop()):l=s.lastIndexOf("."),s=s.substring(0,l),i=this.tagsNodeStack.pop(),n="",o=e;}else if("?"===t[o+1]){let e=X(t,o,false,"?>");if(!e)throw new Error("Pi Tag is not closed.");if(n=this.saveTextToParentTag(n,i,s),this.options.ignoreDeclaration&&"?xml"===e.tagName||this.options.ignorePiTags);else {const t=new y(e.tagName);t.add(this.options.textNodeName,""),e.tagName!==e.tagExp&&e.attrExpPresent&&(t[":@"]=this.buildAttributesMap(e.tagExp,s)),this.addChild(i,t,s,o);}o=e.closeIndex+1;}else if("!--"===t.substr(o+1,3)){const e=G(t,"--\x3e",o+4,"Comment is not closed.");if(this.options.commentPropName){const r=t.substring(o+4,e-2);n=this.saveTextToParentTag(n,i,s),i.add(this.options.commentPropName,[{[this.options.textNodeName]:r}]);}o=e;}else if("!D"===t.substr(o+1,2)){const e=r.readDocType(t,o);this.docTypeEntities=e.entities,o=e.i;}else if("!["===t.substr(o+1,2)){const e=G(t,"]]>",o,"CDATA is not closed.")-2,r=t.substring(o+9,e);n=this.saveTextToParentTag(n,i,s);let a=this.parseTextData(r,i.tagname,s,true,false,true,true);null==a&&(a=""),this.options.cdataPropName?i.add(this.options.cdataPropName,[{[this.options.textNodeName]:r}]):i.add(this.options.textNodeName,a),o=e+2;}else {let r=X(t,o,this.options.removeNSPrefix),a=r.tagName;const l=r.rawTagName;let u=r.tagExp,h=r.attrExpPresent,d=r.closeIndex;if(this.options.transformTagName){const t=this.options.transformTagName(a);u===a&&(u=t),a=t;}i&&n&&"!xml"!==i.tagname&&(n=this.saveTextToParentTag(n,i,s,false));const p=i;p&&-1!==this.options.unpairedTags.indexOf(p.tagname)&&(i=this.tagsNodeStack.pop(),s=s.substring(0,s.lastIndexOf("."))),a!==e.tagname&&(s+=s?"."+a:a);const f=o;if(this.isItStopNode(this.stopNodesExact,this.stopNodesWildcard,s,a)){let e="";if(u.length>0&&u.lastIndexOf("/")===u.length-1)"/"===a[a.length-1]?(a=a.substr(0,a.length-1),s=s.substr(0,s.length-1),u=a):u=u.substr(0,u.length-1),o=r.closeIndex;else if(-1!==this.options.unpairedTags.indexOf(a))o=r.closeIndex;else {const i=this.readStopNodeData(t,l,d+1);if(!i)throw new Error(`Unexpected end of ${l}`);o=i.i,e=i.tagContent;}const n=new y(a);a!==u&&h&&(n[":@"]=this.buildAttributesMap(u,s)),e&&(e=this.parseTextData(e,a,s,true,h,true,true)),s=s.substr(0,s.lastIndexOf(".")),n.add(this.options.textNodeName,e),this.addChild(i,n,s,f);}else {if(u.length>0&&u.lastIndexOf("/")===u.length-1){if("/"===a[a.length-1]?(a=a.substr(0,a.length-1),s=s.substr(0,s.length-1),u=a):u=u.substr(0,u.length-1),this.options.transformTagName){const t=this.options.transformTagName(a);u===a&&(u=t),a=t;}const t=new y(a);a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,s)),this.addChild(i,t,s,f),s=s.substr(0,s.lastIndexOf("."));}else {const t=new y(a);this.tagsNodeStack.push(i),a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,s)),this.addChild(i,t,s,f),i=t;}n="",o=d;}}else n+=t[o];return e.child};function U(t,e,i,n){this.options.captureMetaData||(n=void 0);const s=this.options.updateTag(e.tagname,i,e[":@"]);false===s||("string"==typeof s?(e.tagname=s,t.addChild(e,n)):t.addChild(e,n));}const B=function(t){if(this.options.processEntities){for(let e in this.docTypeEntities){const i=this.docTypeEntities[e];t=t.replace(i.regx,i.val);}for(let e in this.lastEntities){const i=this.lastEntities[e];t=t.replace(i.regex,i.val);}if(this.options.htmlEntities)for(let e in this.htmlEntities){const i=this.htmlEntities[e];t=t.replace(i.regex,i.val);}t=t.replace(this.ampEntity.regex,this.ampEntity.val);}return t};function R(t,e,i,n){return t&&(void 0===n&&(n=0===e.child.length),void 0!==(t=this.parseTextData(t,e.tagname,i,false,!!e[":@"]&&0!==Object.keys(e[":@"]).length,n))&&""!==t&&e.add(this.options.textNodeName,t),t=""),t}function Y(t,e,i,n){return !(!e||!e.has(n))||!(!t||!t.has(i))}function G(t,e,i,n){const s=t.indexOf(e,i);if(-1===s)throw new Error(n);return s+e.length-1}function X(t,e,i,n=">"){const s=function(t,e,i=">"){let n,s="";for(let r=e;r<t.length;r++){let e=t[r];if(n)e===n&&(n="");else if('"'===e||"'"===e)n=e;else if(e===i[0]){if(!i[1])return {data:s,index:r};if(t[r+1]===i[1])return {data:s,index:r}}else "\t"===e&&(e=" ");s+=e;}}(t,e+1,n);if(!s)return;let r=s.data;const o=s.index,a=r.search(/\s/);let l=r,u=true;-1!==a&&(l=r.substring(0,a),r=r.substring(a+1).trimStart());const h=l;if(i){const t=l.indexOf(":");-1!==t&&(l=l.substr(t+1),u=l!==s.data.substr(t+1));}return {tagName:l,tagExp:r,closeIndex:o,attrExpPresent:u,rawTagName:h}}function W(t,e,i){const n=i;let s=1;for(;i<t.length;i++)if("<"===t[i])if("/"===t[i+1]){const r=G(t,">",i,`${e} is not closed`);if(t.substring(i+2,r).trim()===e&&(s--,0===s))return {tagContent:t.substring(n,i),i:r};i=r;}else if("?"===t[i+1])i=G(t,"?>",i+1,"StopNode is not closed.");else if("!--"===t.substr(i+1,3))i=G(t,"--\x3e",i+3,"StopNode is not closed.");else if("!["===t.substr(i+1,2))i=G(t,"]]>",i,"StopNode is not closed.")-2;else {const n=X(t,i,">");n&&((n&&n.tagName)===e&&"/"!==n.tagExp[n.tagExp.length-1]&&s++,i=n.closeIndex);}}function q(t,e,i){if(e&&"string"==typeof t){const e=t.trim();return "true"===e||"false"!==e&&function(t,e={}){if(e=Object.assign({},C,e),!t||"string"!=typeof t)return t;let i=t.trim();if(void 0!==e.skipLike&&e.skipLike.test(i))return t;if("0"===t)return 0;if(e.hex&&A.test(i))return function(t){if(parseInt)return parseInt(t,16);if(Number.parseInt)return Number.parseInt(t,16);if(window&&window.parseInt)return window.parseInt(t,16);throw new Error("parseInt, Number.parseInt, window.parseInt are not supported")}(i);if(-1!==i.search(/.+[eE].+/))return function(t,e,i){if(!i.eNotation)return t;const n=e.match(V);if(n){let s=n[1]||"";const r=-1===n[3].indexOf("e")?"E":"e",o=n[2],a=s?t[o.length+1]===r:t[o.length]===r;return o.length>1&&a?t:1!==o.length||!n[3].startsWith(`.${r}`)&&n[3][0]!==r?i.leadingZeros&&!a?(e=(n[1]||"")+n[3],Number(e)):t:Number(e)}return t}(t,i,e);{const s=S.exec(i);if(s){const r=s[1]||"",o=s[2];let a=(n=s[3])&&-1!==n.indexOf(".")?("."===(n=n.replace(/0+$/,""))?n="0":"."===n[0]?n="0"+n:"."===n[n.length-1]&&(n=n.substring(0,n.length-1)),n):n;const l=r?"."===t[o.length+1]:"."===t[o.length];if(!e.leadingZeros&&(o.length>1||1===o.length&&!l))return t;{const n=Number(i),s=String(n);if(0===n||-0===n)return n;if(-1!==s.search(/[eE]/))return e.eNotation?n:t;if(-1!==i.indexOf("."))return "0"===s||s===a||s===`${r}${a}`?n:t;let l=o?a:i;return o?l===s||r+l===s?n:t:l===s||l===r+s?n:t}}return t}var n;}(t,i)}return void 0!==t?t:""}const Z=y.getMetaDataSymbol();function K(t,e){return Q(t,e)}function Q(t,e,i){let n;const s={};for(let r=0;r<t.length;r++){const o=t[r],a=z(o);let l="";if(l=void 0===i?a:i+"."+a,a===e.textNodeName) void 0===n?n=o[a]:n+=""+o[a];else {if(void 0===a)continue;if(o[a]){let t=Q(o[a],e,l);const i=H(t,e);void 0!==o[Z]&&(t[Z]=o[Z]),o[":@"]?J(t,o[":@"],l,e):1!==Object.keys(t).length||void 0===t[e.textNodeName]||e.alwaysCreateTextNode?0===Object.keys(t).length&&(e.alwaysCreateTextNode?t[e.textNodeName]="":t=""):t=t[e.textNodeName],void 0!==s[a]&&s.hasOwnProperty(a)?(Array.isArray(s[a])||(s[a]=[s[a]]),s[a].push(t)):e.isArray(a,l,i)?s[a]=[t]:s[a]=t;}}}return "string"==typeof n?n.length>0&&(s[e.textNodeName]=n):void 0!==n&&(s[e.textNodeName]=n),s}function z(t){const e=Object.keys(t);for(let t=0;t<e.length;t++){const i=e[t];if(":@"!==i)return i}}function J(t,e,i,n){if(e){const s=Object.keys(e),r=s.length;for(let o=0;o<r;o++){const r=s[o];n.isArray(r,i+"."+r,true,true)?t[r]=[e[r]]:t[r]=e[r];}}}function H(t,e){const{textNodeName:i}=e,n=Object.keys(t).length;return 0===n||!(1!==n||!t[i]&&"boolean"!=typeof t[i]&&0!==t[i])}class tt{constructor(t){this.externalEntities={},this.options=function(t){return Object.assign({},v,t)}(t);}parse(t,e){if("string"!=typeof t&&t.toString)t=t.toString();else if("string"!=typeof t)throw new Error("XML data is accepted in String or Bytes[] form.");if(e){ true===e&&(e={});const i=a(t,e);if(true!==i)throw Error(`${i.err.msg}:${i.err.line}:${i.err.col}`)}const i=new D(this.options);i.addExternalEntities(this.externalEntities);const n=i.parseXml(t);return this.options.preserveOrder||void 0===n?n:K(n,this.options)}addEntity(t,e){if(-1!==e.indexOf("&"))throw new Error("Entity value can't have '&'");if(-1!==t.indexOf("&")||-1!==t.indexOf(";"))throw new Error("An entity must be set without '&' and ';'. Eg. use '#xD' for '&#xD;'");if("&"===e)throw new Error("An entity with value '&' is not permitted");this.externalEntities[t]=e;}static getMetaDataSymbol(){return y.getMetaDataSymbol()}}function et(t,e){let i="";return e.format&&e.indentBy.length>0&&(i="\n"),it(t,e,"",i)}function it(t,e,i,n){let s="",r=false;for(let o=0;o<t.length;o++){const a=t[o],l=nt(a);if(void 0===l)continue;let u="";if(u=0===i.length?l:`${i}.${l}`,l===e.textNodeName){let t=a[l];rt(u,e)||(t=e.tagValueProcessor(l,t),t=ot(t,e)),r&&(s+=n),s+=t,r=false;continue}if(l===e.cdataPropName){r&&(s+=n),s+=`<![CDATA[${a[l][0][e.textNodeName]}]]>`,r=false;continue}if(l===e.commentPropName){s+=n+`\x3c!--${a[l][0][e.textNodeName]}--\x3e`,r=true;continue}if("?"===l[0]){const t=st(a[":@"],e),i="?xml"===l?"":n;let o=a[l][0][e.textNodeName];o=0!==o.length?" "+o:"",s+=i+`<${l}${o}${t}?>`,r=true;continue}let h=n;""!==h&&(h+=e.indentBy);const d=n+`<${l}${st(a[":@"],e)}`,p=it(a[l],e,u,h);-1!==e.unpairedTags.indexOf(l)?e.suppressUnpairedNode?s+=d+">":s+=d+"/>":p&&0!==p.length||!e.suppressEmptyNode?p&&p.endsWith(">")?s+=d+`>${p}${n}</${l}>`:(s+=d+">",p&&""!==n&&(p.includes("/>")||p.includes("</"))?s+=n+e.indentBy+p+n:s+=p,s+=`</${l}>`):s+=d+"/>",r=true;}return s}function nt(t){const e=Object.keys(t);for(let i=0;i<e.length;i++){const n=e[i];if(t.hasOwnProperty(n)&&":@"!==n)return n}}function st(t,e){let i="";if(t&&!e.ignoreAttributes)for(let n in t){if(!t.hasOwnProperty(n))continue;let s=e.attributeValueProcessor(n,t[n]);s=ot(s,e),true===s&&e.suppressBooleanAttributes?i+=` ${n.substr(e.attributeNamePrefix.length)}`:i+=` ${n.substr(e.attributeNamePrefix.length)}="${s}"`;}return i}function rt(t,e){let i=(t=t.substr(0,t.length-e.textNodeName.length-1)).substr(t.lastIndexOf(".")+1);for(let n in e.stopNodes)if(e.stopNodes[n]===t||e.stopNodes[n]==="*."+i)return  true;return  false}function ot(t,e){if(t&&t.length>0&&e.processEntities)for(let i=0;i<e.entities.length;i++){const n=e.entities[i];t=t.replace(n.regex,n.val);}return t}const at={attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,cdataPropName:false,format:false,indentBy:"  ",suppressEmptyNode:false,suppressUnpairedNode:true,suppressBooleanAttributes:true,tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},preserveOrder:false,commentPropName:false,unpairedTags:[],entities:[{regex:new RegExp("&","g"),val:"&amp;"},{regex:new RegExp(">","g"),val:"&gt;"},{regex:new RegExp("<","g"),val:"&lt;"},{regex:new RegExp("'","g"),val:"&apos;"},{regex:new RegExp('"',"g"),val:"&quot;"}],processEntities:true,stopNodes:[],oneListGroup:false};function lt(t){this.options=Object.assign({},at,t),true===this.options.ignoreAttributes||this.options.attributesGroupName?this.isAttribute=function(){return  false}:(this.ignoreAttributesFn=$(this.options.ignoreAttributes),this.attrPrefixLen=this.options.attributeNamePrefix.length,this.isAttribute=dt),this.processTextOrObjNode=ut,this.options.format?(this.indentate=ht,this.tagEndChar=">\n",this.newLine="\n"):(this.indentate=function(){return ""},this.tagEndChar=">",this.newLine="");}function ut(t,e,i,n){const s=this.j2x(t,i+1,n.concat(e));return void 0!==t[this.options.textNodeName]&&1===Object.keys(t).length?this.buildTextValNode(t[this.options.textNodeName],e,s.attrStr,i):this.buildObjectNode(s.val,e,s.attrStr,i)}function ht(t){return this.options.indentBy.repeat(t)}function dt(t){return !(!t.startsWith(this.options.attributeNamePrefix)||t===this.options.textNodeName)&&t.substr(this.attrPrefixLen)}lt.prototype.build=function(t){return this.options.preserveOrder?et(t,this.options):(Array.isArray(t)&&this.options.arrayNodeName&&this.options.arrayNodeName.length>1&&(t={[this.options.arrayNodeName]:t}),this.j2x(t,0,[]).val)},lt.prototype.j2x=function(t,e,i){let n="",s="";const r=i.join(".");for(let o in t)if(Object.prototype.hasOwnProperty.call(t,o))if(void 0===t[o])this.isAttribute(o)&&(s+="");else if(null===t[o])this.isAttribute(o)||o===this.options.cdataPropName?s+="":"?"===o[0]?s+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:s+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if(t[o]instanceof Date)s+=this.buildTextValNode(t[o],o,"",e);else if("object"!=typeof t[o]){const i=this.isAttribute(o);if(i&&!this.ignoreAttributesFn(i,r))n+=this.buildAttrPairStr(i,""+t[o]);else if(!i)if(o===this.options.textNodeName){let e=this.options.tagValueProcessor(o,""+t[o]);s+=this.replaceEntitiesValue(e);}else s+=this.buildTextValNode(t[o],o,"",e);}else if(Array.isArray(t[o])){const n=t[o].length;let r="",a="";for(let l=0;l<n;l++){const n=t[o][l];if(void 0===n);else if(null===n)"?"===o[0]?s+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:s+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if("object"==typeof n)if(this.options.oneListGroup){const t=this.j2x(n,e+1,i.concat(o));r+=t.val,this.options.attributesGroupName&&n.hasOwnProperty(this.options.attributesGroupName)&&(a+=t.attrStr);}else r+=this.processTextOrObjNode(n,o,e,i);else if(this.options.oneListGroup){let t=this.options.tagValueProcessor(o,n);t=this.replaceEntitiesValue(t),r+=t;}else r+=this.buildTextValNode(n,o,"",e);}this.options.oneListGroup&&(r=this.buildObjectNode(r,o,a,e)),s+=r;}else if(this.options.attributesGroupName&&o===this.options.attributesGroupName){const e=Object.keys(t[o]),i=e.length;for(let s=0;s<i;s++)n+=this.buildAttrPairStr(e[s],""+t[o][e[s]]);}else s+=this.processTextOrObjNode(t[o],o,e,i);return {attrStr:n,val:s}},lt.prototype.buildAttrPairStr=function(t,e){return e=this.options.attributeValueProcessor(t,""+e),e=this.replaceEntitiesValue(e),this.options.suppressBooleanAttributes&&"true"===e?" "+t:" "+t+'="'+e+'"'},lt.prototype.buildObjectNode=function(t,e,i,n){if(""===t)return "?"===e[0]?this.indentate(n)+"<"+e+i+"?"+this.tagEndChar:this.indentate(n)+"<"+e+i+this.closeTag(e)+this.tagEndChar;{let s="</"+e+this.tagEndChar,r="";return "?"===e[0]&&(r="?",s=""),!i&&""!==i||-1!==t.indexOf("<")?false!==this.options.commentPropName&&e===this.options.commentPropName&&0===r.length?this.indentate(n)+`\x3c!--${t}--\x3e`+this.newLine:this.indentate(n)+"<"+e+i+r+this.tagEndChar+t+this.indentate(n)+s:this.indentate(n)+"<"+e+i+r+">"+t+s}},lt.prototype.closeTag=function(t){let e="";return  -1!==this.options.unpairedTags.indexOf(t)?this.options.suppressUnpairedNode||(e="/"):e=this.options.suppressEmptyNode?"/":`></${t}`,e},lt.prototype.buildTextValNode=function(t,e,i,n){if(false!==this.options.cdataPropName&&e===this.options.cdataPropName)return this.indentate(n)+`<![CDATA[${t}]]>`+this.newLine;if(false!==this.options.commentPropName&&e===this.options.commentPropName)return this.indentate(n)+`\x3c!--${t}--\x3e`+this.newLine;if("?"===e[0])return this.indentate(n)+"<"+e+i+"?"+this.tagEndChar;{let s=this.options.tagValueProcessor(e,t);return s=this.replaceEntitiesValue(s),""===s?this.indentate(n)+"<"+e+i+this.closeTag(e)+this.tagEndChar:this.indentate(n)+"<"+e+i+">"+s+"</"+e+this.tagEndChar}},lt.prototype.replaceEntitiesValue=function(t){if(t&&t.length>0&&this.options.processEntities)for(let e=0;e<this.options.entities.length;e++){const i=this.options.entities[e];t=t.replace(i.regex,i.val);}return t};const pt={validate:a};fxp.exports=e;})();
 	return fxp.exports;
 }
 
@@ -46370,80 +47109,556 @@ function requireLog$1 () {
 	return log$1;
 }
 
-var StorageRetryPolicyFactory$1 = {};
-
-var StorageRetryPolicy$1 = {};
-
 var commonjs$3 = {};
 
-var AbortError$2 = {};
+var BufferScheduler = {};
 
-var hasRequiredAbortError$1;
+var PooledBuffer = {};
 
-function requireAbortError$1 () {
-	if (hasRequiredAbortError$1) return AbortError$2;
-	hasRequiredAbortError$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT license.
-	Object.defineProperty(AbortError$2, "__esModule", { value: true });
-	AbortError$2.AbortError = void 0;
-	/**
-	 * This error is thrown when an asynchronous operation has been aborted.
-	 * Check for this error by testing the `name` that the name property of the
-	 * error matches `"AbortError"`.
-	 *
-	 * @example
-	 * ```ts
-	 * const controller = new AbortController();
-	 * controller.abort();
-	 * try {
-	 *   doAsyncWork(controller.signal)
-	 * } catch (e) {
-	 *   if (e.name === 'AbortError') {
-	 *     // handle abort error here.
-	 *   }
-	 * }
-	 * ```
-	 */
-	class AbortError extends Error {
-	    constructor(message) {
-	        super(message);
-	        this.name = "AbortError";
-	    }
-	}
-	AbortError$2.AbortError = AbortError;
-	
-	return AbortError$2;
-}
+var BuffersStream = {};
 
-var hasRequiredCommonjs$4;
+var hasRequiredBuffersStream;
 
-function requireCommonjs$4 () {
-	if (hasRequiredCommonjs$4) return commonjs$3;
-	hasRequiredCommonjs$4 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT license.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.AbortError = void 0;
-		var AbortError_js_1 = requireAbortError$1();
-		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
-		
-	} (commonjs$3));
-	return commonjs$3;
-}
-
-var RequestPolicy$1 = {};
-
-var hasRequiredRequestPolicy$1;
-
-function requireRequestPolicy$1 () {
-	if (hasRequiredRequestPolicy$1) return RequestPolicy$1;
-	hasRequiredRequestPolicy$1 = 1;
+function requireBuffersStream () {
+	if (hasRequiredBuffersStream) return BuffersStream;
+	hasRequiredBuffersStream = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT License.
-	Object.defineProperty(RequestPolicy$1, "__esModule", { value: true });
-	RequestPolicy$1.BaseRequestPolicy = void 0;
+	Object.defineProperty(BuffersStream, "__esModule", { value: true });
+	BuffersStream.BuffersStream = void 0;
+	const node_stream_1 = require$$0$a;
+	/**
+	 * This class generates a readable stream from the data in an array of buffers.
+	 */
+	let BuffersStream$1 = class BuffersStream extends node_stream_1.Readable {
+	    buffers;
+	    byteLength;
+	    /**
+	     * The offset of data to be read in the current buffer.
+	     */
+	    byteOffsetInCurrentBuffer;
+	    /**
+	     * The index of buffer to be read in the array of buffers.
+	     */
+	    bufferIndex;
+	    /**
+	     * The total length of data already read.
+	     */
+	    pushedBytesLength;
+	    /**
+	     * Creates an instance of BuffersStream that will emit the data
+	     * contained in the array of buffers.
+	     *
+	     * @param buffers - Array of buffers containing the data
+	     * @param byteLength - The total length of data contained in the buffers
+	     */
+	    constructor(buffers, byteLength, options) {
+	        super(options);
+	        this.buffers = buffers;
+	        this.byteLength = byteLength;
+	        this.byteOffsetInCurrentBuffer = 0;
+	        this.bufferIndex = 0;
+	        this.pushedBytesLength = 0;
+	        // check byteLength is no larger than buffers[] total length
+	        let buffersLength = 0;
+	        for (const buf of this.buffers) {
+	            buffersLength += buf.byteLength;
+	        }
+	        if (buffersLength < this.byteLength) {
+	            throw new Error("Data size shouldn't be larger than the total length of buffers.");
+	        }
+	    }
+	    /**
+	     * Internal _read() that will be called when the stream wants to pull more data in.
+	     *
+	     * @param size - Optional. The size of data to be read
+	     */
+	    _read(size) {
+	        if (this.pushedBytesLength >= this.byteLength) {
+	            this.push(null);
+	        }
+	        if (!size) {
+	            size = this.readableHighWaterMark;
+	        }
+	        const outBuffers = [];
+	        let i = 0;
+	        while (i < size && this.pushedBytesLength < this.byteLength) {
+	            // The last buffer may be longer than the data it contains.
+	            const remainingDataInAllBuffers = this.byteLength - this.pushedBytesLength;
+	            const remainingCapacityInThisBuffer = this.buffers[this.bufferIndex].byteLength - this.byteOffsetInCurrentBuffer;
+	            const remaining = Math.min(remainingCapacityInThisBuffer, remainingDataInAllBuffers);
+	            if (remaining > size - i) {
+	                // chunkSize = size - i
+	                const end = this.byteOffsetInCurrentBuffer + size - i;
+	                outBuffers.push(this.buffers[this.bufferIndex].slice(this.byteOffsetInCurrentBuffer, end));
+	                this.pushedBytesLength += size - i;
+	                this.byteOffsetInCurrentBuffer = end;
+	                i = size;
+	                break;
+	            }
+	            else {
+	                // chunkSize = remaining
+	                const end = this.byteOffsetInCurrentBuffer + remaining;
+	                outBuffers.push(this.buffers[this.bufferIndex].slice(this.byteOffsetInCurrentBuffer, end));
+	                if (remaining === remainingCapacityInThisBuffer) {
+	                    // this.buffers[this.bufferIndex] used up, shift to next one
+	                    this.byteOffsetInCurrentBuffer = 0;
+	                    this.bufferIndex++;
+	                }
+	                else {
+	                    this.byteOffsetInCurrentBuffer = end;
+	                }
+	                this.pushedBytesLength += remaining;
+	                i += remaining;
+	            }
+	        }
+	        if (outBuffers.length > 1) {
+	            this.push(Buffer.concat(outBuffers));
+	        }
+	        else if (outBuffers.length === 1) {
+	            this.push(outBuffers[0]);
+	        }
+	    }
+	};
+	BuffersStream.BuffersStream = BuffersStream$1;
+	
+	return BuffersStream;
+}
+
+var hasRequiredPooledBuffer;
+
+function requirePooledBuffer () {
+	if (hasRequiredPooledBuffer) return PooledBuffer;
+	hasRequiredPooledBuffer = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(PooledBuffer, "__esModule", { value: true });
+	PooledBuffer.PooledBuffer = void 0;
+	const tslib_1 = require$$0$2;
+	const BuffersStream_js_1 = requireBuffersStream();
+	const node_buffer_1 = tslib_1.__importDefault(require$$2$5);
+	/**
+	 * maxBufferLength is max size of each buffer in the pooled buffers.
+	 */
+	const maxBufferLength = node_buffer_1.default.constants.MAX_LENGTH;
+	/**
+	 * This class provides a buffer container which conceptually has no hard size limit.
+	 * It accepts a capacity, an array of input buffers and the total length of input data.
+	 * It will allocate an internal "buffer" of the capacity and fill the data in the input buffers
+	 * into the internal "buffer" serially with respect to the total length.
+	 * Then by calling PooledBuffer.getReadableStream(), you can get a readable stream
+	 * assembled from all the data in the internal "buffer".
+	 */
+	let PooledBuffer$1 = class PooledBuffer {
+	    /**
+	     * Internal buffers used to keep the data.
+	     * Each buffer has a length of the maxBufferLength except last one.
+	     */
+	    buffers = [];
+	    /**
+	     * The total size of internal buffers.
+	     */
+	    capacity;
+	    /**
+	     * The total size of data contained in internal buffers.
+	     */
+	    _size;
+	    /**
+	     * The size of the data contained in the pooled buffers.
+	     */
+	    get size() {
+	        return this._size;
+	    }
+	    constructor(capacity, buffers, totalLength) {
+	        this.capacity = capacity;
+	        this._size = 0;
+	        // allocate
+	        const bufferNum = Math.ceil(capacity / maxBufferLength);
+	        for (let i = 0; i < bufferNum; i++) {
+	            let len = i === bufferNum - 1 ? capacity % maxBufferLength : maxBufferLength;
+	            if (len === 0) {
+	                len = maxBufferLength;
+	            }
+	            this.buffers.push(Buffer.allocUnsafe(len));
+	        }
+	        if (buffers) {
+	            this.fill(buffers, totalLength);
+	        }
+	    }
+	    /**
+	     * Fill the internal buffers with data in the input buffers serially
+	     * with respect to the total length and the total capacity of the internal buffers.
+	     * Data copied will be shift out of the input buffers.
+	     *
+	     * @param buffers - Input buffers containing the data to be filled in the pooled buffer
+	     * @param totalLength - Total length of the data to be filled in.
+	     *
+	     */
+	    fill(buffers, totalLength) {
+	        this._size = Math.min(this.capacity, totalLength);
+	        let i = 0, j = 0, targetOffset = 0, sourceOffset = 0, totalCopiedNum = 0;
+	        while (totalCopiedNum < this._size) {
+	            const source = buffers[i];
+	            const target = this.buffers[j];
+	            const copiedNum = source.copy(target, targetOffset, sourceOffset);
+	            totalCopiedNum += copiedNum;
+	            sourceOffset += copiedNum;
+	            targetOffset += copiedNum;
+	            if (sourceOffset === source.length) {
+	                i++;
+	                sourceOffset = 0;
+	            }
+	            if (targetOffset === target.length) {
+	                j++;
+	                targetOffset = 0;
+	            }
+	        }
+	        // clear copied from source buffers
+	        buffers.splice(0, i);
+	        if (buffers.length > 0) {
+	            buffers[0] = buffers[0].slice(sourceOffset);
+	        }
+	    }
+	    /**
+	     * Get the readable stream assembled from all the data in the internal buffers.
+	     *
+	     */
+	    getReadableStream() {
+	        return new BuffersStream_js_1.BuffersStream(this.buffers, this.size);
+	    }
+	};
+	PooledBuffer.PooledBuffer = PooledBuffer$1;
+	
+	return PooledBuffer;
+}
+
+var hasRequiredBufferScheduler;
+
+function requireBufferScheduler () {
+	if (hasRequiredBufferScheduler) return BufferScheduler;
+	hasRequiredBufferScheduler = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(BufferScheduler, "__esModule", { value: true });
+	BufferScheduler.BufferScheduler = void 0;
+	const events_1 = require$$1$3;
+	const PooledBuffer_js_1 = requirePooledBuffer();
+	/**
+	 * This class accepts a Node.js Readable stream as input, and keeps reading data
+	 * from the stream into the internal buffer structure, until it reaches maxBuffers.
+	 * Every available buffer will try to trigger outgoingHandler.
+	 *
+	 * The internal buffer structure includes an incoming buffer array, and a outgoing
+	 * buffer array. The incoming buffer array includes the "empty" buffers can be filled
+	 * with new incoming data. The outgoing array includes the filled buffers to be
+	 * handled by outgoingHandler. Every above buffer size is defined by parameter bufferSize.
+	 *
+	 * NUM_OF_ALL_BUFFERS = BUFFERS_IN_INCOMING + BUFFERS_IN_OUTGOING + BUFFERS_UNDER_HANDLING
+	 *
+	 * NUM_OF_ALL_BUFFERS lesser than or equal to maxBuffers
+	 *
+	 * PERFORMANCE IMPROVEMENT TIPS:
+	 * 1. Input stream highWaterMark is better to set a same value with bufferSize
+	 *    parameter, which will avoid Buffer.concat() operations.
+	 * 2. concurrency should set a smaller value than maxBuffers, which is helpful to
+	 *    reduce the possibility when a outgoing handler waits for the stream data.
+	 *    in this situation, outgoing handlers are blocked.
+	 *    Outgoing queue shouldn't be empty.
+	 */
+	let BufferScheduler$1 = class BufferScheduler {
+	    /**
+	     * Size of buffers in incoming and outgoing queues. This class will try to align
+	     * data read from Readable stream into buffer chunks with bufferSize defined.
+	     */
+	    bufferSize;
+	    /**
+	     * How many buffers can be created or maintained.
+	     */
+	    maxBuffers;
+	    /**
+	     * A Node.js Readable stream.
+	     */
+	    readable;
+	    /**
+	     * OutgoingHandler is an async function triggered by BufferScheduler when there
+	     * are available buffers in outgoing array.
+	     */
+	    outgoingHandler;
+	    /**
+	     * An internal event emitter.
+	     */
+	    emitter = new events_1.EventEmitter();
+	    /**
+	     * Concurrency of executing outgoingHandlers. (0 lesser than concurrency lesser than or equal to maxBuffers)
+	     */
+	    concurrency;
+	    /**
+	     * An internal offset marker to track data offset in bytes of next outgoingHandler.
+	     */
+	    offset = 0;
+	    /**
+	     * An internal marker to track whether stream is end.
+	     */
+	    isStreamEnd = false;
+	    /**
+	     * An internal marker to track whether stream or outgoingHandler returns error.
+	     */
+	    isError = false;
+	    /**
+	     * How many handlers are executing.
+	     */
+	    executingOutgoingHandlers = 0;
+	    /**
+	     * Encoding of the input Readable stream which has string data type instead of Buffer.
+	     */
+	    encoding;
+	    /**
+	     * How many buffers have been allocated.
+	     */
+	    numBuffers = 0;
+	    /**
+	     * Because this class doesn't know how much data every time stream pops, which
+	     * is defined by highWaterMarker of the stream. So BufferScheduler will cache
+	     * data received from the stream, when data in unresolvedDataArray exceeds the
+	     * blockSize defined, it will try to concat a blockSize of buffer, fill into available
+	     * buffers from incoming and push to outgoing array.
+	     */
+	    unresolvedDataArray = [];
+	    /**
+	     * How much data consisted in unresolvedDataArray.
+	     */
+	    unresolvedLength = 0;
+	    /**
+	     * The array includes all the available buffers can be used to fill data from stream.
+	     */
+	    incoming = [];
+	    /**
+	     * The array (queue) includes all the buffers filled from stream data.
+	     */
+	    outgoing = [];
+	    /**
+	     * Creates an instance of BufferScheduler.
+	     *
+	     * @param readable - A Node.js Readable stream
+	     * @param bufferSize - Buffer size of every maintained buffer
+	     * @param maxBuffers - How many buffers can be allocated
+	     * @param outgoingHandler - An async function scheduled to be
+	     *                                          triggered when a buffer fully filled
+	     *                                          with stream data
+	     * @param concurrency - Concurrency of executing outgoingHandlers (&gt;0)
+	     * @param encoding - [Optional] Encoding of Readable stream when it's a string stream
+	     */
+	    constructor(readable, bufferSize, maxBuffers, outgoingHandler, concurrency, encoding) {
+	        if (bufferSize <= 0) {
+	            throw new RangeError(`bufferSize must be larger than 0, current is ${bufferSize}`);
+	        }
+	        if (maxBuffers <= 0) {
+	            throw new RangeError(`maxBuffers must be larger than 0, current is ${maxBuffers}`);
+	        }
+	        if (concurrency <= 0) {
+	            throw new RangeError(`concurrency must be larger than 0, current is ${concurrency}`);
+	        }
+	        this.bufferSize = bufferSize;
+	        this.maxBuffers = maxBuffers;
+	        this.readable = readable;
+	        this.outgoingHandler = outgoingHandler;
+	        this.concurrency = concurrency;
+	        this.encoding = encoding;
+	    }
+	    /**
+	     * Start the scheduler, will return error when stream of any of the outgoingHandlers
+	     * returns error.
+	     *
+	     */
+	    async do() {
+	        return new Promise((resolve, reject) => {
+	            this.readable.on("data", (data) => {
+	                data = typeof data === "string" ? Buffer.from(data, this.encoding) : data;
+	                this.appendUnresolvedData(data);
+	                if (!this.resolveData()) {
+	                    this.readable.pause();
+	                }
+	            });
+	            this.readable.on("error", (err) => {
+	                this.emitter.emit("error", err);
+	            });
+	            this.readable.on("end", () => {
+	                this.isStreamEnd = true;
+	                this.emitter.emit("checkEnd");
+	            });
+	            this.emitter.on("error", (err) => {
+	                this.isError = true;
+	                this.readable.pause();
+	                reject(err);
+	            });
+	            this.emitter.on("checkEnd", () => {
+	                if (this.outgoing.length > 0) {
+	                    this.triggerOutgoingHandlers();
+	                    return;
+	                }
+	                if (this.isStreamEnd && this.executingOutgoingHandlers === 0) {
+	                    if (this.unresolvedLength > 0 && this.unresolvedLength < this.bufferSize) {
+	                        const buffer = this.shiftBufferFromUnresolvedDataArray();
+	                        this.outgoingHandler(() => buffer.getReadableStream(), buffer.size, this.offset)
+	                            .then(resolve)
+	                            .catch(reject);
+	                    }
+	                    else if (this.unresolvedLength >= this.bufferSize) {
+	                        return;
+	                    }
+	                    else {
+	                        resolve();
+	                    }
+	                }
+	            });
+	        });
+	    }
+	    /**
+	     * Insert a new data into unresolved array.
+	     *
+	     * @param data -
+	     */
+	    appendUnresolvedData(data) {
+	        this.unresolvedDataArray.push(data);
+	        this.unresolvedLength += data.length;
+	    }
+	    /**
+	     * Try to shift a buffer with size in blockSize. The buffer returned may be less
+	     * than blockSize when data in unresolvedDataArray is less than bufferSize.
+	     *
+	     */
+	    shiftBufferFromUnresolvedDataArray(buffer) {
+	        if (!buffer) {
+	            buffer = new PooledBuffer_js_1.PooledBuffer(this.bufferSize, this.unresolvedDataArray, this.unresolvedLength);
+	        }
+	        else {
+	            buffer.fill(this.unresolvedDataArray, this.unresolvedLength);
+	        }
+	        this.unresolvedLength -= buffer.size;
+	        return buffer;
+	    }
+	    /**
+	     * Resolve data in unresolvedDataArray. For every buffer with size in blockSize
+	     * shifted, it will try to get (or allocate a buffer) from incoming, and fill it,
+	     * then push it into outgoing to be handled by outgoing handler.
+	     *
+	     * Return false when available buffers in incoming are not enough, else true.
+	     *
+	     * @returns Return false when buffers in incoming are not enough, else true.
+	     */
+	    resolveData() {
+	        while (this.unresolvedLength >= this.bufferSize) {
+	            let buffer;
+	            if (this.incoming.length > 0) {
+	                buffer = this.incoming.shift();
+	                this.shiftBufferFromUnresolvedDataArray(buffer);
+	            }
+	            else {
+	                if (this.numBuffers < this.maxBuffers) {
+	                    buffer = this.shiftBufferFromUnresolvedDataArray();
+	                    this.numBuffers++;
+	                }
+	                else {
+	                    // No available buffer, wait for buffer returned
+	                    return false;
+	                }
+	            }
+	            this.outgoing.push(buffer);
+	            this.triggerOutgoingHandlers();
+	        }
+	        return true;
+	    }
+	    /**
+	     * Try to trigger a outgoing handler for every buffer in outgoing. Stop when
+	     * concurrency reaches.
+	     */
+	    async triggerOutgoingHandlers() {
+	        let buffer;
+	        do {
+	            if (this.executingOutgoingHandlers >= this.concurrency) {
+	                return;
+	            }
+	            buffer = this.outgoing.shift();
+	            if (buffer) {
+	                this.triggerOutgoingHandler(buffer);
+	            }
+	        } while (buffer);
+	    }
+	    /**
+	     * Trigger a outgoing handler for a buffer shifted from outgoing.
+	     *
+	     * @param buffer -
+	     */
+	    async triggerOutgoingHandler(buffer) {
+	        const bufferLength = buffer.size;
+	        this.executingOutgoingHandlers++;
+	        this.offset += bufferLength;
+	        try {
+	            await this.outgoingHandler(() => buffer.getReadableStream(), bufferLength, this.offset - bufferLength);
+	        }
+	        catch (err) {
+	            this.emitter.emit("error", err);
+	            return;
+	        }
+	        this.executingOutgoingHandlers--;
+	        this.reuseBuffer(buffer);
+	        this.emitter.emit("checkEnd");
+	    }
+	    /**
+	     * Return buffer used by outgoing handler into incoming.
+	     *
+	     * @param buffer -
+	     */
+	    reuseBuffer(buffer) {
+	        this.incoming.push(buffer);
+	        if (!this.isError && this.resolveData() && !this.isStreamEnd) {
+	            this.readable.resume();
+	        }
+	    }
+	};
+	BufferScheduler.BufferScheduler = BufferScheduler$1;
+	
+	return BufferScheduler;
+}
+
+var cache$1 = {};
+
+var hasRequiredCache$2;
+
+function requireCache$2 () {
+	if (hasRequiredCache$2) return cache$1;
+	hasRequiredCache$2 = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(cache$1, "__esModule", { value: true });
+	cache$1.getCachedDefaultHttpClient = getCachedDefaultHttpClient;
+	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
+	let _defaultHttpClient;
+	function getCachedDefaultHttpClient() {
+	    if (!_defaultHttpClient) {
+	        _defaultHttpClient = (0, core_rest_pipeline_1.createDefaultHttpClient)();
+	    }
+	    return _defaultHttpClient;
+	}
+	
+	return cache$1;
+}
+
+var StorageBrowserPolicyFactory = {};
+
+var StorageBrowserPolicy = {};
+
+var RequestPolicy = {};
+
+var hasRequiredRequestPolicy;
+
+function requireRequestPolicy () {
+	if (hasRequiredRequestPolicy) return RequestPolicy;
+	hasRequiredRequestPolicy = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(RequestPolicy, "__esModule", { value: true });
+	RequestPolicy.BaseRequestPolicy = void 0;
 	/**
 	 * The base class from which all request policies derive.
 	 */
@@ -46483,9 +47698,9 @@ function requireRequestPolicy$1 () {
 	        this._options.log(logLevel, message);
 	    }
 	}
-	RequestPolicy$1.BaseRequestPolicy = BaseRequestPolicy;
+	RequestPolicy.BaseRequestPolicy = BaseRequestPolicy;
 	
-	return RequestPolicy$1;
+	return RequestPolicy;
 }
 
 var constants$2 = {};
@@ -46495,236 +47710,72 @@ var hasRequiredConstants$2;
 function requireConstants$2 () {
 	if (hasRequiredConstants$2) return constants$2;
 	hasRequiredConstants$2 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.PathStylePorts = exports$1.BlobDoesNotUseCustomerSpecifiedEncryption = exports$1.BlobUsesCustomerSpecifiedEncryptionMsg = exports$1.StorageBlobLoggingAllowedQueryParameters = exports$1.StorageBlobLoggingAllowedHeaderNames = exports$1.DevelopmentConnectionString = exports$1.EncryptionAlgorithmAES25 = exports$1.HTTP_VERSION_1_1 = exports$1.HTTP_LINE_ENDING = exports$1.BATCH_MAX_PAYLOAD_IN_BYTES = exports$1.BATCH_MAX_REQUEST = exports$1.SIZE_1_MB = exports$1.ETagAny = exports$1.ETagNone = exports$1.HeaderConstants = exports$1.HTTPURLConnection = exports$1.URLConstants = exports$1.StorageOAuthScopes = exports$1.REQUEST_TIMEOUT = exports$1.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = exports$1.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = exports$1.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = exports$1.BLOCK_BLOB_MAX_BLOCKS = exports$1.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = exports$1.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = exports$1.SERVICE_VERSION = exports$1.SDK_VERSION = void 0;
-		exports$1.SDK_VERSION = "12.29.1";
-		exports$1.SERVICE_VERSION = "2025-11-05";
-		exports$1.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = 256 * 1024 * 1024; // 256MB
-		exports$1.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = 4000 * 1024 * 1024; // 4000MB
-		exports$1.BLOCK_BLOB_MAX_BLOCKS = 50000;
-		exports$1.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = 8 * 1024 * 1024; // 8MB
-		exports$1.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = 4 * 1024 * 1024; // 4MB
-		exports$1.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = 5;
-		exports$1.REQUEST_TIMEOUT = 100 * 1000; // In ms
-		/**
-		 * The OAuth scope to use with Azure Storage.
-		 */
-		exports$1.StorageOAuthScopes = "https://storage.azure.com/.default";
-		exports$1.URLConstants = {
-		    Parameters: {
-		        FORCE_BROWSER_NO_CACHE: "_",
-		        SIGNATURE: "sig",
-		        SNAPSHOT: "snapshot",
-		        VERSIONID: "versionid",
-		        TIMEOUT: "timeout",
-		    },
-		};
-		exports$1.HTTPURLConnection = {
-		    HTTP_ACCEPTED: 202,
-		    HTTP_CONFLICT: 409,
-		    HTTP_NOT_FOUND: 404,
-		    HTTP_PRECON_FAILED: 412,
-		    HTTP_RANGE_NOT_SATISFIABLE: 416,
-		};
-		exports$1.HeaderConstants = {
-		    AUTHORIZATION: "Authorization",
-		    AUTHORIZATION_SCHEME: "Bearer",
-		    CONTENT_ENCODING: "Content-Encoding",
-		    CONTENT_ID: "Content-ID",
-		    CONTENT_LANGUAGE: "Content-Language",
-		    CONTENT_LENGTH: "Content-Length",
-		    CONTENT_MD5: "Content-Md5",
-		    CONTENT_TRANSFER_ENCODING: "Content-Transfer-Encoding",
-		    CONTENT_TYPE: "Content-Type",
-		    COOKIE: "Cookie",
-		    DATE: "date",
-		    IF_MATCH: "if-match",
-		    IF_MODIFIED_SINCE: "if-modified-since",
-		    IF_NONE_MATCH: "if-none-match",
-		    IF_UNMODIFIED_SINCE: "if-unmodified-since",
-		    PREFIX_FOR_STORAGE: "x-ms-",
-		    RANGE: "Range",
-		    USER_AGENT: "User-Agent",
-		    X_MS_CLIENT_REQUEST_ID: "x-ms-client-request-id",
-		    X_MS_COPY_SOURCE: "x-ms-copy-source",
-		    X_MS_DATE: "x-ms-date",
-		    X_MS_ERROR_CODE: "x-ms-error-code",
-		    X_MS_VERSION: "x-ms-version",
-		    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
-		};
-		exports$1.ETagNone = "";
-		exports$1.ETagAny = "*";
-		exports$1.SIZE_1_MB = 1 * 1024 * 1024;
-		exports$1.BATCH_MAX_REQUEST = 256;
-		exports$1.BATCH_MAX_PAYLOAD_IN_BYTES = 4 * exports$1.SIZE_1_MB;
-		exports$1.HTTP_LINE_ENDING = "\r\n";
-		exports$1.HTTP_VERSION_1_1 = "HTTP/1.1";
-		exports$1.EncryptionAlgorithmAES25 = "AES256";
-		exports$1.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
-		exports$1.StorageBlobLoggingAllowedHeaderNames = [
-		    "Access-Control-Allow-Origin",
-		    "Cache-Control",
-		    "Content-Length",
-		    "Content-Type",
-		    "Date",
-		    "Request-Id",
-		    "traceparent",
-		    "Transfer-Encoding",
-		    "User-Agent",
-		    "x-ms-client-request-id",
-		    "x-ms-date",
-		    "x-ms-error-code",
-		    "x-ms-request-id",
-		    "x-ms-return-client-request-id",
-		    "x-ms-version",
-		    "Accept-Ranges",
-		    "Content-Disposition",
-		    "Content-Encoding",
-		    "Content-Language",
-		    "Content-MD5",
-		    "Content-Range",
-		    "ETag",
-		    "Last-Modified",
-		    "Server",
-		    "Vary",
-		    "x-ms-content-crc64",
-		    "x-ms-copy-action",
-		    "x-ms-copy-completion-time",
-		    "x-ms-copy-id",
-		    "x-ms-copy-progress",
-		    "x-ms-copy-status",
-		    "x-ms-has-immutability-policy",
-		    "x-ms-has-legal-hold",
-		    "x-ms-lease-state",
-		    "x-ms-lease-status",
-		    "x-ms-range",
-		    "x-ms-request-server-encrypted",
-		    "x-ms-server-encrypted",
-		    "x-ms-snapshot",
-		    "x-ms-source-range",
-		    "If-Match",
-		    "If-Modified-Since",
-		    "If-None-Match",
-		    "If-Unmodified-Since",
-		    "x-ms-access-tier",
-		    "x-ms-access-tier-change-time",
-		    "x-ms-access-tier-inferred",
-		    "x-ms-account-kind",
-		    "x-ms-archive-status",
-		    "x-ms-blob-append-offset",
-		    "x-ms-blob-cache-control",
-		    "x-ms-blob-committed-block-count",
-		    "x-ms-blob-condition-appendpos",
-		    "x-ms-blob-condition-maxsize",
-		    "x-ms-blob-content-disposition",
-		    "x-ms-blob-content-encoding",
-		    "x-ms-blob-content-language",
-		    "x-ms-blob-content-length",
-		    "x-ms-blob-content-md5",
-		    "x-ms-blob-content-type",
-		    "x-ms-blob-public-access",
-		    "x-ms-blob-sequence-number",
-		    "x-ms-blob-type",
-		    "x-ms-copy-destination-snapshot",
-		    "x-ms-creation-time",
-		    "x-ms-default-encryption-scope",
-		    "x-ms-delete-snapshots",
-		    "x-ms-delete-type-permanent",
-		    "x-ms-deny-encryption-scope-override",
-		    "x-ms-encryption-algorithm",
-		    "x-ms-if-sequence-number-eq",
-		    "x-ms-if-sequence-number-le",
-		    "x-ms-if-sequence-number-lt",
-		    "x-ms-incremental-copy",
-		    "x-ms-lease-action",
-		    "x-ms-lease-break-period",
-		    "x-ms-lease-duration",
-		    "x-ms-lease-id",
-		    "x-ms-lease-time",
-		    "x-ms-page-write",
-		    "x-ms-proposed-lease-id",
-		    "x-ms-range-get-content-md5",
-		    "x-ms-rehydrate-priority",
-		    "x-ms-sequence-number-action",
-		    "x-ms-sku-name",
-		    "x-ms-source-content-md5",
-		    "x-ms-source-if-match",
-		    "x-ms-source-if-modified-since",
-		    "x-ms-source-if-none-match",
-		    "x-ms-source-if-unmodified-since",
-		    "x-ms-tag-count",
-		    "x-ms-encryption-key-sha256",
-		    "x-ms-copy-source-error-code",
-		    "x-ms-copy-source-status-code",
-		    "x-ms-if-tags",
-		    "x-ms-source-if-tags",
-		];
-		exports$1.StorageBlobLoggingAllowedQueryParameters = [
-		    "comp",
-		    "maxresults",
-		    "rscc",
-		    "rscd",
-		    "rsce",
-		    "rscl",
-		    "rsct",
-		    "se",
-		    "si",
-		    "sip",
-		    "sp",
-		    "spr",
-		    "sr",
-		    "srt",
-		    "ss",
-		    "st",
-		    "sv",
-		    "include",
-		    "marker",
-		    "prefix",
-		    "copyid",
-		    "restype",
-		    "blockid",
-		    "blocklisttype",
-		    "delimiter",
-		    "prevsnapshot",
-		    "ske",
-		    "skoid",
-		    "sks",
-		    "skt",
-		    "sktid",
-		    "skv",
-		    "snapshot",
-		];
-		exports$1.BlobUsesCustomerSpecifiedEncryptionMsg = "BlobUsesCustomerSpecifiedEncryption";
-		exports$1.BlobDoesNotUseCustomerSpecifiedEncryption = "BlobDoesNotUseCustomerSpecifiedEncryption";
-		/// List of ports used for path style addressing.
-		/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
-		exports$1.PathStylePorts = [
-		    "10000",
-		    "10001",
-		    "10002",
-		    "10003",
-		    "10004",
-		    "10100",
-		    "10101",
-		    "10102",
-		    "10103",
-		    "10104",
-		    "11000",
-		    "11001",
-		    "11002",
-		    "11003",
-		    "11004",
-		    "11100",
-		    "11101",
-		    "11102",
-		    "11103",
-		    "11104",
-		];
-		
-	} (constants$2));
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(constants$2, "__esModule", { value: true });
+	constants$2.PathStylePorts = constants$2.DevelopmentConnectionString = constants$2.HeaderConstants = constants$2.URLConstants = constants$2.SDK_VERSION = void 0;
+	constants$2.SDK_VERSION = "1.0.0";
+	constants$2.URLConstants = {
+	    Parameters: {
+	        FORCE_BROWSER_NO_CACHE: "_",
+	        SIGNATURE: "sig",
+	        SNAPSHOT: "snapshot",
+	        VERSIONID: "versionid",
+	        TIMEOUT: "timeout",
+	    },
+	};
+	constants$2.HeaderConstants = {
+	    AUTHORIZATION: "Authorization",
+	    AUTHORIZATION_SCHEME: "Bearer",
+	    CONTENT_ENCODING: "Content-Encoding",
+	    CONTENT_ID: "Content-ID",
+	    CONTENT_LANGUAGE: "Content-Language",
+	    CONTENT_LENGTH: "Content-Length",
+	    CONTENT_MD5: "Content-Md5",
+	    CONTENT_TRANSFER_ENCODING: "Content-Transfer-Encoding",
+	    CONTENT_TYPE: "Content-Type",
+	    COOKIE: "Cookie",
+	    DATE: "date",
+	    IF_MATCH: "if-match",
+	    IF_MODIFIED_SINCE: "if-modified-since",
+	    IF_NONE_MATCH: "if-none-match",
+	    IF_UNMODIFIED_SINCE: "if-unmodified-since",
+	    PREFIX_FOR_STORAGE: "x-ms-",
+	    RANGE: "Range",
+	    USER_AGENT: "User-Agent",
+	    X_MS_CLIENT_REQUEST_ID: "x-ms-client-request-id",
+	    X_MS_COPY_SOURCE: "x-ms-copy-source",
+	    X_MS_DATE: "x-ms-date",
+	    X_MS_ERROR_CODE: "x-ms-error-code",
+	    X_MS_VERSION: "x-ms-version",
+	    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
+	};
+	constants$2.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
+	/// List of ports used for path style addressing.
+	/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
+	constants$2.PathStylePorts = [
+	    "10000",
+	    "10001",
+	    "10002",
+	    "10003",
+	    "10004",
+	    "10100",
+	    "10101",
+	    "10102",
+	    "10103",
+	    "10104",
+	    "11000",
+	    "11001",
+	    "11002",
+	    "11003",
+	    "11004",
+	    "11100",
+	    "11101",
+	    "11102",
+	    "11103",
+	    "11104",
+	];
+	
 	return constants$2;
 }
 
@@ -46761,17 +47812,8 @@ function requireUtils_common$2 () {
 	utils_common$2.iEqual = iEqual;
 	utils_common$2.getAccountNameFromUrl = getAccountNameFromUrl;
 	utils_common$2.isIpEndpointStyle = isIpEndpointStyle;
-	utils_common$2.toBlobTagsString = toBlobTagsString;
-	utils_common$2.toBlobTags = toBlobTags;
-	utils_common$2.toTags = toTags;
-	utils_common$2.toQuerySerialization = toQuerySerialization;
-	utils_common$2.parseObjectReplicationRecord = parseObjectReplicationRecord;
 	utils_common$2.attachCredential = attachCredential;
 	utils_common$2.httpAuthorizationToString = httpAuthorizationToString;
-	utils_common$2.BlobNameToString = BlobNameToString;
-	utils_common$2.ConvertInternalResponseOfListBlobFlat = ConvertInternalResponseOfListBlobFlat;
-	utils_common$2.ConvertInternalResponseOfListBlobHierarchy = ConvertInternalResponseOfListBlobHierarchy;
-	utils_common$2.ExtractPageRangeInfoItems = ExtractPageRangeInfoItems;
 	utils_common$2.EscapePath = EscapePath;
 	utils_common$2.assertResponse = assertResponse;
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
@@ -47281,146 +48323,6 @@ function requireUtils_common$2 () {
 	        (Boolean(parsedUrl.port) && constants_js_1.PathStylePorts.includes(parsedUrl.port)));
 	}
 	/**
-	 * Convert Tags to encoded string.
-	 *
-	 * @param tags -
-	 */
-	function toBlobTagsString(tags) {
-	    if (tags === undefined) {
-	        return undefined;
-	    }
-	    const tagPairs = [];
-	    for (const key in tags) {
-	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
-	            const value = tags[key];
-	            tagPairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
-	        }
-	    }
-	    return tagPairs.join("&");
-	}
-	/**
-	 * Convert Tags type to BlobTags.
-	 *
-	 * @param tags -
-	 */
-	function toBlobTags(tags) {
-	    if (tags === undefined) {
-	        return undefined;
-	    }
-	    const res = {
-	        blobTagSet: [],
-	    };
-	    for (const key in tags) {
-	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
-	            const value = tags[key];
-	            res.blobTagSet.push({
-	                key,
-	                value,
-	            });
-	        }
-	    }
-	    return res;
-	}
-	/**
-	 * Covert BlobTags to Tags type.
-	 *
-	 * @param tags -
-	 */
-	function toTags(tags) {
-	    if (tags === undefined) {
-	        return undefined;
-	    }
-	    const res = {};
-	    for (const blobTag of tags.blobTagSet) {
-	        res[blobTag.key] = blobTag.value;
-	    }
-	    return res;
-	}
-	/**
-	 * Convert BlobQueryTextConfiguration to QuerySerialization type.
-	 *
-	 * @param textConfiguration -
-	 */
-	function toQuerySerialization(textConfiguration) {
-	    if (textConfiguration === undefined) {
-	        return undefined;
-	    }
-	    switch (textConfiguration.kind) {
-	        case "csv":
-	            return {
-	                format: {
-	                    type: "delimited",
-	                    delimitedTextConfiguration: {
-	                        columnSeparator: textConfiguration.columnSeparator || ",",
-	                        fieldQuote: textConfiguration.fieldQuote || "",
-	                        recordSeparator: textConfiguration.recordSeparator,
-	                        escapeChar: textConfiguration.escapeCharacter || "",
-	                        headersPresent: textConfiguration.hasHeaders || false,
-	                    },
-	                },
-	            };
-	        case "json":
-	            return {
-	                format: {
-	                    type: "json",
-	                    jsonTextConfiguration: {
-	                        recordSeparator: textConfiguration.recordSeparator,
-	                    },
-	                },
-	            };
-	        case "arrow":
-	            return {
-	                format: {
-	                    type: "arrow",
-	                    arrowConfiguration: {
-	                        schema: textConfiguration.schema,
-	                    },
-	                },
-	            };
-	        case "parquet":
-	            return {
-	                format: {
-	                    type: "parquet",
-	                },
-	            };
-	        default:
-	            throw Error("Invalid BlobQueryTextConfiguration.");
-	    }
-	}
-	function parseObjectReplicationRecord(objectReplicationRecord) {
-	    if (!objectReplicationRecord) {
-	        return undefined;
-	    }
-	    if ("policy-id" in objectReplicationRecord) {
-	        // If the dictionary contains a key with policy id, we are not required to do any parsing since
-	        // the policy id should already be stored in the ObjectReplicationDestinationPolicyId.
-	        return undefined;
-	    }
-	    const orProperties = [];
-	    for (const key in objectReplicationRecord) {
-	        const ids = key.split("_");
-	        const policyPrefix = "or-";
-	        if (ids[0].startsWith(policyPrefix)) {
-	            ids[0] = ids[0].substring(policyPrefix.length);
-	        }
-	        const rule = {
-	            ruleId: ids[1],
-	            replicationStatus: objectReplicationRecord[key],
-	        };
-	        const policyIndex = orProperties.findIndex((policy) => policy.policyId === ids[0]);
-	        if (policyIndex > -1) {
-	            orProperties[policyIndex].rules.push(rule);
-	        }
-	        else {
-	            orProperties.push({
-	                policyId: ids[0],
-	                rules: [rule],
-	            });
-	        }
-	    }
-	    return orProperties;
-	}
-	/**
 	 * Attach a TokenCredential to an object.
 	 *
 	 * @param thing -
@@ -47432,91 +48334,6 @@ function requireUtils_common$2 () {
 	}
 	function httpAuthorizationToString(httpAuthorization) {
 	    return httpAuthorization ? httpAuthorization.scheme + " " + httpAuthorization.value : undefined;
-	}
-	function BlobNameToString(name) {
-	    if (name.encoded) {
-	        return decodeURIComponent(name.content);
-	    }
-	    else {
-	        return name.content;
-	    }
-	}
-	function ConvertInternalResponseOfListBlobFlat(internalResponse) {
-	    return {
-	        ...internalResponse,
-	        segment: {
-	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
-	                const blobItem = {
-	                    ...blobItemInteral,
-	                    name: BlobNameToString(blobItemInteral.name),
-	                };
-	                return blobItem;
-	            }),
-	        },
-	    };
-	}
-	function ConvertInternalResponseOfListBlobHierarchy(internalResponse) {
-	    return {
-	        ...internalResponse,
-	        segment: {
-	            blobPrefixes: internalResponse.segment.blobPrefixes?.map((blobPrefixInternal) => {
-	                const blobPrefix = {
-	                    ...blobPrefixInternal,
-	                    name: BlobNameToString(blobPrefixInternal.name),
-	                };
-	                return blobPrefix;
-	            }),
-	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
-	                const blobItem = {
-	                    ...blobItemInteral,
-	                    name: BlobNameToString(blobItemInteral.name),
-	                };
-	                return blobItem;
-	            }),
-	        },
-	    };
-	}
-	function* ExtractPageRangeInfoItems(getPageRangesSegment) {
-	    let pageRange = [];
-	    let clearRange = [];
-	    if (getPageRangesSegment.pageRange)
-	        pageRange = getPageRangesSegment.pageRange;
-	    if (getPageRangesSegment.clearRange)
-	        clearRange = getPageRangesSegment.clearRange;
-	    let pageRangeIndex = 0;
-	    let clearRangeIndex = 0;
-	    while (pageRangeIndex < pageRange.length && clearRangeIndex < clearRange.length) {
-	        if (pageRange[pageRangeIndex].start < clearRange[clearRangeIndex].start) {
-	            yield {
-	                start: pageRange[pageRangeIndex].start,
-	                end: pageRange[pageRangeIndex].end,
-	                isClear: false,
-	            };
-	            ++pageRangeIndex;
-	        }
-	        else {
-	            yield {
-	                start: clearRange[clearRangeIndex].start,
-	                end: clearRange[clearRangeIndex].end,
-	                isClear: true,
-	            };
-	            ++clearRangeIndex;
-	        }
-	    }
-	    for (; pageRangeIndex < pageRange.length; ++pageRangeIndex) {
-	        yield {
-	            start: pageRange[pageRangeIndex].start,
-	            end: pageRange[pageRangeIndex].end,
-	            isClear: false,
-	        };
-	    }
-	    for (; clearRangeIndex < clearRange.length; ++clearRangeIndex) {
-	        yield {
-	            start: clearRange[clearRangeIndex].start,
-	            end: clearRange[clearRangeIndex].end,
-	            isClear: true,
-	        };
-	    }
 	}
 	/**
 	 * Escape the blobName but keep path separator ('/').
@@ -47544,2018 +48361,19 @@ function requireUtils_common$2 () {
 	return utils_common$2;
 }
 
-var StorageRetryPolicyType$1 = {};
+var hasRequiredStorageBrowserPolicy;
 
-var hasRequiredStorageRetryPolicyType$1;
-
-function requireStorageRetryPolicyType$1 () {
-	if (hasRequiredStorageRetryPolicyType$1) return StorageRetryPolicyType$1;
-	hasRequiredStorageRetryPolicyType$1 = 1;
+function requireStorageBrowserPolicy () {
+	if (hasRequiredStorageBrowserPolicy) return StorageBrowserPolicy;
+	hasRequiredStorageBrowserPolicy = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT License.
-	Object.defineProperty(StorageRetryPolicyType$1, "__esModule", { value: true });
-	StorageRetryPolicyType$1.StorageRetryPolicyType = void 0;
-	/**
-	 * RetryPolicy types.
-	 */
-	var StorageRetryPolicyType;
-	(function (StorageRetryPolicyType) {
-	    /**
-	     * Exponential retry. Retry time delay grows exponentially.
-	     */
-	    StorageRetryPolicyType[StorageRetryPolicyType["EXPONENTIAL"] = 0] = "EXPONENTIAL";
-	    /**
-	     * Linear retry. Retry time delay grows linearly.
-	     */
-	    StorageRetryPolicyType[StorageRetryPolicyType["FIXED"] = 1] = "FIXED";
-	})(StorageRetryPolicyType || (StorageRetryPolicyType$1.StorageRetryPolicyType = StorageRetryPolicyType = {}));
-	
-	return StorageRetryPolicyType$1;
-}
-
-var hasRequiredStorageRetryPolicy$1;
-
-function requireStorageRetryPolicy$1 () {
-	if (hasRequiredStorageRetryPolicy$1) return StorageRetryPolicy$1;
-	hasRequiredStorageRetryPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageRetryPolicy$1, "__esModule", { value: true });
-	StorageRetryPolicy$1.StorageRetryPolicy = void 0;
-	StorageRetryPolicy$1.NewRetryPolicyFactory = NewRetryPolicyFactory;
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
-	const RequestPolicy_js_1 = requireRequestPolicy$1();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
-	const log_js_1 = requireLog$1();
-	const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType$1();
-	/**
-	 * A factory method used to generated a RetryPolicy factory.
-	 *
-	 * @param retryOptions -
-	 */
-	function NewRetryPolicyFactory(retryOptions) {
-	    return {
-	        create: (nextPolicy, options) => {
-	            return new StorageRetryPolicy(nextPolicy, options, retryOptions);
-	        },
-	    };
-	}
-	// Default values of StorageRetryOptions
-	const DEFAULT_RETRY_OPTIONS = {
-	    maxRetryDelayInMs: 120 * 1000,
-	    maxTries: 4,
-	    retryDelayInMs: 4 * 1000,
-	    retryPolicyType: StorageRetryPolicyType_js_1.StorageRetryPolicyType.EXPONENTIAL,
-	    secondaryHost: "",
-	    tryTimeoutInMs: undefined, // Use server side default timeout strategy
-	};
-	const RETRY_ABORT_ERROR = new abort_controller_1.AbortError("The operation was aborted.");
-	/**
-	 * Retry policy with exponential retry and linear retry implemented.
-	 */
-	class StorageRetryPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
-	    /**
-	     * RetryOptions.
-	     */
-	    retryOptions;
-	    /**
-	     * Creates an instance of RetryPolicy.
-	     *
-	     * @param nextPolicy -
-	     * @param options -
-	     * @param retryOptions -
-	     */
-	    constructor(nextPolicy, options, retryOptions = DEFAULT_RETRY_OPTIONS) {
-	        super(nextPolicy, options);
-	        // Initialize retry options
-	        this.retryOptions = {
-	            retryPolicyType: retryOptions.retryPolicyType
-	                ? retryOptions.retryPolicyType
-	                : DEFAULT_RETRY_OPTIONS.retryPolicyType,
-	            maxTries: retryOptions.maxTries && retryOptions.maxTries >= 1
-	                ? Math.floor(retryOptions.maxTries)
-	                : DEFAULT_RETRY_OPTIONS.maxTries,
-	            tryTimeoutInMs: retryOptions.tryTimeoutInMs && retryOptions.tryTimeoutInMs >= 0
-	                ? retryOptions.tryTimeoutInMs
-	                : DEFAULT_RETRY_OPTIONS.tryTimeoutInMs,
-	            retryDelayInMs: retryOptions.retryDelayInMs && retryOptions.retryDelayInMs >= 0
-	                ? Math.min(retryOptions.retryDelayInMs, retryOptions.maxRetryDelayInMs
-	                    ? retryOptions.maxRetryDelayInMs
-	                    : DEFAULT_RETRY_OPTIONS.maxRetryDelayInMs)
-	                : DEFAULT_RETRY_OPTIONS.retryDelayInMs,
-	            maxRetryDelayInMs: retryOptions.maxRetryDelayInMs && retryOptions.maxRetryDelayInMs >= 0
-	                ? retryOptions.maxRetryDelayInMs
-	                : DEFAULT_RETRY_OPTIONS.maxRetryDelayInMs,
-	            secondaryHost: retryOptions.secondaryHost
-	                ? retryOptions.secondaryHost
-	                : DEFAULT_RETRY_OPTIONS.secondaryHost,
-	        };
-	    }
-	    /**
-	     * Sends request.
-	     *
-	     * @param request -
-	     */
-	    async sendRequest(request) {
-	        return this.attemptSendRequest(request, false, 1);
-	    }
-	    /**
-	     * Decide and perform next retry. Won't mutate request parameter.
-	     *
-	     * @param request -
-	     * @param secondaryHas404 -  If attempt was against the secondary & it returned a StatusNotFound (404), then
-	     *                                   the resource was not found. This may be due to replication delay. So, in this
-	     *                                   case, we'll never try the secondary again for this operation.
-	     * @param attempt -           How many retries has been attempted to performed, starting from 1, which includes
-	     *                                   the attempt will be performed by this method call.
-	     */
-	    async attemptSendRequest(request, secondaryHas404, attempt) {
-	        const newRequest = request.clone();
-	        const isPrimaryRetry = secondaryHas404 ||
-	            !this.retryOptions.secondaryHost ||
-	            !(request.method === "GET" || request.method === "HEAD" || request.method === "OPTIONS") ||
-	            attempt % 2 === 1;
-	        if (!isPrimaryRetry) {
-	            newRequest.url = (0, utils_common_js_1.setURLHost)(newRequest.url, this.retryOptions.secondaryHost);
-	        }
-	        // Set the server-side timeout query parameter "timeout=[seconds]"
-	        if (this.retryOptions.tryTimeoutInMs) {
-	            newRequest.url = (0, utils_common_js_1.setURLParameter)(newRequest.url, constants_js_1.URLConstants.Parameters.TIMEOUT, Math.floor(this.retryOptions.tryTimeoutInMs / 1000).toString());
-	        }
-	        let response;
-	        try {
-	            log_js_1.logger.info(`RetryPolicy: =====> Try=${attempt} ${isPrimaryRetry ? "Primary" : "Secondary"}`);
-	            response = await this._nextPolicy.sendRequest(newRequest);
-	            if (!this.shouldRetry(isPrimaryRetry, attempt, response)) {
-	                return response;
-	            }
-	            secondaryHas404 = secondaryHas404 || (!isPrimaryRetry && response.status === 404);
-	        }
-	        catch (err) {
-	            log_js_1.logger.error(`RetryPolicy: Caught error, message: ${err.message}, code: ${err.code}`);
-	            if (!this.shouldRetry(isPrimaryRetry, attempt, response, err)) {
-	                throw err;
-	            }
-	        }
-	        await this.delay(isPrimaryRetry, attempt, request.abortSignal);
-	        return this.attemptSendRequest(request, secondaryHas404, ++attempt);
-	    }
-	    /**
-	     * Decide whether to retry according to last HTTP response and retry counters.
-	     *
-	     * @param isPrimaryRetry -
-	     * @param attempt -
-	     * @param response -
-	     * @param err -
-	     */
-	    shouldRetry(isPrimaryRetry, attempt, response, err) {
-	        if (attempt >= this.retryOptions.maxTries) {
-	            log_js_1.logger.info(`RetryPolicy: Attempt(s) ${attempt} >= maxTries ${this.retryOptions
-	                .maxTries}, no further try.`);
-	            return false;
-	        }
-	        // Handle network failures, you may need to customize the list when you implement
-	        // your own http client
-	        const retriableErrors = [
-	            "ETIMEDOUT",
-	            "ESOCKETTIMEDOUT",
-	            "ECONNREFUSED",
-	            "ECONNRESET",
-	            "ENOENT",
-	            "ENOTFOUND",
-	            "TIMEOUT",
-	            "EPIPE",
-	            "REQUEST_SEND_ERROR", // For default xhr based http client provided in ms-rest-js
-	        ];
-	        if (err) {
-	            for (const retriableError of retriableErrors) {
-	                if (err.name.toUpperCase().includes(retriableError) ||
-	                    err.message.toUpperCase().includes(retriableError) ||
-	                    (err.code && err.code.toString().toUpperCase() === retriableError)) {
-	                    log_js_1.logger.info(`RetryPolicy: Network error ${retriableError} found, will retry.`);
-	                    return true;
-	                }
-	            }
-	        }
-	        // If attempt was against the secondary & it returned a StatusNotFound (404), then
-	        // the resource was not found. This may be due to replication delay. So, in this
-	        // case, we'll never try the secondary again for this operation.
-	        if (response || err) {
-	            const statusCode = response ? response.status : err ? err.statusCode : 0;
-	            if (!isPrimaryRetry && statusCode === 404) {
-	                log_js_1.logger.info(`RetryPolicy: Secondary access with 404, will retry.`);
-	                return true;
-	            }
-	            // Server internal error or server timeout
-	            if (statusCode === 503 || statusCode === 500) {
-	                log_js_1.logger.info(`RetryPolicy: Will retry for status code ${statusCode}.`);
-	                return true;
-	            }
-	        }
-	        if (response) {
-	            // Retry select Copy Source Error Codes.
-	            if (response?.status >= 400) {
-	                const copySourceError = response.headers.get(constants_js_1.HeaderConstants.X_MS_CopySourceErrorCode);
-	                if (copySourceError !== undefined) {
-	                    switch (copySourceError) {
-	                        case "InternalError":
-	                        case "OperationTimedOut":
-	                        case "ServerBusy":
-	                            return true;
-	                    }
-	                }
-	            }
-	        }
-	        if (err?.code === "PARSE_ERROR" && err?.message.startsWith(`Error "Error: Unclosed root tag`)) {
-	            log_js_1.logger.info("RetryPolicy: Incomplete XML response likely due to service timeout, will retry.");
-	            return true;
-	        }
-	        return false;
-	    }
-	    /**
-	     * Delay a calculated time between retries.
-	     *
-	     * @param isPrimaryRetry -
-	     * @param attempt -
-	     * @param abortSignal -
-	     */
-	    async delay(isPrimaryRetry, attempt, abortSignal) {
-	        let delayTimeInMs = 0;
-	        if (isPrimaryRetry) {
-	            switch (this.retryOptions.retryPolicyType) {
-	                case StorageRetryPolicyType_js_1.StorageRetryPolicyType.EXPONENTIAL:
-	                    delayTimeInMs = Math.min((Math.pow(2, attempt - 1) - 1) * this.retryOptions.retryDelayInMs, this.retryOptions.maxRetryDelayInMs);
-	                    break;
-	                case StorageRetryPolicyType_js_1.StorageRetryPolicyType.FIXED:
-	                    delayTimeInMs = this.retryOptions.retryDelayInMs;
-	                    break;
-	            }
-	        }
-	        else {
-	            delayTimeInMs = Math.random() * 1000;
-	        }
-	        log_js_1.logger.info(`RetryPolicy: Delay for ${delayTimeInMs}ms`);
-	        return (0, utils_common_js_1.delay)(delayTimeInMs, abortSignal, RETRY_ABORT_ERROR);
-	    }
-	}
-	StorageRetryPolicy$1.StorageRetryPolicy = StorageRetryPolicy;
-	
-	return StorageRetryPolicy$1;
-}
-
-var hasRequiredStorageRetryPolicyFactory$1;
-
-function requireStorageRetryPolicyFactory$1 () {
-	if (hasRequiredStorageRetryPolicyFactory$1) return StorageRetryPolicyFactory$1;
-	hasRequiredStorageRetryPolicyFactory$1 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.StorageRetryPolicyFactory = exports$1.StorageRetryPolicy = exports$1.StorageRetryPolicyType = void 0;
-		const StorageRetryPolicy_js_1 = requireStorageRetryPolicy$1();
-		Object.defineProperty(exports$1, "StorageRetryPolicy", { enumerable: true, get: function () { return StorageRetryPolicy_js_1.StorageRetryPolicy; } });
-		const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType$1();
-		Object.defineProperty(exports$1, "StorageRetryPolicyType", { enumerable: true, get: function () { return StorageRetryPolicyType_js_1.StorageRetryPolicyType; } });
-		/**
-		 * StorageRetryPolicyFactory is a factory class helping generating {@link StorageRetryPolicy} objects.
-		 */
-		class StorageRetryPolicyFactory {
-		    retryOptions;
-		    /**
-		     * Creates an instance of StorageRetryPolicyFactory.
-		     * @param retryOptions -
-		     */
-		    constructor(retryOptions) {
-		        this.retryOptions = retryOptions;
-		    }
-		    /**
-		     * Creates a StorageRetryPolicy object.
-		     *
-		     * @param nextPolicy -
-		     * @param options -
-		     */
-		    create(nextPolicy, options) {
-		        return new StorageRetryPolicy_js_1.StorageRetryPolicy(nextPolicy, options, this.retryOptions);
-		    }
-		}
-		exports$1.StorageRetryPolicyFactory = StorageRetryPolicyFactory;
-		
-	} (StorageRetryPolicyFactory$1));
-	return StorageRetryPolicyFactory$1;
-}
-
-var StorageSharedKeyCredential$1 = {};
-
-var StorageSharedKeyCredentialPolicy$1 = {};
-
-var CredentialPolicy$1 = {};
-
-var hasRequiredCredentialPolicy$1;
-
-function requireCredentialPolicy$1 () {
-	if (hasRequiredCredentialPolicy$1) return CredentialPolicy$1;
-	hasRequiredCredentialPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(CredentialPolicy$1, "__esModule", { value: true });
-	CredentialPolicy$1.CredentialPolicy = void 0;
-	const RequestPolicy_js_1 = requireRequestPolicy$1();
-	/**
-	 * Credential policy used to sign HTTP(S) requests before sending. This is an
-	 * abstract class.
-	 */
-	class CredentialPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
-	    /**
-	     * Sends out request.
-	     *
-	     * @param request -
-	     */
-	    sendRequest(request) {
-	        return this._nextPolicy.sendRequest(this.signRequest(request));
-	    }
-	    /**
-	     * Child classes must implement this method with request signing. This method
-	     * will be executed in {@link sendRequest}.
-	     *
-	     * @param request -
-	     */
-	    signRequest(request) {
-	        // Child classes must override this method with request signing. This method
-	        // will be executed in sendRequest().
-	        return request;
-	    }
-	}
-	CredentialPolicy$1.CredentialPolicy = CredentialPolicy;
-	
-	return CredentialPolicy$1;
-}
-
-var SharedKeyComparator$1 = {};
-
-var hasRequiredSharedKeyComparator$1;
-
-function requireSharedKeyComparator$1 () {
-	if (hasRequiredSharedKeyComparator$1) return SharedKeyComparator$1;
-	hasRequiredSharedKeyComparator$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(SharedKeyComparator$1, "__esModule", { value: true });
-	SharedKeyComparator$1.compareHeader = compareHeader;
-	/*
-	 * We need to imitate .Net culture-aware sorting, which is used in storage service.
-	 * Below tables contain sort-keys for en-US culture.
-	 */
-	const table_lv0 = new Uint32Array([
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x71c, 0x0, 0x71f, 0x721,
-	    0x723, 0x725, 0x0, 0x0, 0x0, 0x72d, 0x803, 0x0, 0x0, 0x733, 0x0, 0xd03, 0xd1a, 0xd1c, 0xd1e,
-	    0xd20, 0xd22, 0xd24, 0xd26, 0xd28, 0xd2a, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xe02, 0xe09, 0xe0a,
-	    0xe1a, 0xe21, 0xe23, 0xe25, 0xe2c, 0xe32, 0xe35, 0xe36, 0xe48, 0xe51, 0xe70, 0xe7c, 0xe7e, 0xe89,
-	    0xe8a, 0xe91, 0xe99, 0xe9f, 0xea2, 0xea4, 0xea6, 0xea7, 0xea9, 0x0, 0x0, 0x0, 0x743, 0x744, 0x748,
-	    0xe02, 0xe09, 0xe0a, 0xe1a, 0xe21, 0xe23, 0xe25, 0xe2c, 0xe32, 0xe35, 0xe36, 0xe48, 0xe51, 0xe70,
-	    0xe7c, 0xe7e, 0xe89, 0xe8a, 0xe91, 0xe99, 0xe9f, 0xea2, 0xea4, 0xea6, 0xea7, 0xea9, 0x0, 0x74c,
-	    0x0, 0x750, 0x0,
-	]);
-	const table_lv2 = new Uint32Array([
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12,
-	    0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12,
-	    0x12, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	]);
-	const table_lv4 = new Uint32Array([
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x8012, 0x0, 0x0, 0x0, 0x0, 0x0, 0x8212, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	]);
-	function compareHeader(lhs, rhs) {
-	    if (isLessThan(lhs, rhs))
-	        return -1;
-	    return 1;
-	}
-	function isLessThan(lhs, rhs) {
-	    const tables = [table_lv0, table_lv2, table_lv4];
-	    let curr_level = 0;
-	    let i = 0;
-	    let j = 0;
-	    while (curr_level < tables.length) {
-	        if (curr_level === tables.length - 1 && i !== j) {
-	            return i > j;
-	        }
-	        const weight1 = i < lhs.length ? tables[curr_level][lhs[i].charCodeAt(0)] : 0x1;
-	        const weight2 = j < rhs.length ? tables[curr_level][rhs[j].charCodeAt(0)] : 0x1;
-	        if (weight1 === 0x1 && weight2 === 0x1) {
-	            i = 0;
-	            j = 0;
-	            ++curr_level;
-	        }
-	        else if (weight1 === weight2) {
-	            ++i;
-	            ++j;
-	        }
-	        else if (weight1 === 0) {
-	            ++i;
-	        }
-	        else if (weight2 === 0) {
-	            ++j;
-	        }
-	        else {
-	            return weight1 < weight2;
-	        }
-	    }
-	    return false;
-	}
-	
-	return SharedKeyComparator$1;
-}
-
-var hasRequiredStorageSharedKeyCredentialPolicy$1;
-
-function requireStorageSharedKeyCredentialPolicy$1 () {
-	if (hasRequiredStorageSharedKeyCredentialPolicy$1) return StorageSharedKeyCredentialPolicy$1;
-	hasRequiredStorageSharedKeyCredentialPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageSharedKeyCredentialPolicy$1, "__esModule", { value: true });
-	StorageSharedKeyCredentialPolicy$1.StorageSharedKeyCredentialPolicy = void 0;
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
-	const CredentialPolicy_js_1 = requireCredentialPolicy$1();
-	const SharedKeyComparator_js_1 = requireSharedKeyComparator$1();
-	/**
-	 * StorageSharedKeyCredentialPolicy is a policy used to sign HTTP request with a shared key.
-	 */
-	class StorageSharedKeyCredentialPolicy extends CredentialPolicy_js_1.CredentialPolicy {
-	    /**
-	     * Reference to StorageSharedKeyCredential which generates StorageSharedKeyCredentialPolicy
-	     */
-	    factory;
-	    /**
-	     * Creates an instance of StorageSharedKeyCredentialPolicy.
-	     * @param nextPolicy -
-	     * @param options -
-	     * @param factory -
-	     */
-	    constructor(nextPolicy, options, factory) {
-	        super(nextPolicy, options);
-	        this.factory = factory;
-	    }
-	    /**
-	     * Signs request.
-	     *
-	     * @param request -
-	     */
-	    signRequest(request) {
-	        request.headers.set(constants_js_1.HeaderConstants.X_MS_DATE, new Date().toUTCString());
-	        if (request.body &&
-	            (typeof request.body === "string" || request.body !== undefined) &&
-	            request.body.length > 0) {
-	            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-	        }
-	        const stringToSign = [
-	            request.method.toUpperCase(),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LANGUAGE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_ENCODING),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LENGTH),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_MD5),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_TYPE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.DATE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MODIFIED_SINCE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MATCH),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_NONE_MATCH),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_UNMODIFIED_SINCE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.RANGE),
-	        ].join("\n") +
-	            "\n" +
-	            this.getCanonicalizedHeadersString(request) +
-	            this.getCanonicalizedResourceString(request);
-	        const signature = this.factory.computeHMACSHA256(stringToSign);
-	        request.headers.set(constants_js_1.HeaderConstants.AUTHORIZATION, `SharedKey ${this.factory.accountName}:${signature}`);
-	        // console.log(`[URL]:${request.url}`);
-	        // console.log(`[HEADERS]:${request.headers.toString()}`);
-	        // console.log(`[STRING TO SIGN]:${JSON.stringify(stringToSign)}`);
-	        // console.log(`[KEY]: ${request.headers.get(HeaderConstants.AUTHORIZATION)}`);
-	        return request;
-	    }
-	    /**
-	     * Retrieve header value according to shared key sign rules.
-	     * @see https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
-	     *
-	     * @param request -
-	     * @param headerName -
-	     */
-	    getHeaderValueToSign(request, headerName) {
-	        const value = request.headers.get(headerName);
-	        if (!value) {
-	            return "";
-	        }
-	        // When using version 2015-02-21 or later, if Content-Length is zero, then
-	        // set the Content-Length part of the StringToSign to an empty string.
-	        // https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
-	        if (headerName === constants_js_1.HeaderConstants.CONTENT_LENGTH && value === "0") {
-	            return "";
-	        }
-	        return value;
-	    }
-	    /**
-	     * To construct the CanonicalizedHeaders portion of the signature string, follow these steps:
-	     * 1. Retrieve all headers for the resource that begin with x-ms-, including the x-ms-date header.
-	     * 2. Convert each HTTP header name to lowercase.
-	     * 3. Sort the headers lexicographically by header name, in ascending order.
-	     *    Each header may appear only once in the string.
-	     * 4. Replace any linear whitespace in the header value with a single space.
-	     * 5. Trim any whitespace around the colon in the header.
-	     * 6. Finally, append a new-line character to each canonicalized header in the resulting list.
-	     *    Construct the CanonicalizedHeaders string by concatenating all headers in this list into a single string.
-	     *
-	     * @param request -
-	     */
-	    getCanonicalizedHeadersString(request) {
-	        let headersArray = request.headers.headersArray().filter((value) => {
-	            return value.name.toLowerCase().startsWith(constants_js_1.HeaderConstants.PREFIX_FOR_STORAGE);
-	        });
-	        headersArray.sort((a, b) => {
-	            return (0, SharedKeyComparator_js_1.compareHeader)(a.name.toLowerCase(), b.name.toLowerCase());
-	        });
-	        // Remove duplicate headers
-	        headersArray = headersArray.filter((value, index, array) => {
-	            if (index > 0 && value.name.toLowerCase() === array[index - 1].name.toLowerCase()) {
-	                return false;
-	            }
-	            return true;
-	        });
-	        let canonicalizedHeadersStringToSign = "";
-	        headersArray.forEach((header) => {
-	            canonicalizedHeadersStringToSign += `${header.name
-	                .toLowerCase()
-	                .trimRight()}:${header.value.trimLeft()}\n`;
-	        });
-	        return canonicalizedHeadersStringToSign;
-	    }
-	    /**
-	     * Retrieves the webResource canonicalized resource string.
-	     *
-	     * @param request -
-	     */
-	    getCanonicalizedResourceString(request) {
-	        const path = (0, utils_common_js_1.getURLPath)(request.url) || "/";
-	        let canonicalizedResourceString = "";
-	        canonicalizedResourceString += `/${this.factory.accountName}${path}`;
-	        const queries = (0, utils_common_js_1.getURLQueries)(request.url);
-	        const lowercaseQueries = {};
-	        if (queries) {
-	            const queryKeys = [];
-	            for (const key in queries) {
-	                if (Object.prototype.hasOwnProperty.call(queries, key)) {
-	                    const lowercaseKey = key.toLowerCase();
-	                    lowercaseQueries[lowercaseKey] = queries[key];
-	                    queryKeys.push(lowercaseKey);
-	                }
-	            }
-	            queryKeys.sort();
-	            for (const key of queryKeys) {
-	                canonicalizedResourceString += `\n${key}:${decodeURIComponent(lowercaseQueries[key])}`;
-	            }
-	        }
-	        return canonicalizedResourceString;
-	    }
-	}
-	StorageSharedKeyCredentialPolicy$1.StorageSharedKeyCredentialPolicy = StorageSharedKeyCredentialPolicy;
-	
-	return StorageSharedKeyCredentialPolicy$1;
-}
-
-var Credential$1 = {};
-
-var hasRequiredCredential$1;
-
-function requireCredential$1 () {
-	if (hasRequiredCredential$1) return Credential$1;
-	hasRequiredCredential$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(Credential$1, "__esModule", { value: true });
-	Credential$1.Credential = void 0;
-	/**
-	 * Credential is an abstract class for Azure Storage HTTP requests signing. This
-	 * class will host an credentialPolicyCreator factory which generates CredentialPolicy.
-	 */
-	class Credential {
-	    /**
-	     * Creates a RequestPolicy object.
-	     *
-	     * @param _nextPolicy -
-	     * @param _options -
-	     */
-	    create(_nextPolicy, _options) {
-	        throw new Error("Method should be implemented in children classes.");
-	    }
-	}
-	Credential$1.Credential = Credential;
-	
-	return Credential$1;
-}
-
-var hasRequiredStorageSharedKeyCredential$1;
-
-function requireStorageSharedKeyCredential$1 () {
-	if (hasRequiredStorageSharedKeyCredential$1) return StorageSharedKeyCredential$1;
-	hasRequiredStorageSharedKeyCredential$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageSharedKeyCredential$1, "__esModule", { value: true });
-	StorageSharedKeyCredential$1.StorageSharedKeyCredential = void 0;
-	const node_crypto_1 = require$$0$d;
-	const StorageSharedKeyCredentialPolicy_js_1 = requireStorageSharedKeyCredentialPolicy$1();
-	const Credential_js_1 = requireCredential$1();
-	/**
-	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
-	 *
-	 * StorageSharedKeyCredential for account key authorization of Azure Storage service.
-	 */
-	class StorageSharedKeyCredential extends Credential_js_1.Credential {
-	    /**
-	     * Azure Storage account name; readonly.
-	     */
-	    accountName;
-	    /**
-	     * Azure Storage account key; readonly.
-	     */
-	    accountKey;
-	    /**
-	     * Creates an instance of StorageSharedKeyCredential.
-	     * @param accountName -
-	     * @param accountKey -
-	     */
-	    constructor(accountName, accountKey) {
-	        super();
-	        this.accountName = accountName;
-	        this.accountKey = Buffer.from(accountKey, "base64");
-	    }
-	    /**
-	     * Creates a StorageSharedKeyCredentialPolicy object.
-	     *
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    create(nextPolicy, options) {
-	        return new StorageSharedKeyCredentialPolicy_js_1.StorageSharedKeyCredentialPolicy(nextPolicy, options, this);
-	    }
-	    /**
-	     * Generates a hash signature for an HTTP request or for a SAS.
-	     *
-	     * @param stringToSign -
-	     */
-	    computeHMACSHA256(stringToSign) {
-	        return (0, node_crypto_1.createHmac)("sha256", this.accountKey).update(stringToSign, "utf8").digest("base64");
-	    }
-	}
-	StorageSharedKeyCredential$1.StorageSharedKeyCredential = StorageSharedKeyCredential;
-	
-	return StorageSharedKeyCredential$1;
-}
-
-var AnonymousCredential$1 = {};
-
-var AnonymousCredentialPolicy$1 = {};
-
-var hasRequiredAnonymousCredentialPolicy$1;
-
-function requireAnonymousCredentialPolicy$1 () {
-	if (hasRequiredAnonymousCredentialPolicy$1) return AnonymousCredentialPolicy$1;
-	hasRequiredAnonymousCredentialPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(AnonymousCredentialPolicy$1, "__esModule", { value: true });
-	AnonymousCredentialPolicy$1.AnonymousCredentialPolicy = void 0;
-	const CredentialPolicy_js_1 = requireCredentialPolicy$1();
-	/**
-	 * AnonymousCredentialPolicy is used with HTTP(S) requests that read public resources
-	 * or for use with Shared Access Signatures (SAS).
-	 */
-	class AnonymousCredentialPolicy extends CredentialPolicy_js_1.CredentialPolicy {
-	    /**
-	     * Creates an instance of AnonymousCredentialPolicy.
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    // The base class has a protected constructor. Adding a public one to enable constructing of this class.
-	    /* eslint-disable-next-line @typescript-eslint/no-useless-constructor*/
-	    constructor(nextPolicy, options) {
-	        super(nextPolicy, options);
-	    }
-	}
-	AnonymousCredentialPolicy$1.AnonymousCredentialPolicy = AnonymousCredentialPolicy;
-	
-	return AnonymousCredentialPolicy$1;
-}
-
-var hasRequiredAnonymousCredential$1;
-
-function requireAnonymousCredential$1 () {
-	if (hasRequiredAnonymousCredential$1) return AnonymousCredential$1;
-	hasRequiredAnonymousCredential$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(AnonymousCredential$1, "__esModule", { value: true });
-	AnonymousCredential$1.AnonymousCredential = void 0;
-	const AnonymousCredentialPolicy_js_1 = requireAnonymousCredentialPolicy$1();
-	const Credential_js_1 = requireCredential$1();
-	/**
-	 * AnonymousCredential provides a credentialPolicyCreator member used to create
-	 * AnonymousCredentialPolicy objects. AnonymousCredentialPolicy is used with
-	 * HTTP(S) requests that read public resources or for use with Shared Access
-	 * Signatures (SAS).
-	 */
-	class AnonymousCredential extends Credential_js_1.Credential {
-	    /**
-	     * Creates an {@link AnonymousCredentialPolicy} object.
-	     *
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    create(nextPolicy, options) {
-	        return new AnonymousCredentialPolicy_js_1.AnonymousCredentialPolicy(nextPolicy, options);
-	    }
-	}
-	AnonymousCredential$1.AnonymousCredential = AnonymousCredential;
-	
-	return AnonymousCredential$1;
-}
-
-var commonjs$2 = {};
-
-var BufferScheduler = {};
-
-var PooledBuffer = {};
-
-var BuffersStream = {};
-
-var hasRequiredBuffersStream;
-
-function requireBuffersStream () {
-	if (hasRequiredBuffersStream) return BuffersStream;
-	hasRequiredBuffersStream = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(BuffersStream, "__esModule", { value: true });
-	BuffersStream.BuffersStream = void 0;
-	const node_stream_1 = require$$0$a;
-	/**
-	 * This class generates a readable stream from the data in an array of buffers.
-	 */
-	let BuffersStream$1 = class BuffersStream extends node_stream_1.Readable {
-	    buffers;
-	    byteLength;
-	    /**
-	     * The offset of data to be read in the current buffer.
-	     */
-	    byteOffsetInCurrentBuffer;
-	    /**
-	     * The index of buffer to be read in the array of buffers.
-	     */
-	    bufferIndex;
-	    /**
-	     * The total length of data already read.
-	     */
-	    pushedBytesLength;
-	    /**
-	     * Creates an instance of BuffersStream that will emit the data
-	     * contained in the array of buffers.
-	     *
-	     * @param buffers - Array of buffers containing the data
-	     * @param byteLength - The total length of data contained in the buffers
-	     */
-	    constructor(buffers, byteLength, options) {
-	        super(options);
-	        this.buffers = buffers;
-	        this.byteLength = byteLength;
-	        this.byteOffsetInCurrentBuffer = 0;
-	        this.bufferIndex = 0;
-	        this.pushedBytesLength = 0;
-	        // check byteLength is no larger than buffers[] total length
-	        let buffersLength = 0;
-	        for (const buf of this.buffers) {
-	            buffersLength += buf.byteLength;
-	        }
-	        if (buffersLength < this.byteLength) {
-	            throw new Error("Data size shouldn't be larger than the total length of buffers.");
-	        }
-	    }
-	    /**
-	     * Internal _read() that will be called when the stream wants to pull more data in.
-	     *
-	     * @param size - Optional. The size of data to be read
-	     */
-	    _read(size) {
-	        if (this.pushedBytesLength >= this.byteLength) {
-	            this.push(null);
-	        }
-	        if (!size) {
-	            size = this.readableHighWaterMark;
-	        }
-	        const outBuffers = [];
-	        let i = 0;
-	        while (i < size && this.pushedBytesLength < this.byteLength) {
-	            // The last buffer may be longer than the data it contains.
-	            const remainingDataInAllBuffers = this.byteLength - this.pushedBytesLength;
-	            const remainingCapacityInThisBuffer = this.buffers[this.bufferIndex].byteLength - this.byteOffsetInCurrentBuffer;
-	            const remaining = Math.min(remainingCapacityInThisBuffer, remainingDataInAllBuffers);
-	            if (remaining > size - i) {
-	                // chunkSize = size - i
-	                const end = this.byteOffsetInCurrentBuffer + size - i;
-	                outBuffers.push(this.buffers[this.bufferIndex].slice(this.byteOffsetInCurrentBuffer, end));
-	                this.pushedBytesLength += size - i;
-	                this.byteOffsetInCurrentBuffer = end;
-	                i = size;
-	                break;
-	            }
-	            else {
-	                // chunkSize = remaining
-	                const end = this.byteOffsetInCurrentBuffer + remaining;
-	                outBuffers.push(this.buffers[this.bufferIndex].slice(this.byteOffsetInCurrentBuffer, end));
-	                if (remaining === remainingCapacityInThisBuffer) {
-	                    // this.buffers[this.bufferIndex] used up, shift to next one
-	                    this.byteOffsetInCurrentBuffer = 0;
-	                    this.bufferIndex++;
-	                }
-	                else {
-	                    this.byteOffsetInCurrentBuffer = end;
-	                }
-	                this.pushedBytesLength += remaining;
-	                i += remaining;
-	            }
-	        }
-	        if (outBuffers.length > 1) {
-	            this.push(Buffer.concat(outBuffers));
-	        }
-	        else if (outBuffers.length === 1) {
-	            this.push(outBuffers[0]);
-	        }
-	    }
-	};
-	BuffersStream.BuffersStream = BuffersStream$1;
-	
-	return BuffersStream;
-}
-
-var hasRequiredPooledBuffer;
-
-function requirePooledBuffer () {
-	if (hasRequiredPooledBuffer) return PooledBuffer;
-	hasRequiredPooledBuffer = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(PooledBuffer, "__esModule", { value: true });
-	PooledBuffer.PooledBuffer = void 0;
-	const tslib_1 = require$$0$2;
-	const BuffersStream_js_1 = requireBuffersStream();
-	const node_buffer_1 = tslib_1.__importDefault(require$$2$5);
-	/**
-	 * maxBufferLength is max size of each buffer in the pooled buffers.
-	 */
-	const maxBufferLength = node_buffer_1.default.constants.MAX_LENGTH;
-	/**
-	 * This class provides a buffer container which conceptually has no hard size limit.
-	 * It accepts a capacity, an array of input buffers and the total length of input data.
-	 * It will allocate an internal "buffer" of the capacity and fill the data in the input buffers
-	 * into the internal "buffer" serially with respect to the total length.
-	 * Then by calling PooledBuffer.getReadableStream(), you can get a readable stream
-	 * assembled from all the data in the internal "buffer".
-	 */
-	let PooledBuffer$1 = class PooledBuffer {
-	    /**
-	     * Internal buffers used to keep the data.
-	     * Each buffer has a length of the maxBufferLength except last one.
-	     */
-	    buffers = [];
-	    /**
-	     * The total size of internal buffers.
-	     */
-	    capacity;
-	    /**
-	     * The total size of data contained in internal buffers.
-	     */
-	    _size;
-	    /**
-	     * The size of the data contained in the pooled buffers.
-	     */
-	    get size() {
-	        return this._size;
-	    }
-	    constructor(capacity, buffers, totalLength) {
-	        this.capacity = capacity;
-	        this._size = 0;
-	        // allocate
-	        const bufferNum = Math.ceil(capacity / maxBufferLength);
-	        for (let i = 0; i < bufferNum; i++) {
-	            let len = i === bufferNum - 1 ? capacity % maxBufferLength : maxBufferLength;
-	            if (len === 0) {
-	                len = maxBufferLength;
-	            }
-	            this.buffers.push(Buffer.allocUnsafe(len));
-	        }
-	        if (buffers) {
-	            this.fill(buffers, totalLength);
-	        }
-	    }
-	    /**
-	     * Fill the internal buffers with data in the input buffers serially
-	     * with respect to the total length and the total capacity of the internal buffers.
-	     * Data copied will be shift out of the input buffers.
-	     *
-	     * @param buffers - Input buffers containing the data to be filled in the pooled buffer
-	     * @param totalLength - Total length of the data to be filled in.
-	     *
-	     */
-	    fill(buffers, totalLength) {
-	        this._size = Math.min(this.capacity, totalLength);
-	        let i = 0, j = 0, targetOffset = 0, sourceOffset = 0, totalCopiedNum = 0;
-	        while (totalCopiedNum < this._size) {
-	            const source = buffers[i];
-	            const target = this.buffers[j];
-	            const copiedNum = source.copy(target, targetOffset, sourceOffset);
-	            totalCopiedNum += copiedNum;
-	            sourceOffset += copiedNum;
-	            targetOffset += copiedNum;
-	            if (sourceOffset === source.length) {
-	                i++;
-	                sourceOffset = 0;
-	            }
-	            if (targetOffset === target.length) {
-	                j++;
-	                targetOffset = 0;
-	            }
-	        }
-	        // clear copied from source buffers
-	        buffers.splice(0, i);
-	        if (buffers.length > 0) {
-	            buffers[0] = buffers[0].slice(sourceOffset);
-	        }
-	    }
-	    /**
-	     * Get the readable stream assembled from all the data in the internal buffers.
-	     *
-	     */
-	    getReadableStream() {
-	        return new BuffersStream_js_1.BuffersStream(this.buffers, this.size);
-	    }
-	};
-	PooledBuffer.PooledBuffer = PooledBuffer$1;
-	
-	return PooledBuffer;
-}
-
-var hasRequiredBufferScheduler;
-
-function requireBufferScheduler () {
-	if (hasRequiredBufferScheduler) return BufferScheduler;
-	hasRequiredBufferScheduler = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(BufferScheduler, "__esModule", { value: true });
-	BufferScheduler.BufferScheduler = void 0;
-	const events_1 = require$$0$5;
-	const PooledBuffer_js_1 = requirePooledBuffer();
-	/**
-	 * This class accepts a Node.js Readable stream as input, and keeps reading data
-	 * from the stream into the internal buffer structure, until it reaches maxBuffers.
-	 * Every available buffer will try to trigger outgoingHandler.
-	 *
-	 * The internal buffer structure includes an incoming buffer array, and a outgoing
-	 * buffer array. The incoming buffer array includes the "empty" buffers can be filled
-	 * with new incoming data. The outgoing array includes the filled buffers to be
-	 * handled by outgoingHandler. Every above buffer size is defined by parameter bufferSize.
-	 *
-	 * NUM_OF_ALL_BUFFERS = BUFFERS_IN_INCOMING + BUFFERS_IN_OUTGOING + BUFFERS_UNDER_HANDLING
-	 *
-	 * NUM_OF_ALL_BUFFERS lesser than or equal to maxBuffers
-	 *
-	 * PERFORMANCE IMPROVEMENT TIPS:
-	 * 1. Input stream highWaterMark is better to set a same value with bufferSize
-	 *    parameter, which will avoid Buffer.concat() operations.
-	 * 2. concurrency should set a smaller value than maxBuffers, which is helpful to
-	 *    reduce the possibility when a outgoing handler waits for the stream data.
-	 *    in this situation, outgoing handlers are blocked.
-	 *    Outgoing queue shouldn't be empty.
-	 */
-	let BufferScheduler$1 = class BufferScheduler {
-	    /**
-	     * Size of buffers in incoming and outgoing queues. This class will try to align
-	     * data read from Readable stream into buffer chunks with bufferSize defined.
-	     */
-	    bufferSize;
-	    /**
-	     * How many buffers can be created or maintained.
-	     */
-	    maxBuffers;
-	    /**
-	     * A Node.js Readable stream.
-	     */
-	    readable;
-	    /**
-	     * OutgoingHandler is an async function triggered by BufferScheduler when there
-	     * are available buffers in outgoing array.
-	     */
-	    outgoingHandler;
-	    /**
-	     * An internal event emitter.
-	     */
-	    emitter = new events_1.EventEmitter();
-	    /**
-	     * Concurrency of executing outgoingHandlers. (0 lesser than concurrency lesser than or equal to maxBuffers)
-	     */
-	    concurrency;
-	    /**
-	     * An internal offset marker to track data offset in bytes of next outgoingHandler.
-	     */
-	    offset = 0;
-	    /**
-	     * An internal marker to track whether stream is end.
-	     */
-	    isStreamEnd = false;
-	    /**
-	     * An internal marker to track whether stream or outgoingHandler returns error.
-	     */
-	    isError = false;
-	    /**
-	     * How many handlers are executing.
-	     */
-	    executingOutgoingHandlers = 0;
-	    /**
-	     * Encoding of the input Readable stream which has string data type instead of Buffer.
-	     */
-	    encoding;
-	    /**
-	     * How many buffers have been allocated.
-	     */
-	    numBuffers = 0;
-	    /**
-	     * Because this class doesn't know how much data every time stream pops, which
-	     * is defined by highWaterMarker of the stream. So BufferScheduler will cache
-	     * data received from the stream, when data in unresolvedDataArray exceeds the
-	     * blockSize defined, it will try to concat a blockSize of buffer, fill into available
-	     * buffers from incoming and push to outgoing array.
-	     */
-	    unresolvedDataArray = [];
-	    /**
-	     * How much data consisted in unresolvedDataArray.
-	     */
-	    unresolvedLength = 0;
-	    /**
-	     * The array includes all the available buffers can be used to fill data from stream.
-	     */
-	    incoming = [];
-	    /**
-	     * The array (queue) includes all the buffers filled from stream data.
-	     */
-	    outgoing = [];
-	    /**
-	     * Creates an instance of BufferScheduler.
-	     *
-	     * @param readable - A Node.js Readable stream
-	     * @param bufferSize - Buffer size of every maintained buffer
-	     * @param maxBuffers - How many buffers can be allocated
-	     * @param outgoingHandler - An async function scheduled to be
-	     *                                          triggered when a buffer fully filled
-	     *                                          with stream data
-	     * @param concurrency - Concurrency of executing outgoingHandlers (&gt;0)
-	     * @param encoding - [Optional] Encoding of Readable stream when it's a string stream
-	     */
-	    constructor(readable, bufferSize, maxBuffers, outgoingHandler, concurrency, encoding) {
-	        if (bufferSize <= 0) {
-	            throw new RangeError(`bufferSize must be larger than 0, current is ${bufferSize}`);
-	        }
-	        if (maxBuffers <= 0) {
-	            throw new RangeError(`maxBuffers must be larger than 0, current is ${maxBuffers}`);
-	        }
-	        if (concurrency <= 0) {
-	            throw new RangeError(`concurrency must be larger than 0, current is ${concurrency}`);
-	        }
-	        this.bufferSize = bufferSize;
-	        this.maxBuffers = maxBuffers;
-	        this.readable = readable;
-	        this.outgoingHandler = outgoingHandler;
-	        this.concurrency = concurrency;
-	        this.encoding = encoding;
-	    }
-	    /**
-	     * Start the scheduler, will return error when stream of any of the outgoingHandlers
-	     * returns error.
-	     *
-	     */
-	    async do() {
-	        return new Promise((resolve, reject) => {
-	            this.readable.on("data", (data) => {
-	                data = typeof data === "string" ? Buffer.from(data, this.encoding) : data;
-	                this.appendUnresolvedData(data);
-	                if (!this.resolveData()) {
-	                    this.readable.pause();
-	                }
-	            });
-	            this.readable.on("error", (err) => {
-	                this.emitter.emit("error", err);
-	            });
-	            this.readable.on("end", () => {
-	                this.isStreamEnd = true;
-	                this.emitter.emit("checkEnd");
-	            });
-	            this.emitter.on("error", (err) => {
-	                this.isError = true;
-	                this.readable.pause();
-	                reject(err);
-	            });
-	            this.emitter.on("checkEnd", () => {
-	                if (this.outgoing.length > 0) {
-	                    this.triggerOutgoingHandlers();
-	                    return;
-	                }
-	                if (this.isStreamEnd && this.executingOutgoingHandlers === 0) {
-	                    if (this.unresolvedLength > 0 && this.unresolvedLength < this.bufferSize) {
-	                        const buffer = this.shiftBufferFromUnresolvedDataArray();
-	                        this.outgoingHandler(() => buffer.getReadableStream(), buffer.size, this.offset)
-	                            .then(resolve)
-	                            .catch(reject);
-	                    }
-	                    else if (this.unresolvedLength >= this.bufferSize) {
-	                        return;
-	                    }
-	                    else {
-	                        resolve();
-	                    }
-	                }
-	            });
-	        });
-	    }
-	    /**
-	     * Insert a new data into unresolved array.
-	     *
-	     * @param data -
-	     */
-	    appendUnresolvedData(data) {
-	        this.unresolvedDataArray.push(data);
-	        this.unresolvedLength += data.length;
-	    }
-	    /**
-	     * Try to shift a buffer with size in blockSize. The buffer returned may be less
-	     * than blockSize when data in unresolvedDataArray is less than bufferSize.
-	     *
-	     */
-	    shiftBufferFromUnresolvedDataArray(buffer) {
-	        if (!buffer) {
-	            buffer = new PooledBuffer_js_1.PooledBuffer(this.bufferSize, this.unresolvedDataArray, this.unresolvedLength);
-	        }
-	        else {
-	            buffer.fill(this.unresolvedDataArray, this.unresolvedLength);
-	        }
-	        this.unresolvedLength -= buffer.size;
-	        return buffer;
-	    }
-	    /**
-	     * Resolve data in unresolvedDataArray. For every buffer with size in blockSize
-	     * shifted, it will try to get (or allocate a buffer) from incoming, and fill it,
-	     * then push it into outgoing to be handled by outgoing handler.
-	     *
-	     * Return false when available buffers in incoming are not enough, else true.
-	     *
-	     * @returns Return false when buffers in incoming are not enough, else true.
-	     */
-	    resolveData() {
-	        while (this.unresolvedLength >= this.bufferSize) {
-	            let buffer;
-	            if (this.incoming.length > 0) {
-	                buffer = this.incoming.shift();
-	                this.shiftBufferFromUnresolvedDataArray(buffer);
-	            }
-	            else {
-	                if (this.numBuffers < this.maxBuffers) {
-	                    buffer = this.shiftBufferFromUnresolvedDataArray();
-	                    this.numBuffers++;
-	                }
-	                else {
-	                    // No available buffer, wait for buffer returned
-	                    return false;
-	                }
-	            }
-	            this.outgoing.push(buffer);
-	            this.triggerOutgoingHandlers();
-	        }
-	        return true;
-	    }
-	    /**
-	     * Try to trigger a outgoing handler for every buffer in outgoing. Stop when
-	     * concurrency reaches.
-	     */
-	    async triggerOutgoingHandlers() {
-	        let buffer;
-	        do {
-	            if (this.executingOutgoingHandlers >= this.concurrency) {
-	                return;
-	            }
-	            buffer = this.outgoing.shift();
-	            if (buffer) {
-	                this.triggerOutgoingHandler(buffer);
-	            }
-	        } while (buffer);
-	    }
-	    /**
-	     * Trigger a outgoing handler for a buffer shifted from outgoing.
-	     *
-	     * @param buffer -
-	     */
-	    async triggerOutgoingHandler(buffer) {
-	        const bufferLength = buffer.size;
-	        this.executingOutgoingHandlers++;
-	        this.offset += bufferLength;
-	        try {
-	            await this.outgoingHandler(() => buffer.getReadableStream(), bufferLength, this.offset - bufferLength);
-	        }
-	        catch (err) {
-	            this.emitter.emit("error", err);
-	            return;
-	        }
-	        this.executingOutgoingHandlers--;
-	        this.reuseBuffer(buffer);
-	        this.emitter.emit("checkEnd");
-	    }
-	    /**
-	     * Return buffer used by outgoing handler into incoming.
-	     *
-	     * @param buffer -
-	     */
-	    reuseBuffer(buffer) {
-	        this.incoming.push(buffer);
-	        if (!this.isError && this.resolveData() && !this.isStreamEnd) {
-	            this.readable.resume();
-	        }
-	    }
-	};
-	BufferScheduler.BufferScheduler = BufferScheduler$1;
-	
-	return BufferScheduler;
-}
-
-var cache$1 = {};
-
-var hasRequiredCache$2;
-
-function requireCache$2 () {
-	if (hasRequiredCache$2) return cache$1;
-	hasRequiredCache$2 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(cache$1, "__esModule", { value: true });
-	cache$1.getCachedDefaultHttpClient = getCachedDefaultHttpClient;
-	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
-	let _defaultHttpClient;
-	function getCachedDefaultHttpClient() {
-	    if (!_defaultHttpClient) {
-	        _defaultHttpClient = (0, core_rest_pipeline_1.createDefaultHttpClient)();
-	    }
-	    return _defaultHttpClient;
-	}
-	
-	return cache$1;
-}
-
-var StorageBrowserPolicyFactory$1 = {};
-
-var StorageBrowserPolicy$1 = {};
-
-var RequestPolicy = {};
-
-var hasRequiredRequestPolicy;
-
-function requireRequestPolicy () {
-	if (hasRequiredRequestPolicy) return RequestPolicy;
-	hasRequiredRequestPolicy = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(RequestPolicy, "__esModule", { value: true });
-	RequestPolicy.BaseRequestPolicy = void 0;
-	/**
-	 * The base class from which all request policies derive.
-	 */
-	class BaseRequestPolicy {
-	    _nextPolicy;
-	    _options;
-	    /**
-	     * The main method to implement that manipulates a request/response.
-	     */
-	    constructor(
-	    /**
-	     * The next policy in the pipeline. Each policy is responsible for executing the next one if the request is to continue through the pipeline.
-	     */
-	    _nextPolicy, 
-	    /**
-	     * The options that can be passed to a given request policy.
-	     */
-	    _options) {
-	        this._nextPolicy = _nextPolicy;
-	        this._options = _options;
-	    }
-	    /**
-	     * Get whether or not a log with the provided log level should be logged.
-	     * @param logLevel - The log level of the log that will be logged.
-	     * @returns Whether or not a log with the provided log level should be logged.
-	     */
-	    shouldLog(logLevel) {
-	        return this._options.shouldLog(logLevel);
-	    }
-	    /**
-	     * Attempt to log the provided message to the provided logger. If no logger was provided or if
-	     * the log level does not meat the logger's threshold, then nothing will be logged.
-	     * @param logLevel - The log level of this log.
-	     * @param message - The message of this log.
-	     */
-	    log(logLevel, message) {
-	        this._options.log(logLevel, message);
-	    }
-	}
-	RequestPolicy.BaseRequestPolicy = BaseRequestPolicy;
-	
-	return RequestPolicy;
-}
-
-var constants$1 = {};
-
-var hasRequiredConstants$1;
-
-function requireConstants$1 () {
-	if (hasRequiredConstants$1) return constants$1;
-	hasRequiredConstants$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(constants$1, "__esModule", { value: true });
-	constants$1.PathStylePorts = constants$1.DevelopmentConnectionString = constants$1.HeaderConstants = constants$1.URLConstants = constants$1.SDK_VERSION = void 0;
-	constants$1.SDK_VERSION = "1.0.0";
-	constants$1.URLConstants = {
-	    Parameters: {
-	        FORCE_BROWSER_NO_CACHE: "_",
-	        SIGNATURE: "sig",
-	        SNAPSHOT: "snapshot",
-	        VERSIONID: "versionid",
-	        TIMEOUT: "timeout",
-	    },
-	};
-	constants$1.HeaderConstants = {
-	    AUTHORIZATION: "Authorization",
-	    AUTHORIZATION_SCHEME: "Bearer",
-	    CONTENT_ENCODING: "Content-Encoding",
-	    CONTENT_ID: "Content-ID",
-	    CONTENT_LANGUAGE: "Content-Language",
-	    CONTENT_LENGTH: "Content-Length",
-	    CONTENT_MD5: "Content-Md5",
-	    CONTENT_TRANSFER_ENCODING: "Content-Transfer-Encoding",
-	    CONTENT_TYPE: "Content-Type",
-	    COOKIE: "Cookie",
-	    DATE: "date",
-	    IF_MATCH: "if-match",
-	    IF_MODIFIED_SINCE: "if-modified-since",
-	    IF_NONE_MATCH: "if-none-match",
-	    IF_UNMODIFIED_SINCE: "if-unmodified-since",
-	    PREFIX_FOR_STORAGE: "x-ms-",
-	    RANGE: "Range",
-	    USER_AGENT: "User-Agent",
-	    X_MS_CLIENT_REQUEST_ID: "x-ms-client-request-id",
-	    X_MS_COPY_SOURCE: "x-ms-copy-source",
-	    X_MS_DATE: "x-ms-date",
-	    X_MS_ERROR_CODE: "x-ms-error-code",
-	    X_MS_VERSION: "x-ms-version",
-	    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
-	};
-	constants$1.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
-	/// List of ports used for path style addressing.
-	/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
-	constants$1.PathStylePorts = [
-	    "10000",
-	    "10001",
-	    "10002",
-	    "10003",
-	    "10004",
-	    "10100",
-	    "10101",
-	    "10102",
-	    "10103",
-	    "10104",
-	    "11000",
-	    "11001",
-	    "11002",
-	    "11003",
-	    "11004",
-	    "11100",
-	    "11101",
-	    "11102",
-	    "11103",
-	    "11104",
-	];
-	
-	return constants$1;
-}
-
-var utils_common$1 = {};
-
-var hasRequiredUtils_common$1;
-
-function requireUtils_common$1 () {
-	if (hasRequiredUtils_common$1) return utils_common$1;
-	hasRequiredUtils_common$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(utils_common$1, "__esModule", { value: true });
-	utils_common$1.escapeURLPath = escapeURLPath;
-	utils_common$1.getValueInConnString = getValueInConnString;
-	utils_common$1.extractConnectionStringParts = extractConnectionStringParts;
-	utils_common$1.appendToURLPath = appendToURLPath;
-	utils_common$1.setURLParameter = setURLParameter;
-	utils_common$1.getURLParameter = getURLParameter;
-	utils_common$1.setURLHost = setURLHost;
-	utils_common$1.getURLPath = getURLPath;
-	utils_common$1.getURLScheme = getURLScheme;
-	utils_common$1.getURLPathAndQuery = getURLPathAndQuery;
-	utils_common$1.getURLQueries = getURLQueries;
-	utils_common$1.appendToURLQuery = appendToURLQuery;
-	utils_common$1.truncatedISO8061Date = truncatedISO8061Date;
-	utils_common$1.base64encode = base64encode;
-	utils_common$1.base64decode = base64decode;
-	utils_common$1.generateBlockID = generateBlockID;
-	utils_common$1.delay = delay;
-	utils_common$1.padStart = padStart;
-	utils_common$1.sanitizeURL = sanitizeURL;
-	utils_common$1.sanitizeHeaders = sanitizeHeaders;
-	utils_common$1.iEqual = iEqual;
-	utils_common$1.getAccountNameFromUrl = getAccountNameFromUrl;
-	utils_common$1.isIpEndpointStyle = isIpEndpointStyle;
-	utils_common$1.attachCredential = attachCredential;
-	utils_common$1.httpAuthorizationToString = httpAuthorizationToString;
-	utils_common$1.EscapePath = EscapePath;
-	utils_common$1.assertResponse = assertResponse;
-	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
-	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$1();
-	/**
-	 * Reserved URL characters must be properly escaped for Storage services like Blob or File.
-	 *
-	 * ## URL encode and escape strategy for JS SDKs
-	 *
-	 * When customers pass a URL string into XxxClient classes constructor, the URL string may already be URL encoded or not.
-	 * But before sending to Azure Storage server, the URL must be encoded. However, it's hard for a SDK to guess whether the URL
-	 * string has been encoded or not. We have 2 potential strategies, and chose strategy two for the XxxClient constructors.
-	 *
-	 * ### Strategy One: Assume the customer URL string is not encoded, and always encode URL string in SDK.
-	 *
-	 * This is what legacy V2 SDK does, simple and works for most of the cases.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
-	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
-	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%253A" and send to server. A blob named "b%3A" will be created.
-	 *
-	 * But this strategy will make it not possible to create a blob with "?" in it's name. Because when customer URL string is
-	 * "http://account.blob.core.windows.net/con/blob?name", the "?name" will be treated as URL paramter instead of blob name.
-	 * If customer URL string is "http://account.blob.core.windows.net/con/blob%3Fname", a blob named "blob%3Fname" will be created.
-	 * V2 SDK doesn't have this issue because it doesn't allow customer pass in a full URL, it accepts a separate blob name and encodeURIComponent for it.
-	 * We cannot accept a SDK cannot create a blob name with "?". So we implement strategy two:
-	 *
-	 * ### Strategy Two: SDK doesn't assume the URL has been encoded or not. It will just escape the special characters.
-	 *
-	 * This is what V10 Blob Go SDK does. It accepts a URL type in Go, and call url.EscapedPath() to escape the special chars unescaped.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
-	 *   SDK will escape ":" like "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
-	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%3A" to server. A blob named "b:" will be created.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%253A",
-	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%253A" to server. A blob named "b%3A" will be created.
-	 *
-	 * This strategy gives us flexibility to create with any special characters. But "%" will be treated as a special characters, if the URL string
-	 * is not encoded, there shouldn't a "%" in the URL string, otherwise the URL is not a valid URL.
-	 * If customer needs to create a blob with "%" in it's blob name, use "%25" instead of "%". Just like above 3rd sample.
-	 * And following URL strings are invalid:
-	 * - "http://account.blob.core.windows.net/con/b%"
-	 * - "http://account.blob.core.windows.net/con/b%2"
-	 * - "http://account.blob.core.windows.net/con/b%G"
-	 *
-	 * Another special character is "?", use "%2F" to represent a blob name with "?" in a URL string.
-	 *
-	 * ### Strategy for containerName, blobName or other specific XXXName parameters in methods such as `containerClient.getBlobClient(blobName)`
-	 *
-	 * We will apply strategy one, and call encodeURIComponent for these parameters like blobName. Because what customers passes in is a plain name instead of a URL.
-	 *
-	 * @see https://learn.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
-	 * @see https://learn.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata
-	 *
-	 * @param url -
-	 */
-	function escapeURLPath(url) {
-	    const urlParsed = new URL(url);
-	    let path = urlParsed.pathname;
-	    path = path || "/";
-	    path = escape(path);
-	    urlParsed.pathname = path;
-	    return urlParsed.toString();
-	}
-	function getProxyUriFromDevConnString(connectionString) {
-	    // Development Connection String
-	    // https://learn.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string#connect-to-the-emulator-account-using-the-well-known-account-name-and-key
-	    let proxyUri = "";
-	    if (connectionString.search("DevelopmentStorageProxyUri=") !== -1) {
-	        // CONNECTION_STRING=UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
-	        const matchCredentials = connectionString.split(";");
-	        for (const element of matchCredentials) {
-	            if (element.trim().startsWith("DevelopmentStorageProxyUri=")) {
-	                proxyUri = element.trim().match("DevelopmentStorageProxyUri=(.*)")[1];
-	            }
-	        }
-	    }
-	    return proxyUri;
-	}
-	function getValueInConnString(connectionString, argument) {
-	    const elements = connectionString.split(";");
-	    for (const element of elements) {
-	        if (element.trim().startsWith(argument)) {
-	            return element.trim().match(argument + "=(.*)")[1];
-	        }
-	    }
-	    return "";
-	}
-	/**
-	 * Extracts the parts of an Azure Storage account connection string.
-	 *
-	 * @param connectionString - Connection string.
-	 * @returns String key value pairs of the storage account's url and credentials.
-	 */
-	function extractConnectionStringParts(connectionString) {
-	    let proxyUri = "";
-	    if (connectionString.startsWith("UseDevelopmentStorage=true")) {
-	        // Development connection string
-	        proxyUri = getProxyUriFromDevConnString(connectionString);
-	        connectionString = constants_js_1.DevelopmentConnectionString;
-	    }
-	    // Matching BlobEndpoint in the Account connection string
-	    let blobEndpoint = getValueInConnString(connectionString, "BlobEndpoint");
-	    // Slicing off '/' at the end if exists
-	    // (The methods that use `extractConnectionStringParts` expect the url to not have `/` at the end)
-	    blobEndpoint = blobEndpoint.endsWith("/") ? blobEndpoint.slice(0, -1) : blobEndpoint;
-	    if (connectionString.search("DefaultEndpointsProtocol=") !== -1 &&
-	        connectionString.search("AccountKey=") !== -1) {
-	        // Account connection string
-	        let defaultEndpointsProtocol = "";
-	        let accountName = "";
-	        let accountKey = Buffer.from("accountKey", "base64");
-	        let endpointSuffix = "";
-	        // Get account name and key
-	        accountName = getValueInConnString(connectionString, "AccountName");
-	        accountKey = Buffer.from(getValueInConnString(connectionString, "AccountKey"), "base64");
-	        if (!blobEndpoint) {
-	            // BlobEndpoint is not present in the Account connection string
-	            // Can be obtained from `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`
-	            defaultEndpointsProtocol = getValueInConnString(connectionString, "DefaultEndpointsProtocol");
-	            const protocol = defaultEndpointsProtocol.toLowerCase();
-	            if (protocol !== "https" && protocol !== "http") {
-	                throw new Error("Invalid DefaultEndpointsProtocol in the provided Connection String. Expecting 'https' or 'http'");
-	            }
-	            endpointSuffix = getValueInConnString(connectionString, "EndpointSuffix");
-	            if (!endpointSuffix) {
-	                throw new Error("Invalid EndpointSuffix in the provided Connection String");
-	            }
-	            blobEndpoint = `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
-	        }
-	        if (!accountName) {
-	            throw new Error("Invalid AccountName in the provided Connection String");
-	        }
-	        else if (accountKey.length === 0) {
-	            throw new Error("Invalid AccountKey in the provided Connection String");
-	        }
-	        return {
-	            kind: "AccountConnString",
-	            url: blobEndpoint,
-	            accountName,
-	            accountKey,
-	            proxyUri,
-	        };
-	    }
-	    else {
-	        // SAS connection string
-	        let accountSas = getValueInConnString(connectionString, "SharedAccessSignature");
-	        let accountName = getValueInConnString(connectionString, "AccountName");
-	        // if accountName is empty, try to read it from BlobEndpoint
-	        if (!accountName) {
-	            accountName = getAccountNameFromUrl(blobEndpoint);
-	        }
-	        if (!blobEndpoint) {
-	            throw new Error("Invalid BlobEndpoint in the provided SAS Connection String");
-	        }
-	        else if (!accountSas) {
-	            throw new Error("Invalid SharedAccessSignature in the provided SAS Connection String");
-	        }
-	        // client constructors assume accountSas does *not* start with ?
-	        if (accountSas.startsWith("?")) {
-	            accountSas = accountSas.substring(1);
-	        }
-	        return { kind: "SASConnString", url: blobEndpoint, accountName, accountSas };
-	    }
-	}
-	/**
-	 * Internal escape method implemented Strategy Two mentioned in escapeURL() description.
-	 *
-	 * @param text -
-	 */
-	function escape(text) {
-	    return encodeURIComponent(text)
-	        .replace(/%2F/g, "/") // Don't escape for "/"
-	        .replace(/'/g, "%27") // Escape for "'"
-	        .replace(/\+/g, "%20")
-	        .replace(/%25/g, "%"); // Revert encoded "%"
-	}
-	/**
-	 * Append a string to URL path. Will remove duplicated "/" in front of the string
-	 * when URL path ends with a "/".
-	 *
-	 * @param url - Source URL string
-	 * @param name - String to be appended to URL
-	 * @returns An updated URL string
-	 */
-	function appendToURLPath(url, name) {
-	    const urlParsed = new URL(url);
-	    let path = urlParsed.pathname;
-	    path = path ? (path.endsWith("/") ? `${path}${name}` : `${path}/${name}`) : name;
-	    urlParsed.pathname = path;
-	    return urlParsed.toString();
-	}
-	/**
-	 * Set URL parameter name and value. If name exists in URL parameters, old value
-	 * will be replaced by name key. If not provide value, the parameter will be deleted.
-	 *
-	 * @param url - Source URL string
-	 * @param name - Parameter name
-	 * @param value - Parameter value
-	 * @returns An updated URL string
-	 */
-	function setURLParameter(url, name, value) {
-	    const urlParsed = new URL(url);
-	    const encodedName = encodeURIComponent(name);
-	    const encodedValue = value ? encodeURIComponent(value) : undefined;
-	    // mutating searchParams will change the encoding, so we have to do this ourselves
-	    const searchString = urlParsed.search === "" ? "?" : urlParsed.search;
-	    const searchPieces = [];
-	    for (const pair of searchString.slice(1).split("&")) {
-	        if (pair) {
-	            const [key] = pair.split("=", 2);
-	            if (key !== encodedName) {
-	                searchPieces.push(pair);
-	            }
-	        }
-	    }
-	    if (encodedValue) {
-	        searchPieces.push(`${encodedName}=${encodedValue}`);
-	    }
-	    urlParsed.search = searchPieces.length ? `?${searchPieces.join("&")}` : "";
-	    return urlParsed.toString();
-	}
-	/**
-	 * Get URL parameter by name.
-	 *
-	 * @param url -
-	 * @param name -
-	 */
-	function getURLParameter(url, name) {
-	    const urlParsed = new URL(url);
-	    return urlParsed.searchParams.get(name) ?? undefined;
-	}
-	/**
-	 * Set URL host.
-	 *
-	 * @param url - Source URL string
-	 * @param host - New host string
-	 * @returns An updated URL string
-	 */
-	function setURLHost(url, host) {
-	    const urlParsed = new URL(url);
-	    urlParsed.hostname = host;
-	    return urlParsed.toString();
-	}
-	/**
-	 * Get URL path from an URL string.
-	 *
-	 * @param url - Source URL string
-	 */
-	function getURLPath(url) {
-	    try {
-	        const urlParsed = new URL(url);
-	        return urlParsed.pathname;
-	    }
-	    catch (e) {
-	        return undefined;
-	    }
-	}
-	/**
-	 * Get URL scheme from an URL string.
-	 *
-	 * @param url - Source URL string
-	 */
-	function getURLScheme(url) {
-	    try {
-	        const urlParsed = new URL(url);
-	        return urlParsed.protocol.endsWith(":") ? urlParsed.protocol.slice(0, -1) : urlParsed.protocol;
-	    }
-	    catch (e) {
-	        return undefined;
-	    }
-	}
-	/**
-	 * Get URL path and query from an URL string.
-	 *
-	 * @param url - Source URL string
-	 */
-	function getURLPathAndQuery(url) {
-	    const urlParsed = new URL(url);
-	    const pathString = urlParsed.pathname;
-	    if (!pathString) {
-	        throw new RangeError("Invalid url without valid path.");
-	    }
-	    let queryString = urlParsed.search || "";
-	    queryString = queryString.trim();
-	    if (queryString !== "") {
-	        queryString = queryString.startsWith("?") ? queryString : `?${queryString}`; // Ensure query string start with '?'
-	    }
-	    return `${pathString}${queryString}`;
-	}
-	/**
-	 * Get URL query key value pairs from an URL string.
-	 *
-	 * @param url -
-	 */
-	function getURLQueries(url) {
-	    let queryString = new URL(url).search;
-	    if (!queryString) {
-	        return {};
-	    }
-	    queryString = queryString.trim();
-	    queryString = queryString.startsWith("?") ? queryString.substring(1) : queryString;
-	    let querySubStrings = queryString.split("&");
-	    querySubStrings = querySubStrings.filter((value) => {
-	        const indexOfEqual = value.indexOf("=");
-	        const lastIndexOfEqual = value.lastIndexOf("=");
-	        return (indexOfEqual > 0 && indexOfEqual === lastIndexOfEqual && lastIndexOfEqual < value.length - 1);
-	    });
-	    const queries = {};
-	    for (const querySubString of querySubStrings) {
-	        const splitResults = querySubString.split("=");
-	        const key = splitResults[0];
-	        const value = splitResults[1];
-	        queries[key] = value;
-	    }
-	    return queries;
-	}
-	/**
-	 * Append a string to URL query.
-	 *
-	 * @param url - Source URL string.
-	 * @param queryParts - String to be appended to the URL query.
-	 * @returns An updated URL string.
-	 */
-	function appendToURLQuery(url, queryParts) {
-	    const urlParsed = new URL(url);
-	    let query = urlParsed.search;
-	    if (query) {
-	        query += "&" + queryParts;
-	    }
-	    else {
-	        query = queryParts;
-	    }
-	    urlParsed.search = query;
-	    return urlParsed.toString();
-	}
-	/**
-	 * Rounds a date off to seconds.
-	 *
-	 * @param date -
-	 * @param withMilliseconds - If true, YYYY-MM-DDThh:mm:ss.fffffffZ will be returned;
-	 *                                          If false, YYYY-MM-DDThh:mm:ssZ will be returned.
-	 * @returns Date string in ISO8061 format, with or without 7 milliseconds component
-	 */
-	function truncatedISO8061Date(date, withMilliseconds = true) {
-	    // Date.toISOString() will return like "2018-10-29T06:34:36.139Z"
-	    const dateString = date.toISOString();
-	    return withMilliseconds
-	        ? dateString.substring(0, dateString.length - 1) + "0000" + "Z"
-	        : dateString.substring(0, dateString.length - 5) + "Z";
-	}
-	/**
-	 * Base64 encode.
-	 *
-	 * @param content -
-	 */
-	function base64encode(content) {
-	    return !core_util_1.isNodeLike ? btoa(content) : Buffer.from(content).toString("base64");
-	}
-	/**
-	 * Base64 decode.
-	 *
-	 * @param encodedString -
-	 */
-	function base64decode(encodedString) {
-	    return !core_util_1.isNodeLike ? atob(encodedString) : Buffer.from(encodedString, "base64").toString();
-	}
-	/**
-	 * Generate a 64 bytes base64 block ID string.
-	 *
-	 * @param blockIndex -
-	 */
-	function generateBlockID(blockIDPrefix, blockIndex) {
-	    // To generate a 64 bytes base64 string, source string should be 48
-	    const maxSourceStringLength = 48;
-	    // A blob can have a maximum of 100,000 uncommitted blocks at any given time
-	    const maxBlockIndexLength = 6;
-	    const maxAllowedBlockIDPrefixLength = maxSourceStringLength - maxBlockIndexLength;
-	    if (blockIDPrefix.length > maxAllowedBlockIDPrefixLength) {
-	        blockIDPrefix = blockIDPrefix.slice(0, maxAllowedBlockIDPrefixLength);
-	    }
-	    const res = blockIDPrefix +
-	        padStart(blockIndex.toString(), maxSourceStringLength - blockIDPrefix.length, "0");
-	    return base64encode(res);
-	}
-	/**
-	 * Delay specified time interval.
-	 *
-	 * @param timeInMs -
-	 * @param aborter -
-	 * @param abortError -
-	 */
-	async function delay(timeInMs, aborter, abortError) {
-	    return new Promise((resolve, reject) => {
-	        /* eslint-disable-next-line prefer-const */
-	        let timeout;
-	        const abortHandler = () => {
-	            if (timeout !== undefined) {
-	                clearTimeout(timeout);
-	            }
-	            reject(abortError);
-	        };
-	        const resolveHandler = () => {
-	            if (aborter !== undefined) {
-	                aborter.removeEventListener("abort", abortHandler);
-	            }
-	            resolve();
-	        };
-	        timeout = setTimeout(resolveHandler, timeInMs);
-	        if (aborter !== undefined) {
-	            aborter.addEventListener("abort", abortHandler);
-	        }
-	    });
-	}
-	/**
-	 * String.prototype.padStart()
-	 *
-	 * @param currentString -
-	 * @param targetLength -
-	 * @param padString -
-	 */
-	function padStart(currentString, targetLength, padString = " ") {
-	    // @ts-expect-error: TS doesn't know this code needs to run downlevel sometimes
-	    if (String.prototype.padStart) {
-	        return currentString.padStart(targetLength, padString);
-	    }
-	    padString = padString || " ";
-	    if (currentString.length > targetLength) {
-	        return currentString;
-	    }
-	    else {
-	        targetLength = targetLength - currentString.length;
-	        if (targetLength > padString.length) {
-	            padString += padString.repeat(targetLength / padString.length);
-	        }
-	        return padString.slice(0, targetLength) + currentString;
-	    }
-	}
-	function sanitizeURL(url) {
-	    let safeURL = url;
-	    if (getURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE)) {
-	        safeURL = setURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE, "*****");
-	    }
-	    return safeURL;
-	}
-	function sanitizeHeaders(originalHeader) {
-	    const headers = (0, core_rest_pipeline_1.createHttpHeaders)();
-	    for (const [name, value] of originalHeader) {
-	        if (name.toLowerCase() === constants_js_1.HeaderConstants.AUTHORIZATION.toLowerCase()) {
-	            headers.set(name, "*****");
-	        }
-	        else if (name.toLowerCase() === constants_js_1.HeaderConstants.X_MS_COPY_SOURCE) {
-	            headers.set(name, sanitizeURL(value));
-	        }
-	        else {
-	            headers.set(name, value);
-	        }
-	    }
-	    return headers;
-	}
-	/**
-	 * If two strings are equal when compared case insensitive.
-	 *
-	 * @param str1 -
-	 * @param str2 -
-	 */
-	function iEqual(str1, str2) {
-	    return str1.toLocaleLowerCase() === str2.toLocaleLowerCase();
-	}
-	/**
-	 * Extracts account name from the url
-	 * @param url - url to extract the account name from
-	 * @returns with the account name
-	 */
-	function getAccountNameFromUrl(url) {
-	    const parsedUrl = new URL(url);
-	    let accountName;
-	    try {
-	        if (parsedUrl.hostname.split(".")[1] === "blob") {
-	            // `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
-	            accountName = parsedUrl.hostname.split(".")[0];
-	        }
-	        else if (isIpEndpointStyle(parsedUrl)) {
-	            // IPv4/IPv6 address hosts... Example - http://192.0.0.10:10001/devstoreaccount1/
-	            // Single word domain without a [dot] in the endpoint... Example - http://localhost:10001/devstoreaccount1/
-	            // .getPath() -> /devstoreaccount1/
-	            accountName = parsedUrl.pathname.split("/")[1];
-	        }
-	        else {
-	            // Custom domain case: "https://customdomain.com/containername/blob".
-	            accountName = "";
-	        }
-	        return accountName;
-	    }
-	    catch (error) {
-	        throw new Error("Unable to extract accountName with provided information.");
-	    }
-	}
-	function isIpEndpointStyle(parsedUrl) {
-	    const host = parsedUrl.host;
-	    // Case 1: Ipv6, use a broad regex to find out candidates whose host contains two ':'.
-	    // Case 2: localhost(:port) or host.docker.internal, use broad regex to match port part.
-	    // Case 3: Ipv4, use broad regex which just check if host contains Ipv4.
-	    // For valid host please refer to https://man7.org/linux/man-pages/man7/hostname.7.html.
-	    return (/^.*:.*:.*$|^(localhost|host.docker.internal)(:[0-9]+)?$|^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}(:[0-9]+)?$/.test(host) ||
-	        (Boolean(parsedUrl.port) && constants_js_1.PathStylePorts.includes(parsedUrl.port)));
-	}
-	/**
-	 * Attach a TokenCredential to an object.
-	 *
-	 * @param thing -
-	 * @param credential -
-	 */
-	function attachCredential(thing, credential) {
-	    thing.credential = credential;
-	    return thing;
-	}
-	function httpAuthorizationToString(httpAuthorization) {
-	    return httpAuthorization ? httpAuthorization.scheme + " " + httpAuthorization.value : undefined;
-	}
-	/**
-	 * Escape the blobName but keep path separator ('/').
-	 */
-	function EscapePath(blobName) {
-	    const split = blobName.split("/");
-	    for (let i = 0; i < split.length; i++) {
-	        split[i] = encodeURIComponent(split[i]);
-	    }
-	    return split.join("/");
-	}
-	/**
-	 * A typesafe helper for ensuring that a given response object has
-	 * the original _response attached.
-	 * @param response - A response object from calling a client operation
-	 * @returns The same object, but with known _response property
-	 */
-	function assertResponse(response) {
-	    if (`_response` in response) {
-	        return response;
-	    }
-	    throw new TypeError(`Unexpected response object ${response}`);
-	}
-	
-	return utils_common$1;
-}
-
-var hasRequiredStorageBrowserPolicy$1;
-
-function requireStorageBrowserPolicy$1 () {
-	if (hasRequiredStorageBrowserPolicy$1) return StorageBrowserPolicy$1;
-	hasRequiredStorageBrowserPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageBrowserPolicy$1, "__esModule", { value: true });
-	StorageBrowserPolicy$1.StorageBrowserPolicy = void 0;
+	Object.defineProperty(StorageBrowserPolicy, "__esModule", { value: true });
+	StorageBrowserPolicy.StorageBrowserPolicy = void 0;
 	const RequestPolicy_js_1 = requireRequestPolicy();
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$1();
-	const utils_common_js_1 = requireUtils_common$1();
+	const constants_js_1 = requireConstants$2();
+	const utils_common_js_1 = requireUtils_common$2();
 	/**
 	 * StorageBrowserPolicy will handle differences between Node.js and browser runtime, including:
 	 *
@@ -49567,7 +48385,7 @@ function requireStorageBrowserPolicy$1 () {
 	 *
 	 * 3. Remove content-length header to avoid browsers warning
 	 */
-	class StorageBrowserPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
+	let StorageBrowserPolicy$1 = class StorageBrowserPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
 	    /**
 	     * Creates an instance of StorageBrowserPolicy.
 	     * @param nextPolicy -
@@ -49595,23 +48413,23 @@ function requireStorageBrowserPolicy$1 () {
 	        request.headers.remove(constants_js_1.HeaderConstants.CONTENT_LENGTH);
 	        return this._nextPolicy.sendRequest(request);
 	    }
-	}
-	StorageBrowserPolicy$1.StorageBrowserPolicy = StorageBrowserPolicy;
+	};
+	StorageBrowserPolicy.StorageBrowserPolicy = StorageBrowserPolicy$1;
 	
-	return StorageBrowserPolicy$1;
+	return StorageBrowserPolicy;
 }
 
-var hasRequiredStorageBrowserPolicyFactory$1;
+var hasRequiredStorageBrowserPolicyFactory;
 
-function requireStorageBrowserPolicyFactory$1 () {
-	if (hasRequiredStorageBrowserPolicyFactory$1) return StorageBrowserPolicyFactory$1;
-	hasRequiredStorageBrowserPolicyFactory$1 = 1;
+function requireStorageBrowserPolicyFactory () {
+	if (hasRequiredStorageBrowserPolicyFactory) return StorageBrowserPolicyFactory;
+	hasRequiredStorageBrowserPolicyFactory = 1;
 	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.StorageBrowserPolicyFactory = exports$1.StorageBrowserPolicy = void 0;
-		const StorageBrowserPolicy_js_1 = requireStorageBrowserPolicy$1();
+		const StorageBrowserPolicy_js_1 = requireStorageBrowserPolicy();
 		Object.defineProperty(exports$1, "StorageBrowserPolicy", { enumerable: true, get: function () { return StorageBrowserPolicy_js_1.StorageBrowserPolicy; } });
 		/**
 		 * StorageBrowserPolicyFactory is a factory class helping generating StorageBrowserPolicy objects.
@@ -49629,8 +48447,8 @@ function requireStorageBrowserPolicyFactory$1 () {
 		}
 		exports$1.StorageBrowserPolicyFactory = StorageBrowserPolicyFactory;
 		
-	} (StorageBrowserPolicyFactory$1));
-	return StorageBrowserPolicyFactory$1;
+	} (StorageBrowserPolicyFactory));
+	return StorageBrowserPolicyFactory;
 }
 
 var AnonymousCredential = {};
@@ -49872,8 +48690,8 @@ function requireStorageSharedKeyCredentialPolicy () {
 	// Licensed under the MIT License.
 	Object.defineProperty(StorageSharedKeyCredentialPolicy, "__esModule", { value: true });
 	StorageSharedKeyCredentialPolicy.StorageSharedKeyCredentialPolicy = void 0;
-	const constants_js_1 = requireConstants$1();
-	const utils_common_js_1 = requireUtils_common$1();
+	const constants_js_1 = requireConstants$2();
+	const utils_common_js_1 = requireUtils_common$2();
 	const CredentialPolicy_js_1 = requireCredentialPolicy();
 	const SharedKeyComparator_js_1 = requireSharedKeyComparator();
 	/**
@@ -49933,7 +48751,7 @@ function requireStorageSharedKeyCredentialPolicy () {
 	    }
 	    /**
 	     * Retrieve header value according to shared key sign rules.
-	     * @see https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
+	     * @see https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
 	     *
 	     * @param request -
 	     * @param headerName -
@@ -49945,7 +48763,7 @@ function requireStorageSharedKeyCredentialPolicy () {
 	        }
 	        // When using version 2015-02-21 or later, if Content-Length is zero, then
 	        // set the Content-Length part of the StringToSign to an empty string.
-	        // https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
+	        // https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
 	        if (headerName === constants_js_1.HeaderConstants.CONTENT_LENGTH && value === "0") {
 	            return "";
 	        }
@@ -50028,7 +48846,7 @@ function requireStorageSharedKeyCredential () {
 	// Licensed under the MIT License.
 	Object.defineProperty(StorageSharedKeyCredential, "__esModule", { value: true });
 	StorageSharedKeyCredential.StorageSharedKeyCredential = void 0;
-	const node_crypto_1 = require$$0$d;
+	const node_crypto_1 = require$$0$e;
 	const StorageSharedKeyCredentialPolicy_js_1 = requireStorageSharedKeyCredentialPolicy();
 	const Credential_js_1 = requireCredential();
 	/**
@@ -50082,19 +48900,19 @@ var StorageRetryPolicyFactory = {};
 
 var StorageRetryPolicy = {};
 
-var commonjs$1 = {};
+var commonjs$2 = {};
 
-var AbortError$1 = {};
+var AbortError$2 = {};
 
-var hasRequiredAbortError;
+var hasRequiredAbortError$1;
 
-function requireAbortError () {
-	if (hasRequiredAbortError) return AbortError$1;
-	hasRequiredAbortError = 1;
+function requireAbortError$1 () {
+	if (hasRequiredAbortError$1) return AbortError$2;
+	hasRequiredAbortError$1 = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT license.
-	Object.defineProperty(AbortError$1, "__esModule", { value: true });
-	AbortError$1.AbortError = void 0;
+	Object.defineProperty(AbortError$2, "__esModule", { value: true });
+	AbortError$2.AbortError = void 0;
 	/**
 	 * This error is thrown when an asynchronous operation has been aborted.
 	 * Check for this error by testing the `name` that the name property of the
@@ -50119,26 +48937,26 @@ function requireAbortError () {
 	        this.name = "AbortError";
 	    }
 	}
-	AbortError$1.AbortError = AbortError;
+	AbortError$2.AbortError = AbortError;
 	
-	return AbortError$1;
+	return AbortError$2;
 }
 
-var hasRequiredCommonjs$3;
+var hasRequiredCommonjs$4;
 
-function requireCommonjs$3 () {
-	if (hasRequiredCommonjs$3) return commonjs$1;
-	hasRequiredCommonjs$3 = 1;
+function requireCommonjs$4 () {
+	if (hasRequiredCommonjs$4) return commonjs$2;
+	hasRequiredCommonjs$4 = 1;
 	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT license.
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.AbortError = void 0;
-		var AbortError_js_1 = requireAbortError();
+		var AbortError_js_1 = requireAbortError$1();
 		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
 		
-	} (commonjs$1));
-	return commonjs$1;
+	} (commonjs$2));
+	return commonjs$2;
 }
 
 var log = {};
@@ -50200,10 +49018,10 @@ function requireStorageRetryPolicy () {
 	Object.defineProperty(StorageRetryPolicy, "__esModule", { value: true });
 	StorageRetryPolicy.StorageRetryPolicy = void 0;
 	StorageRetryPolicy.NewRetryPolicyFactory = NewRetryPolicyFactory;
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$3();
+	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
 	const RequestPolicy_js_1 = requireRequestPolicy();
-	const constants_js_1 = requireConstants$1();
-	const utils_common_js_1 = requireUtils_common$1();
+	const constants_js_1 = requireConstants$2();
+	const utils_common_js_1 = requireUtils_common$2();
 	const log_js_1 = requireLog();
 	const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType();
 	/**
@@ -50463,507 +49281,6 @@ function requireStorageRetryPolicyFactory () {
 	return StorageRetryPolicyFactory;
 }
 
-var StorageBrowserPolicyV2$1 = {};
-
-var hasRequiredStorageBrowserPolicyV2$1;
-
-function requireStorageBrowserPolicyV2$1 () {
-	if (hasRequiredStorageBrowserPolicyV2$1) return StorageBrowserPolicyV2$1;
-	hasRequiredStorageBrowserPolicyV2$1 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.storageBrowserPolicyName = void 0;
-		exports$1.storageBrowserPolicy = storageBrowserPolicy;
-		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-		const constants_js_1 = requireConstants$1();
-		const utils_common_js_1 = requireUtils_common$1();
-		/**
-		 * The programmatic identifier of the StorageBrowserPolicy.
-		 */
-		exports$1.storageBrowserPolicyName = "storageBrowserPolicy";
-		/**
-		 * storageBrowserPolicy is a policy used to prevent browsers from caching requests
-		 * and to remove cookies and explicit content-length headers.
-		 */
-		function storageBrowserPolicy() {
-		    return {
-		        name: exports$1.storageBrowserPolicyName,
-		        async sendRequest(request, next) {
-		            if (core_util_1.isNodeLike) {
-		                return next(request);
-		            }
-		            if (request.method === "GET" || request.method === "HEAD") {
-		                request.url = (0, utils_common_js_1.setURLParameter)(request.url, constants_js_1.URLConstants.Parameters.FORCE_BROWSER_NO_CACHE, new Date().getTime().toString());
-		            }
-		            request.headers.delete(constants_js_1.HeaderConstants.COOKIE);
-		            // According to XHR standards, content-length should be fully controlled by browsers
-		            request.headers.delete(constants_js_1.HeaderConstants.CONTENT_LENGTH);
-		            return next(request);
-		        },
-		    };
-		}
-		
-	} (StorageBrowserPolicyV2$1));
-	return StorageBrowserPolicyV2$1;
-}
-
-var StorageCorrectContentLengthPolicy$1 = {};
-
-var hasRequiredStorageCorrectContentLengthPolicy$1;
-
-function requireStorageCorrectContentLengthPolicy$1 () {
-	if (hasRequiredStorageCorrectContentLengthPolicy$1) return StorageCorrectContentLengthPolicy$1;
-	hasRequiredStorageCorrectContentLengthPolicy$1 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.storageCorrectContentLengthPolicyName = void 0;
-		exports$1.storageCorrectContentLengthPolicy = storageCorrectContentLengthPolicy;
-		const constants_js_1 = requireConstants$1();
-		/**
-		 * The programmatic identifier of the storageCorrectContentLengthPolicy.
-		 */
-		exports$1.storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
-		/**
-		 * storageCorrectContentLengthPolicy to correctly set Content-Length header with request body length.
-		 */
-		function storageCorrectContentLengthPolicy() {
-		    function correctContentLength(request) {
-		        if (request.body &&
-		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
-		            request.body.length > 0) {
-		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-		        }
-		    }
-		    return {
-		        name: exports$1.storageCorrectContentLengthPolicyName,
-		        async sendRequest(request, next) {
-		            correctContentLength(request);
-		            return next(request);
-		        },
-		    };
-		}
-		
-	} (StorageCorrectContentLengthPolicy$1));
-	return StorageCorrectContentLengthPolicy$1;
-}
-
-var StorageRetryPolicyV2$1 = {};
-
-var hasRequiredStorageRetryPolicyV2$1;
-
-function requireStorageRetryPolicyV2$1 () {
-	if (hasRequiredStorageRetryPolicyV2$1) return StorageRetryPolicyV2$1;
-	hasRequiredStorageRetryPolicyV2$1 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.storageRetryPolicyName = void 0;
-		exports$1.storageRetryPolicy = storageRetryPolicy;
-		const abort_controller_1 = /*@__PURE__*/ requireCommonjs$3();
-		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
-		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory();
-		const constants_js_1 = requireConstants$1();
-		const utils_common_js_1 = requireUtils_common$1();
-		const log_js_1 = requireLog();
-		/**
-		 * Name of the {@link storageRetryPolicy}
-		 */
-		exports$1.storageRetryPolicyName = "storageRetryPolicy";
-		// Default values of StorageRetryOptions
-		const DEFAULT_RETRY_OPTIONS = {
-		    maxRetryDelayInMs: 120 * 1000,
-		    maxTries: 4,
-		    retryDelayInMs: 4 * 1000,
-		    retryPolicyType: StorageRetryPolicyFactory_js_1.StorageRetryPolicyType.EXPONENTIAL,
-		    secondaryHost: "",
-		    tryTimeoutInMs: undefined, // Use server side default timeout strategy
-		};
-		const retriableErrors = [
-		    "ETIMEDOUT",
-		    "ESOCKETTIMEDOUT",
-		    "ECONNREFUSED",
-		    "ECONNRESET",
-		    "ENOENT",
-		    "ENOTFOUND",
-		    "TIMEOUT",
-		    "EPIPE",
-		    "REQUEST_SEND_ERROR",
-		];
-		const RETRY_ABORT_ERROR = new abort_controller_1.AbortError("The operation was aborted.");
-		/**
-		 * Retry policy with exponential retry and linear retry implemented.
-		 */
-		function storageRetryPolicy(options = {}) {
-		    const retryPolicyType = options.retryPolicyType ?? DEFAULT_RETRY_OPTIONS.retryPolicyType;
-		    const maxTries = options.maxTries ?? DEFAULT_RETRY_OPTIONS.maxTries;
-		    const retryDelayInMs = options.retryDelayInMs ?? DEFAULT_RETRY_OPTIONS.retryDelayInMs;
-		    const maxRetryDelayInMs = options.maxRetryDelayInMs ?? DEFAULT_RETRY_OPTIONS.maxRetryDelayInMs;
-		    const secondaryHost = options.secondaryHost ?? DEFAULT_RETRY_OPTIONS.secondaryHost;
-		    const tryTimeoutInMs = options.tryTimeoutInMs ?? DEFAULT_RETRY_OPTIONS.tryTimeoutInMs;
-		    function shouldRetry({ isPrimaryRetry, attempt, response, error, }) {
-		        if (attempt >= maxTries) {
-		            log_js_1.logger.info(`RetryPolicy: Attempt(s) ${attempt} >= maxTries ${maxTries}, no further try.`);
-		            return false;
-		        }
-		        if (error) {
-		            for (const retriableError of retriableErrors) {
-		                if (error.name.toUpperCase().includes(retriableError) ||
-		                    error.message.toUpperCase().includes(retriableError) ||
-		                    (error.code && error.code.toString().toUpperCase() === retriableError)) {
-		                    log_js_1.logger.info(`RetryPolicy: Network error ${retriableError} found, will retry.`);
-		                    return true;
-		                }
-		            }
-		            if (error?.code === "PARSE_ERROR" &&
-		                error?.message.startsWith(`Error "Error: Unclosed root tag`)) {
-		                log_js_1.logger.info("RetryPolicy: Incomplete XML response likely due to service timeout, will retry.");
-		                return true;
-		            }
-		        }
-		        // If attempt was against the secondary & it returned a StatusNotFound (404), then
-		        // the resource was not found. This may be due to replication delay. So, in this
-		        // case, we'll never try the secondary again for this operation.
-		        if (response || error) {
-		            const statusCode = response?.status ?? error?.statusCode ?? 0;
-		            if (!isPrimaryRetry && statusCode === 404) {
-		                log_js_1.logger.info(`RetryPolicy: Secondary access with 404, will retry.`);
-		                return true;
-		            }
-		            // Server internal error or server timeout
-		            if (statusCode === 503 || statusCode === 500) {
-		                log_js_1.logger.info(`RetryPolicy: Will retry for status code ${statusCode}.`);
-		                return true;
-		            }
-		        }
-		        if (response) {
-		            // Retry select Copy Source Error Codes.
-		            if (response?.status >= 400) {
-		                const copySourceError = response.headers.get(constants_js_1.HeaderConstants.X_MS_CopySourceErrorCode);
-		                if (copySourceError !== undefined) {
-		                    switch (copySourceError) {
-		                        case "InternalError":
-		                        case "OperationTimedOut":
-		                        case "ServerBusy":
-		                            return true;
-		                    }
-		                }
-		            }
-		        }
-		        return false;
-		    }
-		    function calculateDelay(isPrimaryRetry, attempt) {
-		        let delayTimeInMs = 0;
-		        if (isPrimaryRetry) {
-		            switch (retryPolicyType) {
-		                case StorageRetryPolicyFactory_js_1.StorageRetryPolicyType.EXPONENTIAL:
-		                    delayTimeInMs = Math.min((Math.pow(2, attempt - 1) - 1) * retryDelayInMs, maxRetryDelayInMs);
-		                    break;
-		                case StorageRetryPolicyFactory_js_1.StorageRetryPolicyType.FIXED:
-		                    delayTimeInMs = retryDelayInMs;
-		                    break;
-		            }
-		        }
-		        else {
-		            delayTimeInMs = Math.random() * 1000;
-		        }
-		        log_js_1.logger.info(`RetryPolicy: Delay for ${delayTimeInMs}ms`);
-		        return delayTimeInMs;
-		    }
-		    return {
-		        name: exports$1.storageRetryPolicyName,
-		        async sendRequest(request, next) {
-		            // Set the server-side timeout query parameter "timeout=[seconds]"
-		            if (tryTimeoutInMs) {
-		                request.url = (0, utils_common_js_1.setURLParameter)(request.url, constants_js_1.URLConstants.Parameters.TIMEOUT, String(Math.floor(tryTimeoutInMs / 1000)));
-		            }
-		            const primaryUrl = request.url;
-		            const secondaryUrl = secondaryHost ? (0, utils_common_js_1.setURLHost)(request.url, secondaryHost) : undefined;
-		            let secondaryHas404 = false;
-		            let attempt = 1;
-		            let retryAgain = true;
-		            let response;
-		            let error;
-		            while (retryAgain) {
-		                const isPrimaryRetry = secondaryHas404 ||
-		                    !secondaryUrl ||
-		                    !["GET", "HEAD", "OPTIONS"].includes(request.method) ||
-		                    attempt % 2 === 1;
-		                request.url = isPrimaryRetry ? primaryUrl : secondaryUrl;
-		                response = undefined;
-		                error = undefined;
-		                try {
-		                    log_js_1.logger.info(`RetryPolicy: =====> Try=${attempt} ${isPrimaryRetry ? "Primary" : "Secondary"}`);
-		                    response = await next(request);
-		                    secondaryHas404 = secondaryHas404 || (!isPrimaryRetry && response.status === 404);
-		                }
-		                catch (e) {
-		                    if ((0, core_rest_pipeline_1.isRestError)(e)) {
-		                        log_js_1.logger.error(`RetryPolicy: Caught error, message: ${e.message}, code: ${e.code}`);
-		                        error = e;
-		                    }
-		                    else {
-		                        log_js_1.logger.error(`RetryPolicy: Caught error, message: ${(0, core_util_1.getErrorMessage)(e)}`);
-		                        throw e;
-		                    }
-		                }
-		                retryAgain = shouldRetry({ isPrimaryRetry, attempt, response, error });
-		                if (retryAgain) {
-		                    await (0, utils_common_js_1.delay)(calculateDelay(isPrimaryRetry, attempt), request.abortSignal, RETRY_ABORT_ERROR);
-		                }
-		                attempt++;
-		            }
-		            if (response) {
-		                return response;
-		            }
-		            throw error ?? new core_rest_pipeline_1.RestError("RetryPolicy failed without known error.");
-		        },
-		    };
-		}
-		
-	} (StorageRetryPolicyV2$1));
-	return StorageRetryPolicyV2$1;
-}
-
-var StorageSharedKeyCredentialPolicyV2$1 = {};
-
-var hasRequiredStorageSharedKeyCredentialPolicyV2$1;
-
-function requireStorageSharedKeyCredentialPolicyV2$1 () {
-	if (hasRequiredStorageSharedKeyCredentialPolicyV2$1) return StorageSharedKeyCredentialPolicyV2$1;
-	hasRequiredStorageSharedKeyCredentialPolicyV2$1 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.storageSharedKeyCredentialPolicyName = void 0;
-		exports$1.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
-		const node_crypto_1 = require$$0$d;
-		const constants_js_1 = requireConstants$1();
-		const utils_common_js_1 = requireUtils_common$1();
-		const SharedKeyComparator_js_1 = requireSharedKeyComparator();
-		/**
-		 * The programmatic identifier of the storageSharedKeyCredentialPolicy.
-		 */
-		exports$1.storageSharedKeyCredentialPolicyName = "storageSharedKeyCredentialPolicy";
-		/**
-		 * storageSharedKeyCredentialPolicy handles signing requests using storage account keys.
-		 */
-		function storageSharedKeyCredentialPolicy(options) {
-		    function signRequest(request) {
-		        request.headers.set(constants_js_1.HeaderConstants.X_MS_DATE, new Date().toUTCString());
-		        if (request.body &&
-		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
-		            request.body.length > 0) {
-		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-		        }
-		        const stringToSign = [
-		            request.method.toUpperCase(),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LANGUAGE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_ENCODING),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LENGTH),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_MD5),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_TYPE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.DATE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MODIFIED_SINCE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MATCH),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_NONE_MATCH),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_UNMODIFIED_SINCE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.RANGE),
-		        ].join("\n") +
-		            "\n" +
-		            getCanonicalizedHeadersString(request) +
-		            getCanonicalizedResourceString(request);
-		        const signature = (0, node_crypto_1.createHmac)("sha256", options.accountKey)
-		            .update(stringToSign, "utf8")
-		            .digest("base64");
-		        request.headers.set(constants_js_1.HeaderConstants.AUTHORIZATION, `SharedKey ${options.accountName}:${signature}`);
-		        // console.log(`[URL]:${request.url}`);
-		        // console.log(`[HEADERS]:${request.headers.toString()}`);
-		        // console.log(`[STRING TO SIGN]:${JSON.stringify(stringToSign)}`);
-		        // console.log(`[KEY]: ${request.headers.get(HeaderConstants.AUTHORIZATION)}`);
-		    }
-		    /**
-		     * Retrieve header value according to shared key sign rules.
-		     * @see https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
-		     */
-		    function getHeaderValueToSign(request, headerName) {
-		        const value = request.headers.get(headerName);
-		        if (!value) {
-		            return "";
-		        }
-		        // When using version 2015-02-21 or later, if Content-Length is zero, then
-		        // set the Content-Length part of the StringToSign to an empty string.
-		        // https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
-		        if (headerName === constants_js_1.HeaderConstants.CONTENT_LENGTH && value === "0") {
-		            return "";
-		        }
-		        return value;
-		    }
-		    /**
-		     * To construct the CanonicalizedHeaders portion of the signature string, follow these steps:
-		     * 1. Retrieve all headers for the resource that begin with x-ms-, including the x-ms-date header.
-		     * 2. Convert each HTTP header name to lowercase.
-		     * 3. Sort the headers lexicographically by header name, in ascending order.
-		     *    Each header may appear only once in the string.
-		     * 4. Replace any linear whitespace in the header value with a single space.
-		     * 5. Trim any whitespace around the colon in the header.
-		     * 6. Finally, append a new-line character to each canonicalized header in the resulting list.
-		     *    Construct the CanonicalizedHeaders string by concatenating all headers in this list into a single string.
-		     *
-		     */
-		    function getCanonicalizedHeadersString(request) {
-		        let headersArray = [];
-		        for (const [name, value] of request.headers) {
-		            if (name.toLowerCase().startsWith(constants_js_1.HeaderConstants.PREFIX_FOR_STORAGE)) {
-		                headersArray.push({ name, value });
-		            }
-		        }
-		        headersArray.sort((a, b) => {
-		            return (0, SharedKeyComparator_js_1.compareHeader)(a.name.toLowerCase(), b.name.toLowerCase());
-		        });
-		        // Remove duplicate headers
-		        headersArray = headersArray.filter((value, index, array) => {
-		            if (index > 0 && value.name.toLowerCase() === array[index - 1].name.toLowerCase()) {
-		                return false;
-		            }
-		            return true;
-		        });
-		        let canonicalizedHeadersStringToSign = "";
-		        headersArray.forEach((header) => {
-		            canonicalizedHeadersStringToSign += `${header.name
-		                .toLowerCase()
-		                .trimRight()}:${header.value.trimLeft()}\n`;
-		        });
-		        return canonicalizedHeadersStringToSign;
-		    }
-		    function getCanonicalizedResourceString(request) {
-		        const path = (0, utils_common_js_1.getURLPath)(request.url) || "/";
-		        let canonicalizedResourceString = "";
-		        canonicalizedResourceString += `/${options.accountName}${path}`;
-		        const queries = (0, utils_common_js_1.getURLQueries)(request.url);
-		        const lowercaseQueries = {};
-		        if (queries) {
-		            const queryKeys = [];
-		            for (const key in queries) {
-		                if (Object.prototype.hasOwnProperty.call(queries, key)) {
-		                    const lowercaseKey = key.toLowerCase();
-		                    lowercaseQueries[lowercaseKey] = queries[key];
-		                    queryKeys.push(lowercaseKey);
-		                }
-		            }
-		            queryKeys.sort();
-		            for (const key of queryKeys) {
-		                canonicalizedResourceString += `\n${key}:${decodeURIComponent(lowercaseQueries[key])}`;
-		            }
-		        }
-		        return canonicalizedResourceString;
-		    }
-		    return {
-		        name: exports$1.storageSharedKeyCredentialPolicyName,
-		        async sendRequest(request, next) {
-		            signRequest(request);
-		            return next(request);
-		        },
-		    };
-		}
-		
-	} (StorageSharedKeyCredentialPolicyV2$1));
-	return StorageSharedKeyCredentialPolicyV2$1;
-}
-
-var StorageRequestFailureDetailsParserPolicy = {};
-
-var hasRequiredStorageRequestFailureDetailsParserPolicy;
-
-function requireStorageRequestFailureDetailsParserPolicy () {
-	if (hasRequiredStorageRequestFailureDetailsParserPolicy) return StorageRequestFailureDetailsParserPolicy;
-	hasRequiredStorageRequestFailureDetailsParserPolicy = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.storageRequestFailureDetailsParserPolicyName = void 0;
-		exports$1.storageRequestFailureDetailsParserPolicy = storageRequestFailureDetailsParserPolicy;
-		/**
-		 * The programmatic identifier of the StorageRequestFailureDetailsParserPolicy.
-		 */
-		exports$1.storageRequestFailureDetailsParserPolicyName = "storageRequestFailureDetailsParserPolicy";
-		/**
-		 * StorageRequestFailureDetailsParserPolicy
-		 */
-		function storageRequestFailureDetailsParserPolicy() {
-		    return {
-		        name: exports$1.storageRequestFailureDetailsParserPolicyName,
-		        async sendRequest(request, next) {
-		            try {
-		                const response = await next(request);
-		                return response;
-		            }
-		            catch (err) {
-		                if (typeof err === "object" &&
-		                    err !== null &&
-		                    err.response &&
-		                    err.response.parsedBody) {
-		                    if (err.response.parsedBody.code === "InvalidHeaderValue" &&
-		                        err.response.parsedBody.HeaderName === "x-ms-version") {
-		                        err.message =
-		                            "The provided service version is not enabled on this storage account. Please see https://learn.microsoft.com/rest/api/storageservices/versioning-for-the-azure-storage-services for additional information.\n";
-		                    }
-		                }
-		                throw err;
-		            }
-		        },
-		    };
-		}
-		
-	} (StorageRequestFailureDetailsParserPolicy));
-	return StorageRequestFailureDetailsParserPolicy;
-}
-
-var hasRequiredCommonjs$2;
-
-function requireCommonjs$2 () {
-	if (hasRequiredCommonjs$2) return commonjs$2;
-	hasRequiredCommonjs$2 = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.BaseRequestPolicy = exports$1.getCachedDefaultHttpClient = void 0;
-		const tslib_1 = require$$0$2;
-		tslib_1.__exportStar(requireBufferScheduler(), exports$1);
-		var cache_js_1 = requireCache$2();
-		Object.defineProperty(exports$1, "getCachedDefaultHttpClient", { enumerable: true, get: function () { return cache_js_1.getCachedDefaultHttpClient; } });
-		tslib_1.__exportStar(requireStorageBrowserPolicyFactory$1(), exports$1);
-		tslib_1.__exportStar(requireAnonymousCredential(), exports$1);
-		tslib_1.__exportStar(requireCredential(), exports$1);
-		tslib_1.__exportStar(requireStorageSharedKeyCredential(), exports$1);
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports$1);
-		var RequestPolicy_js_1 = requireRequestPolicy();
-		Object.defineProperty(exports$1, "BaseRequestPolicy", { enumerable: true, get: function () { return RequestPolicy_js_1.BaseRequestPolicy; } });
-		tslib_1.__exportStar(requireAnonymousCredentialPolicy(), exports$1);
-		tslib_1.__exportStar(requireCredentialPolicy(), exports$1);
-		tslib_1.__exportStar(requireStorageBrowserPolicy$1(), exports$1);
-		tslib_1.__exportStar(requireStorageBrowserPolicyV2$1(), exports$1);
-		tslib_1.__exportStar(requireStorageCorrectContentLengthPolicy$1(), exports$1);
-		tslib_1.__exportStar(requireStorageRetryPolicyType(), exports$1);
-		tslib_1.__exportStar(requireStorageRetryPolicy(), exports$1);
-		tslib_1.__exportStar(requireStorageRetryPolicyV2$1(), exports$1);
-		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicy(), exports$1);
-		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicyV2$1(), exports$1);
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports$1);
-		tslib_1.__exportStar(requireStorageRequestFailureDetailsParserPolicy(), exports$1);
-		
-	} (commonjs$2));
-	return commonjs$2;
-}
-
 var StorageBrowserPolicyV2 = {};
 
 var hasRequiredStorageBrowserPolicyV2;
@@ -51010,6 +49327,48 @@ function requireStorageBrowserPolicyV2 () {
 	return StorageBrowserPolicyV2;
 }
 
+var StorageCorrectContentLengthPolicy = {};
+
+var hasRequiredStorageCorrectContentLengthPolicy;
+
+function requireStorageCorrectContentLengthPolicy () {
+	if (hasRequiredStorageCorrectContentLengthPolicy) return StorageCorrectContentLengthPolicy;
+	hasRequiredStorageCorrectContentLengthPolicy = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT License.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.storageCorrectContentLengthPolicyName = void 0;
+		exports$1.storageCorrectContentLengthPolicy = storageCorrectContentLengthPolicy;
+		const constants_js_1 = requireConstants$2();
+		/**
+		 * The programmatic identifier of the storageCorrectContentLengthPolicy.
+		 */
+		exports$1.storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
+		/**
+		 * storageCorrectContentLengthPolicy to correctly set Content-Length header with request body length.
+		 */
+		function storageCorrectContentLengthPolicy() {
+		    function correctContentLength(request) {
+		        if (request.body &&
+		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
+		            request.body.length > 0) {
+		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
+		        }
+		    }
+		    return {
+		        name: exports$1.storageCorrectContentLengthPolicyName,
+		        async sendRequest(request, next) {
+		            correctContentLength(request);
+		            return next(request);
+		        },
+		    };
+		}
+		
+	} (StorageCorrectContentLengthPolicy));
+	return StorageCorrectContentLengthPolicy;
+}
+
 var StorageRetryPolicyV2 = {};
 
 var hasRequiredStorageRetryPolicyV2;
@@ -51026,10 +49385,10 @@ function requireStorageRetryPolicyV2 () {
 		const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
 		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory$1();
+		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory();
 		const constants_js_1 = requireConstants$2();
 		const utils_common_js_1 = requireUtils_common$2();
-		const log_js_1 = requireLog$1();
+		const log_js_1 = requireLog();
 		/**
 		 * Name of the {@link storageRetryPolicy}
 		 */
@@ -51202,10 +49561,10 @@ function requireStorageSharedKeyCredentialPolicyV2 () {
 		Object.defineProperty(exports$1, "__esModule", { value: true });
 		exports$1.storageSharedKeyCredentialPolicyName = void 0;
 		exports$1.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
-		const node_crypto_1 = require$$0$d;
+		const node_crypto_1 = require$$0$e;
 		const constants_js_1 = requireConstants$2();
 		const utils_common_js_1 = requireUtils_common$2();
-		const SharedKeyComparator_js_1 = requireSharedKeyComparator$1();
+		const SharedKeyComparator_js_1 = requireSharedKeyComparator();
 		/**
 		 * The programmatic identifier of the storageSharedKeyCredentialPolicy.
 		 */
@@ -51336,140 +49695,388 @@ function requireStorageSharedKeyCredentialPolicyV2 () {
 	return StorageSharedKeyCredentialPolicyV2;
 }
 
-var StorageBrowserPolicyFactory = {};
+var StorageRequestFailureDetailsParserPolicy = {};
 
-var StorageBrowserPolicy = {};
+var hasRequiredStorageRequestFailureDetailsParserPolicy;
 
-var hasRequiredStorageBrowserPolicy;
-
-function requireStorageBrowserPolicy () {
-	if (hasRequiredStorageBrowserPolicy) return StorageBrowserPolicy;
-	hasRequiredStorageBrowserPolicy = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageBrowserPolicy, "__esModule", { value: true });
-	StorageBrowserPolicy.StorageBrowserPolicy = void 0;
-	const RequestPolicy_js_1 = requireRequestPolicy$1();
-	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
-	/**
-	 * StorageBrowserPolicy will handle differences between Node.js and browser runtime, including:
-	 *
-	 * 1. Browsers cache GET/HEAD requests by adding conditional headers such as 'IF_MODIFIED_SINCE'.
-	 * StorageBrowserPolicy is a policy used to add a timestamp query to GET/HEAD request URL
-	 * thus avoid the browser cache.
-	 *
-	 * 2. Remove cookie header for security
-	 *
-	 * 3. Remove content-length header to avoid browsers warning
-	 */
-	let StorageBrowserPolicy$1 = class StorageBrowserPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
-	    /**
-	     * Creates an instance of StorageBrowserPolicy.
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    // The base class has a protected constructor. Adding a public one to enable constructing of this class.
-	    /* eslint-disable-next-line @typescript-eslint/no-useless-constructor*/
-	    constructor(nextPolicy, options) {
-	        super(nextPolicy, options);
-	    }
-	    /**
-	     * Sends out request.
-	     *
-	     * @param request -
-	     */
-	    async sendRequest(request) {
-	        if (core_util_1.isNodeLike) {
-	            return this._nextPolicy.sendRequest(request);
-	        }
-	        if (request.method.toUpperCase() === "GET" || request.method.toUpperCase() === "HEAD") {
-	            request.url = (0, utils_common_js_1.setURLParameter)(request.url, constants_js_1.URLConstants.Parameters.FORCE_BROWSER_NO_CACHE, new Date().getTime().toString());
-	        }
-	        request.headers.remove(constants_js_1.HeaderConstants.COOKIE);
-	        // According to XHR standards, content-length should be fully controlled by browsers
-	        request.headers.remove(constants_js_1.HeaderConstants.CONTENT_LENGTH);
-	        return this._nextPolicy.sendRequest(request);
-	    }
-	};
-	StorageBrowserPolicy.StorageBrowserPolicy = StorageBrowserPolicy$1;
-	
-	return StorageBrowserPolicy;
-}
-
-var hasRequiredStorageBrowserPolicyFactory;
-
-function requireStorageBrowserPolicyFactory () {
-	if (hasRequiredStorageBrowserPolicyFactory) return StorageBrowserPolicyFactory;
-	hasRequiredStorageBrowserPolicyFactory = 1;
+function requireStorageRequestFailureDetailsParserPolicy () {
+	if (hasRequiredStorageRequestFailureDetailsParserPolicy) return StorageRequestFailureDetailsParserPolicy;
+	hasRequiredStorageRequestFailureDetailsParserPolicy = 1;
 	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
 		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.StorageBrowserPolicyFactory = exports$1.StorageBrowserPolicy = void 0;
-		const StorageBrowserPolicy_js_1 = requireStorageBrowserPolicy();
-		Object.defineProperty(exports$1, "StorageBrowserPolicy", { enumerable: true, get: function () { return StorageBrowserPolicy_js_1.StorageBrowserPolicy; } });
+		exports$1.storageRequestFailureDetailsParserPolicyName = void 0;
+		exports$1.storageRequestFailureDetailsParserPolicy = storageRequestFailureDetailsParserPolicy;
 		/**
-		 * StorageBrowserPolicyFactory is a factory class helping generating StorageBrowserPolicy objects.
+		 * The programmatic identifier of the StorageRequestFailureDetailsParserPolicy.
 		 */
-		class StorageBrowserPolicyFactory {
-		    /**
-		     * Creates a StorageBrowserPolicyFactory object.
-		     *
-		     * @param nextPolicy -
-		     * @param options -
-		     */
-		    create(nextPolicy, options) {
-		        return new StorageBrowserPolicy_js_1.StorageBrowserPolicy(nextPolicy, options);
-		    }
-		}
-		exports$1.StorageBrowserPolicyFactory = StorageBrowserPolicyFactory;
-		
-	} (StorageBrowserPolicyFactory));
-	return StorageBrowserPolicyFactory;
-}
-
-var StorageCorrectContentLengthPolicy = {};
-
-var hasRequiredStorageCorrectContentLengthPolicy;
-
-function requireStorageCorrectContentLengthPolicy () {
-	if (hasRequiredStorageCorrectContentLengthPolicy) return StorageCorrectContentLengthPolicy;
-	hasRequiredStorageCorrectContentLengthPolicy = 1;
-	(function (exports$1) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.storageCorrectContentLengthPolicyName = void 0;
-		exports$1.storageCorrectContentLengthPolicy = storageCorrectContentLengthPolicy;
-		const constants_js_1 = requireConstants$2();
+		exports$1.storageRequestFailureDetailsParserPolicyName = "storageRequestFailureDetailsParserPolicy";
 		/**
-		 * The programmatic identifier of the storageCorrectContentLengthPolicy.
+		 * StorageRequestFailureDetailsParserPolicy
 		 */
-		exports$1.storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
-		/**
-		 * storageCorrectContentLengthPolicy to correctly set Content-Length header with request body length.
-		 */
-		function storageCorrectContentLengthPolicy() {
-		    function correctContentLength(request) {
-		        if (request.body &&
-		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
-		            request.body.length > 0) {
-		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-		        }
-		    }
+		function storageRequestFailureDetailsParserPolicy() {
 		    return {
-		        name: exports$1.storageCorrectContentLengthPolicyName,
+		        name: exports$1.storageRequestFailureDetailsParserPolicyName,
 		        async sendRequest(request, next) {
-		            correctContentLength(request);
-		            return next(request);
+		            try {
+		                const response = await next(request);
+		                return response;
+		            }
+		            catch (err) {
+		                if (typeof err === "object" &&
+		                    err !== null &&
+		                    err.response &&
+		                    err.response.parsedBody) {
+		                    if (err.response.parsedBody.code === "InvalidHeaderValue" &&
+		                        err.response.parsedBody.HeaderName === "x-ms-version") {
+		                        err.message =
+		                            "The provided service version is not enabled on this storage account. Please see https://learn.microsoft.com/rest/api/storageservices/versioning-for-the-azure-storage-services for additional information.\n";
+		                    }
+		                }
+		                throw err;
+		            }
 		        },
 		    };
 		}
 		
-	} (StorageCorrectContentLengthPolicy));
-	return StorageCorrectContentLengthPolicy;
+	} (StorageRequestFailureDetailsParserPolicy));
+	return StorageRequestFailureDetailsParserPolicy;
+}
+
+var UserDelegationKeyCredential = {};
+
+var hasRequiredUserDelegationKeyCredential;
+
+function requireUserDelegationKeyCredential () {
+	if (hasRequiredUserDelegationKeyCredential) return UserDelegationKeyCredential;
+	hasRequiredUserDelegationKeyCredential = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(UserDelegationKeyCredential, "__esModule", { value: true });
+	UserDelegationKeyCredential.UserDelegationKeyCredential = void 0;
+	const node_crypto_1 = require$$0$e;
+	/**
+	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
+	 *
+	 * UserDelegationKeyCredential is only used for generation of user delegation SAS.
+	 * @see https://learn.microsoft.com/rest/api/storageservices/create-user-delegation-sas
+	 */
+	let UserDelegationKeyCredential$1 = class UserDelegationKeyCredential {
+	    /**
+	     * Azure Storage account name; readonly.
+	     */
+	    accountName;
+	    /**
+	     * Azure Storage user delegation key; readonly.
+	     */
+	    userDelegationKey;
+	    /**
+	     * Key value in Buffer type.
+	     */
+	    key;
+	    /**
+	     * Creates an instance of UserDelegationKeyCredential.
+	     * @param accountName -
+	     * @param userDelegationKey -
+	     */
+	    constructor(accountName, userDelegationKey) {
+	        this.accountName = accountName;
+	        this.userDelegationKey = userDelegationKey;
+	        this.key = Buffer.from(userDelegationKey.value, "base64");
+	    }
+	    /**
+	     * Generates a hash signature for an HTTP request or for a SAS.
+	     *
+	     * @param stringToSign -
+	     */
+	    computeHMACSHA256(stringToSign) {
+	        // console.log(`stringToSign: ${JSON.stringify(stringToSign)}`);
+	        return (0, node_crypto_1.createHmac)("sha256", this.key).update(stringToSign, "utf8").digest("base64");
+	    }
+	};
+	UserDelegationKeyCredential.UserDelegationKeyCredential = UserDelegationKeyCredential$1;
+	
+	return UserDelegationKeyCredential;
+}
+
+var hasRequiredCommonjs$3;
+
+function requireCommonjs$3 () {
+	if (hasRequiredCommonjs$3) return commonjs$3;
+	hasRequiredCommonjs$3 = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT License.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.BaseRequestPolicy = exports$1.getCachedDefaultHttpClient = void 0;
+		const tslib_1 = require$$0$2;
+		tslib_1.__exportStar(requireBufferScheduler(), exports$1);
+		var cache_js_1 = requireCache$2();
+		Object.defineProperty(exports$1, "getCachedDefaultHttpClient", { enumerable: true, get: function () { return cache_js_1.getCachedDefaultHttpClient; } });
+		tslib_1.__exportStar(requireStorageBrowserPolicyFactory(), exports$1);
+		tslib_1.__exportStar(requireAnonymousCredential(), exports$1);
+		tslib_1.__exportStar(requireCredential(), exports$1);
+		tslib_1.__exportStar(requireStorageSharedKeyCredential(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports$1);
+		var RequestPolicy_js_1 = requireRequestPolicy();
+		Object.defineProperty(exports$1, "BaseRequestPolicy", { enumerable: true, get: function () { return RequestPolicy_js_1.BaseRequestPolicy; } });
+		tslib_1.__exportStar(requireAnonymousCredentialPolicy(), exports$1);
+		tslib_1.__exportStar(requireCredentialPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageBrowserPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageBrowserPolicyV2(), exports$1);
+		tslib_1.__exportStar(requireStorageCorrectContentLengthPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicyType(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicyV2(), exports$1);
+		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicyV2(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports$1);
+		tslib_1.__exportStar(requireStorageRequestFailureDetailsParserPolicy(), exports$1);
+		tslib_1.__exportStar(requireUserDelegationKeyCredential(), exports$1);
+		
+	} (commonjs$3));
+	return commonjs$3;
+}
+
+var constants$1 = {};
+
+var hasRequiredConstants$1;
+
+function requireConstants$1 () {
+	if (hasRequiredConstants$1) return constants$1;
+	hasRequiredConstants$1 = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT License.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.PathStylePorts = exports$1.BlobDoesNotUseCustomerSpecifiedEncryption = exports$1.BlobUsesCustomerSpecifiedEncryptionMsg = exports$1.StorageBlobLoggingAllowedQueryParameters = exports$1.StorageBlobLoggingAllowedHeaderNames = exports$1.DevelopmentConnectionString = exports$1.EncryptionAlgorithmAES25 = exports$1.HTTP_VERSION_1_1 = exports$1.HTTP_LINE_ENDING = exports$1.BATCH_MAX_PAYLOAD_IN_BYTES = exports$1.BATCH_MAX_REQUEST = exports$1.SIZE_1_MB = exports$1.ETagAny = exports$1.ETagNone = exports$1.HeaderConstants = exports$1.HTTPURLConnection = exports$1.URLConstants = exports$1.StorageOAuthScopes = exports$1.REQUEST_TIMEOUT = exports$1.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = exports$1.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = exports$1.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = exports$1.BLOCK_BLOB_MAX_BLOCKS = exports$1.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = exports$1.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = exports$1.SERVICE_VERSION = exports$1.SDK_VERSION = void 0;
+		exports$1.SDK_VERSION = "12.30.0";
+		exports$1.SERVICE_VERSION = "2026-02-06";
+		exports$1.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = 256 * 1024 * 1024; // 256MB
+		exports$1.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = 4000 * 1024 * 1024; // 4000MB
+		exports$1.BLOCK_BLOB_MAX_BLOCKS = 50000;
+		exports$1.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = 8 * 1024 * 1024; // 8MB
+		exports$1.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = 4 * 1024 * 1024; // 4MB
+		exports$1.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = 5;
+		exports$1.REQUEST_TIMEOUT = 100 * 1000; // In ms
+		/**
+		 * The OAuth scope to use with Azure Storage.
+		 */
+		exports$1.StorageOAuthScopes = "https://storage.azure.com/.default";
+		exports$1.URLConstants = {
+		    Parameters: {
+		        FORCE_BROWSER_NO_CACHE: "_",
+		        SIGNATURE: "sig",
+		        SNAPSHOT: "snapshot",
+		        VERSIONID: "versionid",
+		        TIMEOUT: "timeout",
+		    },
+		};
+		exports$1.HTTPURLConnection = {
+		    HTTP_ACCEPTED: 202,
+		    HTTP_CONFLICT: 409,
+		    HTTP_NOT_FOUND: 404,
+		    HTTP_PRECON_FAILED: 412,
+		    HTTP_RANGE_NOT_SATISFIABLE: 416,
+		};
+		exports$1.HeaderConstants = {
+		    AUTHORIZATION: "Authorization",
+		    AUTHORIZATION_SCHEME: "Bearer",
+		    CONTENT_ENCODING: "Content-Encoding",
+		    CONTENT_ID: "Content-ID",
+		    CONTENT_LANGUAGE: "Content-Language",
+		    CONTENT_LENGTH: "Content-Length",
+		    CONTENT_MD5: "Content-Md5",
+		    CONTENT_TRANSFER_ENCODING: "Content-Transfer-Encoding",
+		    CONTENT_TYPE: "Content-Type",
+		    COOKIE: "Cookie",
+		    DATE: "date",
+		    IF_MATCH: "if-match",
+		    IF_MODIFIED_SINCE: "if-modified-since",
+		    IF_NONE_MATCH: "if-none-match",
+		    IF_UNMODIFIED_SINCE: "if-unmodified-since",
+		    PREFIX_FOR_STORAGE: "x-ms-",
+		    RANGE: "Range",
+		    USER_AGENT: "User-Agent",
+		    X_MS_CLIENT_REQUEST_ID: "x-ms-client-request-id",
+		    X_MS_COPY_SOURCE: "x-ms-copy-source",
+		    X_MS_DATE: "x-ms-date",
+		    X_MS_ERROR_CODE: "x-ms-error-code",
+		    X_MS_VERSION: "x-ms-version",
+		    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
+		};
+		exports$1.ETagNone = "";
+		exports$1.ETagAny = "*";
+		exports$1.SIZE_1_MB = 1 * 1024 * 1024;
+		exports$1.BATCH_MAX_REQUEST = 256;
+		exports$1.BATCH_MAX_PAYLOAD_IN_BYTES = 4 * exports$1.SIZE_1_MB;
+		exports$1.HTTP_LINE_ENDING = "\r\n";
+		exports$1.HTTP_VERSION_1_1 = "HTTP/1.1";
+		exports$1.EncryptionAlgorithmAES25 = "AES256";
+		exports$1.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
+		exports$1.StorageBlobLoggingAllowedHeaderNames = [
+		    "Access-Control-Allow-Origin",
+		    "Cache-Control",
+		    "Content-Length",
+		    "Content-Type",
+		    "Date",
+		    "Request-Id",
+		    "traceparent",
+		    "Transfer-Encoding",
+		    "User-Agent",
+		    "x-ms-client-request-id",
+		    "x-ms-date",
+		    "x-ms-error-code",
+		    "x-ms-request-id",
+		    "x-ms-return-client-request-id",
+		    "x-ms-version",
+		    "Accept-Ranges",
+		    "Content-Disposition",
+		    "Content-Encoding",
+		    "Content-Language",
+		    "Content-MD5",
+		    "Content-Range",
+		    "ETag",
+		    "Last-Modified",
+		    "Server",
+		    "Vary",
+		    "x-ms-content-crc64",
+		    "x-ms-copy-action",
+		    "x-ms-copy-completion-time",
+		    "x-ms-copy-id",
+		    "x-ms-copy-progress",
+		    "x-ms-copy-status",
+		    "x-ms-has-immutability-policy",
+		    "x-ms-has-legal-hold",
+		    "x-ms-lease-state",
+		    "x-ms-lease-status",
+		    "x-ms-range",
+		    "x-ms-request-server-encrypted",
+		    "x-ms-server-encrypted",
+		    "x-ms-snapshot",
+		    "x-ms-source-range",
+		    "If-Match",
+		    "If-Modified-Since",
+		    "If-None-Match",
+		    "If-Unmodified-Since",
+		    "x-ms-access-tier",
+		    "x-ms-access-tier-change-time",
+		    "x-ms-access-tier-inferred",
+		    "x-ms-account-kind",
+		    "x-ms-archive-status",
+		    "x-ms-blob-append-offset",
+		    "x-ms-blob-cache-control",
+		    "x-ms-blob-committed-block-count",
+		    "x-ms-blob-condition-appendpos",
+		    "x-ms-blob-condition-maxsize",
+		    "x-ms-blob-content-disposition",
+		    "x-ms-blob-content-encoding",
+		    "x-ms-blob-content-language",
+		    "x-ms-blob-content-length",
+		    "x-ms-blob-content-md5",
+		    "x-ms-blob-content-type",
+		    "x-ms-blob-public-access",
+		    "x-ms-blob-sequence-number",
+		    "x-ms-blob-type",
+		    "x-ms-copy-destination-snapshot",
+		    "x-ms-creation-time",
+		    "x-ms-default-encryption-scope",
+		    "x-ms-delete-snapshots",
+		    "x-ms-delete-type-permanent",
+		    "x-ms-deny-encryption-scope-override",
+		    "x-ms-encryption-algorithm",
+		    "x-ms-if-sequence-number-eq",
+		    "x-ms-if-sequence-number-le",
+		    "x-ms-if-sequence-number-lt",
+		    "x-ms-incremental-copy",
+		    "x-ms-lease-action",
+		    "x-ms-lease-break-period",
+		    "x-ms-lease-duration",
+		    "x-ms-lease-id",
+		    "x-ms-lease-time",
+		    "x-ms-page-write",
+		    "x-ms-proposed-lease-id",
+		    "x-ms-range-get-content-md5",
+		    "x-ms-rehydrate-priority",
+		    "x-ms-sequence-number-action",
+		    "x-ms-sku-name",
+		    "x-ms-source-content-md5",
+		    "x-ms-source-if-match",
+		    "x-ms-source-if-modified-since",
+		    "x-ms-source-if-none-match",
+		    "x-ms-source-if-unmodified-since",
+		    "x-ms-tag-count",
+		    "x-ms-encryption-key-sha256",
+		    "x-ms-copy-source-error-code",
+		    "x-ms-copy-source-status-code",
+		    "x-ms-if-tags",
+		    "x-ms-source-if-tags",
+		];
+		exports$1.StorageBlobLoggingAllowedQueryParameters = [
+		    "comp",
+		    "maxresults",
+		    "rscc",
+		    "rscd",
+		    "rsce",
+		    "rscl",
+		    "rsct",
+		    "se",
+		    "si",
+		    "sip",
+		    "sp",
+		    "spr",
+		    "sr",
+		    "srt",
+		    "ss",
+		    "st",
+		    "sv",
+		    "include",
+		    "marker",
+		    "prefix",
+		    "copyid",
+		    "restype",
+		    "blockid",
+		    "blocklisttype",
+		    "delimiter",
+		    "prevsnapshot",
+		    "ske",
+		    "skoid",
+		    "sks",
+		    "skt",
+		    "sktid",
+		    "skv",
+		    "snapshot",
+		];
+		exports$1.BlobUsesCustomerSpecifiedEncryptionMsg = "BlobUsesCustomerSpecifiedEncryption";
+		exports$1.BlobDoesNotUseCustomerSpecifiedEncryption = "BlobDoesNotUseCustomerSpecifiedEncryption";
+		/// List of ports used for path style addressing.
+		/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
+		exports$1.PathStylePorts = [
+		    "10000",
+		    "10001",
+		    "10002",
+		    "10003",
+		    "10004",
+		    "10100",
+		    "10101",
+		    "10102",
+		    "10103",
+		    "10104",
+		    "11000",
+		    "11001",
+		    "11002",
+		    "11003",
+		    "11004",
+		    "11100",
+		    "11101",
+		    "11102",
+		    "11103",
+		    "11104",
+		];
+		
+	} (constants$1));
+	return constants$1;
 }
 
 var hasRequiredPipeline;
@@ -51492,17 +50099,9 @@ function requirePipeline () {
 		const core_xml_1 = /*@__PURE__*/ requireCommonjs$5();
 		const core_auth_1 = /*@__PURE__*/ requireCommonjs$8();
 		const log_js_1 = requireLog$1();
-		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory$1();
-		const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
-		const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-		const constants_js_1 = requireConstants$2();
+		const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
+		const constants_js_1 = requireConstants$1();
 		Object.defineProperty(exports$1, "StorageOAuthScopes", { enumerable: true, get: function () { return constants_js_1.StorageOAuthScopes; } });
-		const storage_common_1 = /*@__PURE__*/ requireCommonjs$2();
-		const StorageBrowserPolicyV2_js_1 = requireStorageBrowserPolicyV2();
-		const StorageRetryPolicyV2_js_1 = requireStorageRetryPolicyV2();
-		const StorageSharedKeyCredentialPolicyV2_js_1 = requireStorageSharedKeyCredentialPolicyV2();
-		const StorageBrowserPolicyFactory_js_1 = requireStorageBrowserPolicyFactory();
-		const StorageCorrectContentLengthPolicy_js_1 = requireStorageCorrectContentLengthPolicy();
 		/**
 		 * A helper to decide if a given argument satisfies the Pipeline contract
 		 * @param pipeline - An argument that may be a Pipeline
@@ -51567,7 +50166,7 @@ function requirePipeline () {
 		 */
 		function newPipeline(credential, pipelineOptions = {}) {
 		    if (!credential) {
-		        credential = new AnonymousCredential_js_1.AnonymousCredential();
+		        credential = new storage_common_1.AnonymousCredential();
 		    }
 		    const pipeline = new Pipeline([], pipelineOptions);
 		    pipeline._credential = credential;
@@ -51644,10 +50243,10 @@ function requirePipeline () {
 		        });
 		        corePipeline.removePolicy({ phase: "Retry" });
 		        corePipeline.removePolicy({ name: core_rest_pipeline_1.decompressResponsePolicyName });
-		        corePipeline.addPolicy((0, StorageCorrectContentLengthPolicy_js_1.storageCorrectContentLengthPolicy)());
-		        corePipeline.addPolicy((0, StorageRetryPolicyV2_js_1.storageRetryPolicy)(restOptions.retryOptions), { phase: "Retry" });
+		        corePipeline.addPolicy((0, storage_common_1.storageCorrectContentLengthPolicy)());
+		        corePipeline.addPolicy((0, storage_common_1.storageRetryPolicy)(restOptions.retryOptions), { phase: "Retry" });
 		        corePipeline.addPolicy((0, storage_common_1.storageRequestFailureDetailsParserPolicy)());
-		        corePipeline.addPolicy((0, StorageBrowserPolicyV2_js_1.storageBrowserPolicy)());
+		        corePipeline.addPolicy((0, storage_common_1.storageBrowserPolicy)());
 		        const downlevelResults = processDownlevelPipeline(pipeline);
 		        if (downlevelResults) {
 		            corePipeline.addPolicy(downlevelResults.wrappedPolicies, downlevelResults.afterRetry ? { afterPhase: "Retry" } : undefined);
@@ -51660,8 +50259,8 @@ function requirePipeline () {
 		                challengeCallbacks: { authorizeRequestOnChallenge: core_client_1.authorizeRequestOnTenantChallenge },
 		            }), { phase: "Sign" });
 		        }
-		        else if (credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) {
-		            corePipeline.addPolicy((0, StorageSharedKeyCredentialPolicyV2_js_1.storageSharedKeyCredentialPolicy)({
+		        else if (credential instanceof storage_common_1.StorageSharedKeyCredential) {
+		            corePipeline.addPolicy((0, storage_common_1.storageSharedKeyCredentialPolicy)({
 		                accountName: credential.accountName,
 		                accountKey: credential.accountKey,
 		            }), { phase: "Sign" });
@@ -51681,7 +50280,7 @@ function requirePipeline () {
 		        return pipeline._credential;
 		    }
 		    // if it came from another package, loop over the factories and look for one like before
-		    let credential = new AnonymousCredential_js_1.AnonymousCredential();
+		    let credential = new storage_common_1.AnonymousCredential();
 		    for (const factory of pipeline.factories) {
 		        if ((0, core_auth_1.isTokenCredential)(factory.credential)) {
 		            // Only works if the factory has been attached a "credential" property.
@@ -51695,13 +50294,13 @@ function requirePipeline () {
 		    return credential;
 		}
 		function isStorageSharedKeyCredential(factory) {
-		    if (factory instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) {
+		    if (factory instanceof storage_common_1.StorageSharedKeyCredential) {
 		        return true;
 		    }
 		    return factory.constructor.name === "StorageSharedKeyCredential";
 		}
 		function isAnonymousCredential(factory) {
-		    if (factory instanceof AnonymousCredential_js_1.AnonymousCredential) {
+		    if (factory instanceof storage_common_1.AnonymousCredential) {
 		        return true;
 		    }
 		    return factory.constructor.name === "AnonymousCredential";
@@ -51710,13 +50309,13 @@ function requirePipeline () {
 		    return (0, core_auth_1.isTokenCredential)(factory.credential);
 		}
 		function isStorageBrowserPolicyFactory(factory) {
-		    if (factory instanceof StorageBrowserPolicyFactory_js_1.StorageBrowserPolicyFactory) {
+		    if (factory instanceof storage_common_1.StorageBrowserPolicyFactory) {
 		        return true;
 		    }
 		    return factory.constructor.name === "StorageBrowserPolicyFactory";
 		}
 		function isStorageRetryPolicyFactory(factory) {
-		    if (factory instanceof StorageRetryPolicyFactory_js_1.StorageRetryPolicyFactory) {
+		    if (factory instanceof storage_common_1.StorageRetryPolicyFactory) {
 		        return true;
 		    }
 		    return factory.constructor.name === "StorageRetryPolicyFactory";
@@ -60417,8 +59016,8 @@ function requireParameters () {
 	 */
 	Object.defineProperty(parameters, "__esModule", { value: true });
 	parameters.action3 = parameters.action2 = parameters.leaseId1 = parameters.action1 = parameters.proposedLeaseId = parameters.duration = parameters.action = parameters.comp10 = parameters.sourceLeaseId = parameters.sourceContainerName = parameters.comp9 = parameters.deletedContainerVersion = parameters.deletedContainerName = parameters.comp8 = parameters.containerAcl = parameters.comp7 = parameters.comp6 = parameters.ifUnmodifiedSince = parameters.ifModifiedSince = parameters.leaseId = parameters.preventEncryptionScopeOverride = parameters.defaultEncryptionScope = parameters.access = parameters.metadata = parameters.restype2 = parameters.where = parameters.comp5 = parameters.multipartContentType = parameters.contentLength = parameters.comp4 = parameters.body = parameters.restype1 = parameters.comp3 = parameters.keyInfo = parameters.include = parameters.maxPageSize = parameters.marker = parameters.prefix = parameters.comp2 = parameters.comp1 = parameters.accept1 = parameters.requestId = parameters.version = parameters.timeoutInSeconds = parameters.comp = parameters.restype = parameters.url = parameters.accept = parameters.blobServiceProperties = parameters.contentType = void 0;
-	parameters.fileRequestIntent = parameters.copySourceTags = parameters.copySourceAuthorization = parameters.sourceContentMD5 = parameters.xMsRequiresSync = parameters.legalHold1 = parameters.sealBlob = parameters.blobTagsString = parameters.copySource = parameters.sourceIfTags = parameters.sourceIfNoneMatch = parameters.sourceIfMatch = parameters.sourceIfUnmodifiedSince = parameters.sourceIfModifiedSince = parameters.rehydratePriority = parameters.tier = parameters.comp14 = parameters.encryptionScope = parameters.legalHold = parameters.comp13 = parameters.immutabilityPolicyMode = parameters.immutabilityPolicyExpiry = parameters.comp12 = parameters.blobContentDisposition = parameters.blobContentLanguage = parameters.blobContentEncoding = parameters.blobContentMD5 = parameters.blobContentType = parameters.blobCacheControl = parameters.expiresOn = parameters.expiryOptions = parameters.comp11 = parameters.blobDeleteType = parameters.deleteSnapshots = parameters.ifTags = parameters.ifNoneMatch = parameters.ifMatch = parameters.encryptionAlgorithm = parameters.encryptionKeySha256 = parameters.encryptionKey = parameters.rangeGetContentCRC64 = parameters.rangeGetContentMD5 = parameters.range = parameters.versionId = parameters.snapshot = parameters.delimiter = parameters.include1 = parameters.proposedLeaseId1 = parameters.action4 = parameters.breakPeriod = void 0;
-	parameters.listType = parameters.comp25 = parameters.blocks = parameters.blockId = parameters.comp24 = parameters.copySourceBlobProperties = parameters.blobType2 = parameters.comp23 = parameters.sourceRange1 = parameters.appendPosition = parameters.maxSize = parameters.comp22 = parameters.blobType1 = parameters.comp21 = parameters.sequenceNumberAction = parameters.prevSnapshotUrl = parameters.prevsnapshot = parameters.comp20 = parameters.range1 = parameters.sourceContentCrc64 = parameters.sourceRange = parameters.sourceUrl = parameters.pageWrite1 = parameters.ifSequenceNumberEqualTo = parameters.ifSequenceNumberLessThan = parameters.ifSequenceNumberLessThanOrEqualTo = parameters.pageWrite = parameters.comp19 = parameters.accept2 = parameters.body1 = parameters.contentType1 = parameters.blobSequenceNumber = parameters.blobContentLength = parameters.blobType = parameters.transactionalContentCrc64 = parameters.transactionalContentMD5 = parameters.tags = parameters.comp18 = parameters.comp17 = parameters.queryRequest = parameters.tier1 = parameters.comp16 = parameters.copyId = parameters.copyActionAbortConstant = parameters.comp15 = void 0;
+	parameters.copySourceTags = parameters.copySourceAuthorization = parameters.sourceContentMD5 = parameters.xMsRequiresSync = parameters.legalHold1 = parameters.sealBlob = parameters.blobTagsString = parameters.copySource = parameters.sourceIfTags = parameters.sourceIfNoneMatch = parameters.sourceIfMatch = parameters.sourceIfUnmodifiedSince = parameters.sourceIfModifiedSince = parameters.rehydratePriority = parameters.tier = parameters.comp14 = parameters.encryptionScope = parameters.legalHold = parameters.comp13 = parameters.immutabilityPolicyMode = parameters.immutabilityPolicyExpiry = parameters.comp12 = parameters.blobContentDisposition = parameters.blobContentLanguage = parameters.blobContentEncoding = parameters.blobContentMD5 = parameters.blobContentType = parameters.blobCacheControl = parameters.expiresOn = parameters.expiryOptions = parameters.comp11 = parameters.blobDeleteType = parameters.deleteSnapshots = parameters.ifTags = parameters.ifNoneMatch = parameters.ifMatch = parameters.encryptionAlgorithm = parameters.encryptionKeySha256 = parameters.encryptionKey = parameters.rangeGetContentCRC64 = parameters.rangeGetContentMD5 = parameters.range = parameters.versionId = parameters.snapshot = parameters.delimiter = parameters.startFrom = parameters.include1 = parameters.proposedLeaseId1 = parameters.action4 = parameters.breakPeriod = void 0;
+	parameters.listType = parameters.comp25 = parameters.blocks = parameters.blockId = parameters.comp24 = parameters.copySourceBlobProperties = parameters.blobType2 = parameters.comp23 = parameters.sourceRange1 = parameters.appendPosition = parameters.maxSize = parameters.comp22 = parameters.blobType1 = parameters.comp21 = parameters.sequenceNumberAction = parameters.prevSnapshotUrl = parameters.prevsnapshot = parameters.comp20 = parameters.range1 = parameters.sourceContentCrc64 = parameters.sourceRange = parameters.sourceUrl = parameters.pageWrite1 = parameters.ifSequenceNumberEqualTo = parameters.ifSequenceNumberLessThan = parameters.ifSequenceNumberLessThanOrEqualTo = parameters.pageWrite = parameters.comp19 = parameters.accept2 = parameters.body1 = parameters.contentType1 = parameters.blobSequenceNumber = parameters.blobContentLength = parameters.blobType = parameters.transactionalContentCrc64 = parameters.transactionalContentMD5 = parameters.tags = parameters.ifNoneMatch1 = parameters.ifMatch1 = parameters.ifUnmodifiedSince1 = parameters.ifModifiedSince1 = parameters.comp18 = parameters.comp17 = parameters.queryRequest = parameters.tier1 = parameters.comp16 = parameters.copyId = parameters.copyActionAbortConstant = parameters.comp15 = parameters.fileRequestIntent = void 0;
 	const mappers_js_1 = requireMappers();
 	parameters.contentType = {
 	    parameterPath: ["options", "contentType"],
@@ -60496,7 +59095,7 @@ function requireParameters () {
 	parameters.version = {
 	    parameterPath: "version",
 	    mapper: {
-	        defaultValue: "2025-11-05",
+	        defaultValue: "2026-02-06",
 	        isConstant: true,
 	        serializedName: "x-ms-version",
 	        type: {
@@ -61030,6 +59629,16 @@ function requireParameters () {
 	        },
 	    },
 	    collectionFormat: "CSV",
+	};
+	parameters.startFrom = {
+	    parameterPath: ["options", "startFrom"],
+	    mapper: {
+	        serializedName: "startFrom",
+	        xmlName: "startFrom",
+	        type: {
+	            name: "String",
+	        },
+	    },
 	};
 	parameters.delimiter = {
 	    parameterPath: "delimiter",
@@ -61626,6 +60235,50 @@ function requireParameters () {
 	        defaultValue: "tags",
 	        isConstant: true,
 	        serializedName: "comp",
+	        type: {
+	            name: "String",
+	        },
+	    },
+	};
+	parameters.ifModifiedSince1 = {
+	    parameterPath: ["options", "blobModifiedAccessConditions", "ifModifiedSince"],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-modified-since",
+	        xmlName: "x-ms-blob-if-modified-since",
+	        type: {
+	            name: "DateTimeRfc1123",
+	        },
+	    },
+	};
+	parameters.ifUnmodifiedSince1 = {
+	    parameterPath: [
+	        "options",
+	        "blobModifiedAccessConditions",
+	        "ifUnmodifiedSince",
+	    ],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-unmodified-since",
+	        xmlName: "x-ms-blob-if-unmodified-since",
+	        type: {
+	            name: "DateTimeRfc1123",
+	        },
+	    },
+	};
+	parameters.ifMatch1 = {
+	    parameterPath: ["options", "blobModifiedAccessConditions", "ifMatch"],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-match",
+	        xmlName: "x-ms-blob-if-match",
+	        type: {
+	            name: "String",
+	        },
+	    },
+	};
+	parameters.ifNoneMatch1 = {
+	    parameterPath: ["options", "blobModifiedAccessConditions", "ifNoneMatch"],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-none-match",
+	        xmlName: "x-ms-blob-if-none-match",
 	        type: {
 	            name: "String",
 	        },
@@ -63027,6 +61680,7 @@ function requireContainer$1 () {
 	        Parameters.maxPageSize,
 	        Parameters.restype2,
 	        Parameters.include1,
+	        Parameters.startFrom,
 	    ],
 	    urlParameters: [Parameters.url],
 	    headerParameters: [
@@ -63058,6 +61712,7 @@ function requireContainer$1 () {
 	        Parameters.maxPageSize,
 	        Parameters.restype2,
 	        Parameters.include1,
+	        Parameters.startFrom,
 	        Parameters.delimiter,
 	    ],
 	    urlParameters: [Parameters.url],
@@ -64093,6 +62748,10 @@ function requireBlob$1 () {
 	        Parameters.accept1,
 	        Parameters.leaseId,
 	        Parameters.ifTags,
+	        Parameters.ifModifiedSince1,
+	        Parameters.ifUnmodifiedSince1,
+	        Parameters.ifMatch1,
+	        Parameters.ifNoneMatch1,
 	    ],
 	    isXML: true,
 	    serializer: xmlSerializer,
@@ -64123,6 +62782,10 @@ function requireBlob$1 () {
 	        Parameters.requestId,
 	        Parameters.leaseId,
 	        Parameters.ifTags,
+	        Parameters.ifModifiedSince1,
+	        Parameters.ifUnmodifiedSince1,
+	        Parameters.ifMatch1,
+	        Parameters.ifNoneMatch1,
 	        Parameters.transactionalContentMD5,
 	        Parameters.transactionalContentCrc64,
 	    ],
@@ -65289,7 +63952,7 @@ function requireStorageClient$1 () {
 	        const defaults = {
 	            requestContentType: "application/json; charset=utf-8",
 	        };
-	        const packageDetails = `azsdk-js-azure-storage-blob/12.29.1`;
+	        const packageDetails = `azsdk-js-azure-storage-blob/12.30.0`;
 	        const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix
 	            ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
 	            : `${packageDetails}`;
@@ -65305,7 +63968,7 @@ function requireStorageClient$1 () {
 	        // Parameter assignments
 	        this.url = url;
 	        // Assigning values to Constant parameters
-	        this.version = options.version || "2025-11-05";
+	        this.version = options.version || "2026-02-06";
 	        this.service = new index_js_1.ServiceImpl(this);
 	        this.container = new index_js_1.ContainerImpl(this);
 	        this.blob = new index_js_1.BlobImpl(this);
@@ -65520,6 +64183,822 @@ function requireStorageContextClient () {
 	return StorageContextClient;
 }
 
+var utils_common$1 = {};
+
+var hasRequiredUtils_common$1;
+
+function requireUtils_common$1 () {
+	if (hasRequiredUtils_common$1) return utils_common$1;
+	hasRequiredUtils_common$1 = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(utils_common$1, "__esModule", { value: true });
+	utils_common$1.escapeURLPath = escapeURLPath;
+	utils_common$1.getValueInConnString = getValueInConnString;
+	utils_common$1.extractConnectionStringParts = extractConnectionStringParts;
+	utils_common$1.appendToURLPath = appendToURLPath;
+	utils_common$1.setURLParameter = setURLParameter;
+	utils_common$1.getURLParameter = getURLParameter;
+	utils_common$1.setURLHost = setURLHost;
+	utils_common$1.getURLPath = getURLPath;
+	utils_common$1.getURLScheme = getURLScheme;
+	utils_common$1.getURLPathAndQuery = getURLPathAndQuery;
+	utils_common$1.getURLQueries = getURLQueries;
+	utils_common$1.appendToURLQuery = appendToURLQuery;
+	utils_common$1.truncatedISO8061Date = truncatedISO8061Date;
+	utils_common$1.base64encode = base64encode;
+	utils_common$1.base64decode = base64decode;
+	utils_common$1.generateBlockID = generateBlockID;
+	utils_common$1.delay = delay;
+	utils_common$1.padStart = padStart;
+	utils_common$1.sanitizeURL = sanitizeURL;
+	utils_common$1.sanitizeHeaders = sanitizeHeaders;
+	utils_common$1.iEqual = iEqual;
+	utils_common$1.getAccountNameFromUrl = getAccountNameFromUrl;
+	utils_common$1.isIpEndpointStyle = isIpEndpointStyle;
+	utils_common$1.toBlobTagsString = toBlobTagsString;
+	utils_common$1.toBlobTags = toBlobTags;
+	utils_common$1.toTags = toTags;
+	utils_common$1.toQuerySerialization = toQuerySerialization;
+	utils_common$1.parseObjectReplicationRecord = parseObjectReplicationRecord;
+	utils_common$1.attachCredential = attachCredential;
+	utils_common$1.httpAuthorizationToString = httpAuthorizationToString;
+	utils_common$1.BlobNameToString = BlobNameToString;
+	utils_common$1.ConvertInternalResponseOfListBlobFlat = ConvertInternalResponseOfListBlobFlat;
+	utils_common$1.ConvertInternalResponseOfListBlobHierarchy = ConvertInternalResponseOfListBlobHierarchy;
+	utils_common$1.ExtractPageRangeInfoItems = ExtractPageRangeInfoItems;
+	utils_common$1.EscapePath = EscapePath;
+	utils_common$1.assertResponse = assertResponse;
+	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
+	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
+	const constants_js_1 = requireConstants$1();
+	/**
+	 * Reserved URL characters must be properly escaped for Storage services like Blob or File.
+	 *
+	 * ## URL encode and escape strategy for JS SDKs
+	 *
+	 * When customers pass a URL string into XxxClient classes constructor, the URL string may already be URL encoded or not.
+	 * But before sending to Azure Storage server, the URL must be encoded. However, it's hard for a SDK to guess whether the URL
+	 * string has been encoded or not. We have 2 potential strategies, and chose strategy two for the XxxClient constructors.
+	 *
+	 * ### Strategy One: Assume the customer URL string is not encoded, and always encode URL string in SDK.
+	 *
+	 * This is what legacy V2 SDK does, simple and works for most of the cases.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
+	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
+	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%253A" and send to server. A blob named "b%3A" will be created.
+	 *
+	 * But this strategy will make it not possible to create a blob with "?" in it's name. Because when customer URL string is
+	 * "http://account.blob.core.windows.net/con/blob?name", the "?name" will be treated as URL paramter instead of blob name.
+	 * If customer URL string is "http://account.blob.core.windows.net/con/blob%3Fname", a blob named "blob%3Fname" will be created.
+	 * V2 SDK doesn't have this issue because it doesn't allow customer pass in a full URL, it accepts a separate blob name and encodeURIComponent for it.
+	 * We cannot accept a SDK cannot create a blob name with "?". So we implement strategy two:
+	 *
+	 * ### Strategy Two: SDK doesn't assume the URL has been encoded or not. It will just escape the special characters.
+	 *
+	 * This is what V10 Blob Go SDK does. It accepts a URL type in Go, and call url.EscapedPath() to escape the special chars unescaped.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
+	 *   SDK will escape ":" like "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
+	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%3A" to server. A blob named "b:" will be created.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%253A",
+	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%253A" to server. A blob named "b%3A" will be created.
+	 *
+	 * This strategy gives us flexibility to create with any special characters. But "%" will be treated as a special characters, if the URL string
+	 * is not encoded, there shouldn't a "%" in the URL string, otherwise the URL is not a valid URL.
+	 * If customer needs to create a blob with "%" in it's blob name, use "%25" instead of "%". Just like above 3rd sample.
+	 * And following URL strings are invalid:
+	 * - "http://account.blob.core.windows.net/con/b%"
+	 * - "http://account.blob.core.windows.net/con/b%2"
+	 * - "http://account.blob.core.windows.net/con/b%G"
+	 *
+	 * Another special character is "?", use "%2F" to represent a blob name with "?" in a URL string.
+	 *
+	 * ### Strategy for containerName, blobName or other specific XXXName parameters in methods such as `containerClient.getBlobClient(blobName)`
+	 *
+	 * We will apply strategy one, and call encodeURIComponent for these parameters like blobName. Because what customers passes in is a plain name instead of a URL.
+	 *
+	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
+	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata
+	 *
+	 * @param url -
+	 */
+	function escapeURLPath(url) {
+	    const urlParsed = new URL(url);
+	    let path = urlParsed.pathname;
+	    path = path || "/";
+	    path = escape(path);
+	    urlParsed.pathname = path;
+	    return urlParsed.toString();
+	}
+	function getProxyUriFromDevConnString(connectionString) {
+	    // Development Connection String
+	    // https://learn.microsoft.com/azure/storage/common/storage-configure-connection-string#connect-to-the-emulator-account-using-the-well-known-account-name-and-key
+	    let proxyUri = "";
+	    if (connectionString.search("DevelopmentStorageProxyUri=") !== -1) {
+	        // CONNECTION_STRING=UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
+	        const matchCredentials = connectionString.split(";");
+	        for (const element of matchCredentials) {
+	            if (element.trim().startsWith("DevelopmentStorageProxyUri=")) {
+	                proxyUri = element.trim().match("DevelopmentStorageProxyUri=(.*)")[1];
+	            }
+	        }
+	    }
+	    return proxyUri;
+	}
+	function getValueInConnString(connectionString, argument) {
+	    const elements = connectionString.split(";");
+	    for (const element of elements) {
+	        if (element.trim().startsWith(argument)) {
+	            return element.trim().match(argument + "=(.*)")[1];
+	        }
+	    }
+	    return "";
+	}
+	/**
+	 * Extracts the parts of an Azure Storage account connection string.
+	 *
+	 * @param connectionString - Connection string.
+	 * @returns String key value pairs of the storage account's url and credentials.
+	 */
+	function extractConnectionStringParts(connectionString) {
+	    let proxyUri = "";
+	    if (connectionString.startsWith("UseDevelopmentStorage=true")) {
+	        // Development connection string
+	        proxyUri = getProxyUriFromDevConnString(connectionString);
+	        connectionString = constants_js_1.DevelopmentConnectionString;
+	    }
+	    // Matching BlobEndpoint in the Account connection string
+	    let blobEndpoint = getValueInConnString(connectionString, "BlobEndpoint");
+	    // Slicing off '/' at the end if exists
+	    // (The methods that use `extractConnectionStringParts` expect the url to not have `/` at the end)
+	    blobEndpoint = blobEndpoint.endsWith("/") ? blobEndpoint.slice(0, -1) : blobEndpoint;
+	    if (connectionString.search("DefaultEndpointsProtocol=") !== -1 &&
+	        connectionString.search("AccountKey=") !== -1) {
+	        // Account connection string
+	        let defaultEndpointsProtocol = "";
+	        let accountName = "";
+	        let accountKey = Buffer.from("accountKey", "base64");
+	        let endpointSuffix = "";
+	        // Get account name and key
+	        accountName = getValueInConnString(connectionString, "AccountName");
+	        accountKey = Buffer.from(getValueInConnString(connectionString, "AccountKey"), "base64");
+	        if (!blobEndpoint) {
+	            // BlobEndpoint is not present in the Account connection string
+	            // Can be obtained from `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`
+	            defaultEndpointsProtocol = getValueInConnString(connectionString, "DefaultEndpointsProtocol");
+	            const protocol = defaultEndpointsProtocol.toLowerCase();
+	            if (protocol !== "https" && protocol !== "http") {
+	                throw new Error("Invalid DefaultEndpointsProtocol in the provided Connection String. Expecting 'https' or 'http'");
+	            }
+	            endpointSuffix = getValueInConnString(connectionString, "EndpointSuffix");
+	            if (!endpointSuffix) {
+	                throw new Error("Invalid EndpointSuffix in the provided Connection String");
+	            }
+	            blobEndpoint = `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
+	        }
+	        if (!accountName) {
+	            throw new Error("Invalid AccountName in the provided Connection String");
+	        }
+	        else if (accountKey.length === 0) {
+	            throw new Error("Invalid AccountKey in the provided Connection String");
+	        }
+	        return {
+	            kind: "AccountConnString",
+	            url: blobEndpoint,
+	            accountName,
+	            accountKey,
+	            proxyUri,
+	        };
+	    }
+	    else {
+	        // SAS connection string
+	        let accountSas = getValueInConnString(connectionString, "SharedAccessSignature");
+	        let accountName = getValueInConnString(connectionString, "AccountName");
+	        // if accountName is empty, try to read it from BlobEndpoint
+	        if (!accountName) {
+	            accountName = getAccountNameFromUrl(blobEndpoint);
+	        }
+	        if (!blobEndpoint) {
+	            throw new Error("Invalid BlobEndpoint in the provided SAS Connection String");
+	        }
+	        else if (!accountSas) {
+	            throw new Error("Invalid SharedAccessSignature in the provided SAS Connection String");
+	        }
+	        // client constructors assume accountSas does *not* start with ?
+	        if (accountSas.startsWith("?")) {
+	            accountSas = accountSas.substring(1);
+	        }
+	        return { kind: "SASConnString", url: blobEndpoint, accountName, accountSas };
+	    }
+	}
+	/**
+	 * Internal escape method implemented Strategy Two mentioned in escapeURL() description.
+	 *
+	 * @param text -
+	 */
+	function escape(text) {
+	    return encodeURIComponent(text)
+	        .replace(/%2F/g, "/") // Don't escape for "/"
+	        .replace(/'/g, "%27") // Escape for "'"
+	        .replace(/\+/g, "%20")
+	        .replace(/%25/g, "%"); // Revert encoded "%"
+	}
+	/**
+	 * Append a string to URL path. Will remove duplicated "/" in front of the string
+	 * when URL path ends with a "/".
+	 *
+	 * @param url - Source URL string
+	 * @param name - String to be appended to URL
+	 * @returns An updated URL string
+	 */
+	function appendToURLPath(url, name) {
+	    const urlParsed = new URL(url);
+	    let path = urlParsed.pathname;
+	    path = path ? (path.endsWith("/") ? `${path}${name}` : `${path}/${name}`) : name;
+	    urlParsed.pathname = path;
+	    return urlParsed.toString();
+	}
+	/**
+	 * Set URL parameter name and value. If name exists in URL parameters, old value
+	 * will be replaced by name key. If not provide value, the parameter will be deleted.
+	 *
+	 * @param url - Source URL string
+	 * @param name - Parameter name
+	 * @param value - Parameter value
+	 * @returns An updated URL string
+	 */
+	function setURLParameter(url, name, value) {
+	    const urlParsed = new URL(url);
+	    const encodedName = encodeURIComponent(name);
+	    const encodedValue = value ? encodeURIComponent(value) : undefined;
+	    // mutating searchParams will change the encoding, so we have to do this ourselves
+	    const searchString = urlParsed.search === "" ? "?" : urlParsed.search;
+	    const searchPieces = [];
+	    for (const pair of searchString.slice(1).split("&")) {
+	        if (pair) {
+	            const [key] = pair.split("=", 2);
+	            if (key !== encodedName) {
+	                searchPieces.push(pair);
+	            }
+	        }
+	    }
+	    if (encodedValue) {
+	        searchPieces.push(`${encodedName}=${encodedValue}`);
+	    }
+	    urlParsed.search = searchPieces.length ? `?${searchPieces.join("&")}` : "";
+	    return urlParsed.toString();
+	}
+	/**
+	 * Get URL parameter by name.
+	 *
+	 * @param url -
+	 * @param name -
+	 */
+	function getURLParameter(url, name) {
+	    const urlParsed = new URL(url);
+	    return urlParsed.searchParams.get(name) ?? undefined;
+	}
+	/**
+	 * Set URL host.
+	 *
+	 * @param url - Source URL string
+	 * @param host - New host string
+	 * @returns An updated URL string
+	 */
+	function setURLHost(url, host) {
+	    const urlParsed = new URL(url);
+	    urlParsed.hostname = host;
+	    return urlParsed.toString();
+	}
+	/**
+	 * Get URL path from an URL string.
+	 *
+	 * @param url - Source URL string
+	 */
+	function getURLPath(url) {
+	    try {
+	        const urlParsed = new URL(url);
+	        return urlParsed.pathname;
+	    }
+	    catch (e) {
+	        return undefined;
+	    }
+	}
+	/**
+	 * Get URL scheme from an URL string.
+	 *
+	 * @param url - Source URL string
+	 */
+	function getURLScheme(url) {
+	    try {
+	        const urlParsed = new URL(url);
+	        return urlParsed.protocol.endsWith(":") ? urlParsed.protocol.slice(0, -1) : urlParsed.protocol;
+	    }
+	    catch (e) {
+	        return undefined;
+	    }
+	}
+	/**
+	 * Get URL path and query from an URL string.
+	 *
+	 * @param url - Source URL string
+	 */
+	function getURLPathAndQuery(url) {
+	    const urlParsed = new URL(url);
+	    const pathString = urlParsed.pathname;
+	    if (!pathString) {
+	        throw new RangeError("Invalid url without valid path.");
+	    }
+	    let queryString = urlParsed.search || "";
+	    queryString = queryString.trim();
+	    if (queryString !== "") {
+	        queryString = queryString.startsWith("?") ? queryString : `?${queryString}`; // Ensure query string start with '?'
+	    }
+	    return `${pathString}${queryString}`;
+	}
+	/**
+	 * Get URL query key value pairs from an URL string.
+	 *
+	 * @param url -
+	 */
+	function getURLQueries(url) {
+	    let queryString = new URL(url).search;
+	    if (!queryString) {
+	        return {};
+	    }
+	    queryString = queryString.trim();
+	    queryString = queryString.startsWith("?") ? queryString.substring(1) : queryString;
+	    let querySubStrings = queryString.split("&");
+	    querySubStrings = querySubStrings.filter((value) => {
+	        const indexOfEqual = value.indexOf("=");
+	        const lastIndexOfEqual = value.lastIndexOf("=");
+	        return (indexOfEqual > 0 && indexOfEqual === lastIndexOfEqual && lastIndexOfEqual < value.length - 1);
+	    });
+	    const queries = {};
+	    for (const querySubString of querySubStrings) {
+	        const splitResults = querySubString.split("=");
+	        const key = splitResults[0];
+	        const value = splitResults[1];
+	        queries[key] = value;
+	    }
+	    return queries;
+	}
+	/**
+	 * Append a string to URL query.
+	 *
+	 * @param url - Source URL string.
+	 * @param queryParts - String to be appended to the URL query.
+	 * @returns An updated URL string.
+	 */
+	function appendToURLQuery(url, queryParts) {
+	    const urlParsed = new URL(url);
+	    let query = urlParsed.search;
+	    if (query) {
+	        query += "&" + queryParts;
+	    }
+	    else {
+	        query = queryParts;
+	    }
+	    urlParsed.search = query;
+	    return urlParsed.toString();
+	}
+	/**
+	 * Rounds a date off to seconds.
+	 *
+	 * @param date -
+	 * @param withMilliseconds - If true, YYYY-MM-DDThh:mm:ss.fffffffZ will be returned;
+	 *                                          If false, YYYY-MM-DDThh:mm:ssZ will be returned.
+	 * @returns Date string in ISO8061 format, with or without 7 milliseconds component
+	 */
+	function truncatedISO8061Date(date, withMilliseconds = true) {
+	    // Date.toISOString() will return like "2018-10-29T06:34:36.139Z"
+	    const dateString = date.toISOString();
+	    return withMilliseconds
+	        ? dateString.substring(0, dateString.length - 1) + "0000" + "Z"
+	        : dateString.substring(0, dateString.length - 5) + "Z";
+	}
+	/**
+	 * Base64 encode.
+	 *
+	 * @param content -
+	 */
+	function base64encode(content) {
+	    return !core_util_1.isNodeLike ? btoa(content) : Buffer.from(content).toString("base64");
+	}
+	/**
+	 * Base64 decode.
+	 *
+	 * @param encodedString -
+	 */
+	function base64decode(encodedString) {
+	    return !core_util_1.isNodeLike ? atob(encodedString) : Buffer.from(encodedString, "base64").toString();
+	}
+	/**
+	 * Generate a 64 bytes base64 block ID string.
+	 *
+	 * @param blockIndex -
+	 */
+	function generateBlockID(blockIDPrefix, blockIndex) {
+	    // To generate a 64 bytes base64 string, source string should be 48
+	    const maxSourceStringLength = 48;
+	    // A blob can have a maximum of 100,000 uncommitted blocks at any given time
+	    const maxBlockIndexLength = 6;
+	    const maxAllowedBlockIDPrefixLength = maxSourceStringLength - maxBlockIndexLength;
+	    if (blockIDPrefix.length > maxAllowedBlockIDPrefixLength) {
+	        blockIDPrefix = blockIDPrefix.slice(0, maxAllowedBlockIDPrefixLength);
+	    }
+	    const res = blockIDPrefix +
+	        padStart(blockIndex.toString(), maxSourceStringLength - blockIDPrefix.length, "0");
+	    return base64encode(res);
+	}
+	/**
+	 * Delay specified time interval.
+	 *
+	 * @param timeInMs -
+	 * @param aborter -
+	 * @param abortError -
+	 */
+	async function delay(timeInMs, aborter, abortError) {
+	    return new Promise((resolve, reject) => {
+	        /* eslint-disable-next-line prefer-const */
+	        let timeout;
+	        const abortHandler = () => {
+	            if (timeout !== undefined) {
+	                clearTimeout(timeout);
+	            }
+	            reject(abortError);
+	        };
+	        const resolveHandler = () => {
+	            if (aborter !== undefined) {
+	                aborter.removeEventListener("abort", abortHandler);
+	            }
+	            resolve();
+	        };
+	        timeout = setTimeout(resolveHandler, timeInMs);
+	        if (aborter !== undefined) {
+	            aborter.addEventListener("abort", abortHandler);
+	        }
+	    });
+	}
+	/**
+	 * String.prototype.padStart()
+	 *
+	 * @param currentString -
+	 * @param targetLength -
+	 * @param padString -
+	 */
+	function padStart(currentString, targetLength, padString = " ") {
+	    // @ts-expect-error: TS doesn't know this code needs to run downlevel sometimes
+	    if (String.prototype.padStart) {
+	        return currentString.padStart(targetLength, padString);
+	    }
+	    padString = padString || " ";
+	    if (currentString.length > targetLength) {
+	        return currentString;
+	    }
+	    else {
+	        targetLength = targetLength - currentString.length;
+	        if (targetLength > padString.length) {
+	            padString += padString.repeat(targetLength / padString.length);
+	        }
+	        return padString.slice(0, targetLength) + currentString;
+	    }
+	}
+	function sanitizeURL(url) {
+	    let safeURL = url;
+	    if (getURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE)) {
+	        safeURL = setURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE, "*****");
+	    }
+	    return safeURL;
+	}
+	function sanitizeHeaders(originalHeader) {
+	    const headers = (0, core_rest_pipeline_1.createHttpHeaders)();
+	    for (const [name, value] of originalHeader) {
+	        if (name.toLowerCase() === constants_js_1.HeaderConstants.AUTHORIZATION.toLowerCase()) {
+	            headers.set(name, "*****");
+	        }
+	        else if (name.toLowerCase() === constants_js_1.HeaderConstants.X_MS_COPY_SOURCE) {
+	            headers.set(name, sanitizeURL(value));
+	        }
+	        else {
+	            headers.set(name, value);
+	        }
+	    }
+	    return headers;
+	}
+	/**
+	 * If two strings are equal when compared case insensitive.
+	 *
+	 * @param str1 -
+	 * @param str2 -
+	 */
+	function iEqual(str1, str2) {
+	    return str1.toLocaleLowerCase() === str2.toLocaleLowerCase();
+	}
+	/**
+	 * Extracts account name from the url
+	 * @param url - url to extract the account name from
+	 * @returns with the account name
+	 */
+	function getAccountNameFromUrl(url) {
+	    const parsedUrl = new URL(url);
+	    let accountName;
+	    try {
+	        if (parsedUrl.hostname.split(".")[1] === "blob") {
+	            // `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
+	            accountName = parsedUrl.hostname.split(".")[0];
+	        }
+	        else if (isIpEndpointStyle(parsedUrl)) {
+	            // IPv4/IPv6 address hosts... Example - http://192.0.0.10:10001/devstoreaccount1/
+	            // Single word domain without a [dot] in the endpoint... Example - http://localhost:10001/devstoreaccount1/
+	            // .getPath() -> /devstoreaccount1/
+	            accountName = parsedUrl.pathname.split("/")[1];
+	        }
+	        else {
+	            // Custom domain case: "https://customdomain.com/containername/blob".
+	            accountName = "";
+	        }
+	        return accountName;
+	    }
+	    catch (error) {
+	        throw new Error("Unable to extract accountName with provided information.");
+	    }
+	}
+	function isIpEndpointStyle(parsedUrl) {
+	    const host = parsedUrl.host;
+	    // Case 1: Ipv6, use a broad regex to find out candidates whose host contains two ':'.
+	    // Case 2: localhost(:port) or host.docker.internal, use broad regex to match port part.
+	    // Case 3: Ipv4, use broad regex which just check if host contains Ipv4.
+	    // For valid host please refer to https://man7.org/linux/man-pages/man7/hostname.7.html.
+	    return (/^.*:.*:.*$|^(localhost|host.docker.internal)(:[0-9]+)?$|^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}(:[0-9]+)?$/.test(host) ||
+	        (Boolean(parsedUrl.port) && constants_js_1.PathStylePorts.includes(parsedUrl.port)));
+	}
+	/**
+	 * Convert Tags to encoded string.
+	 *
+	 * @param tags -
+	 */
+	function toBlobTagsString(tags) {
+	    if (tags === undefined) {
+	        return undefined;
+	    }
+	    const tagPairs = [];
+	    for (const key in tags) {
+	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
+	            const value = tags[key];
+	            tagPairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+	        }
+	    }
+	    return tagPairs.join("&");
+	}
+	/**
+	 * Convert Tags type to BlobTags.
+	 *
+	 * @param tags -
+	 */
+	function toBlobTags(tags) {
+	    if (tags === undefined) {
+	        return undefined;
+	    }
+	    const res = {
+	        blobTagSet: [],
+	    };
+	    for (const key in tags) {
+	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
+	            const value = tags[key];
+	            res.blobTagSet.push({
+	                key,
+	                value,
+	            });
+	        }
+	    }
+	    return res;
+	}
+	/**
+	 * Covert BlobTags to Tags type.
+	 *
+	 * @param tags -
+	 */
+	function toTags(tags) {
+	    if (tags === undefined) {
+	        return undefined;
+	    }
+	    const res = {};
+	    for (const blobTag of tags.blobTagSet) {
+	        res[blobTag.key] = blobTag.value;
+	    }
+	    return res;
+	}
+	/**
+	 * Convert BlobQueryTextConfiguration to QuerySerialization type.
+	 *
+	 * @param textConfiguration -
+	 */
+	function toQuerySerialization(textConfiguration) {
+	    if (textConfiguration === undefined) {
+	        return undefined;
+	    }
+	    switch (textConfiguration.kind) {
+	        case "csv":
+	            return {
+	                format: {
+	                    type: "delimited",
+	                    delimitedTextConfiguration: {
+	                        columnSeparator: textConfiguration.columnSeparator || ",",
+	                        fieldQuote: textConfiguration.fieldQuote || "",
+	                        recordSeparator: textConfiguration.recordSeparator,
+	                        escapeChar: textConfiguration.escapeCharacter || "",
+	                        headersPresent: textConfiguration.hasHeaders || false,
+	                    },
+	                },
+	            };
+	        case "json":
+	            return {
+	                format: {
+	                    type: "json",
+	                    jsonTextConfiguration: {
+	                        recordSeparator: textConfiguration.recordSeparator,
+	                    },
+	                },
+	            };
+	        case "arrow":
+	            return {
+	                format: {
+	                    type: "arrow",
+	                    arrowConfiguration: {
+	                        schema: textConfiguration.schema,
+	                    },
+	                },
+	            };
+	        case "parquet":
+	            return {
+	                format: {
+	                    type: "parquet",
+	                },
+	            };
+	        default:
+	            throw Error("Invalid BlobQueryTextConfiguration.");
+	    }
+	}
+	function parseObjectReplicationRecord(objectReplicationRecord) {
+	    if (!objectReplicationRecord) {
+	        return undefined;
+	    }
+	    if ("policy-id" in objectReplicationRecord) {
+	        // If the dictionary contains a key with policy id, we are not required to do any parsing since
+	        // the policy id should already be stored in the ObjectReplicationDestinationPolicyId.
+	        return undefined;
+	    }
+	    const orProperties = [];
+	    for (const key in objectReplicationRecord) {
+	        const ids = key.split("_");
+	        const policyPrefix = "or-";
+	        if (ids[0].startsWith(policyPrefix)) {
+	            ids[0] = ids[0].substring(policyPrefix.length);
+	        }
+	        const rule = {
+	            ruleId: ids[1],
+	            replicationStatus: objectReplicationRecord[key],
+	        };
+	        const policyIndex = orProperties.findIndex((policy) => policy.policyId === ids[0]);
+	        if (policyIndex > -1) {
+	            orProperties[policyIndex].rules.push(rule);
+	        }
+	        else {
+	            orProperties.push({
+	                policyId: ids[0],
+	                rules: [rule],
+	            });
+	        }
+	    }
+	    return orProperties;
+	}
+	/**
+	 * Attach a TokenCredential to an object.
+	 *
+	 * @param thing -
+	 * @param credential -
+	 */
+	function attachCredential(thing, credential) {
+	    thing.credential = credential;
+	    return thing;
+	}
+	function httpAuthorizationToString(httpAuthorization) {
+	    return httpAuthorization ? httpAuthorization.scheme + " " + httpAuthorization.value : undefined;
+	}
+	function BlobNameToString(name) {
+	    if (name.encoded) {
+	        return decodeURIComponent(name.content);
+	    }
+	    else {
+	        return name.content;
+	    }
+	}
+	function ConvertInternalResponseOfListBlobFlat(internalResponse) {
+	    return {
+	        ...internalResponse,
+	        segment: {
+	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
+	                const blobItem = {
+	                    ...blobItemInteral,
+	                    name: BlobNameToString(blobItemInteral.name),
+	                };
+	                return blobItem;
+	            }),
+	        },
+	    };
+	}
+	function ConvertInternalResponseOfListBlobHierarchy(internalResponse) {
+	    return {
+	        ...internalResponse,
+	        segment: {
+	            blobPrefixes: internalResponse.segment.blobPrefixes?.map((blobPrefixInternal) => {
+	                const blobPrefix = {
+	                    ...blobPrefixInternal,
+	                    name: BlobNameToString(blobPrefixInternal.name),
+	                };
+	                return blobPrefix;
+	            }),
+	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
+	                const blobItem = {
+	                    ...blobItemInteral,
+	                    name: BlobNameToString(blobItemInteral.name),
+	                };
+	                return blobItem;
+	            }),
+	        },
+	    };
+	}
+	function* ExtractPageRangeInfoItems(getPageRangesSegment) {
+	    let pageRange = [];
+	    let clearRange = [];
+	    if (getPageRangesSegment.pageRange)
+	        pageRange = getPageRangesSegment.pageRange;
+	    if (getPageRangesSegment.clearRange)
+	        clearRange = getPageRangesSegment.clearRange;
+	    let pageRangeIndex = 0;
+	    let clearRangeIndex = 0;
+	    while (pageRangeIndex < pageRange.length && clearRangeIndex < clearRange.length) {
+	        if (pageRange[pageRangeIndex].start < clearRange[clearRangeIndex].start) {
+	            yield {
+	                start: pageRange[pageRangeIndex].start,
+	                end: pageRange[pageRangeIndex].end,
+	                isClear: false,
+	            };
+	            ++pageRangeIndex;
+	        }
+	        else {
+	            yield {
+	                start: clearRange[clearRangeIndex].start,
+	                end: clearRange[clearRangeIndex].end,
+	                isClear: true,
+	            };
+	            ++clearRangeIndex;
+	        }
+	    }
+	    for (; pageRangeIndex < pageRange.length; ++pageRangeIndex) {
+	        yield {
+	            start: pageRange[pageRangeIndex].start,
+	            end: pageRange[pageRangeIndex].end,
+	            isClear: false,
+	        };
+	    }
+	    for (; clearRangeIndex < clearRange.length; ++clearRangeIndex) {
+	        yield {
+	            start: clearRange[clearRangeIndex].start,
+	            end: clearRange[clearRangeIndex].end,
+	            isClear: true,
+	        };
+	    }
+	}
+	/**
+	 * Escape the blobName but keep path separator ('/').
+	 */
+	function EscapePath(blobName) {
+	    const split = blobName.split("/");
+	    for (let i = 0; i < split.length; i++) {
+	        split[i] = encodeURIComponent(split[i]);
+	    }
+	    return split.join("/");
+	}
+	/**
+	 * A typesafe helper for ensuring that a given response object has
+	 * the original _response attached.
+	 * @param response - A response object from calling a client operation
+	 * @returns The same object, but with known _response property
+	 */
+	function assertResponse(response) {
+	    if (`_response` in response) {
+	        return response;
+	    }
+	    throw new TypeError(`Unexpected response object ${response}`);
+	}
+	
+	return utils_common$1;
+}
+
 var hasRequiredStorageClient;
 
 function requireStorageClient () {
@@ -65531,7 +65010,7 @@ function requireStorageClient () {
 	StorageClient.StorageClient = void 0;
 	const StorageContextClient_js_1 = requireStorageContextClient();
 	const Pipeline_js_1 = requirePipeline();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * A StorageClient represents a based URL class for {@link BlobServiceClient}, {@link ContainerClient}
 	 * and etc.
@@ -65595,7 +65074,7 @@ function requireTracing () {
 	Object.defineProperty(tracing, "__esModule", { value: true });
 	tracing.tracingClient = void 0;
 	const core_tracing_1 = /*@__PURE__*/ requireCommonjs$a();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	/**
 	 * Creates a span using the global tracer.
 	 * @internal
@@ -66049,62 +65528,6 @@ function requireContainerSASPermissions () {
 	return ContainerSASPermissions;
 }
 
-var UserDelegationKeyCredential = {};
-
-var hasRequiredUserDelegationKeyCredential;
-
-function requireUserDelegationKeyCredential () {
-	if (hasRequiredUserDelegationKeyCredential) return UserDelegationKeyCredential;
-	hasRequiredUserDelegationKeyCredential = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(UserDelegationKeyCredential, "__esModule", { value: true });
-	UserDelegationKeyCredential.UserDelegationKeyCredential = void 0;
-	const node_crypto_1 = require$$0$d;
-	/**
-	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
-	 *
-	 * UserDelegationKeyCredential is only used for generation of user delegation SAS.
-	 * @see https://learn.microsoft.com/rest/api/storageservices/create-user-delegation-sas
-	 */
-	let UserDelegationKeyCredential$1 = class UserDelegationKeyCredential {
-	    /**
-	     * Azure Storage account name; readonly.
-	     */
-	    accountName;
-	    /**
-	     * Azure Storage user delegation key; readonly.
-	     */
-	    userDelegationKey;
-	    /**
-	     * Key value in Buffer type.
-	     */
-	    key;
-	    /**
-	     * Creates an instance of UserDelegationKeyCredential.
-	     * @param accountName -
-	     * @param userDelegationKey -
-	     */
-	    constructor(accountName, userDelegationKey) {
-	        this.accountName = accountName;
-	        this.userDelegationKey = userDelegationKey;
-	        this.key = Buffer.from(userDelegationKey.value, "base64");
-	    }
-	    /**
-	     * Generates a hash signature for an HTTP request or for a SAS.
-	     *
-	     * @param stringToSign -
-	     */
-	    computeHMACSHA256(stringToSign) {
-	        // console.log(`stringToSign: ${JSON.stringify(stringToSign)}`);
-	        return (0, node_crypto_1.createHmac)("sha256", this.key).update(stringToSign, "utf8").digest("base64");
-	    }
-	};
-	UserDelegationKeyCredential.UserDelegationKeyCredential = UserDelegationKeyCredential$1;
-	
-	return UserDelegationKeyCredential;
-}
-
 var SasIPRange = {};
 
 var hasRequiredSasIPRange;
@@ -66142,7 +65565,7 @@ function requireSASQueryParameters () {
 	Object.defineProperty(SASQueryParameters, "__esModule", { value: true });
 	SASQueryParameters.SASQueryParameters = SASQueryParameters.SASProtocol = void 0;
 	const SasIPRange_js_1 = requireSasIPRange();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * Protocols for generated SAS.
 	 */
@@ -66205,6 +65628,12 @@ function requireSASQueryParameters () {
 	     * @see https://learn.microsoft.com/rest/api/storageservices/establishing-a-stored-access-policy
 	     */
 	    identifier;
+	    /**
+	     * Optional. Beginning in version 2025-07-05, this value specifies the Entra ID of the user would is authorized to
+	     * use the resulting SAS URL.  The resulting SAS URL must be used in conjunction with an Entra ID token that has been
+	     * issued to the user specified in this value.
+	     */
+	    delegatedUserObjectId;
 	    /**
 	     * Optional. Encryption scope to use when sending requests authorized with this SAS URI.
 	     */
@@ -66298,7 +65727,7 @@ function requireSASQueryParameters () {
 	        }
 	        return undefined;
 	    }
-	    constructor(version, signature, permissionsOrOptions, services, resourceTypes, protocol, startsOn, expiresOn, ipRange, identifier, resource, cacheControl, contentDisposition, contentEncoding, contentLanguage, contentType, userDelegationKey, preauthorizedAgentObjectId, correlationId, encryptionScope) {
+	    constructor(version, signature, permissionsOrOptions, services, resourceTypes, protocol, startsOn, expiresOn, ipRange, identifier, resource, cacheControl, contentDisposition, contentEncoding, contentLanguage, contentType, userDelegationKey, preauthorizedAgentObjectId, correlationId, encryptionScope, delegatedUserObjectId) {
 	        this.version = version;
 	        this.signature = signature;
 	        if (permissionsOrOptions !== undefined && typeof permissionsOrOptions !== "string") {
@@ -66311,6 +65740,7 @@ function requireSASQueryParameters () {
 	            this.expiresOn = permissionsOrOptions.expiresOn;
 	            this.ipRangeInner = permissionsOrOptions.ipRange;
 	            this.identifier = permissionsOrOptions.identifier;
+	            this.delegatedUserObjectId = permissionsOrOptions.delegatedUserObjectId;
 	            this.encryptionScope = permissionsOrOptions.encryptionScope;
 	            this.resource = permissionsOrOptions.resource;
 	            this.cacheControl = permissionsOrOptions.cacheControl;
@@ -66337,6 +65767,7 @@ function requireSASQueryParameters () {
 	            this.protocol = protocol;
 	            this.startsOn = startsOn;
 	            this.ipRangeInner = ipRange;
+	            this.delegatedUserObjectId = delegatedUserObjectId;
 	            this.encryptionScope = encryptionScope;
 	            this.identifier = identifier;
 	            this.resource = resource;
@@ -66388,6 +65819,7 @@ function requireSASQueryParameters () {
 	            "rsct",
 	            "saoid",
 	            "scid",
+	            "sduoid", // Signed key user delegation object ID
 	        ];
 	        const queries = [];
 	        for (const param of params) {
@@ -66467,6 +65899,9 @@ function requireSASQueryParameters () {
 	                case "scid":
 	                    this.tryAppendQueryParameter(queries, param, this.correlationId);
 	                    break;
+	                case "sduoid":
+	                    this.tryAppendQueryParameter(queries, param, this.delegatedUserObjectId);
+	                    break;
 	            }
 	        }
 	        return queries.join("&");
@@ -66506,23 +65941,23 @@ function requireBlobSASSignatureValues () {
 	// Licensed under the MIT License.
 	const BlobSASPermissions_js_1 = requireBlobSASPermissions();
 	const ContainerSASPermissions_js_1 = requireContainerSASPermissions();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
-	const UserDelegationKeyCredential_js_1 = requireUserDelegationKeyCredential();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const SasIPRange_js_1 = requireSasIPRange();
 	const SASQueryParameters_js_1 = requireSASQueryParameters();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
+	const constants_js_1 = requireConstants$1();
+	const utils_common_js_1 = requireUtils_common$1();
+	const storage_common_2 = /*@__PURE__*/ requireCommonjs$3();
 	function generateBlobSASQueryParameters(blobSASSignatureValues, sharedKeyCredentialOrUserDelegationKey, accountName) {
 	    return generateBlobSASQueryParametersInternal(blobSASSignatureValues, sharedKeyCredentialOrUserDelegationKey, accountName).sasQueryParameters;
 	}
 	function generateBlobSASQueryParametersInternal(blobSASSignatureValues, sharedKeyCredentialOrUserDelegationKey, accountName) {
 	    const version = blobSASSignatureValues.version ? blobSASSignatureValues.version : constants_js_1.SERVICE_VERSION;
-	    const sharedKeyCredential = sharedKeyCredentialOrUserDelegationKey instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential
+	    const sharedKeyCredential = sharedKeyCredentialOrUserDelegationKey instanceof storage_common_1.StorageSharedKeyCredential
 	        ? sharedKeyCredentialOrUserDelegationKey
 	        : undefined;
 	    let userDelegationKeyCredential;
 	    if (sharedKeyCredential === undefined && accountName !== undefined) {
-	        userDelegationKeyCredential = new UserDelegationKeyCredential_js_1.UserDelegationKeyCredential(accountName, sharedKeyCredentialOrUserDelegationKey);
+	        userDelegationKeyCredential = new storage_common_2.UserDelegationKeyCredential(accountName, sharedKeyCredentialOrUserDelegationKey);
 	    }
 	    if (sharedKeyCredential === undefined && userDelegationKeyCredential === undefined) {
 	        throw TypeError("Invalid sharedKeyCredential, userDelegationKey or accountName.");
@@ -67085,7 +66520,7 @@ function requireBlobSASSignatureValues () {
 	        undefined, // agentObjectId
 	        blobSASSignatureValues.correlationId,
 	        undefined, // SignedKeyDelegatedUserTenantId, will be added in a future release.
-	        undefined, // SignedDelegatedUserObjectId, will be added in future release.
+	        blobSASSignatureValues.delegatedUserObjectId,
 	        blobSASSignatureValues.ipRange ? (0, SasIPRange_js_1.ipRangeToString)(blobSASSignatureValues.ipRange) : "",
 	        blobSASSignatureValues.protocol ? blobSASSignatureValues.protocol : "",
 	        blobSASSignatureValues.version,
@@ -67100,7 +66535,7 @@ function requireBlobSASSignatureValues () {
 	    ].join("\n");
 	    const signature = userDelegationKeyCredential.computeHMACSHA256(stringToSign);
 	    return {
-	        sasQueryParameters: new SASQueryParameters_js_1.SASQueryParameters(blobSASSignatureValues.version, signature, verifiedPermissions, undefined, undefined, blobSASSignatureValues.protocol, blobSASSignatureValues.startsOn, blobSASSignatureValues.expiresOn, blobSASSignatureValues.ipRange, blobSASSignatureValues.identifier, resource, blobSASSignatureValues.cacheControl, blobSASSignatureValues.contentDisposition, blobSASSignatureValues.contentEncoding, blobSASSignatureValues.contentLanguage, blobSASSignatureValues.contentType, userDelegationKeyCredential.userDelegationKey, blobSASSignatureValues.preauthorizedAgentObjectId, blobSASSignatureValues.correlationId, blobSASSignatureValues.encryptionScope),
+	        sasQueryParameters: new SASQueryParameters_js_1.SASQueryParameters(blobSASSignatureValues.version, signature, verifiedPermissions, undefined, undefined, blobSASSignatureValues.protocol, blobSASSignatureValues.startsOn, blobSASSignatureValues.expiresOn, blobSASSignatureValues.ipRange, blobSASSignatureValues.identifier, resource, blobSASSignatureValues.cacheControl, blobSASSignatureValues.contentDisposition, blobSASSignatureValues.contentEncoding, blobSASSignatureValues.contentLanguage, blobSASSignatureValues.contentType, userDelegationKeyCredential.userDelegationKey, blobSASSignatureValues.preauthorizedAgentObjectId, blobSASSignatureValues.correlationId, blobSASSignatureValues.encryptionScope, blobSASSignatureValues.delegatedUserObjectId),
 	        stringToSign: stringToSign,
 	    };
 	}
@@ -67183,9 +66618,9 @@ function requireBlobLeaseClient () {
 	Object.defineProperty(BlobLeaseClient, "__esModule", { value: true });
 	BlobLeaseClient.BlobLeaseClient = void 0;
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	const tracing_js_1 = requireTracing();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * A client that manages leases for a {@link ContainerClient} or a {@link BlobClient}.
 	 */
@@ -67391,6 +66826,65 @@ var BlobDownloadResponse = {};
 
 var RetriableReadableStream = {};
 
+var commonjs$1 = {};
+
+var AbortError$1 = {};
+
+var hasRequiredAbortError;
+
+function requireAbortError () {
+	if (hasRequiredAbortError) return AbortError$1;
+	hasRequiredAbortError = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT license.
+	Object.defineProperty(AbortError$1, "__esModule", { value: true });
+	AbortError$1.AbortError = void 0;
+	/**
+	 * This error is thrown when an asynchronous operation has been aborted.
+	 * Check for this error by testing the `name` that the name property of the
+	 * error matches `"AbortError"`.
+	 *
+	 * @example
+	 * ```ts
+	 * const controller = new AbortController();
+	 * controller.abort();
+	 * try {
+	 *   doAsyncWork(controller.signal)
+	 * } catch (e) {
+	 *   if (e.name === 'AbortError') {
+	 *     // handle abort error here.
+	 *   }
+	 * }
+	 * ```
+	 */
+	class AbortError extends Error {
+	    constructor(message) {
+	        super(message);
+	        this.name = "AbortError";
+	    }
+	}
+	AbortError$1.AbortError = AbortError;
+	
+	return AbortError$1;
+}
+
+var hasRequiredCommonjs$2;
+
+function requireCommonjs$2 () {
+	if (hasRequiredCommonjs$2) return commonjs$1;
+	hasRequiredCommonjs$2 = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT license.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.AbortError = void 0;
+		var AbortError_js_1 = requireAbortError();
+		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
+		
+	} (commonjs$1));
+	return commonjs$1;
+}
+
 var hasRequiredRetriableReadableStream;
 
 function requireRetriableReadableStream () {
@@ -67400,7 +66894,7 @@ function requireRetriableReadableStream () {
 	// Licensed under the MIT License.
 	Object.defineProperty(RetriableReadableStream, "__esModule", { value: true });
 	RetriableReadableStream.RetriableReadableStream = void 0;
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
+	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$2();
 	const node_stream_1 = require$$0$a;
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
@@ -68554,7 +68048,7 @@ function requireAvroReadableFromStream () {
 	Object.defineProperty(AvroReadableFromStream, "__esModule", { value: true });
 	AvroReadableFromStream.AvroReadableFromStream = void 0;
 	const AvroReadable_js_1 = requireAvroReadable();
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
+	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$2();
 	const buffer_1 = require$$7;
 	const ABORT_ERROR = new abort_controller_1.AbortError("Reading from the avro stream was aborted.");
 	let AvroReadableFromStream$1 = class AvroReadableFromStream extends AvroReadable_js_1.AvroReadable {
@@ -69183,7 +68677,7 @@ function requireModels () {
 	models.toAccessTier = toAccessTier;
 	models.ensureCpkIfSpecified = ensureCpkIfSpecified;
 	models.getBlobServiceAccountAudience = getBlobServiceAccountAudience;
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	/**
 	 * Represents the access tier on a blob.
 	 * For detailed information about block blob level tiering see {@link https://learn.microsoft.com/azure/storage/blobs/storage-blob-storage-tiers|Hot, cool and archive storage tiers.}
@@ -70923,7 +70417,7 @@ function requireBatch () {
 	Batch.Batch = void 0;
 	// In browser, during webpack or browserify bundling, this module will be replaced by 'events'
 	// https://github.com/Gozala/events
-	const events_1 = require$$0$5;
+	const events_1 = require$$1$3;
 	/**
 	 * States for Batch.
 	 */
@@ -71069,9 +70563,9 @@ function requireUtils () {
 	utils.streamToBuffer3 = streamToBuffer3;
 	utils.readStreamToLocalFile = readStreamToLocalFile;
 	const tslib_1 = require$$0$2;
-	const node_fs_1 = tslib_1.__importDefault(require$$1$9);
-	const node_util_1 = tslib_1.__importDefault(require$$1$4);
-	const constants_js_1 = requireConstants$2();
+	const node_fs_1 = tslib_1.__importDefault(require$$1$a);
+	const node_util_1 = tslib_1.__importDefault(require$$1$5);
+	const constants_js_1 = requireConstants$1();
 	/**
 	 * Reads a readable stream into buffer. Fill the buffer from offset to end.
 	 *
@@ -71217,8 +70711,7 @@ function requireClients () {
 	const core_util_2 = /*@__PURE__*/ requireCommonjs$b();
 	const BlobDownloadResponse_js_1 = requireBlobDownloadResponse();
 	const BlobQueryResponse_js_1 = requireBlobQueryResponse();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const models_js_1 = requireModels();
 	const PageBlobRangeResponse_js_1 = requirePageBlobRangeResponse();
 	const Pipeline_js_1 = requirePipeline();
@@ -71226,10 +70719,10 @@ function requireClients () {
 	const Range_js_1 = requireRange();
 	const StorageClient_js_1 = requireStorageClient();
 	const Batch_js_1 = requireBatch();
-	const storage_common_1 = /*@__PURE__*/ requireCommonjs$2();
-	const constants_js_1 = requireConstants$2();
+	const storage_common_2 = /*@__PURE__*/ requireCommonjs$3();
+	const constants_js_1 = requireConstants$1();
 	const tracing_js_1 = requireTracing();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	const utils_js_1 = requireUtils();
 	const BlobSASSignatureValues_js_1 = requireBlobSASSignatureValues();
 	const BlobLeaseClient_js_1 = requireBlobLeaseClient();
@@ -71270,8 +70763,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -71286,7 +70779,7 @@ function requireClients () {
 	            if (blobNameOrOptions && typeof blobNameOrOptions !== "string") {
 	                options = blobNameOrOptions;
 	            }
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -71298,7 +70791,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -71314,7 +70807,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -71754,6 +71247,7 @@ function requireClients () {
 	                    ...options.conditions,
 	                    ifTags: options.conditions?.tagConditions,
 	                },
+	                blobModifiedAccessConditions: options.conditions,
 	                tracingOptions: updatedOptions.tracingOptions,
 	                tags: (0, utils_common_js_1.toBlobTags)(tags),
 	            }));
@@ -71773,6 +71267,7 @@ function requireClients () {
 	                    ...options.conditions,
 	                    ifTags: options.conditions?.tagConditions,
 	                },
+	                blobModifiedAccessConditions: options.conditions,
 	                tracingOptions: updatedOptions.tracingOptions,
 	            }));
 	            const wrappedResponse = {
@@ -72211,7 +71706,7 @@ function requireClients () {
 	     */
 	    generateSasUrl(options) {
 	        return new Promise((resolve) => {
-	            if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	            if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	                throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	            }
 	            const sas = (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParameters)({
@@ -72237,7 +71732,7 @@ function requireClients () {
 	     */
 	    /* eslint-disable-next-line @azure/azure-sdk/ts-naming-options*/
 	    generateSasStringToSign(options) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	        }
 	        return (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParametersInternal)({
@@ -72372,8 +71867,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)      url = urlOrConnectionString;
 	            url = urlOrConnectionString;
@@ -72385,7 +71880,7 @@ function requireClients () {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
 	            // The second parameter is undefined. Use anonymous credential.
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -72397,7 +71892,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -72413,7 +71908,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -72674,8 +72169,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -72690,7 +72185,7 @@ function requireClients () {
 	            if (blobNameOrOptions && typeof blobNameOrOptions !== "string") {
 	                options = blobNameOrOptions;
 	            }
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -72702,7 +72197,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -72718,7 +72213,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -73265,7 +72760,7 @@ function requireClients () {
 	            const blockIDPrefix = (0, core_util_2.randomUUID)();
 	            let transferProgress = 0;
 	            const blockList = [];
-	            const scheduler = new storage_common_1.BufferScheduler(stream, bufferSize, maxConcurrency, async (body, length) => {
+	            const scheduler = new storage_common_2.BufferScheduler(stream, bufferSize, maxConcurrency, async (body, length) => {
 	                const blockID = (0, utils_common_js_1.generateBlockID)(blockIDPrefix, blockNum);
 	                blockList.push(blockID);
 	                blockNum++;
@@ -73317,8 +72812,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -73330,7 +72825,7 @@ function requireClients () {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            // The second parameter is undefined. Use anonymous credential.
 	            url = urlOrConnectionString;
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -73342,7 +72837,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -73358,7 +72853,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -74077,7 +73572,7 @@ function requireBatchUtils () {
 	BatchUtils.getBodyAsText = getBodyAsText;
 	BatchUtils.utf8ByteLength = utf8ByteLength;
 	const utils_js_1 = requireUtils();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	async function getBodyAsText(batchResponse) {
 	    let buffer = Buffer.alloc(constants_js_1.BATCH_MAX_PAYLOAD_IN_BYTES);
 	    const responseLength = await (0, utils_js_1.streamToBuffer2)(batchResponse.readableStreamBody, buffer);
@@ -74103,7 +73598,7 @@ function requireBatchResponseParser () {
 	BatchResponseParser.BatchResponseParser = void 0;
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_http_compat_1 = /*@__PURE__*/ requireCommonjs$6();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	const BatchUtils_js_1 = requireBatchUtils();
 	const log_js_1 = requireLog$1();
 	const HTTP_HEADER_DELIMITER = ": ";
@@ -74338,17 +73833,15 @@ function requireBlobBatch () {
 	const core_auth_1 = /*@__PURE__*/ requireCommonjs$8();
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_util_2 = /*@__PURE__*/ requireCommonjs$b();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const Clients_js_1 = requireClients();
 	const Mutex_js_1 = requireMutex();
 	const Pipeline_js_1 = requirePipeline();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	const core_xml_1 = /*@__PURE__*/ requireCommonjs$5();
-	const constants_js_1 = requireConstants$2();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
+	const constants_js_1 = requireConstants$1();
 	const tracing_js_1 = requireTracing();
 	const core_client_1 = /*@__PURE__*/ requireCommonjs$7();
-	const StorageSharedKeyCredentialPolicyV2_js_1 = requireStorageSharedKeyCredentialPolicyV2();
 	/**
 	 * A BlobBatch represents an aggregated set of operations on blobs.
 	 * Currently, only `delete` and `setAccessTier` are supported.
@@ -74403,8 +73896,8 @@ function requireBlobBatch () {
 	        let url;
 	        let credential;
 	        if (typeof urlOrBlobClient === "string" &&
-	            ((core_util_2.isNodeLike && credentialOrOptions instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	                credentialOrOptions instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	            ((core_util_2.isNodeLike && credentialOrOptions instanceof storage_common_1.StorageSharedKeyCredential) ||
+	                credentialOrOptions instanceof storage_common_1.AnonymousCredential ||
 	                (0, core_auth_1.isTokenCredential)(credentialOrOptions))) {
 	            // First overload
 	            url = urlOrBlobClient;
@@ -74437,8 +73930,8 @@ function requireBlobBatch () {
 	        let credential;
 	        let tier;
 	        if (typeof urlOrBlobClient === "string" &&
-	            ((core_util_2.isNodeLike && credentialOrTier instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	                credentialOrTier instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	            ((core_util_2.isNodeLike && credentialOrTier instanceof storage_common_1.StorageSharedKeyCredential) ||
+	                credentialOrTier instanceof storage_common_1.AnonymousCredential ||
 	                (0, core_auth_1.isTokenCredential)(credentialOrTier))) {
 	            // First overload
 	            url = urlOrBlobClient;
@@ -74526,8 +74019,8 @@ function requireBlobBatch () {
 	                challengeCallbacks: { authorizeRequestOnChallenge: core_client_1.authorizeRequestOnTenantChallenge },
 	            }), { phase: "Sign" });
 	        }
-	        else if (credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) {
-	            corePipeline.addPolicy((0, StorageSharedKeyCredentialPolicyV2_js_1.storageSharedKeyCredentialPolicy)({
+	        else if (credential instanceof storage_common_1.StorageSharedKeyCredential) {
+	            corePipeline.addPolicy((0, storage_common_1.storageSharedKeyCredentialPolicy)({
 	                accountName: credential.accountName,
 	                accountKey: credential.accountKey,
 	            }), { phase: "Sign" });
@@ -74625,10 +74118,10 @@ function requireBlobBatchClient () {
 	const BatchUtils_js_1 = requireBatchUtils();
 	const BlobBatch_js_1 = requireBlobBatch();
 	const tracing_js_1 = requireTracing();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const StorageContextClient_js_1 = requireStorageContextClient();
 	const Pipeline_js_1 = requirePipeline();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * A BlobBatchClient allows you to make batched requests to the Azure Storage Blob service.
 	 *
@@ -74646,7 +74139,7 @@ function requireBlobBatchClient () {
 	        }
 	        else if (!credentialOrPipeline) {
 	            // no credential provided
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else {
 	            pipeline = (0, Pipeline_js_1.newPipeline)(credentialOrPipeline, options);
@@ -74805,12 +74298,11 @@ function requireContainerClient () {
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
 	const core_auth_1 = /*@__PURE__*/ requireCommonjs$8();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const Pipeline_js_1 = requirePipeline();
 	const StorageClient_js_1 = requireStorageClient();
 	const tracing_js_1 = requireTracing();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	const BlobSASSignatureValues_js_1 = requireBlobSASSignatureValues();
 	const BlobLeaseClient_js_1 = requireBlobLeaseClient();
 	const Clients_js_1 = requireClients();
@@ -74842,8 +74334,8 @@ function requireContainerClient () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -74854,7 +74346,7 @@ function requireContainerClient () {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            // The second parameter is undefined. Use anonymous credential.
 	            url = urlOrConnectionString;
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string") {
@@ -74863,7 +74355,7 @@ function requireContainerClient () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -74879,7 +74371,7 @@ function requireContainerClient () {
 	                    (0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -76018,7 +75510,7 @@ function requireContainerClient () {
 	     */
 	    generateSasUrl(options) {
 	        return new Promise((resolve) => {
-	            if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	            if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	                throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	            }
 	            const sas = (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParameters)({
@@ -76041,7 +75533,7 @@ function requireContainerClient () {
 	     */
 	    /* eslint-disable-next-line @azure/azure-sdk/ts-naming-options*/
 	    generateSasStringToSign(options) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	        }
 	        return (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParametersInternal)({
@@ -76529,8 +76021,8 @@ function requireAccountSASSignatureValues () {
 	const AccountSASServices_js_1 = requireAccountSASServices();
 	const SasIPRange_js_1 = requireSasIPRange();
 	const SASQueryParameters_js_1 = requireSASQueryParameters();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
+	const constants_js_1 = requireConstants$1();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
 	 *
@@ -76637,10 +76129,9 @@ function requireBlobServiceClient () {
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
 	const Pipeline_js_1 = requirePipeline();
 	const ContainerClient_js_1 = requireContainerClient();
-	const utils_common_js_1 = requireUtils_common$2();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-	const utils_common_js_2 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
+	const utils_common_js_2 = requireUtils_common$1();
 	const tracing_js_1 = requireTracing();
 	const BlobBatchClient_js_1 = requireBlobBatchClient();
 	const StorageClient_js_1 = requireStorageClient();
@@ -76676,7 +76167,7 @@ function requireBlobServiceClient () {
 	        const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(connectionString);
 	        if (extractedCreds.kind === "AccountConnString") {
 	            if (core_util_1.isNodeLike) {
-	                const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                if (!options.proxyOptions) {
 	                    options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
 	                }
@@ -76688,7 +76179,7 @@ function requireBlobServiceClient () {
 	            }
 	        }
 	        else if (extractedCreds.kind === "SASConnString") {
-	            const pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            const pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            return new BlobServiceClient(extractedCreds.url + "?" + extractedCreds.accountSas, pipeline);
 	        }
 	        else {
@@ -76703,14 +76194,14 @@ function requireBlobServiceClient () {
 	        if ((0, Pipeline_js_1.isPipelineLike)(credentialOrPipeline)) {
 	            pipeline = credentialOrPipeline;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipeline instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipeline instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipeline instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipeline instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipeline)) {
 	            pipeline = (0, Pipeline_js_1.newPipeline)(credentialOrPipeline, options);
 	        }
 	        else {
 	            // The second parameter is undefined. Use anonymous credential
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        super(url, pipeline);
 	        this.serviceContext = this.storageClientContext.service;
@@ -77287,7 +76778,7 @@ function requireBlobServiceClient () {
 	     * @returns An account SAS URI consisting of the URI to the resource represented by this client, followed by the generated SAS token.
 	     */
 	    generateAccountSasUrl(expiresOn, permissions = AccountSASPermissions_js_1.AccountSASPermissions.parse("r"), resourceTypes = "sco", options = {}) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw RangeError("Can only generate the account SAS when the client is initialized with a shared key credential");
 	        }
 	        if (expiresOn === undefined) {
@@ -77318,7 +76809,7 @@ function requireBlobServiceClient () {
 	     * @returns An account SAS URI consisting of the URI to the resource represented by this client, followed by the generated SAS token.
 	     */
 	    generateSasStringToSign(expiresOn, permissions = AccountSASPermissions_js_1.AccountSASPermissions.parse("r"), resourceTypes = "sco", options = {}) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw RangeError("Can only generate the account SAS when the client is initialized with a shared key credential");
 	        }
 	        if (expiresOn === undefined) {
@@ -77382,7 +76873,7 @@ function requireCommonjs () {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
 		Object.defineProperty(exports$1, "__esModule", { value: true });
-		exports$1.logger = exports$1.RestError = exports$1.BaseRequestPolicy = exports$1.StorageOAuthScopes = exports$1.newPipeline = exports$1.isPipelineLike = exports$1.Pipeline = exports$1.getBlobServiceAccountAudience = exports$1.StorageBlobAudience = exports$1.PremiumPageBlobTier = exports$1.BlockBlobTier = exports$1.generateBlobSASQueryParameters = exports$1.generateAccountSASQueryParameters = void 0;
+		exports$1.logger = exports$1.RestError = exports$1.StorageBrowserPolicyFactory = exports$1.StorageBrowserPolicy = exports$1.StorageSharedKeyCredentialPolicy = exports$1.StorageSharedKeyCredential = exports$1.StorageRetryPolicyFactory = exports$1.StorageRetryPolicy = exports$1.StorageRetryPolicyType = exports$1.Credential = exports$1.CredentialPolicy = exports$1.BaseRequestPolicy = exports$1.AnonymousCredentialPolicy = exports$1.AnonymousCredential = exports$1.StorageOAuthScopes = exports$1.newPipeline = exports$1.isPipelineLike = exports$1.Pipeline = exports$1.getBlobServiceAccountAudience = exports$1.StorageBlobAudience = exports$1.PremiumPageBlobTier = exports$1.BlockBlobTier = exports$1.generateBlobSASQueryParameters = exports$1.generateAccountSASQueryParameters = void 0;
 		const tslib_1 = require$$0$2;
 		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 		Object.defineProperty(exports$1, "RestError", { enumerable: true, get: function () { return core_rest_pipeline_1.RestError; } });
@@ -77401,11 +76892,7 @@ function requireCommonjs () {
 		tslib_1.__exportStar(requireBlobSASPermissions(), exports$1);
 		var BlobSASSignatureValues_js_1 = requireBlobSASSignatureValues();
 		Object.defineProperty(exports$1, "generateBlobSASQueryParameters", { enumerable: true, get: function () { return BlobSASSignatureValues_js_1.generateBlobSASQueryParameters; } });
-		tslib_1.__exportStar(requireStorageBrowserPolicyFactory(), exports$1);
 		tslib_1.__exportStar(requireContainerSASPermissions(), exports$1);
-		tslib_1.__exportStar(requireAnonymousCredential$1(), exports$1);
-		tslib_1.__exportStar(requireCredential$1(), exports$1);
-		tslib_1.__exportStar(requireStorageSharedKeyCredential$1(), exports$1);
 		var models_js_1 = requireModels();
 		Object.defineProperty(exports$1, "BlockBlobTier", { enumerable: true, get: function () { return models_js_1.BlockBlobTier; } });
 		Object.defineProperty(exports$1, "PremiumPageBlobTier", { enumerable: true, get: function () { return models_js_1.PremiumPageBlobTier; } });
@@ -77416,13 +76903,19 @@ function requireCommonjs () {
 		Object.defineProperty(exports$1, "isPipelineLike", { enumerable: true, get: function () { return Pipeline_js_1.isPipelineLike; } });
 		Object.defineProperty(exports$1, "newPipeline", { enumerable: true, get: function () { return Pipeline_js_1.newPipeline; } });
 		Object.defineProperty(exports$1, "StorageOAuthScopes", { enumerable: true, get: function () { return Pipeline_js_1.StorageOAuthScopes; } });
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory$1(), exports$1);
-		var RequestPolicy_js_1 = requireRequestPolicy$1();
-		Object.defineProperty(exports$1, "BaseRequestPolicy", { enumerable: true, get: function () { return RequestPolicy_js_1.BaseRequestPolicy; } });
-		tslib_1.__exportStar(requireAnonymousCredentialPolicy$1(), exports$1);
-		tslib_1.__exportStar(requireCredentialPolicy$1(), exports$1);
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory$1(), exports$1);
-		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicy$1(), exports$1);
+		var storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
+		Object.defineProperty(exports$1, "AnonymousCredential", { enumerable: true, get: function () { return storage_common_1.AnonymousCredential; } });
+		Object.defineProperty(exports$1, "AnonymousCredentialPolicy", { enumerable: true, get: function () { return storage_common_1.AnonymousCredentialPolicy; } });
+		Object.defineProperty(exports$1, "BaseRequestPolicy", { enumerable: true, get: function () { return storage_common_1.BaseRequestPolicy; } });
+		Object.defineProperty(exports$1, "CredentialPolicy", { enumerable: true, get: function () { return storage_common_1.CredentialPolicy; } });
+		Object.defineProperty(exports$1, "Credential", { enumerable: true, get: function () { return storage_common_1.Credential; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicyType", { enumerable: true, get: function () { return storage_common_1.StorageRetryPolicyType; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicy", { enumerable: true, get: function () { return storage_common_1.StorageRetryPolicy; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicyFactory", { enumerable: true, get: function () { return storage_common_1.StorageRetryPolicyFactory; } });
+		Object.defineProperty(exports$1, "StorageSharedKeyCredential", { enumerable: true, get: function () { return storage_common_1.StorageSharedKeyCredential; } });
+		Object.defineProperty(exports$1, "StorageSharedKeyCredentialPolicy", { enumerable: true, get: function () { return storage_common_1.StorageSharedKeyCredentialPolicy; } });
+		Object.defineProperty(exports$1, "StorageBrowserPolicy", { enumerable: true, get: function () { return storage_common_1.StorageBrowserPolicy; } });
+		Object.defineProperty(exports$1, "StorageBrowserPolicyFactory", { enumerable: true, get: function () { return storage_common_1.StorageBrowserPolicyFactory; } });
 		tslib_1.__exportStar(requireSASQueryParameters(), exports$1);
 		tslib_1.__exportStar(requireGeneratedModels(), exports$1);
 		var log_js_1 = requireLog$1();
@@ -78129,7 +77622,7 @@ function requireDownloadUtils () {
 	const buffer = __importStar(require$$7);
 	const fs = __importStar(require$$1__default);
 	const stream = __importStar(require$$0$8);
-	const util = __importStar(require$$0$4);
+	const util = __importStar(require$$0$5);
 	const utils = __importStar(requireCacheUtils());
 	const constants_1 = requireConstants$5();
 	const requestUtils_1 = requireRequestUtils();
@@ -84192,8 +83685,8 @@ function requireTar () {
 	};
 	Object.defineProperty(tar, "__esModule", { value: true });
 	tar.createTar = tar.extractTar = tar.listTar = void 0;
-	const exec_1 = requireExec();
-	const io = __importStar(requireIo$1());
+	const exec_1 = requireExec$2();
+	const io = __importStar(requireIo$2());
 	const fs_1 = require$$1__default;
 	const path = __importStar(path__default);
 	const utils = __importStar(requireCacheUtils());
@@ -84958,14 +84451,1329 @@ function requireCache () {
 
 var cacheExports = requireCache();
 
-var execExports = requireExec();
+var exec$1 = {};
+
+var toolrunner$1 = {};
+
+var io$1 = {};
+
+var ioUtil$1 = {};
+
+var hasRequiredIoUtil$1;
+
+function requireIoUtil$1 () {
+	if (hasRequiredIoUtil$1) return ioUtil$1;
+	hasRequiredIoUtil$1 = 1;
+	(function (exports$1) {
+		var __createBinding = (ioUtil$1 && ioUtil$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    var desc = Object.getOwnPropertyDescriptor(m, k);
+		    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+		      desc = { enumerable: true, get: function() { return m[k]; } };
+		    }
+		    Object.defineProperty(o, k2, desc);
+		}) : (function(o, m, k, k2) {
+		    if (k2 === undefined) k2 = k;
+		    o[k2] = m[k];
+		}));
+		var __setModuleDefault = (ioUtil$1 && ioUtil$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+		    Object.defineProperty(o, "default", { enumerable: true, value: v });
+		}) : function(o, v) {
+		    o["default"] = v;
+		});
+		var __importStar = (ioUtil$1 && ioUtil$1.__importStar) || (function () {
+		    var ownKeys = function(o) {
+		        ownKeys = Object.getOwnPropertyNames || function (o) {
+		            var ar = [];
+		            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+		            return ar;
+		        };
+		        return ownKeys(o);
+		    };
+		    return function (mod) {
+		        if (mod && mod.__esModule) return mod;
+		        var result = {};
+		        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+		        __setModuleDefault(result, mod);
+		        return result;
+		    };
+		})();
+		var __awaiter = (ioUtil$1 && ioUtil$1.__awaiter) || function (thisArg, _arguments, P, generator) {
+		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+		    return new (P || (P = Promise))(function (resolve, reject) {
+		        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+		        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+		        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+		        step((generator = generator.apply(thisArg, _arguments || [])).next());
+		    });
+		};
+		var _a;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.READONLY = exports$1.UV_FS_O_EXLOCK = exports$1.IS_WINDOWS = exports$1.unlink = exports$1.symlink = exports$1.stat = exports$1.rmdir = exports$1.rm = exports$1.rename = exports$1.readdir = exports$1.open = exports$1.mkdir = exports$1.lstat = exports$1.copyFile = exports$1.chmod = void 0;
+		exports$1.readlink = readlink;
+		exports$1.exists = exists;
+		exports$1.isDirectory = isDirectory;
+		exports$1.isRooted = isRooted;
+		exports$1.tryGetExecutablePath = tryGetExecutablePath;
+		exports$1.getCmdPath = getCmdPath;
+		const fs = __importStar(require$$1__default);
+		const path = __importStar(path__default);
+		_a = fs.promises
+		// export const {open} = 'fs'
+		, exports$1.chmod = _a.chmod, exports$1.copyFile = _a.copyFile, exports$1.lstat = _a.lstat, exports$1.mkdir = _a.mkdir, exports$1.open = _a.open, exports$1.readdir = _a.readdir, exports$1.rename = _a.rename, exports$1.rm = _a.rm, exports$1.rmdir = _a.rmdir, exports$1.stat = _a.stat, exports$1.symlink = _a.symlink, exports$1.unlink = _a.unlink;
+		// export const {open} = 'fs'
+		exports$1.IS_WINDOWS = process.platform === 'win32';
+		/**
+		 * Custom implementation of readlink to ensure Windows junctions
+		 * maintain trailing backslash for backward compatibility with Node.js < 24
+		 *
+		 * In Node.js 20, Windows junctions (directory symlinks) always returned paths
+		 * with trailing backslashes. Node.js 24 removed this behavior, which breaks
+		 * code that relied on this format for path operations.
+		 *
+		 * This implementation restores the Node 20 behavior by adding a trailing
+		 * backslash to all junction results on Windows.
+		 */
+		function readlink(fsPath) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        const result = yield fs.promises.readlink(fsPath);
+		        // On Windows, restore Node 20 behavior: add trailing backslash to all results
+		        // since junctions on Windows are always directory links
+		        if (exports$1.IS_WINDOWS && !result.endsWith('\\')) {
+		            return `${result}\\`;
+		        }
+		        return result;
+		    });
+		}
+		// See https://github.com/nodejs/node/blob/d0153aee367422d0858105abec186da4dff0a0c5/deps/uv/include/uv/win.h#L691
+		exports$1.UV_FS_O_EXLOCK = 0x10000000;
+		exports$1.READONLY = fs.constants.O_RDONLY;
+		function exists(fsPath) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        try {
+		            yield (0, exports$1.stat)(fsPath);
+		        }
+		        catch (err) {
+		            if (err.code === 'ENOENT') {
+		                return false;
+		            }
+		            throw err;
+		        }
+		        return true;
+		    });
+		}
+		function isDirectory(fsPath_1) {
+		    return __awaiter(this, arguments, void 0, function* (fsPath, useStat = false) {
+		        const stats = useStat ? yield (0, exports$1.stat)(fsPath) : yield (0, exports$1.lstat)(fsPath);
+		        return stats.isDirectory();
+		    });
+		}
+		/**
+		 * On OSX/Linux, true if path starts with '/'. On Windows, true for paths like:
+		 * \, \hello, \\hello\share, C:, and C:\hello (and corresponding alternate separator cases).
+		 */
+		function isRooted(p) {
+		    p = normalizeSeparators(p);
+		    if (!p) {
+		        throw new Error('isRooted() parameter "p" cannot be empty');
+		    }
+		    if (exports$1.IS_WINDOWS) {
+		        return (p.startsWith('\\') || /^[A-Z]:/i.test(p) // e.g. \ or \hello or \\hello
+		        ); // e.g. C: or C:\hello
+		    }
+		    return p.startsWith('/');
+		}
+		/**
+		 * Best effort attempt to determine whether a file exists and is executable.
+		 * @param filePath    file path to check
+		 * @param extensions  additional file extensions to try
+		 * @return if file exists and is executable, returns the file path. otherwise empty string.
+		 */
+		function tryGetExecutablePath(filePath, extensions) {
+		    return __awaiter(this, void 0, void 0, function* () {
+		        let stats = undefined;
+		        try {
+		            // test file exists
+		            stats = yield (0, exports$1.stat)(filePath);
+		        }
+		        catch (err) {
+		            if (err.code !== 'ENOENT') {
+		                // eslint-disable-next-line no-console
+		                console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
+		            }
+		        }
+		        if (stats && stats.isFile()) {
+		            if (exports$1.IS_WINDOWS) {
+		                // on Windows, test for valid extension
+		                const upperExt = path.extname(filePath).toUpperCase();
+		                if (extensions.some(validExt => validExt.toUpperCase() === upperExt)) {
+		                    return filePath;
+		                }
+		            }
+		            else {
+		                if (isUnixExecutable(stats)) {
+		                    return filePath;
+		                }
+		            }
+		        }
+		        // try each extension
+		        const originalFilePath = filePath;
+		        for (const extension of extensions) {
+		            filePath = originalFilePath + extension;
+		            stats = undefined;
+		            try {
+		                stats = yield (0, exports$1.stat)(filePath);
+		            }
+		            catch (err) {
+		                if (err.code !== 'ENOENT') {
+		                    // eslint-disable-next-line no-console
+		                    console.log(`Unexpected error attempting to determine if executable file exists '${filePath}': ${err}`);
+		                }
+		            }
+		            if (stats && stats.isFile()) {
+		                if (exports$1.IS_WINDOWS) {
+		                    // preserve the case of the actual file (since an extension was appended)
+		                    try {
+		                        const directory = path.dirname(filePath);
+		                        const upperName = path.basename(filePath).toUpperCase();
+		                        for (const actualName of yield (0, exports$1.readdir)(directory)) {
+		                            if (upperName === actualName.toUpperCase()) {
+		                                filePath = path.join(directory, actualName);
+		                                break;
+		                            }
+		                        }
+		                    }
+		                    catch (err) {
+		                        // eslint-disable-next-line no-console
+		                        console.log(`Unexpected error attempting to determine the actual case of the file '${filePath}': ${err}`);
+		                    }
+		                    return filePath;
+		                }
+		                else {
+		                    if (isUnixExecutable(stats)) {
+		                        return filePath;
+		                    }
+		                }
+		            }
+		        }
+		        return '';
+		    });
+		}
+		function normalizeSeparators(p) {
+		    p = p || '';
+		    if (exports$1.IS_WINDOWS) {
+		        // convert slashes on Windows
+		        p = p.replace(/\//g, '\\');
+		        // remove redundant slashes
+		        return p.replace(/\\\\+/g, '\\');
+		    }
+		    // remove redundant slashes
+		    return p.replace(/\/\/+/g, '/');
+		}
+		// on Mac/Linux, test the execute bit
+		//     R   W  X  R  W X R W X
+		//   256 128 64 32 16 8 4 2 1
+		function isUnixExecutable(stats) {
+		    return ((stats.mode & 1) > 0 ||
+		        ((stats.mode & 8) > 0 &&
+		            process.getgid !== undefined &&
+		            stats.gid === process.getgid()) ||
+		        ((stats.mode & 64) > 0 &&
+		            process.getuid !== undefined &&
+		            stats.uid === process.getuid()));
+		}
+		// Get the path of cmd.exe in windows
+		function getCmdPath() {
+		    var _a;
+		    return (_a = process.env['COMSPEC']) !== null && _a !== void 0 ? _a : `cmd.exe`;
+		}
+		
+	} (ioUtil$1));
+	return ioUtil$1;
+}
+
+var hasRequiredIo$1;
+
+function requireIo$1 () {
+	if (hasRequiredIo$1) return io$1;
+	hasRequiredIo$1 = 1;
+	var __createBinding = (io$1 && io$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    var desc = Object.getOwnPropertyDescriptor(m, k);
+	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+	      desc = { enumerable: true, get: function() { return m[k]; } };
+	    }
+	    Object.defineProperty(o, k2, desc);
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (io$1 && io$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (io$1 && io$1.__importStar) || (function () {
+	    var ownKeys = function(o) {
+	        ownKeys = Object.getOwnPropertyNames || function (o) {
+	            var ar = [];
+	            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+	            return ar;
+	        };
+	        return ownKeys(o);
+	    };
+	    return function (mod) {
+	        if (mod && mod.__esModule) return mod;
+	        var result = {};
+	        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+	        __setModuleDefault(result, mod);
+	        return result;
+	    };
+	})();
+	var __awaiter = (io$1 && io$1.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(io$1, "__esModule", { value: true });
+	io$1.cp = cp;
+	io$1.mv = mv;
+	io$1.rmRF = rmRF;
+	io$1.mkdirP = mkdirP;
+	io$1.which = which;
+	io$1.findInPath = findInPath;
+	const assert_1 = require$$0$6;
+	const path = __importStar(path__default);
+	const ioUtil = __importStar(requireIoUtil$1());
+	/**
+	 * Copies a file or folder.
+	 * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js
+	 *
+	 * @param     source    source path
+	 * @param     dest      destination path
+	 * @param     options   optional. See CopyOptions.
+	 */
+	function cp(source_1, dest_1) {
+	    return __awaiter(this, arguments, void 0, function* (source, dest, options = {}) {
+	        const { force, recursive, copySourceDirectory } = readCopyOptions(options);
+	        const destStat = (yield ioUtil.exists(dest)) ? yield ioUtil.stat(dest) : null;
+	        // Dest is an existing file, but not forcing
+	        if (destStat && destStat.isFile() && !force) {
+	            return;
+	        }
+	        // If dest is an existing directory, should copy inside.
+	        const newDest = destStat && destStat.isDirectory() && copySourceDirectory
+	            ? path.join(dest, path.basename(source))
+	            : dest;
+	        if (!(yield ioUtil.exists(source))) {
+	            throw new Error(`no such file or directory: ${source}`);
+	        }
+	        const sourceStat = yield ioUtil.stat(source);
+	        if (sourceStat.isDirectory()) {
+	            if (!recursive) {
+	                throw new Error(`Failed to copy. ${source} is a directory, but tried to copy without recursive flag.`);
+	            }
+	            else {
+	                yield cpDirRecursive(source, newDest, 0, force);
+	            }
+	        }
+	        else {
+	            if (path.relative(source, newDest) === '') {
+	                // a file cannot be copied to itself
+	                throw new Error(`'${newDest}' and '${source}' are the same file`);
+	            }
+	            yield copyFile(source, newDest, force);
+	        }
+	    });
+	}
+	/**
+	 * Moves a path.
+	 *
+	 * @param     source    source path
+	 * @param     dest      destination path
+	 * @param     options   optional. See MoveOptions.
+	 */
+	function mv(source_1, dest_1) {
+	    return __awaiter(this, arguments, void 0, function* (source, dest, options = {}) {
+	        if (yield ioUtil.exists(dest)) {
+	            let destExists = true;
+	            if (yield ioUtil.isDirectory(dest)) {
+	                // If dest is directory copy src into dest
+	                dest = path.join(dest, path.basename(source));
+	                destExists = yield ioUtil.exists(dest);
+	            }
+	            if (destExists) {
+	                if (options.force == null || options.force) {
+	                    yield rmRF(dest);
+	                }
+	                else {
+	                    throw new Error('Destination already exists');
+	                }
+	            }
+	        }
+	        yield mkdirP(path.dirname(dest));
+	        yield ioUtil.rename(source, dest);
+	    });
+	}
+	/**
+	 * Remove a path recursively with force
+	 *
+	 * @param inputPath path to remove
+	 */
+	function rmRF(inputPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (ioUtil.IS_WINDOWS) {
+	            // Check for invalid characters
+	            // https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
+	            if (/[*"<>|]/.test(inputPath)) {
+	                throw new Error('File path must not contain `*`, `"`, `<`, `>` or `|` on Windows');
+	            }
+	        }
+	        try {
+	            // note if path does not exist, error is silent
+	            yield ioUtil.rm(inputPath, {
+	                force: true,
+	                maxRetries: 3,
+	                recursive: true,
+	                retryDelay: 300
+	            });
+	        }
+	        catch (err) {
+	            throw new Error(`File was unable to be removed ${err}`);
+	        }
+	    });
+	}
+	/**
+	 * Make a directory.  Creates the full path with folders in between
+	 * Will throw if it fails
+	 *
+	 * @param   fsPath        path to create
+	 * @returns Promise<void>
+	 */
+	function mkdirP(fsPath) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        (0, assert_1.ok)(fsPath, 'a path argument must be provided');
+	        yield ioUtil.mkdir(fsPath, { recursive: true });
+	    });
+	}
+	/**
+	 * Returns path of a tool had the tool actually been invoked.  Resolves via paths.
+	 * If you check and the tool does not exist, it will throw.
+	 *
+	 * @param     tool              name of the tool
+	 * @param     check             whether to check if tool exists
+	 * @returns   Promise<string>   path to tool
+	 */
+	function which(tool, check) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!tool) {
+	            throw new Error("parameter 'tool' is required");
+	        }
+	        // recursive when check=true
+	        if (check) {
+	            const result = yield which(tool, false);
+	            if (!result) {
+	                if (ioUtil.IS_WINDOWS) {
+	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also verify the file has a valid extension for an executable file.`);
+	                }
+	                else {
+	                    throw new Error(`Unable to locate executable file: ${tool}. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.`);
+	                }
+	            }
+	            return result;
+	        }
+	        const matches = yield findInPath(tool);
+	        if (matches && matches.length > 0) {
+	            return matches[0];
+	        }
+	        return '';
+	    });
+	}
+	/**
+	 * Returns a list of all occurrences of the given tool on the system path.
+	 *
+	 * @returns   Promise<string[]>  the paths of the tool
+	 */
+	function findInPath(tool) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if (!tool) {
+	            throw new Error("parameter 'tool' is required");
+	        }
+	        // build the list of extensions to try
+	        const extensions = [];
+	        if (ioUtil.IS_WINDOWS && process.env['PATHEXT']) {
+	            for (const extension of process.env['PATHEXT'].split(path.delimiter)) {
+	                if (extension) {
+	                    extensions.push(extension);
+	                }
+	            }
+	        }
+	        // if it's rooted, return it if exists. otherwise return empty.
+	        if (ioUtil.isRooted(tool)) {
+	            const filePath = yield ioUtil.tryGetExecutablePath(tool, extensions);
+	            if (filePath) {
+	                return [filePath];
+	            }
+	            return [];
+	        }
+	        // if any path separators, return empty
+	        if (tool.includes(path.sep)) {
+	            return [];
+	        }
+	        // build the list of directories
+	        //
+	        // Note, technically "where" checks the current directory on Windows. From a toolkit perspective,
+	        // it feels like we should not do this. Checking the current directory seems like more of a use
+	        // case of a shell, and the which() function exposed by the toolkit should strive for consistency
+	        // across platforms.
+	        const directories = [];
+	        if (process.env.PATH) {
+	            for (const p of process.env.PATH.split(path.delimiter)) {
+	                if (p) {
+	                    directories.push(p);
+	                }
+	            }
+	        }
+	        // find all matches
+	        const matches = [];
+	        for (const directory of directories) {
+	            const filePath = yield ioUtil.tryGetExecutablePath(path.join(directory, tool), extensions);
+	            if (filePath) {
+	                matches.push(filePath);
+	            }
+	        }
+	        return matches;
+	    });
+	}
+	function readCopyOptions(options) {
+	    const force = options.force == null ? true : options.force;
+	    const recursive = Boolean(options.recursive);
+	    const copySourceDirectory = options.copySourceDirectory == null
+	        ? true
+	        : Boolean(options.copySourceDirectory);
+	    return { force, recursive, copySourceDirectory };
+	}
+	function cpDirRecursive(sourceDir, destDir, currentDepth, force) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        // Ensure there is not a run away recursive copy
+	        if (currentDepth >= 255)
+	            return;
+	        currentDepth++;
+	        yield mkdirP(destDir);
+	        const files = yield ioUtil.readdir(sourceDir);
+	        for (const fileName of files) {
+	            const srcFile = `${sourceDir}/${fileName}`;
+	            const destFile = `${destDir}/${fileName}`;
+	            const srcFileStat = yield ioUtil.lstat(srcFile);
+	            if (srcFileStat.isDirectory()) {
+	                // Recurse
+	                yield cpDirRecursive(srcFile, destFile, currentDepth, force);
+	            }
+	            else {
+	                yield copyFile(srcFile, destFile, force);
+	            }
+	        }
+	        // Change the mode for the newly created directory
+	        yield ioUtil.chmod(destDir, (yield ioUtil.stat(sourceDir)).mode);
+	    });
+	}
+	// Buffered file copy
+	function copyFile(srcFile, destFile, force) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        if ((yield ioUtil.lstat(srcFile)).isSymbolicLink()) {
+	            // unlink/re-link it
+	            try {
+	                yield ioUtil.lstat(destFile);
+	                yield ioUtil.unlink(destFile);
+	            }
+	            catch (e) {
+	                // Try to override file permission
+	                if (e.code === 'EPERM') {
+	                    yield ioUtil.chmod(destFile, '0666');
+	                    yield ioUtil.unlink(destFile);
+	                }
+	                // other errors = it doesn't exist, no work to do
+	            }
+	            // Copy over symlink
+	            const symlinkFull = yield ioUtil.readlink(srcFile);
+	            yield ioUtil.symlink(symlinkFull, destFile, ioUtil.IS_WINDOWS ? 'junction' : null);
+	        }
+	        else if (!(yield ioUtil.exists(destFile)) || force) {
+	            yield ioUtil.copyFile(srcFile, destFile);
+	        }
+	    });
+	}
+	
+	return io$1;
+}
+
+var hasRequiredToolrunner$1;
+
+function requireToolrunner$1 () {
+	if (hasRequiredToolrunner$1) return toolrunner$1;
+	hasRequiredToolrunner$1 = 1;
+	var __createBinding = (toolrunner$1 && toolrunner$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    var desc = Object.getOwnPropertyDescriptor(m, k);
+	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+	      desc = { enumerable: true, get: function() { return m[k]; } };
+	    }
+	    Object.defineProperty(o, k2, desc);
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (toolrunner$1 && toolrunner$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (toolrunner$1 && toolrunner$1.__importStar) || (function () {
+	    var ownKeys = function(o) {
+	        ownKeys = Object.getOwnPropertyNames || function (o) {
+	            var ar = [];
+	            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+	            return ar;
+	        };
+	        return ownKeys(o);
+	    };
+	    return function (mod) {
+	        if (mod && mod.__esModule) return mod;
+	        var result = {};
+	        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+	        __setModuleDefault(result, mod);
+	        return result;
+	    };
+	})();
+	var __awaiter = (toolrunner$1 && toolrunner$1.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(toolrunner$1, "__esModule", { value: true });
+	toolrunner$1.ToolRunner = void 0;
+	toolrunner$1.argStringToArray = argStringToArray;
+	const os = __importStar(require$$0__default);
+	const events = __importStar(require$$1$3);
+	const child = __importStar(require$$2$2);
+	const path = __importStar(path__default);
+	const io = __importStar(requireIo$1());
+	const ioUtil = __importStar(requireIoUtil$1());
+	const timers_1 = require$$6;
+	/* eslint-disable @typescript-eslint/unbound-method */
+	const IS_WINDOWS = process.platform === 'win32';
+	/*
+	 * Class for running command line tools. Handles quoting and arg parsing in a platform agnostic way.
+	 */
+	class ToolRunner extends events.EventEmitter {
+	    constructor(toolPath, args, options) {
+	        super();
+	        if (!toolPath) {
+	            throw new Error("Parameter 'toolPath' cannot be null or empty.");
+	        }
+	        this.toolPath = toolPath;
+	        this.args = args || [];
+	        this.options = options || {};
+	    }
+	    _debug(message) {
+	        if (this.options.listeners && this.options.listeners.debug) {
+	            this.options.listeners.debug(message);
+	        }
+	    }
+	    _getCommandString(options, noPrefix) {
+	        const toolPath = this._getSpawnFileName();
+	        const args = this._getSpawnArgs(options);
+	        let cmd = noPrefix ? '' : '[command]'; // omit prefix when piped to a second tool
+	        if (IS_WINDOWS) {
+	            // Windows + cmd file
+	            if (this._isCmdFile()) {
+	                cmd += toolPath;
+	                for (const a of args) {
+	                    cmd += ` ${a}`;
+	                }
+	            }
+	            // Windows + verbatim
+	            else if (options.windowsVerbatimArguments) {
+	                cmd += `"${toolPath}"`;
+	                for (const a of args) {
+	                    cmd += ` ${a}`;
+	                }
+	            }
+	            // Windows (regular)
+	            else {
+	                cmd += this._windowsQuoteCmdArg(toolPath);
+	                for (const a of args) {
+	                    cmd += ` ${this._windowsQuoteCmdArg(a)}`;
+	                }
+	            }
+	        }
+	        else {
+	            // OSX/Linux - this can likely be improved with some form of quoting.
+	            // creating processes on Unix is fundamentally different than Windows.
+	            // on Unix, execvp() takes an arg array.
+	            cmd += toolPath;
+	            for (const a of args) {
+	                cmd += ` ${a}`;
+	            }
+	        }
+	        return cmd;
+	    }
+	    _processLineBuffer(data, strBuffer, onLine) {
+	        try {
+	            let s = strBuffer + data.toString();
+	            let n = s.indexOf(os.EOL);
+	            while (n > -1) {
+	                const line = s.substring(0, n);
+	                onLine(line);
+	                // the rest of the string ...
+	                s = s.substring(n + os.EOL.length);
+	                n = s.indexOf(os.EOL);
+	            }
+	            return s;
+	        }
+	        catch (err) {
+	            // streaming lines to console is best effort.  Don't fail a build.
+	            this._debug(`error processing line. Failed with error ${err}`);
+	            return '';
+	        }
+	    }
+	    _getSpawnFileName() {
+	        if (IS_WINDOWS) {
+	            if (this._isCmdFile()) {
+	                return process.env['COMSPEC'] || 'cmd.exe';
+	            }
+	        }
+	        return this.toolPath;
+	    }
+	    _getSpawnArgs(options) {
+	        if (IS_WINDOWS) {
+	            if (this._isCmdFile()) {
+	                let argline = `/D /S /C "${this._windowsQuoteCmdArg(this.toolPath)}`;
+	                for (const a of this.args) {
+	                    argline += ' ';
+	                    argline += options.windowsVerbatimArguments
+	                        ? a
+	                        : this._windowsQuoteCmdArg(a);
+	                }
+	                argline += '"';
+	                return [argline];
+	            }
+	        }
+	        return this.args;
+	    }
+	    _endsWith(str, end) {
+	        return str.endsWith(end);
+	    }
+	    _isCmdFile() {
+	        const upperToolPath = this.toolPath.toUpperCase();
+	        return (this._endsWith(upperToolPath, '.CMD') ||
+	            this._endsWith(upperToolPath, '.BAT'));
+	    }
+	    _windowsQuoteCmdArg(arg) {
+	        // for .exe, apply the normal quoting rules that libuv applies
+	        if (!this._isCmdFile()) {
+	            return this._uvQuoteCmdArg(arg);
+	        }
+	        // otherwise apply quoting rules specific to the cmd.exe command line parser.
+	        // the libuv rules are generic and are not designed specifically for cmd.exe
+	        // command line parser.
+	        //
+	        // for a detailed description of the cmd.exe command line parser, refer to
+	        // http://stackoverflow.com/questions/4094699/how-does-the-windows-command-interpreter-cmd-exe-parse-scripts/7970912#7970912
+	        // need quotes for empty arg
+	        if (!arg) {
+	            return '""';
+	        }
+	        // determine whether the arg needs to be quoted
+	        const cmdSpecialChars = [
+	            ' ',
+	            '\t',
+	            '&',
+	            '(',
+	            ')',
+	            '[',
+	            ']',
+	            '{',
+	            '}',
+	            '^',
+	            '=',
+	            ';',
+	            '!',
+	            "'",
+	            '+',
+	            ',',
+	            '`',
+	            '~',
+	            '|',
+	            '<',
+	            '>',
+	            '"'
+	        ];
+	        let needsQuotes = false;
+	        for (const char of arg) {
+	            if (cmdSpecialChars.some(x => x === char)) {
+	                needsQuotes = true;
+	                break;
+	            }
+	        }
+	        // short-circuit if quotes not needed
+	        if (!needsQuotes) {
+	            return arg;
+	        }
+	        // the following quoting rules are very similar to the rules that by libuv applies.
+	        //
+	        // 1) wrap the string in quotes
+	        //
+	        // 2) double-up quotes - i.e. " => ""
+	        //
+	        //    this is different from the libuv quoting rules. libuv replaces " with \", which unfortunately
+	        //    doesn't work well with a cmd.exe command line.
+	        //
+	        //    note, replacing " with "" also works well if the arg is passed to a downstream .NET console app.
+	        //    for example, the command line:
+	        //          foo.exe "myarg:""my val"""
+	        //    is parsed by a .NET console app into an arg array:
+	        //          [ "myarg:\"my val\"" ]
+	        //    which is the same end result when applying libuv quoting rules. although the actual
+	        //    command line from libuv quoting rules would look like:
+	        //          foo.exe "myarg:\"my val\""
+	        //
+	        // 3) double-up slashes that precede a quote,
+	        //    e.g.  hello \world    => "hello \world"
+	        //          hello\"world    => "hello\\""world"
+	        //          hello\\"world   => "hello\\\\""world"
+	        //          hello world\    => "hello world\\"
+	        //
+	        //    technically this is not required for a cmd.exe command line, or the batch argument parser.
+	        //    the reasons for including this as a .cmd quoting rule are:
+	        //
+	        //    a) this is optimized for the scenario where the argument is passed from the .cmd file to an
+	        //       external program. many programs (e.g. .NET console apps) rely on the slash-doubling rule.
+	        //
+	        //    b) it's what we've been doing previously (by deferring to node default behavior) and we
+	        //       haven't heard any complaints about that aspect.
+	        //
+	        // note, a weakness of the quoting rules chosen here, is that % is not escaped. in fact, % cannot be
+	        // escaped when used on the command line directly - even though within a .cmd file % can be escaped
+	        // by using %%.
+	        //
+	        // the saving grace is, on the command line, %var% is left as-is if var is not defined. this contrasts
+	        // the line parsing rules within a .cmd file, where if var is not defined it is replaced with nothing.
+	        //
+	        // one option that was explored was replacing % with ^% - i.e. %var% => ^%var^%. this hack would
+	        // often work, since it is unlikely that var^ would exist, and the ^ character is removed when the
+	        // variable is used. the problem, however, is that ^ is not removed when %* is used to pass the args
+	        // to an external program.
+	        //
+	        // an unexplored potential solution for the % escaping problem, is to create a wrapper .cmd file.
+	        // % can be escaped within a .cmd file.
+	        let reverse = '"';
+	        let quoteHit = true;
+	        for (let i = arg.length; i > 0; i--) {
+	            // walk the string in reverse
+	            reverse += arg[i - 1];
+	            if (quoteHit && arg[i - 1] === '\\') {
+	                reverse += '\\'; // double the slash
+	            }
+	            else if (arg[i - 1] === '"') {
+	                quoteHit = true;
+	                reverse += '"'; // double the quote
+	            }
+	            else {
+	                quoteHit = false;
+	            }
+	        }
+	        reverse += '"';
+	        return reverse.split('').reverse().join('');
+	    }
+	    _uvQuoteCmdArg(arg) {
+	        // Tool runner wraps child_process.spawn() and needs to apply the same quoting as
+	        // Node in certain cases where the undocumented spawn option windowsVerbatimArguments
+	        // is used.
+	        //
+	        // Since this function is a port of quote_cmd_arg from Node 4.x (technically, lib UV,
+	        // see https://github.com/nodejs/node/blob/v4.x/deps/uv/src/win/process.c for details),
+	        // pasting copyright notice from Node within this function:
+	        //
+	        //      Copyright Joyent, Inc. and other Node contributors. All rights reserved.
+	        //
+	        //      Permission is hereby granted, free of charge, to any person obtaining a copy
+	        //      of this software and associated documentation files (the "Software"), to
+	        //      deal in the Software without restriction, including without limitation the
+	        //      rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+	        //      sell copies of the Software, and to permit persons to whom the Software is
+	        //      furnished to do so, subject to the following conditions:
+	        //
+	        //      The above copyright notice and this permission notice shall be included in
+	        //      all copies or substantial portions of the Software.
+	        //
+	        //      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	        //      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	        //      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	        //      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	        //      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	        //      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+	        //      IN THE SOFTWARE.
+	        if (!arg) {
+	            // Need double quotation for empty argument
+	            return '""';
+	        }
+	        if (!arg.includes(' ') && !arg.includes('\t') && !arg.includes('"')) {
+	            // No quotation needed
+	            return arg;
+	        }
+	        if (!arg.includes('"') && !arg.includes('\\')) {
+	            // No embedded double quotes or backslashes, so I can just wrap
+	            // quote marks around the whole thing.
+	            return `"${arg}"`;
+	        }
+	        // Expected input/output:
+	        //   input : hello"world
+	        //   output: "hello\"world"
+	        //   input : hello""world
+	        //   output: "hello\"\"world"
+	        //   input : hello\world
+	        //   output: hello\world
+	        //   input : hello\\world
+	        //   output: hello\\world
+	        //   input : hello\"world
+	        //   output: "hello\\\"world"
+	        //   input : hello\\"world
+	        //   output: "hello\\\\\"world"
+	        //   input : hello world\
+	        //   output: "hello world\\" - note the comment in libuv actually reads "hello world\"
+	        //                             but it appears the comment is wrong, it should be "hello world\\"
+	        let reverse = '"';
+	        let quoteHit = true;
+	        for (let i = arg.length; i > 0; i--) {
+	            // walk the string in reverse
+	            reverse += arg[i - 1];
+	            if (quoteHit && arg[i - 1] === '\\') {
+	                reverse += '\\';
+	            }
+	            else if (arg[i - 1] === '"') {
+	                quoteHit = true;
+	                reverse += '\\';
+	            }
+	            else {
+	                quoteHit = false;
+	            }
+	        }
+	        reverse += '"';
+	        return reverse.split('').reverse().join('');
+	    }
+	    _cloneExecOptions(options) {
+	        options = options || {};
+	        const result = {
+	            cwd: options.cwd || process.cwd(),
+	            env: options.env || process.env,
+	            silent: options.silent || false,
+	            windowsVerbatimArguments: options.windowsVerbatimArguments || false,
+	            failOnStdErr: options.failOnStdErr || false,
+	            ignoreReturnCode: options.ignoreReturnCode || false,
+	            delay: options.delay || 10000
+	        };
+	        result.outStream = options.outStream || process.stdout;
+	        result.errStream = options.errStream || process.stderr;
+	        return result;
+	    }
+	    _getSpawnOptions(options, toolPath) {
+	        options = options || {};
+	        const result = {};
+	        result.cwd = options.cwd;
+	        result.env = options.env;
+	        result['windowsVerbatimArguments'] =
+	            options.windowsVerbatimArguments || this._isCmdFile();
+	        if (options.windowsVerbatimArguments) {
+	            result.argv0 = `"${toolPath}"`;
+	        }
+	        return result;
+	    }
+	    /**
+	     * Exec a tool.
+	     * Output will be streamed to the live console.
+	     * Returns promise with return code
+	     *
+	     * @param     tool     path to tool to exec
+	     * @param     options  optional exec options.  See ExecOptions
+	     * @returns   number
+	     */
+	    exec() {
+	        return __awaiter(this, void 0, void 0, function* () {
+	            // root the tool path if it is unrooted and contains relative pathing
+	            if (!ioUtil.isRooted(this.toolPath) &&
+	                (this.toolPath.includes('/') ||
+	                    (IS_WINDOWS && this.toolPath.includes('\\')))) {
+	                // prefer options.cwd if it is specified, however options.cwd may also need to be rooted
+	                this.toolPath = path.resolve(process.cwd(), this.options.cwd || process.cwd(), this.toolPath);
+	            }
+	            // if the tool is only a file name, then resolve it from the PATH
+	            // otherwise verify it exists (add extension on Windows if necessary)
+	            this.toolPath = yield io.which(this.toolPath, true);
+	            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+	                this._debug(`exec tool: ${this.toolPath}`);
+	                this._debug('arguments:');
+	                for (const arg of this.args) {
+	                    this._debug(`   ${arg}`);
+	                }
+	                const optionsNonNull = this._cloneExecOptions(this.options);
+	                if (!optionsNonNull.silent && optionsNonNull.outStream) {
+	                    optionsNonNull.outStream.write(this._getCommandString(optionsNonNull) + os.EOL);
+	                }
+	                const state = new ExecState(optionsNonNull, this.toolPath);
+	                state.on('debug', (message) => {
+	                    this._debug(message);
+	                });
+	                if (this.options.cwd && !(yield ioUtil.exists(this.options.cwd))) {
+	                    return reject(new Error(`The cwd: ${this.options.cwd} does not exist!`));
+	                }
+	                const fileName = this._getSpawnFileName();
+	                const cp = child.spawn(fileName, this._getSpawnArgs(optionsNonNull), this._getSpawnOptions(this.options, fileName));
+	                let stdbuffer = '';
+	                if (cp.stdout) {
+	                    cp.stdout.on('data', (data) => {
+	                        if (this.options.listeners && this.options.listeners.stdout) {
+	                            this.options.listeners.stdout(data);
+	                        }
+	                        if (!optionsNonNull.silent && optionsNonNull.outStream) {
+	                            optionsNonNull.outStream.write(data);
+	                        }
+	                        stdbuffer = this._processLineBuffer(data, stdbuffer, (line) => {
+	                            if (this.options.listeners && this.options.listeners.stdline) {
+	                                this.options.listeners.stdline(line);
+	                            }
+	                        });
+	                    });
+	                }
+	                let errbuffer = '';
+	                if (cp.stderr) {
+	                    cp.stderr.on('data', (data) => {
+	                        state.processStderr = true;
+	                        if (this.options.listeners && this.options.listeners.stderr) {
+	                            this.options.listeners.stderr(data);
+	                        }
+	                        if (!optionsNonNull.silent &&
+	                            optionsNonNull.errStream &&
+	                            optionsNonNull.outStream) {
+	                            const s = optionsNonNull.failOnStdErr
+	                                ? optionsNonNull.errStream
+	                                : optionsNonNull.outStream;
+	                            s.write(data);
+	                        }
+	                        errbuffer = this._processLineBuffer(data, errbuffer, (line) => {
+	                            if (this.options.listeners && this.options.listeners.errline) {
+	                                this.options.listeners.errline(line);
+	                            }
+	                        });
+	                    });
+	                }
+	                cp.on('error', (err) => {
+	                    state.processError = err.message;
+	                    state.processExited = true;
+	                    state.processClosed = true;
+	                    state.CheckComplete();
+	                });
+	                cp.on('exit', (code) => {
+	                    state.processExitCode = code;
+	                    state.processExited = true;
+	                    this._debug(`Exit code ${code} received from tool '${this.toolPath}'`);
+	                    state.CheckComplete();
+	                });
+	                cp.on('close', (code) => {
+	                    state.processExitCode = code;
+	                    state.processExited = true;
+	                    state.processClosed = true;
+	                    this._debug(`STDIO streams have closed for tool '${this.toolPath}'`);
+	                    state.CheckComplete();
+	                });
+	                state.on('done', (error, exitCode) => {
+	                    if (stdbuffer.length > 0) {
+	                        this.emit('stdline', stdbuffer);
+	                    }
+	                    if (errbuffer.length > 0) {
+	                        this.emit('errline', errbuffer);
+	                    }
+	                    cp.removeAllListeners();
+	                    if (error) {
+	                        reject(error);
+	                    }
+	                    else {
+	                        resolve(exitCode);
+	                    }
+	                });
+	                if (this.options.input) {
+	                    if (!cp.stdin) {
+	                        throw new Error('child process missing stdin');
+	                    }
+	                    cp.stdin.end(this.options.input);
+	                }
+	            }));
+	        });
+	    }
+	}
+	toolrunner$1.ToolRunner = ToolRunner;
+	/**
+	 * Convert an arg string to an array of args. Handles escaping
+	 *
+	 * @param    argString   string of arguments
+	 * @returns  string[]    array of arguments
+	 */
+	function argStringToArray(argString) {
+	    const args = [];
+	    let inQuotes = false;
+	    let escaped = false;
+	    let arg = '';
+	    function append(c) {
+	        // we only escape double quotes.
+	        if (escaped && c !== '"') {
+	            arg += '\\';
+	        }
+	        arg += c;
+	        escaped = false;
+	    }
+	    for (let i = 0; i < argString.length; i++) {
+	        const c = argString.charAt(i);
+	        if (c === '"') {
+	            if (!escaped) {
+	                inQuotes = !inQuotes;
+	            }
+	            else {
+	                append(c);
+	            }
+	            continue;
+	        }
+	        if (c === '\\' && escaped) {
+	            append(c);
+	            continue;
+	        }
+	        if (c === '\\' && inQuotes) {
+	            escaped = true;
+	            continue;
+	        }
+	        if (c === ' ' && !inQuotes) {
+	            if (arg.length > 0) {
+	                args.push(arg);
+	                arg = '';
+	            }
+	            continue;
+	        }
+	        append(c);
+	    }
+	    if (arg.length > 0) {
+	        args.push(arg.trim());
+	    }
+	    return args;
+	}
+	class ExecState extends events.EventEmitter {
+	    constructor(options, toolPath) {
+	        super();
+	        this.processClosed = false; // tracks whether the process has exited and stdio is closed
+	        this.processError = '';
+	        this.processExitCode = 0;
+	        this.processExited = false; // tracks whether the process has exited
+	        this.processStderr = false; // tracks whether stderr was written to
+	        this.delay = 10000; // 10 seconds
+	        this.done = false;
+	        this.timeout = null;
+	        if (!toolPath) {
+	            throw new Error('toolPath must not be empty');
+	        }
+	        this.options = options;
+	        this.toolPath = toolPath;
+	        if (options.delay) {
+	            this.delay = options.delay;
+	        }
+	    }
+	    CheckComplete() {
+	        if (this.done) {
+	            return;
+	        }
+	        if (this.processClosed) {
+	            this._setResult();
+	        }
+	        else if (this.processExited) {
+	            this.timeout = (0, timers_1.setTimeout)(ExecState.HandleTimeout, this.delay, this);
+	        }
+	    }
+	    _debug(message) {
+	        this.emit('debug', message);
+	    }
+	    _setResult() {
+	        // determine whether there is an error
+	        let error;
+	        if (this.processExited) {
+	            if (this.processError) {
+	                error = new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
+	            }
+	            else if (this.processExitCode !== 0 && !this.options.ignoreReturnCode) {
+	                error = new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
+	            }
+	            else if (this.processStderr && this.options.failOnStdErr) {
+	                error = new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
+	            }
+	        }
+	        // clear the timeout
+	        if (this.timeout) {
+	            clearTimeout(this.timeout);
+	            this.timeout = null;
+	        }
+	        this.done = true;
+	        this.emit('done', error, this.processExitCode);
+	    }
+	    static HandleTimeout(state) {
+	        if (state.done) {
+	            return;
+	        }
+	        if (!state.processClosed && state.processExited) {
+	            const message = `The STDIO streams did not close within ${state.delay / 1000} seconds of the exit event from process '${state.toolPath}'. This may indicate a child process inherited the STDIO streams and has not yet exited.`;
+	            state._debug(message);
+	        }
+	        state._setResult();
+	    }
+	}
+	
+	return toolrunner$1;
+}
+
+var hasRequiredExec$1;
+
+function requireExec$1 () {
+	if (hasRequiredExec$1) return exec$1;
+	hasRequiredExec$1 = 1;
+	var __createBinding = (exec$1 && exec$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    var desc = Object.getOwnPropertyDescriptor(m, k);
+	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+	      desc = { enumerable: true, get: function() { return m[k]; } };
+	    }
+	    Object.defineProperty(o, k2, desc);
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (exec$1 && exec$1.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (exec$1 && exec$1.__importStar) || (function () {
+	    var ownKeys = function(o) {
+	        ownKeys = Object.getOwnPropertyNames || function (o) {
+	            var ar = [];
+	            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+	            return ar;
+	        };
+	        return ownKeys(o);
+	    };
+	    return function (mod) {
+	        if (mod && mod.__esModule) return mod;
+	        var result = {};
+	        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+	        __setModuleDefault(result, mod);
+	        return result;
+	    };
+	})();
+	var __awaiter = (exec$1 && exec$1.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(exec$1, "__esModule", { value: true });
+	exec$1.exec = exec;
+	exec$1.getExecOutput = getExecOutput;
+	const string_decoder_1 = require$$0$c;
+	const tr = __importStar(requireToolrunner$1());
+	/**
+	 * Exec a command.
+	 * Output will be streamed to the live console.
+	 * Returns promise with return code
+	 *
+	 * @param     commandLine        command to execute (can include additional args). Must be correctly escaped.
+	 * @param     args               optional arguments for tool. Escaping is handled by the lib.
+	 * @param     options            optional exec options.  See ExecOptions
+	 * @returns   Promise<number>    exit code
+	 */
+	function exec(commandLine, args, options) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const commandArgs = tr.argStringToArray(commandLine);
+	        if (commandArgs.length === 0) {
+	            throw new Error(`Parameter 'commandLine' cannot be null or empty.`);
+	        }
+	        // Path to tool to execute should be first arg
+	        const toolPath = commandArgs[0];
+	        args = commandArgs.slice(1).concat(args || []);
+	        const runner = new tr.ToolRunner(toolPath, args, options);
+	        return runner.exec();
+	    });
+	}
+	/**
+	 * Exec a command and get the output.
+	 * Output will be streamed to the live console.
+	 * Returns promise with the exit code and collected stdout and stderr
+	 *
+	 * @param     commandLine           command to execute (can include additional args). Must be correctly escaped.
+	 * @param     args                  optional arguments for tool. Escaping is handled by the lib.
+	 * @param     options               optional exec options.  See ExecOptions
+	 * @returns   Promise<ExecOutput>   exit code, stdout, and stderr
+	 */
+	function getExecOutput(commandLine, args, options) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        var _a, _b;
+	        let stdout = '';
+	        let stderr = '';
+	        //Using string decoder covers the case where a mult-byte character is split
+	        const stdoutDecoder = new string_decoder_1.StringDecoder('utf8');
+	        const stderrDecoder = new string_decoder_1.StringDecoder('utf8');
+	        const originalStdoutListener = (_a = options === null || options === void 0 ? void 0 : options.listeners) === null || _a === void 0 ? void 0 : _a.stdout;
+	        const originalStdErrListener = (_b = options === null || options === void 0 ? void 0 : options.listeners) === null || _b === void 0 ? void 0 : _b.stderr;
+	        const stdErrListener = (data) => {
+	            stderr += stderrDecoder.write(data);
+	            if (originalStdErrListener) {
+	                originalStdErrListener(data);
+	            }
+	        };
+	        const stdOutListener = (data) => {
+	            stdout += stdoutDecoder.write(data);
+	            if (originalStdoutListener) {
+	                originalStdoutListener(data);
+	            }
+	        };
+	        const listeners = Object.assign(Object.assign({}, options === null || options === void 0 ? void 0 : options.listeners), { stdout: stdOutListener, stderr: stdErrListener });
+	        const exitCode = yield exec(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
+	        //flush any remaining characters
+	        stdout += stdoutDecoder.end();
+	        stderr += stderrDecoder.end();
+	        return {
+	            exitCode,
+	            stdout,
+	            stderr
+	        };
+	    });
+	}
+	
+	return exec$1;
+}
+
+var execExports = requireExec$1();
 
 const OCAML_VERSION = '5.4.0';
 const OPAM_VERSION = '2.5.0';
 const DUNE_VERSION = '3.20.2';
 const ROCQ_VERSION = coreExports.getInput('rocq-version');
-const PLATFORM = os.platform();
-const ARCHITECTURE = os.arch();
+const PLATFORM = require$$0$3.platform();
+const ARCHITECTURE = require$$0$3.arch();
 const DUNE_CACHE_ROOT = (() => {
     const xdgCacheHome = process.env.XDG_CACHE_HOME;
     if (xdgCacheHome) {
@@ -84974,9 +85782,9 @@ const DUNE_CACHE_ROOT = (() => {
     if (PLATFORM === 'win32') {
         return path__default.join('C:', 'dune');
     }
-    return path__default.join(os.homedir(), '.cache', 'dune');
+    return path__default.join(require$$0$3.homedir(), '.cache', 'dune');
 })();
-const APT_CACHE_DIR = path__default.join(os.homedir(), '.apt-cache');
+const APT_CACHE_DIR = path__default.join(require$$0$3.homedir(), '.apt-cache');
 process.env.GITHUB_TOKEN || '';
 const IS_WINDOWS = PLATFORM === 'win32';
 const IS_MACOS = PLATFORM === 'darwin';
@@ -85540,7 +86348,7 @@ function requireManifest () {
 		const core_1 = requireCore();
 		// needs to be require for core node modules to be mocked
 		/* eslint @typescript-eslint/no-require-imports: 0 */
-		const os = os__default;
+		const os = require$$0__default;
 		const cp = require$$2$2;
 		const fs = require$$1__default;
 		function _findMatch(versionSpec, stable, candidates, archFilter) {
@@ -85632,6 +86440,745 @@ function requireManifest () {
 		
 	} (manifest$1, manifest$1.exports));
 	return manifest$1.exports;
+}
+
+var exec = {};
+
+var toolrunner = {};
+
+var hasRequiredToolrunner;
+
+function requireToolrunner () {
+	if (hasRequiredToolrunner) return toolrunner;
+	hasRequiredToolrunner = 1;
+	var __createBinding = (toolrunner && toolrunner.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (toolrunner && toolrunner.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (toolrunner && toolrunner.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (toolrunner && toolrunner.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(toolrunner, "__esModule", { value: true });
+	toolrunner.argStringToArray = toolrunner.ToolRunner = void 0;
+	const os = __importStar(require$$0__default);
+	const events = __importStar(require$$1$3);
+	const child = __importStar(require$$2$2);
+	const path = __importStar(path__default);
+	const io = __importStar(requireIo());
+	const ioUtil = __importStar(requireIoUtil());
+	const timers_1 = require$$6;
+	/* eslint-disable @typescript-eslint/unbound-method */
+	const IS_WINDOWS = process.platform === 'win32';
+	/*
+	 * Class for running command line tools. Handles quoting and arg parsing in a platform agnostic way.
+	 */
+	class ToolRunner extends events.EventEmitter {
+	    constructor(toolPath, args, options) {
+	        super();
+	        if (!toolPath) {
+	            throw new Error("Parameter 'toolPath' cannot be null or empty.");
+	        }
+	        this.toolPath = toolPath;
+	        this.args = args || [];
+	        this.options = options || {};
+	    }
+	    _debug(message) {
+	        if (this.options.listeners && this.options.listeners.debug) {
+	            this.options.listeners.debug(message);
+	        }
+	    }
+	    _getCommandString(options, noPrefix) {
+	        const toolPath = this._getSpawnFileName();
+	        const args = this._getSpawnArgs(options);
+	        let cmd = noPrefix ? '' : '[command]'; // omit prefix when piped to a second tool
+	        if (IS_WINDOWS) {
+	            // Windows + cmd file
+	            if (this._isCmdFile()) {
+	                cmd += toolPath;
+	                for (const a of args) {
+	                    cmd += ` ${a}`;
+	                }
+	            }
+	            // Windows + verbatim
+	            else if (options.windowsVerbatimArguments) {
+	                cmd += `"${toolPath}"`;
+	                for (const a of args) {
+	                    cmd += ` ${a}`;
+	                }
+	            }
+	            // Windows (regular)
+	            else {
+	                cmd += this._windowsQuoteCmdArg(toolPath);
+	                for (const a of args) {
+	                    cmd += ` ${this._windowsQuoteCmdArg(a)}`;
+	                }
+	            }
+	        }
+	        else {
+	            // OSX/Linux - this can likely be improved with some form of quoting.
+	            // creating processes on Unix is fundamentally different than Windows.
+	            // on Unix, execvp() takes an arg array.
+	            cmd += toolPath;
+	            for (const a of args) {
+	                cmd += ` ${a}`;
+	            }
+	        }
+	        return cmd;
+	    }
+	    _processLineBuffer(data, strBuffer, onLine) {
+	        try {
+	            let s = strBuffer + data.toString();
+	            let n = s.indexOf(os.EOL);
+	            while (n > -1) {
+	                const line = s.substring(0, n);
+	                onLine(line);
+	                // the rest of the string ...
+	                s = s.substring(n + os.EOL.length);
+	                n = s.indexOf(os.EOL);
+	            }
+	            return s;
+	        }
+	        catch (err) {
+	            // streaming lines to console is best effort.  Don't fail a build.
+	            this._debug(`error processing line. Failed with error ${err}`);
+	            return '';
+	        }
+	    }
+	    _getSpawnFileName() {
+	        if (IS_WINDOWS) {
+	            if (this._isCmdFile()) {
+	                return process.env['COMSPEC'] || 'cmd.exe';
+	            }
+	        }
+	        return this.toolPath;
+	    }
+	    _getSpawnArgs(options) {
+	        if (IS_WINDOWS) {
+	            if (this._isCmdFile()) {
+	                let argline = `/D /S /C "${this._windowsQuoteCmdArg(this.toolPath)}`;
+	                for (const a of this.args) {
+	                    argline += ' ';
+	                    argline += options.windowsVerbatimArguments
+	                        ? a
+	                        : this._windowsQuoteCmdArg(a);
+	                }
+	                argline += '"';
+	                return [argline];
+	            }
+	        }
+	        return this.args;
+	    }
+	    _endsWith(str, end) {
+	        return str.endsWith(end);
+	    }
+	    _isCmdFile() {
+	        const upperToolPath = this.toolPath.toUpperCase();
+	        return (this._endsWith(upperToolPath, '.CMD') ||
+	            this._endsWith(upperToolPath, '.BAT'));
+	    }
+	    _windowsQuoteCmdArg(arg) {
+	        // for .exe, apply the normal quoting rules that libuv applies
+	        if (!this._isCmdFile()) {
+	            return this._uvQuoteCmdArg(arg);
+	        }
+	        // otherwise apply quoting rules specific to the cmd.exe command line parser.
+	        // the libuv rules are generic and are not designed specifically for cmd.exe
+	        // command line parser.
+	        //
+	        // for a detailed description of the cmd.exe command line parser, refer to
+	        // http://stackoverflow.com/questions/4094699/how-does-the-windows-command-interpreter-cmd-exe-parse-scripts/7970912#7970912
+	        // need quotes for empty arg
+	        if (!arg) {
+	            return '""';
+	        }
+	        // determine whether the arg needs to be quoted
+	        const cmdSpecialChars = [
+	            ' ',
+	            '\t',
+	            '&',
+	            '(',
+	            ')',
+	            '[',
+	            ']',
+	            '{',
+	            '}',
+	            '^',
+	            '=',
+	            ';',
+	            '!',
+	            "'",
+	            '+',
+	            ',',
+	            '`',
+	            '~',
+	            '|',
+	            '<',
+	            '>',
+	            '"'
+	        ];
+	        let needsQuotes = false;
+	        for (const char of arg) {
+	            if (cmdSpecialChars.some(x => x === char)) {
+	                needsQuotes = true;
+	                break;
+	            }
+	        }
+	        // short-circuit if quotes not needed
+	        if (!needsQuotes) {
+	            return arg;
+	        }
+	        // the following quoting rules are very similar to the rules that by libuv applies.
+	        //
+	        // 1) wrap the string in quotes
+	        //
+	        // 2) double-up quotes - i.e. " => ""
+	        //
+	        //    this is different from the libuv quoting rules. libuv replaces " with \", which unfortunately
+	        //    doesn't work well with a cmd.exe command line.
+	        //
+	        //    note, replacing " with "" also works well if the arg is passed to a downstream .NET console app.
+	        //    for example, the command line:
+	        //          foo.exe "myarg:""my val"""
+	        //    is parsed by a .NET console app into an arg array:
+	        //          [ "myarg:\"my val\"" ]
+	        //    which is the same end result when applying libuv quoting rules. although the actual
+	        //    command line from libuv quoting rules would look like:
+	        //          foo.exe "myarg:\"my val\""
+	        //
+	        // 3) double-up slashes that precede a quote,
+	        //    e.g.  hello \world    => "hello \world"
+	        //          hello\"world    => "hello\\""world"
+	        //          hello\\"world   => "hello\\\\""world"
+	        //          hello world\    => "hello world\\"
+	        //
+	        //    technically this is not required for a cmd.exe command line, or the batch argument parser.
+	        //    the reasons for including this as a .cmd quoting rule are:
+	        //
+	        //    a) this is optimized for the scenario where the argument is passed from the .cmd file to an
+	        //       external program. many programs (e.g. .NET console apps) rely on the slash-doubling rule.
+	        //
+	        //    b) it's what we've been doing previously (by deferring to node default behavior) and we
+	        //       haven't heard any complaints about that aspect.
+	        //
+	        // note, a weakness of the quoting rules chosen here, is that % is not escaped. in fact, % cannot be
+	        // escaped when used on the command line directly - even though within a .cmd file % can be escaped
+	        // by using %%.
+	        //
+	        // the saving grace is, on the command line, %var% is left as-is if var is not defined. this contrasts
+	        // the line parsing rules within a .cmd file, where if var is not defined it is replaced with nothing.
+	        //
+	        // one option that was explored was replacing % with ^% - i.e. %var% => ^%var^%. this hack would
+	        // often work, since it is unlikely that var^ would exist, and the ^ character is removed when the
+	        // variable is used. the problem, however, is that ^ is not removed when %* is used to pass the args
+	        // to an external program.
+	        //
+	        // an unexplored potential solution for the % escaping problem, is to create a wrapper .cmd file.
+	        // % can be escaped within a .cmd file.
+	        let reverse = '"';
+	        let quoteHit = true;
+	        for (let i = arg.length; i > 0; i--) {
+	            // walk the string in reverse
+	            reverse += arg[i - 1];
+	            if (quoteHit && arg[i - 1] === '\\') {
+	                reverse += '\\'; // double the slash
+	            }
+	            else if (arg[i - 1] === '"') {
+	                quoteHit = true;
+	                reverse += '"'; // double the quote
+	            }
+	            else {
+	                quoteHit = false;
+	            }
+	        }
+	        reverse += '"';
+	        return reverse
+	            .split('')
+	            .reverse()
+	            .join('');
+	    }
+	    _uvQuoteCmdArg(arg) {
+	        // Tool runner wraps child_process.spawn() and needs to apply the same quoting as
+	        // Node in certain cases where the undocumented spawn option windowsVerbatimArguments
+	        // is used.
+	        //
+	        // Since this function is a port of quote_cmd_arg from Node 4.x (technically, lib UV,
+	        // see https://github.com/nodejs/node/blob/v4.x/deps/uv/src/win/process.c for details),
+	        // pasting copyright notice from Node within this function:
+	        //
+	        //      Copyright Joyent, Inc. and other Node contributors. All rights reserved.
+	        //
+	        //      Permission is hereby granted, free of charge, to any person obtaining a copy
+	        //      of this software and associated documentation files (the "Software"), to
+	        //      deal in the Software without restriction, including without limitation the
+	        //      rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+	        //      sell copies of the Software, and to permit persons to whom the Software is
+	        //      furnished to do so, subject to the following conditions:
+	        //
+	        //      The above copyright notice and this permission notice shall be included in
+	        //      all copies or substantial portions of the Software.
+	        //
+	        //      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	        //      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	        //      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	        //      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	        //      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	        //      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+	        //      IN THE SOFTWARE.
+	        if (!arg) {
+	            // Need double quotation for empty argument
+	            return '""';
+	        }
+	        if (!arg.includes(' ') && !arg.includes('\t') && !arg.includes('"')) {
+	            // No quotation needed
+	            return arg;
+	        }
+	        if (!arg.includes('"') && !arg.includes('\\')) {
+	            // No embedded double quotes or backslashes, so I can just wrap
+	            // quote marks around the whole thing.
+	            return `"${arg}"`;
+	        }
+	        // Expected input/output:
+	        //   input : hello"world
+	        //   output: "hello\"world"
+	        //   input : hello""world
+	        //   output: "hello\"\"world"
+	        //   input : hello\world
+	        //   output: hello\world
+	        //   input : hello\\world
+	        //   output: hello\\world
+	        //   input : hello\"world
+	        //   output: "hello\\\"world"
+	        //   input : hello\\"world
+	        //   output: "hello\\\\\"world"
+	        //   input : hello world\
+	        //   output: "hello world\\" - note the comment in libuv actually reads "hello world\"
+	        //                             but it appears the comment is wrong, it should be "hello world\\"
+	        let reverse = '"';
+	        let quoteHit = true;
+	        for (let i = arg.length; i > 0; i--) {
+	            // walk the string in reverse
+	            reverse += arg[i - 1];
+	            if (quoteHit && arg[i - 1] === '\\') {
+	                reverse += '\\';
+	            }
+	            else if (arg[i - 1] === '"') {
+	                quoteHit = true;
+	                reverse += '\\';
+	            }
+	            else {
+	                quoteHit = false;
+	            }
+	        }
+	        reverse += '"';
+	        return reverse
+	            .split('')
+	            .reverse()
+	            .join('');
+	    }
+	    _cloneExecOptions(options) {
+	        options = options || {};
+	        const result = {
+	            cwd: options.cwd || process.cwd(),
+	            env: options.env || process.env,
+	            silent: options.silent || false,
+	            windowsVerbatimArguments: options.windowsVerbatimArguments || false,
+	            failOnStdErr: options.failOnStdErr || false,
+	            ignoreReturnCode: options.ignoreReturnCode || false,
+	            delay: options.delay || 10000
+	        };
+	        result.outStream = options.outStream || process.stdout;
+	        result.errStream = options.errStream || process.stderr;
+	        return result;
+	    }
+	    _getSpawnOptions(options, toolPath) {
+	        options = options || {};
+	        const result = {};
+	        result.cwd = options.cwd;
+	        result.env = options.env;
+	        result['windowsVerbatimArguments'] =
+	            options.windowsVerbatimArguments || this._isCmdFile();
+	        if (options.windowsVerbatimArguments) {
+	            result.argv0 = `"${toolPath}"`;
+	        }
+	        return result;
+	    }
+	    /**
+	     * Exec a tool.
+	     * Output will be streamed to the live console.
+	     * Returns promise with return code
+	     *
+	     * @param     tool     path to tool to exec
+	     * @param     options  optional exec options.  See ExecOptions
+	     * @returns   number
+	     */
+	    exec() {
+	        return __awaiter(this, void 0, void 0, function* () {
+	            // root the tool path if it is unrooted and contains relative pathing
+	            if (!ioUtil.isRooted(this.toolPath) &&
+	                (this.toolPath.includes('/') ||
+	                    (IS_WINDOWS && this.toolPath.includes('\\')))) {
+	                // prefer options.cwd if it is specified, however options.cwd may also need to be rooted
+	                this.toolPath = path.resolve(process.cwd(), this.options.cwd || process.cwd(), this.toolPath);
+	            }
+	            // if the tool is only a file name, then resolve it from the PATH
+	            // otherwise verify it exists (add extension on Windows if necessary)
+	            this.toolPath = yield io.which(this.toolPath, true);
+	            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+	                this._debug(`exec tool: ${this.toolPath}`);
+	                this._debug('arguments:');
+	                for (const arg of this.args) {
+	                    this._debug(`   ${arg}`);
+	                }
+	                const optionsNonNull = this._cloneExecOptions(this.options);
+	                if (!optionsNonNull.silent && optionsNonNull.outStream) {
+	                    optionsNonNull.outStream.write(this._getCommandString(optionsNonNull) + os.EOL);
+	                }
+	                const state = new ExecState(optionsNonNull, this.toolPath);
+	                state.on('debug', (message) => {
+	                    this._debug(message);
+	                });
+	                if (this.options.cwd && !(yield ioUtil.exists(this.options.cwd))) {
+	                    return reject(new Error(`The cwd: ${this.options.cwd} does not exist!`));
+	                }
+	                const fileName = this._getSpawnFileName();
+	                const cp = child.spawn(fileName, this._getSpawnArgs(optionsNonNull), this._getSpawnOptions(this.options, fileName));
+	                let stdbuffer = '';
+	                if (cp.stdout) {
+	                    cp.stdout.on('data', (data) => {
+	                        if (this.options.listeners && this.options.listeners.stdout) {
+	                            this.options.listeners.stdout(data);
+	                        }
+	                        if (!optionsNonNull.silent && optionsNonNull.outStream) {
+	                            optionsNonNull.outStream.write(data);
+	                        }
+	                        stdbuffer = this._processLineBuffer(data, stdbuffer, (line) => {
+	                            if (this.options.listeners && this.options.listeners.stdline) {
+	                                this.options.listeners.stdline(line);
+	                            }
+	                        });
+	                    });
+	                }
+	                let errbuffer = '';
+	                if (cp.stderr) {
+	                    cp.stderr.on('data', (data) => {
+	                        state.processStderr = true;
+	                        if (this.options.listeners && this.options.listeners.stderr) {
+	                            this.options.listeners.stderr(data);
+	                        }
+	                        if (!optionsNonNull.silent &&
+	                            optionsNonNull.errStream &&
+	                            optionsNonNull.outStream) {
+	                            const s = optionsNonNull.failOnStdErr
+	                                ? optionsNonNull.errStream
+	                                : optionsNonNull.outStream;
+	                            s.write(data);
+	                        }
+	                        errbuffer = this._processLineBuffer(data, errbuffer, (line) => {
+	                            if (this.options.listeners && this.options.listeners.errline) {
+	                                this.options.listeners.errline(line);
+	                            }
+	                        });
+	                    });
+	                }
+	                cp.on('error', (err) => {
+	                    state.processError = err.message;
+	                    state.processExited = true;
+	                    state.processClosed = true;
+	                    state.CheckComplete();
+	                });
+	                cp.on('exit', (code) => {
+	                    state.processExitCode = code;
+	                    state.processExited = true;
+	                    this._debug(`Exit code ${code} received from tool '${this.toolPath}'`);
+	                    state.CheckComplete();
+	                });
+	                cp.on('close', (code) => {
+	                    state.processExitCode = code;
+	                    state.processExited = true;
+	                    state.processClosed = true;
+	                    this._debug(`STDIO streams have closed for tool '${this.toolPath}'`);
+	                    state.CheckComplete();
+	                });
+	                state.on('done', (error, exitCode) => {
+	                    if (stdbuffer.length > 0) {
+	                        this.emit('stdline', stdbuffer);
+	                    }
+	                    if (errbuffer.length > 0) {
+	                        this.emit('errline', errbuffer);
+	                    }
+	                    cp.removeAllListeners();
+	                    if (error) {
+	                        reject(error);
+	                    }
+	                    else {
+	                        resolve(exitCode);
+	                    }
+	                });
+	                if (this.options.input) {
+	                    if (!cp.stdin) {
+	                        throw new Error('child process missing stdin');
+	                    }
+	                    cp.stdin.end(this.options.input);
+	                }
+	            }));
+	        });
+	    }
+	}
+	toolrunner.ToolRunner = ToolRunner;
+	/**
+	 * Convert an arg string to an array of args. Handles escaping
+	 *
+	 * @param    argString   string of arguments
+	 * @returns  string[]    array of arguments
+	 */
+	function argStringToArray(argString) {
+	    const args = [];
+	    let inQuotes = false;
+	    let escaped = false;
+	    let arg = '';
+	    function append(c) {
+	        // we only escape double quotes.
+	        if (escaped && c !== '"') {
+	            arg += '\\';
+	        }
+	        arg += c;
+	        escaped = false;
+	    }
+	    for (let i = 0; i < argString.length; i++) {
+	        const c = argString.charAt(i);
+	        if (c === '"') {
+	            if (!escaped) {
+	                inQuotes = !inQuotes;
+	            }
+	            else {
+	                append(c);
+	            }
+	            continue;
+	        }
+	        if (c === '\\' && escaped) {
+	            append(c);
+	            continue;
+	        }
+	        if (c === '\\' && inQuotes) {
+	            escaped = true;
+	            continue;
+	        }
+	        if (c === ' ' && !inQuotes) {
+	            if (arg.length > 0) {
+	                args.push(arg);
+	                arg = '';
+	            }
+	            continue;
+	        }
+	        append(c);
+	    }
+	    if (arg.length > 0) {
+	        args.push(arg.trim());
+	    }
+	    return args;
+	}
+	toolrunner.argStringToArray = argStringToArray;
+	class ExecState extends events.EventEmitter {
+	    constructor(options, toolPath) {
+	        super();
+	        this.processClosed = false; // tracks whether the process has exited and stdio is closed
+	        this.processError = '';
+	        this.processExitCode = 0;
+	        this.processExited = false; // tracks whether the process has exited
+	        this.processStderr = false; // tracks whether stderr was written to
+	        this.delay = 10000; // 10 seconds
+	        this.done = false;
+	        this.timeout = null;
+	        if (!toolPath) {
+	            throw new Error('toolPath must not be empty');
+	        }
+	        this.options = options;
+	        this.toolPath = toolPath;
+	        if (options.delay) {
+	            this.delay = options.delay;
+	        }
+	    }
+	    CheckComplete() {
+	        if (this.done) {
+	            return;
+	        }
+	        if (this.processClosed) {
+	            this._setResult();
+	        }
+	        else if (this.processExited) {
+	            this.timeout = timers_1.setTimeout(ExecState.HandleTimeout, this.delay, this);
+	        }
+	    }
+	    _debug(message) {
+	        this.emit('debug', message);
+	    }
+	    _setResult() {
+	        // determine whether there is an error
+	        let error;
+	        if (this.processExited) {
+	            if (this.processError) {
+	                error = new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
+	            }
+	            else if (this.processExitCode !== 0 && !this.options.ignoreReturnCode) {
+	                error = new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
+	            }
+	            else if (this.processStderr && this.options.failOnStdErr) {
+	                error = new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
+	            }
+	        }
+	        // clear the timeout
+	        if (this.timeout) {
+	            clearTimeout(this.timeout);
+	            this.timeout = null;
+	        }
+	        this.done = true;
+	        this.emit('done', error, this.processExitCode);
+	    }
+	    static HandleTimeout(state) {
+	        if (state.done) {
+	            return;
+	        }
+	        if (!state.processClosed && state.processExited) {
+	            const message = `The STDIO streams did not close within ${state.delay /
+	                1000} seconds of the exit event from process '${state.toolPath}'. This may indicate a child process inherited the STDIO streams and has not yet exited.`;
+	            state._debug(message);
+	        }
+	        state._setResult();
+	    }
+	}
+	
+	return toolrunner;
+}
+
+var hasRequiredExec;
+
+function requireExec () {
+	if (hasRequiredExec) return exec;
+	hasRequiredExec = 1;
+	var __createBinding = (exec && exec.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (exec && exec.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (exec && exec.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __awaiter = (exec && exec.__awaiter) || function (thisArg, _arguments, P, generator) {
+	    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+	    return new (P || (P = Promise))(function (resolve, reject) {
+	        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+	        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+	        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+	        step((generator = generator.apply(thisArg, _arguments || [])).next());
+	    });
+	};
+	Object.defineProperty(exec, "__esModule", { value: true });
+	exec.getExecOutput = exec.exec = void 0;
+	const string_decoder_1 = require$$0$c;
+	const tr = __importStar(requireToolrunner());
+	/**
+	 * Exec a command.
+	 * Output will be streamed to the live console.
+	 * Returns promise with return code
+	 *
+	 * @param     commandLine        command to execute (can include additional args). Must be correctly escaped.
+	 * @param     args               optional arguments for tool. Escaping is handled by the lib.
+	 * @param     options            optional exec options.  See ExecOptions
+	 * @returns   Promise<number>    exit code
+	 */
+	function exec$1(commandLine, args, options) {
+	    return __awaiter(this, void 0, void 0, function* () {
+	        const commandArgs = tr.argStringToArray(commandLine);
+	        if (commandArgs.length === 0) {
+	            throw new Error(`Parameter 'commandLine' cannot be null or empty.`);
+	        }
+	        // Path to tool to execute should be first arg
+	        const toolPath = commandArgs[0];
+	        args = commandArgs.slice(1).concat(args || []);
+	        const runner = new tr.ToolRunner(toolPath, args, options);
+	        return runner.exec();
+	    });
+	}
+	exec.exec = exec$1;
+	/**
+	 * Exec a command and get the output.
+	 * Output will be streamed to the live console.
+	 * Returns promise with the exit code and collected stdout and stderr
+	 *
+	 * @param     commandLine           command to execute (can include additional args). Must be correctly escaped.
+	 * @param     args                  optional arguments for tool. Escaping is handled by the lib.
+	 * @param     options               optional exec options.  See ExecOptions
+	 * @returns   Promise<ExecOutput>   exit code, stdout, and stderr
+	 */
+	function getExecOutput(commandLine, args, options) {
+	    var _a, _b;
+	    return __awaiter(this, void 0, void 0, function* () {
+	        let stdout = '';
+	        let stderr = '';
+	        //Using string decoder covers the case where a mult-byte character is split
+	        const stdoutDecoder = new string_decoder_1.StringDecoder('utf8');
+	        const stderrDecoder = new string_decoder_1.StringDecoder('utf8');
+	        const originalStdoutListener = (_a = options === null || options === void 0 ? void 0 : options.listeners) === null || _a === void 0 ? void 0 : _a.stdout;
+	        const originalStdErrListener = (_b = options === null || options === void 0 ? void 0 : options.listeners) === null || _b === void 0 ? void 0 : _b.stderr;
+	        const stdErrListener = (data) => {
+	            stderr += stderrDecoder.write(data);
+	            if (originalStdErrListener) {
+	                originalStdErrListener(data);
+	            }
+	        };
+	        const stdOutListener = (data) => {
+	            stdout += stdoutDecoder.write(data);
+	            if (originalStdoutListener) {
+	                originalStdoutListener(data);
+	            }
+	        };
+	        const listeners = Object.assign(Object.assign({}, options === null || options === void 0 ? void 0 : options.listeners), { stdout: stdOutListener, stderr: stdErrListener });
+	        const exitCode = yield exec$1(commandLine, args, Object.assign(Object.assign({}, options), { listeners }));
+	        //flush any remaining characters
+	        stdout += stdoutDecoder.end();
+	        stderr += stderrDecoder.end();
+	        return {
+	            exitCode,
+	            stdout,
+	            stderr
+	        };
+	    });
+	}
+	exec.getExecOutput = getExecOutput;
+	
+	return exec;
 }
 
 var retryHelper = {};
@@ -85771,15 +87318,15 @@ function requireToolCache () {
 	toolCache.evaluateVersions = toolCache.isExplicitVersion = toolCache.findFromManifest = toolCache.getManifestFromRepo = toolCache.findAllVersions = toolCache.find = toolCache.cacheFile = toolCache.cacheDir = toolCache.extractZip = toolCache.extractXar = toolCache.extractTar = toolCache.extract7z = toolCache.downloadTool = toolCache.HTTPError = void 0;
 	const core = __importStar(requireCore());
 	const io = __importStar(requireIo());
-	const crypto = __importStar(require$$0$3);
+	const crypto = __importStar(require$$0$4);
 	const fs = __importStar(require$$1__default);
 	const mm = __importStar(requireManifest());
-	const os = __importStar(os__default);
+	const os = __importStar(require$$0__default);
 	const path = __importStar(path__default);
 	const httpm = __importStar(requireLib());
 	const semver = __importStar(requireSemver());
 	const stream = __importStar(require$$0$8);
-	const util = __importStar(require$$0$4);
+	const util = __importStar(require$$0$5);
 	const assert_1 = require$$0$6;
 	const exec_1 = requireExec();
 	const retry_helper_1 = requireRetryHelper();
@@ -93318,13 +94865,13 @@ async function acquireOpam() {
 }
 async function initializeOpam() {
     // Set environment variables
-    const opamRoot = path.join(os.homedir(), '.opam');
+    const opamRoot = path.join(require$$0$3.homedir(), '.opam');
     if (coreExports.isDebug()) {
         coreExports.exportVariable('OPAMVERBOSE', 1);
     }
     coreExports.exportVariable('OPAMCOLOR', 'always');
-    coreExports.exportVariable('OPAMDOWNLOADJOBS', os.availableParallelism());
-    coreExports.exportVariable('OPAMJOBS', os.availableParallelism());
+    coreExports.exportVariable('OPAMDOWNLOADJOBS', require$$0$3.availableParallelism());
+    coreExports.exportVariable('OPAMJOBS', require$$0$3.availableParallelism());
     coreExports.exportVariable('OPAMERRLOGLEN', 0);
     coreExports.exportVariable('OPAMEXTERNALSOLVER', 'builtin-0install');
     coreExports.exportVariable('OPAMPRECISETRACKING', 1);
@@ -93424,7 +94971,7 @@ async function setupOpamRepositories() {
     });
 }
 async function configureDune() {
-    const configPath = path.join(os.homedir(), '.config/dune/config');
+    const configPath = path.join(require$$0$3.homedir(), '.config/dune/config');
     await require$$1$1.promises.mkdir(path.dirname(configPath), { recursive: true });
     await require$$1$1.promises.writeFile(configPath, '(lang dune 3.20)\n(display short)\n(cache enabled)\n');
 }
@@ -93472,7 +95019,7 @@ function getMondayDate() {
 
 // Get the directory containing weekly rocq clones
 function getRocqWeeklyDir() {
-    return path.join(os.homedir(), 'rocq-weekly');
+    return path.join(require$$0$3.homedir(), 'rocq-weekly');
 }
 // Get the path to the rocq repository
 function getRocqRepoPath() {
@@ -93636,7 +95183,7 @@ async function getCacheKey() {
     return cacheKey;
 }
 function getOpamRoot() {
-    return path.join(os.homedir(), '.opam');
+    return path.join(require$$0$3.homedir(), '.opam');
 }
 function getCachePaths() {
     const paths = [getOpamRoot(), DUNE_CACHE_ROOT];
