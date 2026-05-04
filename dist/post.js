@@ -77684,6 +77684,14 @@ async function opamClean() {
 }
 
 const ROCQ_PACKAGE_PATTERN = /^(?:coq|rocq)(?:[.-]|$)/;
+/**
+ * Extract a balanced bracketed list from opam file contents.
+ *
+ * @param contents Full opam file contents.
+ * @param start Index of the opening `[` that starts the list.
+ * @returns The list contents including the outer brackets, or undefined if the
+ * list is not balanced.
+ */
 function extractList(contents, start) {
     let depth = 0;
     let inString = false;
@@ -77707,6 +77715,15 @@ function extractList(contents, start) {
         }
     }
 }
+/**
+ * Parse Rocq-related pin-depends entries from a single opam file.
+ *
+ * A valid Rocq pin is any `pin-depends` entry whose package name begins with
+ * `coq` or `rocq`.
+ *
+ * @param contents Full opam file contents.
+ * @returns Rocq pin entries found in the file, in file order.
+ */
 function extractRocqPins(contents) {
     const pins = [];
     const pinDependsPattern = /pin-depends\s*:/g;
@@ -77731,6 +77748,13 @@ function extractRocqPins(contents) {
     }
     return pins;
 }
+/**
+ * Read the opam files matched by `cache-key-opam-files` and collect any
+ * Rocq-related pin-depends entries.
+ *
+ * @returns A sorted list of unique Rocq pins.
+ * @throws If the same Rocq package is pinned to conflicting targets.
+ */
 async function getPinnedRocqPackages() {
     const cacheKeyFiles = getInput('cache-key-opam-files');
     if (!cacheKeyFiles.trim()) {
