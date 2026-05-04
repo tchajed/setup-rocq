@@ -39,6 +39,11 @@ The Rocq opam repository is always available (the equivalent of running
 [actions/glob](https://www.npmjs.com/package/@actions/glob), which takes
 newline-separated patterns.
 
+If the opam files matched by `cache-key-opam-files` contain `pin-depends`
+entries for Rocq packages, setup-rocq will install that pinned package instead
+of the `rocq-version` input and will include the pin target in the Rocq cache
+key.
+
 ### Examples
 
 ```yaml

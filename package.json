@@ -1,7 +1,7 @@
 {
   "name": "setup-rocq",
   "description": "GitHub Action to set up Rocq in CI workflows",
-  "version": "v1.7.2",
+  "version": "v1.7.3",
   "author": "Tej Chajed",
   "type": "module",
   "private": true,

@@ -5,6 +5,11 @@ import * as os from 'os'
 import { opamPin, opamInstall, configureDune, setupOpamEnv } from './opam.js'
 import { getMondayDate } from './weekly.js'
 import { DUNE_VERSION } from './constants.js'
+import {
+  getPinnedRocqInstallPackage,
+  getPinnedRocqPackages,
+  type RocqPin,
+} from './rocq-pin.js'
 
 // Get the directory containing weekly rocq clones
 export function getRocqWeeklyDir(): string {
@@ -169,11 +174,27 @@ async function installRocqVersion(version: string): Promise<void> {
   await opamInstall(`coq.${version}`, ['--unset-root'])
 }
 
+async function installPinnedRocq(pins: RocqPin[]): Promise<void> {
+  const installPackage = getPinnedRocqInstallPackage(pins)
+  core.info(
+    `Installing Rocq from pin-depends using ${installPackage} (${pins.length} pinned package${pins.length === 1 ? '' : 's'})`,
+  )
+
+  for (const pin of pins) {
+    await opamPin(pin.pkg, pin.target)
+  }
+
+  await opamInstall(installPackage, ['--unset-root'])
+}
+
 export async function installRocq(version: string): Promise<void> {
   await core.group('Installing Rocq', async () => {
     // install dune: make this explicit and use a fixed version
     await opamInstall(`dune.${DUNE_VERSION}`)
-    if (version === 'dev') {
+    const pinnedRocqPackages = await getPinnedRocqPackages()
+    if (pinnedRocqPackages.length > 0) {
+      await installPinnedRocq(pinnedRocqPackages)
+    } else if (version === 'dev') {
       await installRocqDev()
     } else if (version === 'weekly') {
       await installRocqWeekly()

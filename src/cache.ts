@@ -15,6 +15,7 @@ import {
   APT_CACHE_DIR,
 } from './constants.js'
 import { opamClean } from './opam.js'
+import { getPinnedRocqCacheKeyPart, getPinnedRocqPackages } from './rocq-pin.js'
 import { getRocqWeeklyDir } from './rocq.js'
 import { getMondayDate } from './weekly.js'
 
@@ -22,7 +23,12 @@ export const CACHE_VERSION = 'v3'
 
 const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}`
 
-function getRocqVersionCacheKey(): string {
+async function getRocqVersionCacheKey(): Promise<string> {
+  const pinnedRocqCacheKey = await getPinnedRocqCacheKeyPart()
+  if (pinnedRocqCacheKey) {
+    return `${CACHE_PLATFORM_PREFIX}-rocq-pinned-${pinnedRocqCacheKey}`
+  }
+
   let cacheKey = `${CACHE_PLATFORM_PREFIX}-rocq-${ROCQ_VERSION}`
   if (ROCQ_VERSION === 'weekly') {
     const date = getMondayDate().toISOString().split('T')[0]
@@ -33,7 +39,7 @@ function getRocqVersionCacheKey(): string {
 
 async function getCacheKey(): Promise<string> {
   const cacheKeyFiles = core.getInput('cache-key-opam-files')
-  let cacheKey = getRocqVersionCacheKey()
+  let cacheKey = await getRocqVersionCacheKey()
   const depHash = await glob.hashFiles(cacheKeyFiles)
   cacheKey += `-${depHash}`
   return cacheKey
@@ -43,11 +49,12 @@ function getOpamRoot(): string {
   return path.join(os.homedir(), '.opam')
 }
 
-function getCachePaths(): string[] {
+async function getCachePaths(): Promise<string[]> {
   const paths = [getOpamRoot(), DUNE_CACHE_ROOT]
+  const pinnedRocqPackages = await getPinnedRocqPackages()
 
   // For weekly version, also cache the directory with cloned repositories
-  if (ROCQ_VERSION === 'weekly') {
+  if (ROCQ_VERSION === 'weekly' && pinnedRocqPackages.length === 0) {
     paths.push(getRocqWeeklyDir())
   }
 
@@ -184,8 +191,9 @@ export async function restoreCache(): Promise<boolean> {
     return false
   }
 
-  const cachePaths = getCachePaths()
+  const cachePaths = await getCachePaths()
   const cacheKey = await getCacheKey()
+  const rocqVersionCacheKey = await getRocqVersionCacheKey()
   // remember key used to later save cache
   core.saveState(State.CachePrimaryKey, cacheKey)
 
@@ -195,7 +203,7 @@ export async function restoreCache(): Promise<boolean> {
   try {
     const start = Date.now()
     const restoredKey = await cache.restoreCache(cachePaths, cacheKey, [
-      `${getRocqVersionCacheKey()}-`,
+      `${rocqVersionCacheKey}-`,
       `${CACHE_PLATFORM_PREFIX}-`,
     ])
     const elapsedMs = Date.now() - start
@@ -239,7 +247,7 @@ export async function saveCache(): Promise<void> {
   // Copy apt cache from system directories before saving
   await copyAptCache()
 
-  const cachePaths = getCachePaths()
+  const cachePaths = await getCachePaths()
 
   core.info(`Saving cache with key: ${cacheKey}`)
   core.info(`Cache paths: ${cachePaths.join(', ')}`)
