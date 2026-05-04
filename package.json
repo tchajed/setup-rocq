@@ -39,12 +39,12 @@
   "license": "MIT",
   "dependencies": {
     "@actions/cache": "^6.0.0",
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/exec": "^3.0.0",
     "@actions/glob": "^0.6.1",
     "@actions/io": "^3.0.2",
     "@actions/tool-cache": "^4.0.0",
-    "yaml": "^2.8.2"
+    "yaml": "^2.8.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
@@ -72,6 +72,6 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.56.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.60.2"
   }
 }
