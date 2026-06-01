@@ -82,3 +82,34 @@ pin-depends: [
     expect(restoreKeys?.[0]).toContain('-rocq-pinned-')
   })
 })
+
+it('does not use sub-package pins in the cache key', async () => {
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-cache-'))
+  const opamFile = path.join(tempDir, 'project.opam')
+  await fs.writeFile(
+    opamFile,
+    `opam-version: "2.0"
+pin-depends: [
+  ["rocq-runtime.dev" "git+https://github.com/rocq-prover/rocq.git#main"]
+  ["rocq-core.dev" "git+https://github.com/rocq-prover/rocq.git#main"]
+  ["rocq-stdlib.dev" "git+https://github.com/rocq-prover/rocq.git#main"]
+]
+`,
+  )
+
+  core.getInput.mockImplementation((name: string) => {
+    if (name === 'rocq-version') {
+      return 'latest'
+    }
+    if (name === 'cache-key-opam-files') {
+      return opamFile
+    }
+    return ''
+  })
+
+  await restoreCache()
+
+  expect(mockCacheRestore).toHaveBeenCalledTimes(1)
+  const [, cacheKey] = mockCacheRestore.mock.calls[0]
+  expect(cacheKey).not.toContain('-rocq-pinned-')
+})

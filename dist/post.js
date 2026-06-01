@@ -77683,7 +77683,9 @@ async function opamClean() {
     ]);
 }
 
-const ROCQ_PACKAGE_PATTERN = /^(?:coq|rocq)(?:[.-]|$)/;
+// Only matches the top-level Rocq prover package (still named "coq" in opam).
+// If opam introduces a top-level "rocq" package in the future, add it here.
+const ROCQ_PACKAGE_PATTERN = /^coq(?:\.|$)/;
 /**
  * Extract a balanced bracketed list from opam file contents.
  *
