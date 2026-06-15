@@ -65,7 +65,7 @@
     "jest": "^30.3.0",
     "minimatch": "^10.2.5",
     "prettier": "^3.8.1",
-    "prettier-eslint": "^16.4.2",
+    "prettier-eslint": "^17.1.0",
     "rollup": "^4.60.1",
     "ts-jest": "^29.4.9",
     "ts-jest-resolver": "^2.0.1",
