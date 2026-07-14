@@ -77,10 +77,40 @@ pin-depends: [
       'coq.dev',
       'git+https://github.com/example/rocq.git#custom',
     )
-    expect(mockOpamInstall).toHaveBeenNthCalledWith(2, 'coq.dev', [
-      '--unset-root',
-    ])
+    expect(mockOpamInstall).toHaveBeenNthCalledWith(
+      2,
+      ['coq.dev'],
+      ['--unset-root'],
+    )
     expect(mockConfigureDune).toHaveBeenCalled()
     expect(mockSetupOpamEnv).toHaveBeenCalled()
+  })
+
+  it('installs latest via rocq-core and rocq-stdlib', async () => {
+    await installRocq('latest')
+
+    expect(mockOpamInstall).toHaveBeenNthCalledWith(
+      2,
+      ['rocq-core', 'rocq-stdlib'],
+      ['--unset-root'],
+    )
+  })
+
+  it('installs specific 9.x versions via rocq-core with unconstrained rocq-stdlib', async () => {
+    await installRocq('9.2.0')
+
+    expect(mockOpamInstall).toHaveBeenNthCalledWith(
+      2,
+      ['rocq-core.9.2.0', 'rocq-stdlib'],
+      ['--unset-root'],
+    )
+  })
+
+  it('installs specific 8.x versions via the coq package', async () => {
+    await installRocq('8.20.1')
+
+    expect(mockOpamInstall).toHaveBeenNthCalledWith(2, 'coq.8.20.1', [
+      '--unset-root',
+    ])
   })
 })

@@ -6,7 +6,7 @@ import { opamPin, opamInstall, configureDune, setupOpamEnv } from './opam.js'
 import { getMondayDate } from './weekly.js'
 import { DUNE_VERSION } from './constants.js'
 import {
-  getPinnedRocqInstallPackage,
+  getPinnedRocqInstallPackages,
   getPinnedRocqPackages,
   type RocqPin,
 } from './rocq-pin.js'
@@ -166,25 +166,34 @@ async function installRocqDev(): Promise<void> {
 
 async function installRocqLatest(): Promise<void> {
   core.info('Installing latest Rocq version')
-  await opamInstall('coq', ['--unset-root'])
+  // the coq compat metapackage lags behind releases (and may stop being
+  // published), so install the real packages instead
+  await opamInstall(['rocq-core', 'rocq-stdlib'], ['--unset-root'])
 }
 
 async function installRocqVersion(version: string): Promise<void> {
   core.info(`Installing Rocq version ${version}`)
-  await opamInstall(`coq.${version}`, ['--unset-root'])
+  if (version.startsWith('8.')) {
+    // rocq-core only exists for 9.0+
+    await opamInstall(`coq.${version}`, ['--unset-root'])
+    return
+  }
+  // rocq-stdlib is versioned independently of rocq-core, so leave it
+  // unconstrained and let the solver pick a compatible version
+  await opamInstall([`rocq-core.${version}`, 'rocq-stdlib'], ['--unset-root'])
 }
 
 async function installPinnedRocq(pins: RocqPin[]): Promise<void> {
-  const installPackage = getPinnedRocqInstallPackage(pins)
+  const installPackages = getPinnedRocqInstallPackages(pins)
   core.info(
-    `Installing Rocq from pin-depends using ${installPackage} (${pins.length} pinned package${pins.length === 1 ? '' : 's'})`,
+    `Installing Rocq from pin-depends using ${installPackages.join(', ')} (${pins.length} pinned package${pins.length === 1 ? '' : 's'})`,
   )
 
   for (const pin of pins) {
     await opamPin(pin.pkg, pin.target)
   }
 
-  await opamInstall(installPackage, ['--unset-root'])
+  await opamInstall(installPackages, ['--unset-root'])
 }
 
 export async function installRocq(version: string): Promise<void> {

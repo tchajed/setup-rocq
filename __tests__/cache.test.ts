@@ -83,7 +83,7 @@ pin-depends: [
   })
 })
 
-it('does not use sub-package pins in the cache key', async () => {
+it('uses rocq-* package pins in the cache key', async () => {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-cache-'))
   const opamFile = path.join(tempDir, 'project.opam')
   await fs.writeFile(
@@ -111,5 +111,5 @@ pin-depends: [
 
   expect(mockCacheRestore).toHaveBeenCalledTimes(1)
   const [, cacheKey] = mockCacheRestore.mock.calls[0]
-  expect(cacheKey).not.toContain('-rocq-pinned-')
+  expect(cacheKey).toContain('-rocq-pinned-')
 })

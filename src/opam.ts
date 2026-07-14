@@ -214,10 +214,11 @@ export async function opamUpdate(): Promise<void> {
 }
 
 export async function opamInstall(
-  pkg: string,
+  pkgs: string | string[],
   options: string[] = [],
 ): Promise<void> {
-  await exec.exec('opam', ['install', pkg, ...options])
+  const pkgList = Array.isArray(pkgs) ? pkgs : [pkgs]
+  await exec.exec('opam', ['install', ...pkgList, ...options])
 }
 
 export async function opamPin(

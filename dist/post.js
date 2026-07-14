@@ -85492,9 +85492,9 @@ async function opamClean() {
     ]);
 }
 
-// Only matches the top-level Rocq prover package (still named "coq" in opam).
-// If opam introduces a top-level "rocq" package in the future, add it here.
-const ROCQ_PACKAGE_PATTERN = /^coq(?:\.|$)/;
+// Matches the packages that name a Rocq release: the top-level "coq" compat
+// metapackage and the post-rename rocq-* packages.
+const ROCQ_PACKAGE_PATTERN = /^(?:coq|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/;
 /**
  * Extract a balanced bracketed list from opam file contents.
  *

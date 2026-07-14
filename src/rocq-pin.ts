@@ -8,9 +8,13 @@ export interface RocqPin {
   target: string
 }
 
-// Only matches the top-level Rocq prover package (still named "coq" in opam).
-// If opam introduces a top-level "rocq" package in the future, add it here.
-const ROCQ_PACKAGE_PATTERN = /^coq(?:\.|$)/
+// Matches the packages that name a Rocq release: the top-level "coq" compat
+// metapackage and the post-rename rocq-* packages.
+const ROCQ_PACKAGE_PATTERN =
+  /^(?:coq|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/
+
+// The root of the post-rename Rocq package graph.
+const ROCQ_CORE_PATTERN = /^rocq-core(?:\.|$)/
 
 /**
  * Extract a balanced bracketed list from opam file contents.
@@ -140,31 +144,37 @@ export async function getPinnedRocqCacheKeyPart(): Promise<string | undefined> {
 }
 
 /**
- * Choose the Rocq package to install from the discovered pin-depends entries.
+ * Choose the Rocq packages to install from the discovered pin-depends entries.
  *
  * The precedence matches the common layouts for Rocq source pins:
  * `coq.dev` first, then `coq`, then a single pinned package when there is only
- * one candidate.
+ * one candidate. When multiple `rocq-*` packages are pinned without a `coq`
+ * metapackage, all pins are installed explicitly since `rocq-core` does not
+ * depend on `rocq-stdlib`.
  *
  * @param pins Rocq-related pin-depends entries.
- * @returns The package name to pass to `opam install`.
- * @throws If multiple Rocq pins are present without an explicit `coq` or
- * `coq.dev` package.
+ * @returns The package names to pass to `opam install`.
+ * @throws If multiple Rocq pins are present without an explicit `coq`,
+ * `coq.dev`, or `rocq-core` package.
  */
-export function getPinnedRocqInstallPackage(pins: RocqPin[]): string {
+export function getPinnedRocqInstallPackages(pins: RocqPin[]): string[] {
   if (pins.some((pin) => pin.pkg === 'coq.dev')) {
-    return 'coq.dev'
+    return ['coq.dev']
   }
 
   if (pins.some((pin) => pin.pkg === 'coq')) {
-    return 'coq'
+    return ['coq']
   }
 
   if (pins.length === 1) {
-    return pins[0].pkg
+    return [pins[0].pkg]
+  }
+
+  if (pins.some((pin) => ROCQ_CORE_PATTERN.test(pin.pkg))) {
+    return pins.map((pin) => pin.pkg)
   }
 
   throw new Error(
-    'Found Rocq pin-depends, but could not determine which package to install. Pin coq or coq.dev explicitly.',
+    'Found Rocq pin-depends, but could not determine which package to install. Pin coq, coq.dev, or rocq-core explicitly.',
   )
 }
