@@ -20,8 +20,21 @@ const mockOpam = {
   setupOpamEnv: mockSetupOpamEnv,
 }
 
+const mockExec = jest.fn<(cmd: string, args?: string[]) => Promise<number>>()
+const mockGetExecOutput =
+  jest.fn<
+    (
+      cmd: string,
+      args?: string[],
+    ) => Promise<{ exitCode: number; stdout: string; stderr: string }>
+  >()
+
 jest.unstable_mockModule('@actions/core', () => core)
 jest.unstable_mockModule('../src/opam.js', () => mockOpam)
+jest.unstable_mockModule('@actions/exec', () => ({
+  exec: mockExec,
+  getExecOutput: mockGetExecOutput,
+}))
 
 core.group.mockImplementation(
   async (_name: string, fn: () => Promise<void>) => {
@@ -38,6 +51,12 @@ describe('rocq.ts', () => {
     mockOpamPin.mockResolvedValue(undefined)
     mockConfigureDune.mockResolvedValue(undefined)
     mockSetupOpamEnv.mockResolvedValue(undefined)
+    mockExec.mockResolvedValue(0)
+    mockGetExecOutput.mockResolvedValue({
+      exitCode: 0,
+      stdout: 'deadbeefdeadbeefdeadbeefdeadbeefdeadbeef\n',
+      stderr: '',
+    })
     core.getInput.mockImplementation((name: string) => {
       if (name === 'cache-key-opam-files') {
         return path.join(os.tmpdir(), 'setup-rocq-empty', '*.opam')
@@ -116,6 +135,37 @@ pin-depends: [
     expect(mockOpamInstall).toHaveBeenNthCalledWith(2, 'coq.8.20.1', [
       '--unset-root',
     ])
+  })
+
+  // The bug this guards: rocq-stdlib.dev was left unpinned while
+  // coq-stdlib.dev was pinned to Monday's commit, so the weekly switch
+  // took its library from the dev repo's moving branch instead of the
+  // commit the run reported, and opam could mark it dirty on any sync.
+  it('pins every weekly dev package to a commit, including rocq-stdlib', async () => {
+    await installRocq('weekly')
+
+    const stdlibTarget = `git+file://${path.join(os.homedir(), 'rocq-weekly', 'stdlib')}#deadbeefdeadbeefdeadbeefdeadbeefdeadbeef`
+    expect(mockOpamPin).toHaveBeenCalledWith('rocq-stdlib.dev', stdlibTarget)
+    expect(mockOpamPin).toHaveBeenCalledWith('coq-stdlib.dev', stdlibTarget)
+
+    const rocqTarget = `git+file://${path.join(os.homedir(), 'rocq-weekly', 'rocq')}#deadbeefdeadbeefdeadbeefdeadbeefdeadbeef`
+    for (const pkg of [
+      'rocq-runtime.dev',
+      'rocq-core.dev',
+      'coqide-server.dev',
+      'coq-core.dev',
+    ]) {
+      expect(mockOpamPin).toHaveBeenCalledWith(pkg, rocqTarget)
+    }
+  })
+
+  it('pins rocq-stdlib alongside coq-stdlib for the dev version', async () => {
+    await installRocq('dev')
+
+    expect(mockOpamPin).toHaveBeenCalledWith(
+      'rocq-stdlib.dev',
+      'git+https://github.com/rocq-prover/stdlib.git',
+    )
   })
 
   describe('dune', () => {

@@ -90950,11 +90950,20 @@ async function installRocqWeekly() {
     const stdlibCommit = await getMondayCommitHash(stdlibRepoPath);
     info(`Using rocq commit: ${rocqCommit}`);
     info(`Using stdlib commit: ${stdlibCommit}`);
-    // Pin dev packages to specific commits
+    // Pin every dev package in the cone to a commit.  rocq-stdlib was the
+    // omission: coq-stdlib was pinned to Monday's stdlib commit while
+    // rocq-stdlib -- the package that actually holds the library -- was
+    // left to resolve from the dev repo, whose branch moves.  So a
+    // "weekly" switch was not pinned to Monday for that package, and the
+    // two stdlib packages could come from different commits.  An unpinned
+    // dev package is also perpetually out of date as far as opam is
+    // concerned, so any dev sync marks it -- and coq-stdlib, which uses
+    // it, and the coq metapackage above that -- for recompilation.
     await opamPin('rocq-runtime.dev', `git+file://${rocqRepoPath}#${rocqCommit}`);
     await opamPin('rocq-core.dev', `git+file://${rocqRepoPath}#${rocqCommit}`);
     await opamPin('coqide-server.dev', `git+file://${rocqRepoPath}#${rocqCommit}`);
     await opamPin('coq-core.dev', `git+file://${rocqRepoPath}#${rocqCommit}`);
+    await opamPin('rocq-stdlib.dev', `git+file://${stdlibRepoPath}#${stdlibCommit}`);
     await opamPin('coq-stdlib.dev', `git+file://${stdlibRepoPath}#${stdlibCommit}`);
     await opamPin('coq.dev', '--dev-repo');
     // Install the pinned packages
@@ -90969,6 +90978,7 @@ async function installRocqDev() {
     await opamPin('rocq-core.dev', rocqUrl);
     await opamPin('coqide-server.dev', rocqUrl);
     await opamPin('coq-core.dev', rocqUrl);
+    await opamPin('rocq-stdlib.dev', stdlibUrl);
     await opamPin('coq-stdlib.dev', stdlibUrl);
     // NOTE: this meta package is not in any rocq source repo; only found in rocq
     // core-dev opam repo
