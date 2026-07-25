@@ -78881,6 +78881,18 @@ function getCacheServiceVersion() {
         return 'v1';
     return process.env['ACTIONS_CACHE_SERVICE_V2'] ? 'v2' : 'v1';
 }
+// The cache-mode lattice: readable = {read, write}, writable = {write,
+// write-only}, none = neither.
+const KNOWN_CACHE_MODES = ['none', 'read', 'write', 'write-only'];
+// The effective cache-mode exported by the runner, or '' when not set.
+function getCacheMode() {
+    return (process.env['ACTIONS_CACHE_MODE'] || '').trim().toLowerCase();
+}
+function isCacheWritable(mode) {
+    if (!KNOWN_CACHE_MODES.includes(mode))
+        return true;
+    return mode === 'write' || mode === 'write-only';
+}
 function getCacheServiceURL() {
     const version = getCacheServiceVersion();
     // Based on the version of the cache service, we will determine which
@@ -78897,7 +78909,7 @@ function getCacheServiceURL() {
     }
 }
 
-var version = "6.0.1";
+var version = "6.2.0";
 var require$$0 = {
 	version: version};
 
@@ -83069,6 +83081,36 @@ class ReserveCacheError extends Error {
         Object.setPrototypeOf(this, ReserveCacheError.prototype);
     }
 }
+/**
+ * Stable prefix the cache service writes into the cache reservation response
+ * when the issuer downgraded the cache token to read-only (for example, because
+ * the run was triggered by an untrusted event). saveCacheV1 / saveCacheV2
+ * dispatch on this prefix to re-classify the failure as a CacheWriteDeniedError
+ * so consumers and tests can distinguish a policy denial from other reservation
+ * failures. Internally it is logged as a non-fatal warning like other
+ * best-effort save failures.
+ */
+const CACHE_WRITE_DENIED_PREFIX = 'cache write denied:';
+/**
+ * Raised when the cache backend refuses to reserve a writable cache entry
+ * because the JWT issued for this run was scoped read-only (for example, the
+ * run was triggered by an event the repository administrator classified as
+ * untrusted). The service-supplied detail message always begins with
+ * `cache write denied:` (the full error message includes additional context
+ * like the cache key).
+ *
+ * Extends ReserveCacheError for source-compatibility: existing
+ * `instanceof ReserveCacheError` checks and `typedError.name ===
+ * ReserveCacheError.name` paths keep working, while consumers that want to
+ * distinguish the policy case can match on this subclass.
+ */
+class CacheWriteDeniedError extends ReserveCacheError {
+    constructor(message) {
+        super(message);
+        this.name = 'CacheWriteDeniedError';
+        Object.setPrototypeOf(this, CacheWriteDeniedError.prototype);
+    }
+}
 class FinalizeCacheError extends Error {
     constructor(message) {
         super(message);
@@ -83105,6 +83147,12 @@ function saveCache$1(paths_1, key_1, options_1) {
         debug(`Cache service version: ${cacheServiceVersion}`);
         checkPaths(paths);
         checkKey(key);
+        const cacheMode = getCacheMode();
+        if (!isCacheWritable(cacheMode)) {
+            info(`Cache save skipped: the effective cache-mode '${cacheMode}' does not permit writes.`);
+            debug(`Skipped save for paths [${paths.join(', ')}] with key '${key}'.`);
+            return -1;
+        }
         switch (cacheServiceVersion) {
             case 'v2':
                 return yield saveCacheV2(paths, key, options, enableCrossOsArchive);
@@ -83125,7 +83173,7 @@ function saveCache$1(paths_1, key_1, options_1) {
  */
 function saveCacheV1(paths_1, key_1, options_1) {
     return __awaiter(this, arguments, void 0, function* (paths, key, options, enableCrossOsArchive = false) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d, _e, _f;
         const compressionMethod = yield getCompressionMethod();
         let cacheId = -1;
         const cachePaths = yield resolvePaths(paths);
@@ -83162,7 +83210,17 @@ function saveCacheV1(paths_1, key_1, options_1) {
                 throw new Error((_d = (_c = reserveCacheResponse === null || reserveCacheResponse === void 0 ? void 0 : reserveCacheResponse.error) === null || _c === void 0 ? void 0 : _c.message) !== null && _d !== void 0 ? _d : `Cache size of ~${Math.round(archiveFileSize / (1024 * 1024))} MB (${archiveFileSize} B) is over the data cap limit, not saving cache.`);
             }
             else {
-                throw new ReserveCacheError(`Unable to reserve cache with key ${key}, another job may be creating this cache. More details: ${(_e = reserveCacheResponse === null || reserveCacheResponse === void 0 ? void 0 : reserveCacheResponse.error) === null || _e === void 0 ? void 0 : _e.message}`);
+                // Inspect the receiver's error message before deciding which error to
+                // throw. A message starting with the stable `cache write denied:`
+                // prefix indicates the issuer downgraded the token to read-only
+                // (policy denial), not a contention case, so we surface it as a
+                // CacheWriteDeniedError which the outer catch arm logs at warning
+                // level.
+                const detailMessage = (_e = reserveCacheResponse === null || reserveCacheResponse === void 0 ? void 0 : reserveCacheResponse.error) === null || _e === void 0 ? void 0 : _e.message;
+                if (detailMessage === null || detailMessage === void 0 ? void 0 : detailMessage.startsWith(CACHE_WRITE_DENIED_PREFIX)) {
+                    throw new CacheWriteDeniedError(`Unable to reserve cache with key ${key}. More details: ${detailMessage}`);
+                }
+                throw new ReserveCacheError(`Unable to reserve cache with key ${key}, another job may be creating this cache. More details: ${(_f = reserveCacheResponse === null || reserveCacheResponse === void 0 ? void 0 : reserveCacheResponse.error) === null || _f === void 0 ? void 0 : _f.message}`);
             }
             debug(`Saving Cache (ID: ${cacheId})`);
             yield saveCache$2(cacheId, archivePath, '', options);
@@ -83176,7 +83234,10 @@ function saveCacheV1(paths_1, key_1, options_1) {
                 info(`Failed to save: ${typedError.message}`);
             }
             else {
-                // Log server errors (5xx) as errors, all other errors as warnings
+                // Log server errors (5xx) as errors, all other errors as warnings.
+                // A write denied by policy (CacheWriteDeniedError) is not an
+                // HttpClientError and its name does not match the ReserveCacheError arm,
+                // so it falls here and is warned without failing the run.
                 if (typedError instanceof HttpClientError &&
                     typeof typedError.statusCode === 'number' &&
                     typedError.statusCode >= 500) {
@@ -83210,6 +83271,7 @@ function saveCacheV1(paths_1, key_1, options_1) {
  */
 function saveCacheV2(paths_1, key_1, options_1) {
     return __awaiter(this, arguments, void 0, function* (paths, key, options, enableCrossOsArchive = false) {
+        var _a;
         // Override UploadOptions to force the use of Azure
         // ...options goes first because we want to override the default values
         // set in UploadOptions with these specific figures
@@ -83245,7 +83307,11 @@ function saveCacheV2(paths_1, key_1, options_1) {
             try {
                 const response = yield twirpClient.CreateCacheEntry(request);
                 if (!response.ok) {
-                    if (response.message) {
+                    // Skip the redundant inner warning when the receiver signalled a
+                    // policy denial: the outer catch arm below will log a single
+                    // customer-facing warning.
+                    if (response.message &&
+                        !response.message.startsWith(CACHE_WRITE_DENIED_PREFIX)) {
                         warning(`Cache reservation failed: ${response.message}`);
                     }
                     throw new Error(response.message || 'Response was not ok');
@@ -83254,6 +83320,10 @@ function saveCacheV2(paths_1, key_1, options_1) {
             }
             catch (error) {
                 debug(`Failed to reserve cache: ${error}`);
+                const errorMessage = (_a = error === null || error === void 0 ? void 0 : error.message) !== null && _a !== void 0 ? _a : '';
+                if (errorMessage.startsWith(CACHE_WRITE_DENIED_PREFIX)) {
+                    throw new CacheWriteDeniedError(`Unable to reserve cache with key ${key}. More details: ${errorMessage}`);
+                }
                 throw new ReserveCacheError(`Unable to reserve cache with key ${key}, another job may be creating this cache.`);
             }
             debug(`Attempting to upload cache located at: ${archivePath}`);
@@ -83285,7 +83355,10 @@ function saveCacheV2(paths_1, key_1, options_1) {
                 warning(typedError.message);
             }
             else {
-                // Log server errors (5xx) as errors, all other errors as warnings
+                // Log server errors (5xx) as errors, all other errors as warnings.
+                // A write denied by policy (CacheWriteDeniedError) is not an
+                // HttpClientError and its name does not match the ReserveCacheError arm,
+                // so it falls here and is warned without failing the run.
                 if (typedError instanceof HttpClientError &&
                     typeof typedError.statusCode === 'number' &&
                     typedError.statusCode >= 500) {
