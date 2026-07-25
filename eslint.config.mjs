@@ -35,6 +35,11 @@ export default [
             'jest.config.js',
             'rollup.config.ts',
           ],
+          // The globs above already matched the default cap of 8 files,
+          // so a single new test file fails the lint with "Too many
+          // files (>8) have matched the default project".  The cost of
+          // raising it is lint speed on these few files.
+          maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 20,
         },
         tsconfigRootDir: import.meta.dirname,
       },

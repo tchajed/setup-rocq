@@ -90656,16 +90656,25 @@ async function opamInstall(pkgs, options = []) {
     const pkgList = Array.isArray(pkgs) ? pkgs : [pkgs];
     await exec('opam', ['install', ...pkgList, ...options]);
 }
+// Parse the stdout of `opam show --field installed-version`.  Returns
+// null for a package that is not installed, which opam prints as `--`.
+//
+// setupOpamEnv exports OPAMCOLOR=always, and opam colorizes even a
+// single-field query, so the escapes have to come off even though
+// --color=never is passed below.
+function parseInstalledVersion(stdout) {
+    // eslint-disable-next-line no-control-regex
+    const version = stdout.replace(/\x1b\[[0-9;]*m/g, '').trim();
+    return version === '' || version === '--' ? null : version;
+}
 // The version of `pkg` installed in the current switch, or null if it is
 // not installed (or opam cannot answer, e.g. an unknown package name).
 async function opamInstalledVersion(pkg) {
-    const output = await getExecOutput('opam', ['show', '--field', 'installed-version', pkg], { silent: true, ignoreReturnCode: true });
+    const output = await getExecOutput('opam', ['show', '--color=never', '--field', 'installed-version', pkg], { silent: true, ignoreReturnCode: true });
     if (output.exitCode !== 0) {
         return null;
     }
-    // opam prints `--` for a package that is not installed.
-    const version = output.stdout.trim();
-    return version === '' || version === '--' ? null : version;
+    return parseInstalledVersion(output.stdout);
 }
 async function opamPin(pkg, target, options = []) {
     await exec('opam', [
