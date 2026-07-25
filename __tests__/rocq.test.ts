@@ -10,9 +10,12 @@ const mockOpamPin =
   jest.fn<(pkg: string, target: string, options?: string[]) => Promise<void>>()
 const mockConfigureDune = jest.fn<() => Promise<void>>()
 const mockSetupOpamEnv = jest.fn<() => Promise<void>>()
+const mockOpamInstalledVersion =
+  jest.fn<(pkg: string) => Promise<string | null>>()
 const mockOpam = {
   opamInstall: mockOpamInstall,
   opamPin: mockOpamPin,
+  opamInstalledVersion: mockOpamInstalledVersion,
   configureDune: mockConfigureDune,
   setupOpamEnv: mockSetupOpamEnv,
 }
@@ -26,11 +29,12 @@ core.group.mockImplementation(
   },
 )
 
-const { installRocq } = await import('../src/rocq.js')
+const { installRocq, compareDottedVersions } = await import('../src/rocq.js')
 
 describe('rocq.ts', () => {
   beforeEach(() => {
     mockOpamInstall.mockResolvedValue(undefined)
+    mockOpamInstalledVersion.mockResolvedValue(null)
     mockOpamPin.mockResolvedValue(undefined)
     mockConfigureDune.mockResolvedValue(undefined)
     mockSetupOpamEnv.mockResolvedValue(undefined)
@@ -112,5 +116,75 @@ pin-depends: [
     expect(mockOpamInstall).toHaveBeenNthCalledWith(2, 'coq.8.20.1', [
       '--unset-root',
     ])
+  })
+
+  describe('dune', () => {
+    it('installs the pinned version when dune is not installed', async () => {
+      mockOpamInstalledVersion.mockResolvedValue(null)
+
+      await installRocq('latest')
+
+      expect(mockOpamInstall).toHaveBeenNthCalledWith(1, 'dune.3.22.1')
+    })
+
+    // The bug this guards: a restored cache whose switch the project's own
+    // `opam install` already moved to a newer dune.  Requesting the pinned
+    // version there is a downgrade, which recompiles all of Rocq twice per
+    // run and uninstalls packages that require the newer dune.
+    it('keeps a newer dune from a restored cache', async () => {
+      mockOpamInstalledVersion.mockResolvedValue('3.23.1')
+
+      await installRocq('latest')
+
+      expect(mockOpamInstall).not.toHaveBeenCalledWith('dune.3.22.1')
+      expect(mockOpamInstall).toHaveBeenNthCalledWith(
+        1,
+        ['rocq-core', 'rocq-stdlib'],
+        ['--unset-root'],
+      )
+    })
+
+    it('keeps dune when it is exactly the pinned version', async () => {
+      mockOpamInstalledVersion.mockResolvedValue('3.22.1')
+
+      await installRocq('latest')
+
+      expect(mockOpamInstall).not.toHaveBeenCalledWith('dune.3.22.1')
+    })
+
+    it('upgrades an older dune to the pinned version', async () => {
+      mockOpamInstalledVersion.mockResolvedValue('3.19.0')
+
+      await installRocq('latest')
+
+      expect(mockOpamInstall).toHaveBeenNthCalledWith(1, 'dune.3.22.1')
+    })
+
+    it('installs the pinned version when the installed version is unparsable', async () => {
+      mockOpamInstalledVersion.mockResolvedValue('3.23.1+beta')
+
+      await installRocq('latest')
+
+      expect(mockOpamInstall).toHaveBeenNthCalledWith(1, 'dune.3.22.1')
+    })
+  })
+
+  describe('compareDottedVersions', () => {
+    it('orders by numeric component, not lexicographically', () => {
+      // '3.9.0' > '3.10.0' as strings
+      expect(compareDottedVersions('3.9.0', '3.10.0')).toBeLessThan(0)
+      expect(compareDottedVersions('3.23.1', '3.22.1')).toBeGreaterThan(0)
+      expect(compareDottedVersions('3.22.1', '3.22.1')).toBe(0)
+    })
+
+    it('treats a missing component as zero', () => {
+      expect(compareDottedVersions('3.22', '3.22.0')).toBe(0)
+      expect(compareDottedVersions('3.22', '3.22.1')).toBeLessThan(0)
+    })
+
+    it('returns null for a version it cannot parse', () => {
+      expect(compareDottedVersions('3.22.1+dev', '3.22.1')).toBeNull()
+      expect(compareDottedVersions('3.22.1', 'dev')).toBeNull()
+    })
   })
 })

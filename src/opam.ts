@@ -221,6 +221,24 @@ export async function opamInstall(
   await exec.exec('opam', ['install', ...pkgList, ...options])
 }
 
+// The version of `pkg` installed in the current switch, or null if it is
+// not installed (or opam cannot answer, e.g. an unknown package name).
+export async function opamInstalledVersion(
+  pkg: string,
+): Promise<string | null> {
+  const output = await exec.getExecOutput(
+    'opam',
+    ['show', '--field', 'installed-version', pkg],
+    { silent: true, ignoreReturnCode: true },
+  )
+  if (output.exitCode !== 0) {
+    return null
+  }
+  // opam prints `--` for a package that is not installed.
+  const version = output.stdout.trim()
+  return version === '' || version === '--' ? null : version
+}
+
 export async function opamPin(
   pkg: string,
   target: string,

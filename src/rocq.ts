@@ -2,7 +2,13 @@ import * as core from '@actions/core'
 import * as exec from '@actions/exec'
 import * as path from 'path'
 import * as os from 'os'
-import { opamPin, opamInstall, configureDune, setupOpamEnv } from './opam.js'
+import {
+  opamPin,
+  opamInstall,
+  opamInstalledVersion,
+  configureDune,
+  setupOpamEnv,
+} from './opam.js'
 import { getMondayDate } from './weekly.js'
 import { DUNE_VERSION } from './constants.js'
 import {
@@ -196,10 +202,56 @@ async function installPinnedRocq(pins: RocqPin[]): Promise<void> {
   await opamInstall(installPackages, ['--unset-root'])
 }
 
+// Compare two dotted-numeric versions.  Returns a negative number if a <
+// b, zero if they are equal, and a positive number if a > b.  Returns
+// null if either is not purely dotted-numeric, which is the caller's
+// signal that it cannot decide.
+export function compareDottedVersions(a: string, b: string): number | null {
+  const parse = (v: string): number[] | null => {
+    const parts = v.split('.')
+    const nums = parts.map((p) => (/^\d+$/.test(p) ? Number(p) : NaN))
+    return nums.some(Number.isNaN) ? null : nums
+  }
+  const av = parse(a)
+  const bv = parse(b)
+  if (av === null || bv === null) {
+    return null
+  }
+  for (let i = 0; i < Math.max(av.length, bv.length); i++) {
+    const diff = (av[i] ?? 0) - (bv[i] ?? 0)
+    if (diff !== 0) {
+      return diff
+    }
+  }
+  return 0
+}
+
+// Install dune, treating DUNE_VERSION as a floor rather than a pin.
+//
+// A restored cache can hold a switch whose dune the project's own
+// `opam install` already upgraded past DUNE_VERSION.  Asking for
+// `dune.DUNE_VERSION` there is a downgrade, and opam responds by
+// recompiling every package that uses dune -- all of Rocq -- twice per
+// run, once down and once back up when the project's dependencies are
+// installed.  It also uninstalls any package whose constraint the older
+// dune violates.  So keep a dune that is already new enough.
+export async function installDune(): Promise<void> {
+  const installed = await opamInstalledVersion('dune')
+  if (installed !== null) {
+    const cmp = compareDottedVersions(installed, DUNE_VERSION)
+    if (cmp !== null && cmp >= 0) {
+      core.info(
+        `dune ${installed} is already installed and is at least ${DUNE_VERSION}; keeping it`,
+      )
+      return
+    }
+  }
+  await opamInstall(`dune.${DUNE_VERSION}`)
+}
+
 export async function installRocq(version: string): Promise<void> {
   await core.group('Installing Rocq', async () => {
-    // install dune: make this explicit and use a fixed version
-    await opamInstall(`dune.${DUNE_VERSION}`)
+    await installDune()
     const pinnedRocqPackages = await getPinnedRocqPackages()
     if (pinnedRocqPackages.length > 0) {
       await installPinnedRocq(pinnedRocqPackages)

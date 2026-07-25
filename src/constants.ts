@@ -6,6 +6,10 @@ export const OCAML_VERSION = '5.4.0'
 
 export const OPAM_VERSION = '2.5.0'
 
+// The dune version installed into a fresh switch.  This is a floor, not
+// a pin: a restored cache whose switch already has a newer dune keeps
+// that dune, because a downgrade forces a recompile of every package
+// built with dune -- all of Rocq.  See installDune() in rocq.ts.
 export const DUNE_VERSION = '3.22.1'
 
 export const ROCQ_VERSION = core.getInput('rocq-version')

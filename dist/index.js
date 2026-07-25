@@ -83045,6 +83045,10 @@ function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
 
 const OCAML_VERSION = '5.4.0';
 const OPAM_VERSION = '2.5.0';
+// The dune version installed into a fresh switch.  This is a floor, not
+// a pin: a restored cache whose switch already has a newer dune keeps
+// that dune, because a downgrade forces a recompile of every package
+// built with dune -- all of Rocq.  See installDune() in rocq.ts.
 const DUNE_VERSION = '3.22.1';
 const ROCQ_VERSION = getInput('rocq-version');
 const PLATFORM = os.platform();
@@ -90574,6 +90578,17 @@ async function opamInstall(pkgs, options = []) {
     const pkgList = Array.isArray(pkgs) ? pkgs : [pkgs];
     await exec('opam', ['install', ...pkgList, ...options]);
 }
+// The version of `pkg` installed in the current switch, or null if it is
+// not installed (or opam cannot answer, e.g. an unknown package name).
+async function opamInstalledVersion(pkg) {
+    const output = await getExecOutput('opam', ['show', '--field', 'installed-version', pkg], { silent: true, ignoreReturnCode: true });
+    if (output.exitCode !== 0) {
+        return null;
+    }
+    // opam prints `--` for a package that is not installed.
+    const version = output.stdout.trim();
+    return version === '' || version === '--' ? null : version;
+}
 async function opamPin(pkg, target, options = []) {
     await exec('opam', [
         'pin',
@@ -90899,10 +90914,52 @@ async function installPinnedRocq(pins) {
     }
     await opamInstall(installPackages, ['--unset-root']);
 }
+// Compare two dotted-numeric versions.  Returns a negative number if a <
+// b, zero if they are equal, and a positive number if a > b.  Returns
+// null if either is not purely dotted-numeric, which is the caller's
+// signal that it cannot decide.
+function compareDottedVersions(a, b) {
+    const parse = (v) => {
+        const parts = v.split('.');
+        const nums = parts.map((p) => (/^\d+$/.test(p) ? Number(p) : NaN));
+        return nums.some(Number.isNaN) ? null : nums;
+    };
+    const av = parse(a);
+    const bv = parse(b);
+    if (av === null || bv === null) {
+        return null;
+    }
+    for (let i = 0; i < Math.max(av.length, bv.length); i++) {
+        const diff = (av[i] ?? 0) - (bv[i] ?? 0);
+        if (diff !== 0) {
+            return diff;
+        }
+    }
+    return 0;
+}
+// Install dune, treating DUNE_VERSION as a floor rather than a pin.
+//
+// A restored cache can hold a switch whose dune the project's own
+// `opam install` already upgraded past DUNE_VERSION.  Asking for
+// `dune.DUNE_VERSION` there is a downgrade, and opam responds by
+// recompiling every package that uses dune -- all of Rocq -- twice per
+// run, once down and once back up when the project's dependencies are
+// installed.  It also uninstalls any package whose constraint the older
+// dune violates.  So keep a dune that is already new enough.
+async function installDune() {
+    const installed = await opamInstalledVersion('dune');
+    if (installed !== null) {
+        const cmp = compareDottedVersions(installed, DUNE_VERSION);
+        if (cmp !== null && cmp >= 0) {
+            info(`dune ${installed} is already installed and is at least ${DUNE_VERSION}; keeping it`);
+            return;
+        }
+    }
+    await opamInstall(`dune.${DUNE_VERSION}`);
+}
 async function installRocq(version) {
     await group('Installing Rocq', async () => {
-        // install dune: make this explicit and use a fixed version
-        await opamInstall(`dune.${DUNE_VERSION}`);
+        await installDune();
         const pinnedRocqPackages = await getPinnedRocqPackages();
         if (pinnedRocqPackages.length > 0) {
             await installPinnedRocq(pinnedRocqPackages);
