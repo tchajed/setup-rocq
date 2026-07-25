@@ -4,7 +4,7 @@ import path from 'path'
 
 export const OCAML_VERSION = '5.4.0'
 
-export const OPAM_VERSION = '2.5.0'
+export const OPAM_VERSION = '2.5.2'
 
 // The dune version installed into a fresh switch.  This is a floor, not
 // a pin: a restored cache whose switch already has a newer dune keeps
