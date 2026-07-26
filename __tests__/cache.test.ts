@@ -50,8 +50,16 @@ const defaultInputs = (name: string) => {
 core.getInput.mockImplementation(defaultInputs)
 
 // Load the real constants (they read inputs, which are mocked above), then
-// override the two that would otherwise make these tests touch the machine:
-// the apt cache path, and the dune cache root that saveCache() mkdirs.
+// override the two that would otherwise have these tests touch the machine:
+// the apt cache path, and the dune cache root.
+//
+// Note that nothing here calls saveCache().  saveCache() invokes
+// stripBinaryAnnotations() with its default root, which *deletes* every
+// .cmt/.cmti under ~/.opam -- on the machine running the tests.  Guarding that
+// with a mocked strip-binary-annotations input works only for as long as
+// nobody edits the mock, which is too sharp an edge for the coverage it buys.
+// stripBinaryAnnotations is tested below against a temp directory, and the
+// save path end to end by the cache workflows in setup-rocq-test.
 const realConstants = await import('../src/constants.js')
 const duneCacheRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-dune-'))
 jest.unstable_mockModule('../src/constants.js', () => ({
@@ -62,7 +70,6 @@ jest.unstable_mockModule('../src/constants.js', () => ({
 
 const {
   restoreCache,
-  saveCache,
   shouldSaveCache,
   stripBinaryAnnotations,
   CACHE_PLATFORM_PREFIX,
@@ -219,112 +226,6 @@ pin-depends: [
     expect((await restoreCache()).restored).toBe(false)
     expect(core.warning).toHaveBeenCalledWith(
       expect.stringContaining('cache service is down'),
-    )
-  })
-})
-
-describe('saveCache', () => {
-  const state = (values: Record<string, string>) => {
-    core.getState.mockImplementation((name: string) => values[name] ?? '')
-  }
-
-  // Two inputs have to be pinned for these tests to mean anything.
-  //
-  // strip-binary-annotations: saveCache() calls stripBinaryAnnotations(),
-  // which defaults its root to path.join(os.homedir(), '.opam') and *deletes*
-  // every .cmt/.cmti under it.  These tests run on real machines, so without
-  // this the suite strips the developer's own opam switches.
-  // stripBinaryAnnotations is tested directly, against a temp directory.
-  //
-  // save-if: the default 'auto' consults GITHUB_EVENT_NAME, so these tests
-  // would otherwise pass locally and skip every save on CI, where the event is
-  // pull_request.  These cases are about the completion and key checks;
-  // shouldSaveCache has its own tests.
-  const saveCacheInputs = (name: string) => {
-    if (name === 'strip-binary-annotations') return 'false'
-    if (name === 'save-if') return 'true'
-    return defaultInputs(name)
-  }
-
-  beforeEach(() => {
-    mockCacheSave.mockResolvedValue(1)
-    mockOpamClean.mockResolvedValue(undefined)
-    core.getInput.mockImplementation(saveCacheInputs)
-  })
-
-  afterEach(() => {
-    jest.resetAllMocks()
-  })
-
-  it('saves when setup completed and the key is new', async () => {
-    state({ CACHE_KEY: 'primary-key', SETUP_COMPLETE: 'true' })
-
-    await saveCache()
-
-    expect(mockOpamClean).toHaveBeenCalled()
-    expect(mockCacheSave).toHaveBeenCalledWith(
-      expect.arrayContaining([path.join(os.homedir(), '.opam')]),
-      'primary-key',
-    )
-  })
-
-  // The post action runs with post-if: always(), so it also runs after a
-  // failed setup.  Saving a half-built switch would poison every later run,
-  // because main.ts skips switch creation on any cache hit.
-  it('refuses to save when setup did not complete', async () => {
-    state({ CACHE_KEY: 'primary-key' })
-
-    await saveCache()
-
-    expect(mockCacheSave).not.toHaveBeenCalled()
-    expect(mockOpamClean).not.toHaveBeenCalled()
-    expect(core.info).toHaveBeenCalledWith(
-      expect.stringContaining('Setup did not complete'),
-    )
-  })
-
-  it('skips an exact cache hit', async () => {
-    state({
-      CACHE_KEY: 'primary-key',
-      CACHE_RESULT: 'primary-key',
-      SETUP_COMPLETE: 'true',
-    })
-
-    await saveCache()
-
-    expect(mockCacheSave).not.toHaveBeenCalled()
-  })
-
-  it('still saves when only a fallback key matched', async () => {
-    state({
-      CACHE_KEY: 'primary-key',
-      CACHE_RESULT: 'older-fallback-key',
-      SETUP_COMPLETE: 'true',
-    })
-
-    await saveCache()
-
-    expect(mockCacheSave).toHaveBeenCalled()
-  })
-
-  it('warns when there is no key to save under', async () => {
-    state({ SETUP_COMPLETE: 'true' })
-
-    await saveCache()
-
-    expect(mockCacheSave).not.toHaveBeenCalled()
-    expect(core.warning).toHaveBeenCalledWith(
-      expect.stringContaining('No cache key'),
-    )
-  })
-
-  it('warns rather than throwing when the save fails', async () => {
-    state({ CACHE_KEY: 'primary-key', SETUP_COMPLETE: 'true' })
-    mockCacheSave.mockRejectedValue(new Error('cache upload failed'))
-
-    await expect(saveCache()).resolves.toBeUndefined()
-    expect(core.warning).toHaveBeenCalledWith(
-      expect.stringContaining('cache upload failed'),
     )
   })
 })
