@@ -31,7 +31,8 @@ core.getInput.mockImplementation((name: string) => {
   return ''
 })
 
-const { restoreCache, shouldSaveCache } = await import('../src/cache.js')
+const { restoreCache, shouldSaveCache, stripBinaryAnnotations } =
+  await import('../src/cache.js')
 
 describe('cache.ts', () => {
   beforeEach(() => {
@@ -185,5 +186,60 @@ describe('shouldSaveCache', () => {
     expect(core.warning).toHaveBeenCalledWith(
       expect.stringContaining('Unrecognized save-if value'),
     )
+  })
+})
+
+describe('stripBinaryAnnotations', () => {
+  let opamRoot: string
+  let pkgDir: string
+
+  beforeEach(async () => {
+    // The root is passed in explicitly rather than derived from HOME:
+    // os.homedir() does not always follow a reassigned process.env.HOME,
+    // and this function deletes files, so it must never be aimed by
+    // ambient state.
+    opamRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-strip-'))
+    pkgDir = path.join(opamRoot, 'default', 'lib', 'pkg')
+    await fs.mkdir(pkgDir, { recursive: true })
+  })
+
+  afterEach(async () => {
+    await fs.rm(opamRoot, { recursive: true, force: true })
+  })
+
+  async function write(name: string): Promise<string> {
+    const file = path.join(pkgDir, name)
+    await fs.writeFile(file, 'x'.repeat(64))
+    return file
+  }
+
+  it('removes .cmt and .cmti but leaves build artifacts alone', async () => {
+    const cmt = await write('a.cmt')
+    const cmti = await write('a.cmti')
+    const cmx = await write('a.cmx')
+    const cmi = await write('a.cmi')
+    const cmxs = await write('a.cmxs')
+    const vo = await write('a.vo')
+
+    core.getInput.mockImplementation(() => '')
+    await stripBinaryAnnotations(opamRoot)
+
+    await expect(fs.access(cmt)).rejects.toThrow()
+    await expect(fs.access(cmti)).rejects.toThrow()
+    await expect(fs.access(cmx)).resolves.toBeUndefined()
+    await expect(fs.access(cmi)).resolves.toBeUndefined()
+    await expect(fs.access(cmxs)).resolves.toBeUndefined()
+    await expect(fs.access(vo)).resolves.toBeUndefined()
+  })
+
+  it('keeps annotations when strip-binary-annotations is false', async () => {
+    const cmt = await write('a.cmt')
+
+    core.getInput.mockImplementation((name: string) =>
+      name === 'strip-binary-annotations' ? 'false' : '',
+    )
+    await stripBinaryAnnotations(opamRoot)
+
+    await expect(fs.access(cmt)).resolves.toBeUndefined()
   })
 })

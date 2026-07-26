@@ -33,6 +33,14 @@ inputs:
       pull_request` only), otherwise no cache will ever be populated.'
     required: false
     default: 'auto'
+  strip-binary-annotations:
+    description:
+      'Delete .cmt/.cmti files from the switch before saving the cache. These
+      are read by merlin, ocaml-lsp and odoc but by nothing that builds a Rocq
+      project, and they are roughly a fifth of the compressed cache. Set to
+      "false" if your workflow runs those tools against the switch.'
+    required: false
+    default: 'true'
 
 runs:
   using: node24

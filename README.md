@@ -19,12 +19,13 @@ GitHub action to install Rocq with opam. Supports caching of opam dependencies.
 
 ### Inputs
 
-| Input                  | Description                                                 | Required | Default    |
-| ---------------------- | ----------------------------------------------------------- | -------- | ---------- |
-| `rocq-version`         | The version of Rocq to install                              | No       | `latest`   |
-| `opam-repositories`    | Additional opam repositories to add (YAML name:url object)  | No       | `''`       |
-| `cache-key-opam-files` | Opam files to hash for the cache key.                       | No       | `'*.opam'` |
-| `save-if`              | Whether the post step saves a cache (`true`/`false`/`auto`) | No       | `'auto'`   |
+| Input                      | Description                                                 | Required | Default    |
+| -------------------------- | ----------------------------------------------------------- | -------- | ---------- |
+| `rocq-version`             | The version of Rocq to install                              | No       | `latest`   |
+| `opam-repositories`        | Additional opam repositories to add (YAML name:url object)  | No       | `''`       |
+| `cache-key-opam-files`     | Opam files to hash for the cache key.                       | No       | `'*.opam'` |
+| `save-if`                  | Whether the post step saves a cache (`true`/`false`/`auto`) | No       | `'auto'`   |
+| `strip-binary-annotations` | Delete `.cmt`/`.cmti` from the switch before saving         | No       | `'true'`   |
 
 `rocq-version` supports these special strings, in addition to full Rocq versions
 (as used by `opam install`):
@@ -57,6 +58,19 @@ never save.
 > with no `push` trigger), no run will ever be eligible to save under `auto` and
 > your cache will never be populated. Set `save-if: true`, or add a `push`
 > trigger for your default branch.
+
+`strip-binary-annotations` deletes `.cmt` and `.cmti` files from the switch in
+the post step, just before the cache is uploaded. These are OCaml binary
+annotation files: merlin, ocaml-lsp and odoc read them to answer questions about
+source, but nothing involved in _building_ a Rocq project does. They are roughly
+a fifth of the compressed cache, which makes this the largest saving available.
+
+Deleting them does not disturb opam's bookkeeping — opam tracks which packages
+are installed, not a checksum over their files — so an incremental
+`opam install` against the restored switch still sees every package as present.
+
+Set it to `false` if your workflow runs merlin, ocaml-lsp or odoc against the
+restored switch.
 
 If the opam files matched by `cache-key-opam-files` contain `pin-depends`
 entries for Rocq packages, setup-rocq will install that pinned package instead

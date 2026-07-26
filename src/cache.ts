@@ -273,6 +273,66 @@ export function shouldSaveCache(): boolean {
   return true
 }
 
+/**
+ * Delete OCaml binary annotation files from the opam root before uploading.
+ *
+ * `.cmt`/`.cmti` are what merlin, ocaml-lsp and odoc read to answer
+ * questions about source; `ocamlfind`, `dune`, `ocamlopt` and Rocq itself
+ * never look at them, so a switch that only has to *build* projects does
+ * not need them.  They are around a fifth of the compressed switch, which
+ * makes this the single biggest saving available.
+ *
+ * Deleting them does not disturb opam's bookkeeping: opam tracks which
+ * packages are installed, not a checksum over their files, so an
+ * incremental `opam install` against the restored switch still sees every
+ * package as present.
+ *
+ * The tradeoff is that a workflow which runs merlin, ocaml-lsp or odoc
+ * against the restored switch will find those tools degraded.  Set
+ * `strip-binary-annotations: false` in that case.
+ */
+export async function stripBinaryAnnotations(
+  // Takes the root explicitly so tests can point it at a scratch directory.
+  // This deletes files, so it must never depend on ambient state to decide
+  // where it operates.
+  opamRoot: string = getOpamRoot(),
+): Promise<void> {
+  if (
+    core.getInput('strip-binary-annotations').trim().toLowerCase() === 'false'
+  ) {
+    core.info('strip-binary-annotations is false, keeping .cmt/.cmti files')
+    return
+  }
+
+  const globber = await glob.create(
+    [`${opamRoot}/**/*.cmt`, `${opamRoot}/**/*.cmti`].join('\n'),
+    { followSymbolicLinks: false },
+  )
+  const files = await globber.glob()
+
+  let bytes = 0
+  let removed = 0
+  for (const file of files) {
+    try {
+      const stat = await fs.stat(file)
+      await fs.rm(file, { force: true })
+      bytes += stat.size
+      removed += 1
+    } catch (error) {
+      // A file that vanished under us costs nothing; keep going rather
+      // than fail the whole post step over a stray annotation file.
+      if (error instanceof Error) {
+        core.debug(`Could not remove ${file}: ${error.message}`)
+      }
+    }
+  }
+
+  const megabytes = Math.round(bytes / (1024 * 1024))
+  core.info(
+    `Stripped ${removed} .cmt/.cmti files (${megabytes}MB uncompressed) before saving`,
+  )
+}
+
 export async function saveCache(): Promise<void> {
   const cacheKey = core.getState(State.CachePrimaryKey)
   const restoredKey = core.getState(State.CacheMatchedKey)
@@ -292,6 +352,7 @@ export async function saveCache(): Promise<void> {
   }
 
   await opamClean()
+  await stripBinaryAnnotations()
   await fs.mkdir(DUNE_CACHE_ROOT, { recursive: true })
 
   // Copy apt cache from system directories before saving
