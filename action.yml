@@ -23,6 +23,16 @@ inputs:
       'Opam files to use for cache key. Separate patterns with newlines.'
     required: false
     default: '*.opam'
+  save-if:
+    description:
+      'Whether to save the cache in the post step: "true", "false", or "auto"
+      (the default), which saves on every event except pull_request. A cache
+      saved by a pull_request run is scoped to that PR and is invisible to every
+      other branch, so it can only evict shared caches, never be reused by them.
+      Set to "true" if your workflow never runs on a branch (e.g. `on:
+      pull_request` only), otherwise no cache will ever be populated.'
+    required: false
+    default: 'auto'
 
 runs:
   using: node24

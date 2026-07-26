@@ -85744,11 +85744,50 @@ async function copyAptCache() {
         }
     }
 }
+/**
+ * Decide whether the post step should save a cache, from the `save-if` input.
+ *
+ * GitHub scopes a cache write to the ref that made it.  A `pull_request` run
+ * writes under `refs/pull/N/merge`, which no other branch -- including the
+ * base branch and every sibling PR -- can ever read.  Such a cache is
+ * therefore pure cost: it counts against the repository's 10GB quota and
+ * evicts, least-recently-used, the branch caches that PRs actually restore
+ * from.  A repository with enough concurrent PRs evicts its default-branch
+ * cache and every run from then on is a cold start.
+ *
+ * So under `auto` we restore on pull_request but do not save.
+ */
+function shouldSaveCache() {
+    const saveIf = getInput('save-if').trim().toLowerCase();
+    if (saveIf === 'false') {
+        info('save-if is false, skipping save');
+        return false;
+    }
+    // Treat anything explicitly truthy as "always save"; `auto` (the default)
+    // and an empty input fall through to the event check.
+    if (saveIf === 'true') {
+        return true;
+    }
+    if (saveIf !== 'auto' && saveIf !== '') {
+        warning(`Unrecognized save-if value '${saveIf}', expected true, false, or auto; treating as auto`);
+    }
+    const eventName = process.env.GITHUB_EVENT_NAME ?? '';
+    if (eventName === 'pull_request' || eventName === 'pull_request_target') {
+        info(`Not saving cache: a ${eventName} run's cache is scoped to the PR and ` +
+            'cannot be restored by any other branch. Pass save-if: true to ' +
+            'override (needed if your workflow only runs on pull requests).');
+        return false;
+    }
+    return true;
+}
 async function saveCache() {
     const cacheKey = getState(State.CachePrimaryKey);
     const restoredKey = getState(State.CacheMatchedKey);
     if (!cacheKey) {
         warning('No cache key found, skipping save');
+        return;
+    }
+    if (!shouldSaveCache()) {
         return;
     }
     if (restoredKey === cacheKey) {
