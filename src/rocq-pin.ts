@@ -8,13 +8,19 @@ export interface RocqPin {
   target: string
 }
 
-// Matches the packages that name a Rocq release: the top-level "coq" compat
-// metapackage and the post-rename rocq-* packages.
+// Matches the packages that make up a Rocq release itself: the coq and
+// rocq-prover metapackages, the post-rename rocq-* packages, and the coq-*
+// compat shims that ship from the same source tree.
+//
+// This is deliberately an explicit list rather than a "starts with coq or
+// rocq" test, which would also match every coq-* library package on the
+// opam repository (coq-mathcomp, coq-iris, ...).  Treating one of those as
+// the Rocq installation would install the wrong thing.
 const ROCQ_PACKAGE_PATTERN =
-  /^(?:coq|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/
+  /^(?:coq|coq-core|coq-stdlib|coqide-server|rocq-prover|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/
 
-// The root of the post-rename Rocq package graph.
-const ROCQ_CORE_PATTERN = /^rocq-core(?:\.|$)/
+// The roots of the post-rename Rocq package graph.
+const ROCQ_CORE_PATTERN = /^(?:rocq-core|rocq-prover)(?:\.|$)/
 
 /**
  * Extract a balanced bracketed list from opam file contents.
@@ -53,8 +59,8 @@ function extractList(contents: string, start: number): string | undefined {
 /**
  * Parse Rocq-related pin-depends entries from a single opam file.
  *
- * A valid Rocq pin is any `pin-depends` entry whose package name begins with
- * `coq` or `rocq`.
+ * A valid Rocq pin is any `pin-depends` entry naming a package that is part of
+ * a Rocq release itself; see ROCQ_PACKAGE_PATTERN.
  *
  * @param contents Full opam file contents.
  * @returns Rocq pin entries found in the file, in file order.
@@ -164,6 +170,11 @@ export function getPinnedRocqInstallPackages(pins: RocqPin[]): string[] {
 
   if (pins.some((pin) => pin.pkg === 'coq')) {
     return ['coq']
+  }
+
+  const rocqProver = pins.find((pin) => /^rocq-prover(?:\.|$)/.test(pin.pkg))
+  if (rocqProver) {
+    return [rocqProver.pkg]
   }
 
   if (pins.length === 1) {

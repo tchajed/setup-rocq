@@ -83382,6 +83382,9 @@ function saveCacheV2(paths_1, key_1, options_1) {
     });
 }
 
+const DEFAULT_OCAML_VERSION = '5.4.0';
+getInput('ocaml-version') || DEFAULT_OCAML_VERSION;
+const OPAM_VERSION = '2.5.2';
 const ROCQ_VERSION = getInput('rocq-version');
 const PLATFORM = os.platform();
 os.arch();
@@ -83404,7 +83407,20 @@ var State;
 (function (State) {
     State["CachePrimaryKey"] = "CACHE_KEY";
     State["CacheMatchedKey"] = "CACHE_RESULT";
+    // Set by the main action once the switch is fully set up and Rocq is
+    // installed.  The post action refuses to save a cache without it.
+    State["SetupComplete"] = "SETUP_COMPLETE";
 })(State || (State = {}));
+// action outputs
+var Output;
+(function (Output) {
+    Output["CacheHit"] = "cache-hit";
+    Output["CachePrimaryKey"] = "cache-primary-key";
+    Output["CacheMatchedKey"] = "cache-matched-key";
+    Output["RocqVersion"] = "rocq-version";
+    Output["OCamlVersion"] = "ocaml-version";
+    Output["OpamSwitchPrefix"] = "opam-switch-prefix";
+})(Output || (Output = {}));
 
 (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -85565,9 +85581,15 @@ async function opamClean() {
     ]);
 }
 
-// Matches the packages that name a Rocq release: the top-level "coq" compat
-// metapackage and the post-rename rocq-* packages.
-const ROCQ_PACKAGE_PATTERN = /^(?:coq|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/;
+// Matches the packages that make up a Rocq release itself: the coq and
+// rocq-prover metapackages, the post-rename rocq-* packages, and the coq-*
+// compat shims that ship from the same source tree.
+//
+// This is deliberately an explicit list rather than a "starts with coq or
+// rocq" test, which would also match every coq-* library package on the
+// opam repository (coq-mathcomp, coq-iris, ...).  Treating one of those as
+// the Rocq installation would install the wrong thing.
+const ROCQ_PACKAGE_PATTERN = /^(?:coq|coq-core|coq-stdlib|coqide-server|rocq-prover|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/;
 /**
  * Extract a balanced bracketed list from opam file contents.
  *
@@ -85602,8 +85624,8 @@ function extractList(contents, start) {
 /**
  * Parse Rocq-related pin-depends entries from a single opam file.
  *
- * A valid Rocq pin is any `pin-depends` entry whose package name begins with
- * `coq` or `rocq`.
+ * A valid Rocq pin is any `pin-depends` entry naming a package that is part of
+ * a Rocq release itself; see ROCQ_PACKAGE_PATTERN.
  *
  * @param contents Full opam file contents.
  * @returns Rocq pin entries found in the file, in file order.
@@ -85666,6 +85688,9 @@ function getRocqWeeklyDir() {
     return path$1.join(os.homedir(), 'rocq-weekly');
 }
 
+// The opam root's on-disk format is tied to opam's major.minor, so a cache
+// saved by a different opam series should not be restored into this one.
+OPAM_VERSION.split('.').slice(0, 2).join('.');
 function getOpamRoot() {
     return path$1.join(os.homedir(), '.opam');
 }
@@ -85834,6 +85859,17 @@ async function saveCache() {
     const restoredKey = getState(State.CacheMatchedKey);
     if (!cacheKey) {
         warning('No cache key found, skipping save');
+        return;
+    }
+    // The post action runs with post-if: always(), so it also runs when the main
+    // action failed.  A switch left half-built by a failed setup must not be
+    // saved: it would be restored on every later run, and main.ts skips switch
+    // creation whenever a cache is restored.
+    //
+    // This is checked before save-if, because "setup never finished" is a
+    // stronger reason not to save than any policy the input can express.
+    if (getState(State.SetupComplete) !== 'true') {
+        info('Setup did not complete, skipping cache save');
         return;
     }
     if (!shouldSaveCache()) {

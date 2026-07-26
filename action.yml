@@ -41,9 +41,38 @@ inputs:
       "false" if your workflow runs those tools against the switch.'
     required: false
     default: 'true'
+  ocaml-version:
+    description:
+      'The version of the OCaml compiler to install in the opam switch. Rocq 8.x
+      requires an OCaml 4.x compiler.'
+    required: false
+    default: '5.4.0'
+
+outputs:
+  cache-hit:
+    description: 'Whether an opam cache was restored ("true" or "false")'
+  cache-primary-key:
+    description: 'The cache key this run computed and would save under'
+  cache-matched-key:
+    description:
+      'The key of the cache that was actually restored. Differs from
+      cache-primary-key when a fallback prefix matched; empty on a miss.'
+  rocq-version:
+    description:
+      'The Rocq version actually installed, as reported by opam. Empty if it
+      could not be determined.'
+  ocaml-version:
+    description: 'The OCaml version installed in the switch'
+  opam-switch-prefix:
+    description: 'The prefix of the opam switch Rocq was installed into'
 
 runs:
   using: node24
   main: dist/index.js
   post: dist/post.js
-  post-if: success()
+  # always(), not success(): a job whose build fails after a successful Rocq
+  # install should still save the cache, since that is exactly the case where
+  # rebuilding from scratch is most expensive.  saveCache() itself refuses to
+  # run unless the main action recorded that setup completed, so a switch left
+  # half-built by a failed setup is never saved.
+  post-if: always()

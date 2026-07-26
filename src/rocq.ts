@@ -262,8 +262,31 @@ export async function installDune(): Promise<void> {
   await opamInstall(`dune.${DUNE_VERSION}`)
 }
 
+// Packages that carry a Rocq release's version number, most specific first.
+// rocq-core is the root of the post-rename package graph; coq is the compat
+// metapackage still used by the 8.x line and by dev/weekly pins.
+const ROCQ_VERSION_PACKAGES = ['rocq-core', 'coq', 'coq-core']
+
+// The Rocq version actually present in the switch after installation.  This is
+// what the resolver picked, which for `latest`, `dev`, and a partial version
+// input is not something the caller can predict.  Returns null if no known
+// Rocq package is installed.
+export async function getInstalledRocqVersion(): Promise<string | null> {
+  for (const pkg of ROCQ_VERSION_PACKAGES) {
+    const version = await opamInstalledVersion(pkg)
+    if (version !== null) {
+      return version
+    }
+  }
+  return null
+}
+
 export async function installRocq(version: string): Promise<void> {
   await core.group('Installing Rocq', async () => {
+    // Configure dune before anything is built, not after: Rocq itself is a
+    // dune project, so a cache-enabled config written first lets the Rocq
+    // build populate the dune cache that the post action saves.
+    await configureDune()
     await installDune()
     const pinnedRocqPackages = await getPinnedRocqPackages()
     if (pinnedRocqPackages.length > 0) {
@@ -278,6 +301,5 @@ export async function installRocq(version: string): Promise<void> {
       await installRocqVersion(version)
     }
     await setupOpamEnv()
-    await configureDune()
   })
 }

@@ -9,6 +9,8 @@ import {
   PLATFORM,
   ARCHITECTURE,
   ROCQ_VERSION,
+  OCAML_VERSION,
+  OPAM_VERSION,
   IS_LINUX,
   State,
   DUNE_CACHE_ROOT,
@@ -19,9 +21,18 @@ import { getPinnedRocqCacheKeyPart, getPinnedRocqPackages } from './rocq-pin.js'
 import { getRocqWeeklyDir } from './rocq.js'
 import { getMondayDate } from './weekly.js'
 
-export const CACHE_VERSION = 'v3'
+export const CACHE_VERSION = 'v4'
 
-const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}`
+// The opam root's on-disk format is tied to opam's major.minor, so a cache
+// saved by a different opam series should not be restored into this one.
+const OPAM_SERIES = OPAM_VERSION.split('.').slice(0, 2).join('.')
+
+// The switch's compiler and the opam root format both have to be part of every
+// key, including the fallback prefixes.  main.ts only creates a switch on a
+// cache miss, so a cache that is allowed to match across OCaml versions pins
+// the switch to whatever compiler it was built with -- bumping OCAML_VERSION
+// would then have no effect at all.
+export const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}-opam-${OPAM_SERIES}`
 
 async function getRocqVersionCacheKey(): Promise<string> {
   const pinnedRocqCacheKey = await getPinnedRocqCacheKeyPart()
@@ -185,10 +196,28 @@ async function restoreAptCache(): Promise<void> {
   }
 }
 
-export async function restoreCache(): Promise<boolean> {
+export interface CacheRestoreResult {
+  /** Whether any cache was restored, by exact key or by a fallback prefix. */
+  restored: boolean
+  /** The key this run computed and will save under; '' if none was computed. */
+  primaryKey: string
+  /** The key actually restored; '' on a miss. */
+  matchedKey: string
+}
+
+/**
+ * Restore the opam cache.
+ *
+ * The keys are returned rather than left for the caller to read back with
+ * core.getState().  saveState() writes to the state file, but getState() reads
+ * environment variables the runner populates at step *start*, so state written
+ * during this step reads back empty until the post step.  The caller needs
+ * these values now, to report them as outputs.
+ */
+export async function restoreCache(): Promise<CacheRestoreResult> {
   if (!cache.isFeatureAvailable()) {
     core.warning('cache feature is not available, not restoring')
-    return false
+    return { restored: false, primaryKey: '', matchedKey: '' }
   }
 
   const cachePaths = await getCachePaths()
@@ -214,16 +243,16 @@ export async function restoreCache(): Promise<boolean> {
       core.saveState(State.CacheMatchedKey, restoredKey)
       // Restore apt cache to system directories
       await restoreAptCache()
-      return true
+      return { restored: true, primaryKey: cacheKey, matchedKey: restoredKey }
     } else {
       core.info('Cache not found')
-      return false
+      return { restored: false, primaryKey: cacheKey, matchedKey: '' }
     }
   } catch (error) {
     if (error instanceof Error) {
       core.warning(`Failed to restore cache: ${error.message}`)
     }
-    return false
+    return { restored: false, primaryKey: cacheKey, matchedKey: '' }
   }
 }
 
@@ -339,6 +368,18 @@ export async function saveCache(): Promise<void> {
 
   if (!cacheKey) {
     core.warning('No cache key found, skipping save')
+    return
+  }
+
+  // The post action runs with post-if: always(), so it also runs when the main
+  // action failed.  A switch left half-built by a failed setup must not be
+  // saved: it would be restored on every later run, and main.ts skips switch
+  // creation whenever a cache is restored.
+  //
+  // This is checked before save-if, because "setup never finished" is a
+  // stronger reason not to save than any policy the input can express.
+  if (core.getState(State.SetupComplete) !== 'true') {
+    core.info('Setup did not complete, skipping cache save')
     return
   }
 

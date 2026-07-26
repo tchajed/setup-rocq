@@ -42,7 +42,8 @@ core.group.mockImplementation(
   },
 )
 
-const { installRocq, compareDottedVersions } = await import('../src/rocq.js')
+const { installRocq, compareDottedVersions, getInstalledRocqVersion } =
+  await import('../src/rocq.js')
 
 describe('rocq.ts', () => {
   beforeEach(() => {
@@ -236,5 +237,80 @@ pin-depends: [
       expect(compareDottedVersions('3.22.1+dev', '3.22.1')).toBeNull()
       expect(compareDottedVersions('3.22.1', 'dev')).toBeNull()
     })
+  })
+})
+
+describe('getInstalledRocqVersion', () => {
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+
+  it('reads the version from rocq-core', async () => {
+    mockOpamInstalledVersion.mockImplementation(async (pkg) =>
+      pkg === 'rocq-core' ? '9.1.0' : null,
+    )
+
+    expect(await getInstalledRocqVersion()).toBe('9.1.0')
+  })
+
+  // The 8.x line and the dev/weekly pins install the coq metapackage, which
+  // carries the release number when rocq-core is absent.
+  it('falls back to coq when rocq-core is absent', async () => {
+    mockOpamInstalledVersion.mockImplementation(async (pkg) =>
+      pkg === 'coq' ? '8.20.1' : null,
+    )
+
+    expect(await getInstalledRocqVersion()).toBe('8.20.1')
+  })
+
+  it('prefers rocq-core over the compat metapackages', async () => {
+    mockOpamInstalledVersion.mockImplementation(async (pkg) =>
+      pkg === 'rocq-core' ? '9.1.0' : '8.20.1',
+    )
+
+    expect(await getInstalledRocqVersion()).toBe('9.1.0')
+  })
+
+  it('returns null when no Rocq package is installed', async () => {
+    mockOpamInstalledVersion.mockResolvedValue(null)
+
+    expect(await getInstalledRocqVersion()).toBeNull()
+  })
+})
+
+describe('configureDune ordering', () => {
+  beforeEach(() => {
+    // resetAllMocks() in earlier suites drops these
+    core.group.mockImplementation(
+      async (_name: string, fn: () => Promise<void>) => {
+        await fn()
+      },
+    )
+    core.getInput.mockImplementation((name: string) =>
+      name === 'cache-key-opam-files'
+        ? path.join(os.tmpdir(), 'setup-rocq-empty', '*.opam')
+        : '',
+    )
+  })
+
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+
+  // Rocq is itself a dune project, so the cache-enabled config has to exist
+  // before anything is built or the Rocq build populates nothing.
+  it('configures dune before installing anything', async () => {
+    const order: string[] = []
+    mockConfigureDune.mockImplementation(async () => {
+      order.push('configureDune')
+    })
+    mockOpamInstall.mockImplementation(async () => {
+      order.push('opamInstall')
+    })
+    mockOpamInstalledVersion.mockResolvedValue(null)
+
+    await installRocq('latest')
+
+    expect(order[0]).toBe('configureDune')
   })
 })

@@ -81,3 +81,24 @@ jobs:
       - name: Test installed tools
         run: |
           echo "rocq: $(rocq --print-version)"
+      - name: Check outputs
+        run: |
+          test "${{ steps.test-action.outputs.rocq-version }}" = "9.0.0"
+          test -n "${{ steps.test-action.outputs.ocaml-version }}"
+          test -n "${{ steps.test-action.outputs.opam-switch-prefix }}"
+
+  test-action-macos:
+    name: Run action (macOS)
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run local action
+        id: test-action
+        uses: ./
+      - name: Test installed tools
+        run: |
+          echo "opam: $(opam --version)"
+          echo "ocamlc: $(ocamlc --version)"
+          echo "dune: $(dune --version)"
+          echo "rocq: $(rocq --print-version)"

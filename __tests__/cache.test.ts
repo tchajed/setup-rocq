@@ -12,40 +12,89 @@ const mockCacheRestore =
       restoreKeys?: string[],
     ) => Promise<string | undefined>
   >()
+const mockCacheSave =
+  jest.fn<(paths: string[], key: string) => Promise<number>>()
 const mockCache = {
   isFeatureAvailable: jest.fn(() => true),
   restoreCache: mockCacheRestore,
-  saveCache: jest.fn(),
+  saveCache: mockCacheSave,
 }
+
+const mockOpamClean = jest.fn<() => Promise<void>>()
 
 jest.unstable_mockModule('@actions/core', () => core)
 jest.unstable_mockModule('@actions/cache', () => mockCache)
+// cache.ts pulls in rocq.ts for getRocqWeeklyDir(), so the opam mock has to
+// cover everything rocq.ts imports too.
+jest.unstable_mockModule('../src/opam.js', () => ({
+  opamClean: mockOpamClean,
+  opamPin: jest.fn(),
+  opamInstall: jest.fn(),
+  opamInstalledVersion: jest.fn(),
+  configureDune: jest.fn(),
+  setupOpamEnv: jest.fn(),
+}))
 
-core.getInput.mockImplementation((name: string) => {
+const emptyOpamGlob = path.join(os.tmpdir(), 'setup-rocq-empty', '*.opam')
+
+const defaultInputs = (name: string) => {
   if (name === 'rocq-version') {
     return 'latest'
   }
   if (name === 'cache-key-opam-files') {
-    return path.join(os.tmpdir(), 'setup-rocq-empty', '*.opam')
+    return emptyOpamGlob
   }
   return ''
-})
+}
 
-const { restoreCache, shouldSaveCache, stripBinaryAnnotations } =
-  await import('../src/cache.js')
+core.getInput.mockImplementation(defaultInputs)
+
+// Load the real constants (they read inputs, which are mocked above), then
+// override the two that would otherwise make these tests touch the machine:
+// the apt cache path, and the dune cache root that saveCache() mkdirs.
+const realConstants = await import('../src/constants.js')
+const duneCacheRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-dune-'))
+jest.unstable_mockModule('../src/constants.js', () => ({
+  ...realConstants,
+  IS_LINUX: false,
+  DUNE_CACHE_ROOT: duneCacheRoot,
+}))
+
+const {
+  restoreCache,
+  saveCache,
+  shouldSaveCache,
+  stripBinaryAnnotations,
+  CACHE_PLATFORM_PREFIX,
+} = await import('../src/cache.js')
+
+async function opamFileWith(contents: string): Promise<string> {
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-cache-'))
+  const opamFile = path.join(tempDir, 'project.opam')
+  await fs.writeFile(opamFile, contents)
+  return opamFile
+}
+
+function useOpamFile(opamFile: string, rocqVersion = 'latest') {
+  core.getInput.mockImplementation((name: string) => {
+    if (name === 'rocq-version') {
+      return rocqVersion
+    }
+    if (name === 'cache-key-opam-files') {
+      return opamFile
+    }
+    return ''
+  })
+}
 
 describe('cache.ts', () => {
   beforeEach(() => {
     mockCacheRestore.mockResolvedValue(undefined)
-    core.getInput.mockImplementation((name: string) => {
-      if (name === 'rocq-version') {
-        return 'latest'
-      }
-      if (name === 'cache-key-opam-files') {
-        return path.join(os.tmpdir(), 'setup-rocq-empty', '*.opam')
-      }
-      return ''
-    })
+    mockCacheSave.mockResolvedValue(1)
+    mockOpamClean.mockResolvedValue(undefined)
+    mockCache.isFeatureAvailable.mockReturnValue(true)
+    core.getInput.mockImplementation(defaultInputs)
+    core.getState.mockReturnValue('')
   })
 
   afterEach(() => {
@@ -54,26 +103,14 @@ describe('cache.ts', () => {
   })
 
   it('uses pinned Rocq targets in the cache restore prefix', async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-cache-'))
-    const opamFile = path.join(tempDir, 'project.opam')
-    await fs.writeFile(
-      opamFile,
+    const opamFile = await opamFileWith(
       `opam-version: "2.0"
 pin-depends: [
   ["coq" "git+https://github.com/example/rocq.git#abcdef"]
 ]
 `,
     )
-
-    core.getInput.mockImplementation((name: string) => {
-      if (name === 'rocq-version') {
-        return 'latest'
-      }
-      if (name === 'cache-key-opam-files') {
-        return opamFile
-      }
-      return ''
-    })
+    useOpamFile(opamFile)
 
     await restoreCache()
 
@@ -82,37 +119,279 @@ pin-depends: [
     expect(cacheKey).toContain('-rocq-pinned-')
     expect(restoreKeys?.[0]).toContain('-rocq-pinned-')
   })
-})
 
-it('uses rocq-* package pins in the cache key', async () => {
-  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-cache-'))
-  const opamFile = path.join(tempDir, 'project.opam')
-  await fs.writeFile(
-    opamFile,
-    `opam-version: "2.0"
+  it('uses rocq-* package pins in the cache key', async () => {
+    const opamFile = await opamFileWith(
+      `opam-version: "2.0"
 pin-depends: [
   ["rocq-runtime.dev" "git+https://github.com/rocq-prover/rocq.git#main"]
   ["rocq-core.dev" "git+https://github.com/rocq-prover/rocq.git#main"]
   ["rocq-stdlib.dev" "git+https://github.com/rocq-prover/rocq.git#main"]
 ]
 `,
-  )
+    )
+    useOpamFile(opamFile)
 
-  core.getInput.mockImplementation((name: string) => {
-    if (name === 'rocq-version') {
-      return 'latest'
-    }
-    if (name === 'cache-key-opam-files') {
-      return opamFile
-    }
-    return ''
+    await restoreCache()
+
+    expect(mockCacheRestore).toHaveBeenCalledTimes(1)
+    const [, cacheKey] = mockCacheRestore.mock.calls[0]
+    expect(cacheKey).toContain('-rocq-pinned-')
   })
 
-  await restoreCache()
+  // main.ts only creates a switch on a cache miss.  A key that can match
+  // across compilers therefore pins the switch to whatever OCaml it was first
+  // built with, and bumping OCAML_VERSION has no effect whatsoever.
+  it('includes the OCaml version in the key and in every fallback', async () => {
+    await restoreCache()
 
-  expect(mockCacheRestore).toHaveBeenCalledTimes(1)
-  const [, cacheKey] = mockCacheRestore.mock.calls[0]
-  expect(cacheKey).toContain('-rocq-pinned-')
+    const [, cacheKey, restoreKeys] = mockCacheRestore.mock.calls[0]
+    expect(cacheKey).toContain(`-ocaml-${realConstants.OCAML_VERSION}-`)
+    for (const key of restoreKeys ?? []) {
+      expect(key).toContain(`-ocaml-${realConstants.OCAML_VERSION}-`)
+    }
+  })
+
+  // The opam root's on-disk format is tied to opam's major.minor.
+  it('includes the opam series in the key', async () => {
+    await restoreCache()
+
+    const [, cacheKey] = mockCacheRestore.mock.calls[0]
+    const series = realConstants.OPAM_VERSION.split('.').slice(0, 2).join('.')
+    expect(cacheKey).toContain(`-opam-${series}-`)
+    expect(CACHE_PLATFORM_PREFIX).toContain(`-opam-${series}`)
+  })
+
+  it('orders fallback keys from most to least specific', async () => {
+    await restoreCache()
+
+    const [, , restoreKeys] = mockCacheRestore.mock.calls[0]
+    expect(restoreKeys).toHaveLength(2)
+    expect(restoreKeys?.[0]).toContain('-rocq-latest-')
+    expect(restoreKeys?.[1]).toBe(`${CACHE_PLATFORM_PREFIX}-`)
+  })
+
+  it('records the primary key so the post action can save it', async () => {
+    await restoreCache()
+
+    expect(core.saveState).toHaveBeenCalledWith(
+      'CACHE_KEY',
+      expect.stringContaining(CACHE_PLATFORM_PREFIX),
+    )
+  })
+
+  it('reports a hit and records the matched key', async () => {
+    mockCacheRestore.mockResolvedValue('some-restored-key')
+
+    const result = await restoreCache()
+    expect(result.restored).toBe(true)
+    expect(result.matchedKey).toBe('some-restored-key')
+    // Returned, not read back from state: getState() cannot see state saved
+    // during this same step.
+    expect(result.primaryKey).toContain(CACHE_PLATFORM_PREFIX)
+    expect(core.saveState).toHaveBeenCalledWith(
+      'CACHE_RESULT',
+      'some-restored-key',
+    )
+  })
+
+  it('reports a miss without recording a matched key', async () => {
+    const result = await restoreCache()
+    expect(result.restored).toBe(false)
+    expect(result.matchedKey).toBe('')
+    expect(result.primaryKey).toContain(CACHE_PLATFORM_PREFIX)
+    expect(core.saveState).not.toHaveBeenCalledWith(
+      'CACHE_RESULT',
+      expect.anything(),
+    )
+  })
+
+  it('returns false when the cache service is unavailable', async () => {
+    mockCache.isFeatureAvailable.mockReturnValue(false)
+
+    expect((await restoreCache()).restored).toBe(false)
+    expect(mockCacheRestore).not.toHaveBeenCalled()
+  })
+
+  it('returns false rather than throwing when a restore fails', async () => {
+    mockCacheRestore.mockRejectedValue(new Error('cache service is down'))
+
+    expect((await restoreCache()).restored).toBe(false)
+    expect(core.warning).toHaveBeenCalledWith(
+      expect.stringContaining('cache service is down'),
+    )
+  })
+})
+
+describe('saveCache', () => {
+  const state = (values: Record<string, string>) => {
+    core.getState.mockImplementation((name: string) => values[name] ?? '')
+  }
+
+  // Two inputs have to be pinned for these tests to mean anything.
+  //
+  // strip-binary-annotations: saveCache() calls stripBinaryAnnotations(),
+  // which defaults its root to path.join(os.homedir(), '.opam') and *deletes*
+  // every .cmt/.cmti under it.  These tests run on real machines, so without
+  // this the suite strips the developer's own opam switches.
+  // stripBinaryAnnotations is tested directly, against a temp directory.
+  //
+  // save-if: the default 'auto' consults GITHUB_EVENT_NAME, so these tests
+  // would otherwise pass locally and skip every save on CI, where the event is
+  // pull_request.  These cases are about the completion and key checks;
+  // shouldSaveCache has its own tests.
+  const saveCacheInputs = (name: string) => {
+    if (name === 'strip-binary-annotations') return 'false'
+    if (name === 'save-if') return 'true'
+    return defaultInputs(name)
+  }
+
+  beforeEach(() => {
+    mockCacheSave.mockResolvedValue(1)
+    mockOpamClean.mockResolvedValue(undefined)
+    core.getInput.mockImplementation(saveCacheInputs)
+  })
+
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+
+  it('saves when setup completed and the key is new', async () => {
+    state({ CACHE_KEY: 'primary-key', SETUP_COMPLETE: 'true' })
+
+    await saveCache()
+
+    expect(mockOpamClean).toHaveBeenCalled()
+    expect(mockCacheSave).toHaveBeenCalledWith(
+      expect.arrayContaining([path.join(os.homedir(), '.opam')]),
+      'primary-key',
+    )
+  })
+
+  // The post action runs with post-if: always(), so it also runs after a
+  // failed setup.  Saving a half-built switch would poison every later run,
+  // because main.ts skips switch creation on any cache hit.
+  it('refuses to save when setup did not complete', async () => {
+    state({ CACHE_KEY: 'primary-key' })
+
+    await saveCache()
+
+    expect(mockCacheSave).not.toHaveBeenCalled()
+    expect(mockOpamClean).not.toHaveBeenCalled()
+    expect(core.info).toHaveBeenCalledWith(
+      expect.stringContaining('Setup did not complete'),
+    )
+  })
+
+  it('skips an exact cache hit', async () => {
+    state({
+      CACHE_KEY: 'primary-key',
+      CACHE_RESULT: 'primary-key',
+      SETUP_COMPLETE: 'true',
+    })
+
+    await saveCache()
+
+    expect(mockCacheSave).not.toHaveBeenCalled()
+  })
+
+  it('still saves when only a fallback key matched', async () => {
+    state({
+      CACHE_KEY: 'primary-key',
+      CACHE_RESULT: 'older-fallback-key',
+      SETUP_COMPLETE: 'true',
+    })
+
+    await saveCache()
+
+    expect(mockCacheSave).toHaveBeenCalled()
+  })
+
+  it('warns when there is no key to save under', async () => {
+    state({ SETUP_COMPLETE: 'true' })
+
+    await saveCache()
+
+    expect(mockCacheSave).not.toHaveBeenCalled()
+    expect(core.warning).toHaveBeenCalledWith(
+      expect.stringContaining('No cache key'),
+    )
+  })
+
+  it('warns rather than throwing when the save fails', async () => {
+    state({ CACHE_KEY: 'primary-key', SETUP_COMPLETE: 'true' })
+    mockCacheSave.mockRejectedValue(new Error('cache upload failed'))
+
+    await expect(saveCache()).resolves.toBeUndefined()
+    expect(core.warning).toHaveBeenCalledWith(
+      expect.stringContaining('cache upload failed'),
+    )
+  })
+})
+
+// ROCQ_VERSION is read from the input once, when constants.ts is first
+// imported, so exercising another version means loading cache.ts afresh.
+async function loadCacheFor(rocqVersion: string) {
+  jest.resetModules()
+  jest.unstable_mockModule('@actions/core', () => core)
+  jest.unstable_mockModule('@actions/cache', () => mockCache)
+  jest.unstable_mockModule('../src/opam.js', () => ({
+    opamClean: mockOpamClean,
+    opamPin: jest.fn(),
+    opamInstall: jest.fn(),
+    opamInstalledVersion: jest.fn(),
+    configureDune: jest.fn(),
+    setupOpamEnv: jest.fn(),
+  }))
+  jest.unstable_mockModule('../src/constants.js', () => ({
+    ...realConstants,
+    ROCQ_VERSION: rocqVersion,
+    IS_LINUX: false,
+    DUNE_CACHE_ROOT: duneCacheRoot,
+  }))
+  core.getInput.mockImplementation((name: string) => {
+    if (name === 'rocq-version') return rocqVersion
+    if (name === 'cache-key-opam-files') return emptyOpamGlob
+    return ''
+  })
+  mockCacheRestore.mockResolvedValue(undefined)
+  mockCache.isFeatureAvailable.mockReturnValue(true)
+  return import('../src/cache.js')
+}
+
+describe('weekly cache key', () => {
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+
+  // Two runs in the same week must share a key, and a run in the next week
+  // must not, or "weekly" would keep serving last week's Rocq.
+  it('dates the key to the current Monday', async () => {
+    const { restoreCache: restore } = await loadCacheFor('weekly')
+
+    await restore()
+
+    const [, cacheKey] = mockCacheRestore.mock.calls[0]
+    expect(cacheKey).toMatch(/-rocq-weekly-\d{4}-\d{2}-\d{2}-/)
+  })
+
+  it('caches the cloned rocq repositories alongside the opam root', async () => {
+    const { restoreCache: restore } = await loadCacheFor('weekly')
+
+    await restore()
+
+    const [paths] = mockCacheRestore.mock.calls[0]
+    expect(paths).toContain(path.join(os.homedir(), 'rocq-weekly'))
+  })
+
+  it('does not cache the weekly clones for a stable version', async () => {
+    const { restoreCache: restore } = await loadCacheFor('latest')
+
+    await restore()
+
+    const [paths] = mockCacheRestore.mock.calls[0]
+    expect(paths).not.toContain(path.join(os.homedir(), 'rocq-weekly'))
+  })
 })
 
 describe('shouldSaveCache', () => {

@@ -103,6 +103,34 @@ async function initializeOpam(): Promise<void> {
   ])
 }
 
+// Parse the stdout of `opam env` (Bourne shell syntax) into variable
+// assignments.
+//
+// opam emits one assignment per line, in either of these shapes:
+//
+//   VAR='value'; export VAR;
+//   export VAR='value'
+//
+// A single quote inside a value is written the POSIX way, by closing the
+// quote, emitting an escaped quote, and reopening: 'a'\''b' is the value
+// `a'b`.  Matching the value with [^']* stops at the first of those quotes and
+// silently truncates the variable, so match to the last quote on the line
+// instead and unescape afterwards.
+export function parseOpamEnv(stdout: string): Map<string, string> {
+  const vars = new Map<string, string>()
+  for (const line of stdout.split('\n')) {
+    const match = line.match(
+      /^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)='(.*)'\s*(?:;\s*export\s+\1\s*;?)?\s*$/,
+    )
+    if (!match) {
+      continue
+    }
+    const [, varName, rawValue] = match
+    vars.set(varName, rawValue.split("'\\''").join("'"))
+  }
+  return vars
+}
+
 // Set environment variables specified by `opam env`.
 //
 // This has a similar effect to adding `eval $(opam env)` to ~/.profile.
@@ -112,22 +140,19 @@ export async function setupOpamEnv(): Promise<void> {
     silent: true,
   })
 
-  // Parse the output and set environment variables
-  const lines = output.stdout.split('\n')
-  for (const line of lines) {
-    // Look for export statements like: export VAR='value'
-    const match = line.match(/^(?:export\s+)?([A-Z_]+)='([^']*)'/)
-    if (match) {
-      const [, varName, value] = match
-      core.exportVariable(varName, value)
+  for (const [varName, value] of parseOpamEnv(output.stdout)) {
+    core.exportVariable(varName, value)
 
-      // Special handling for PATH
-      if (varName === 'PATH') {
-        const paths = value.split(path.delimiter)
-        for (const p of paths) {
-          if (p && !process.env.PATH?.includes(p)) {
-            core.addPath(p)
-          }
+    // Special handling for PATH.  Compare whole entries: a substring test
+    // reports a hit for any path that merely contains an existing entry, so a
+    // new /usr/local/bin never gets added once /usr/local/bin/foo is present.
+    if (varName === 'PATH') {
+      const existing = new Set(
+        (process.env.PATH ?? '').split(path.delimiter).filter((p) => p !== ''),
+      )
+      for (const p of value.split(path.delimiter)) {
+        if (p && !existing.has(p)) {
+          core.addPath(p)
         }
       }
     }
@@ -141,14 +166,71 @@ export async function setupOpam(): Promise<void> {
   })
 }
 
+// The name of the global switch this action creates and installs Rocq into.
+export const SWITCH_NAME = 'default'
+
+async function switchCreate(): Promise<void> {
+  await exec.exec('opam', [
+    'switch',
+    'create',
+    SWITCH_NAME,
+    `ocaml-base-compiler.${OCAML_VERSION}`,
+  ])
+}
+
 export async function opamSwitchCreate(): Promise<void> {
-  await core.group('Installing OCaml', async () => {
-    await exec.exec('opam', [
-      'switch',
-      'create',
-      'default',
-      `ocaml-base-compiler.${OCAML_VERSION}`,
-    ])
+  await core.group('Installing OCaml', switchCreate)
+}
+
+export async function opamSwitchExists(): Promise<boolean> {
+  const output = await exec.getExecOutput(
+    'opam',
+    ['switch', 'list', '--short'],
+    {
+      silent: true,
+      ignoreReturnCode: true,
+    },
+  )
+  if (output.exitCode !== 0) {
+    return false
+  }
+  return output.stdout
+    .split('\n')
+    .map((line) => stripAnsi(line).trim())
+    .includes(SWITCH_NAME)
+}
+
+// A restored cache is not guaranteed to contain a usable switch: the archive
+// can be partial, and a fallback cache key can match an archive saved by an
+// older version of this action.  main.ts only creates a switch on a cache
+// miss, so without this check a bad restore leaves every later opam command
+// failing for a reason the log does not explain.
+export async function ensureSwitch(): Promise<void> {
+  await core.group('Verifying opam switch', async () => {
+    if (!(await opamSwitchExists())) {
+      core.warning(
+        `Restored cache has no "${SWITCH_NAME}" switch; creating one`,
+      )
+      await switchCreate()
+      return
+    }
+
+    const ocaml = await opamInstalledVersion('ocaml', SWITCH_NAME)
+    if (ocaml === null) {
+      core.warning(
+        `Switch "${SWITCH_NAME}" has no OCaml compiler installed; recreating it`,
+      )
+    } else if (ocaml !== OCAML_VERSION) {
+      core.warning(
+        `Switch "${SWITCH_NAME}" has OCaml ${ocaml}, but ${OCAML_VERSION} was requested; recreating it`,
+      )
+    } else {
+      core.info(`Switch "${SWITCH_NAME}" has the requested OCaml ${ocaml}`)
+      return
+    }
+
+    await exec.exec('opam', ['switch', 'remove', SWITCH_NAME, '--yes'])
+    await switchCreate()
   })
 }
 
@@ -221,26 +303,39 @@ export async function opamInstall(
   await exec.exec('opam', ['install', ...pkgList, ...options])
 }
 
+// initializeOpam exports OPAMCOLOR=always, and opam colorizes even
+// single-field queries and --short listings, so escapes have to come off
+// before anything parses the output -- even where --color=never is passed.
+export function stripAnsi(s: string): string {
+  // eslint-disable-next-line no-control-regex
+  return s.replace(/\x1b\[[0-9;]*m/g, '')
+}
+
 // Parse the stdout of `opam show --field installed-version`.  Returns
 // null for a package that is not installed, which opam prints as `--`.
-//
-// setupOpamEnv exports OPAMCOLOR=always, and opam colorizes even a
-// single-field query, so the escapes have to come off even though
-// --color=never is passed below.
 export function parseInstalledVersion(stdout: string): string | null {
-  // eslint-disable-next-line no-control-regex
-  const version = stdout.replace(/\x1b\[[0-9;]*m/g, '').trim()
+  const version = stripAnsi(stdout).trim()
   return version === '' || version === '--' ? null : version
 }
 
-// The version of `pkg` installed in the current switch, or null if it is
-// not installed (or opam cannot answer, e.g. an unknown package name).
+// The version of `pkg` installed in `switchName` (the current switch when
+// omitted), or null if it is not installed -- or opam cannot answer, e.g. for
+// an unknown package name or when no switch is selected.
 export async function opamInstalledVersion(
   pkg: string,
+  switchName?: string,
 ): Promise<string | null> {
+  const switchArgs = switchName ? ['--switch', switchName] : []
   const output = await exec.getExecOutput(
     'opam',
-    ['show', '--color=never', '--field', 'installed-version', pkg],
+    [
+      'show',
+      '--color=never',
+      '--field',
+      'installed-version',
+      ...switchArgs,
+      pkg,
+    ],
     { silent: true, ignoreReturnCode: true },
   )
   if (output.exitCode !== 0) {

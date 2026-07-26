@@ -54,11 +54,15 @@ The action follows this sequence (see `src/main.ts:run()`):
    - Parses YAML input for additional repos
 5. **OCaml Installation** (`opam.ts:createSwitch()`) - Only if cache miss
    - Creates switch with OCaml 5.4.0
-6. **Environment Setup** (`opam.ts:setupOpamEnv()`) - Sets PATH and env vars
-7. **Dune Cache Disable** (`opam.ts:disableDuneCache()`) - Writes dune config
-8. **Rocq Installation** (`opam.ts:installRocq()`) - Installs Rocq based on
-   version
-9. **Post-Action** (`post.ts`) - Saves cache if not restored
+6. **Switch Verification** (`opam.ts:ensureSwitch()`) - Only on a cache hit;
+   recreates the switch if the restored archive has none or has the wrong OCaml
+7. **Rocq Installation** (`rocq.ts:installRocq()`) - Writes the dune config,
+   installs dune, then installs Rocq based on version, then calls
+   `setupOpamEnv()` to set PATH and env vars
+8. **Outputs** (`main.ts:setOutputs()`) - Reads the installed versions back out
+   of opam and records `State.SetupComplete`
+9. **Post-Action** (`post.ts`) - Saves cache unless the primary key matched or
+   setup did not complete
 
 ### Module Responsibilities
 
@@ -115,9 +119,17 @@ src/unix.ts:
 
 **Cache Strategy**:
 
-- Cache key includes platform, architecture, and OCaml version
-- Fallback keys allow partial matches (same platform, different arch)
-- Post-action only saves if cache wasn't restored (avoids duplicates)
+- Cache key includes platform, architecture, OCaml version, opam series,
+  requested Rocq version, and a hash of `cache-key-opam-files`
+- The OCaml version and opam series are part of `CACHE_PLATFORM_PREFIX`, so they
+  appear in every fallback key too. This is load-bearing: `main.ts` only creates
+  a switch on a cache miss, so a key that could match across compilers would pin
+  the switch to whatever OCaml it was first built with.
+- Fallback keys allow partial matches (same platform/compiler, older opam files)
+- Post-action skips the save when the primary key matched exactly
+- Post-action runs with `post-if: always()` so a failing build still saves a
+  successful Rocq install. `saveCache()` refuses to save unless `main.ts`
+  recorded `State.SetupComplete`, so a half-built switch is never cached.
 - State variables track cache status between main and post actions
 
 **Repository Management**:
@@ -130,7 +142,10 @@ src/unix.ts:
 
 Defined in `action.yml`:
 
-- `rocq-version` (default: 'latest') - Currently unused, planned for future
+- `rocq-version` (default: 'latest') - `latest`, `dev`, `weekly`, or a full
+  version like `9.1.0`
+- `ocaml-version` (default: '5.4.0') - compiler for the switch; Rocq 8.x needs a
+  4.x compiler
 - `opam-repositories` (optional) - YAML object with additional repos
 
   ```yaml
@@ -138,6 +153,17 @@ Defined in `action.yml`:
     custom: https://example.com/repo.git
     experimental: https://other.com/repo
   ```
+
+- `cache-key-opam-files` (default: '\*.opam') - opam files to hash into the
+  cache key, and the files scanned for Rocq `pin-depends` entries. Separate
+  patterns with newlines.
+
+## Action Outputs
+
+- `cache-hit` - whether an opam cache was restored
+- `rocq-version` - the Rocq version actually installed, read back from opam
+- `ocaml-version` - the OCaml version in the switch
+- `opam-switch-prefix` - the switch prefix Rocq was installed into
 
 ## Testing
 

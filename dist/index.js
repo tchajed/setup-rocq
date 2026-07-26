@@ -30081,6 +30081,21 @@ function getInput(name, options) {
     const val = process.env[`INPUT_${name.replace(/ /g, '_').toUpperCase()}`] || '';
     return val.trim();
 }
+/**
+ * Sets the value of an output.
+ *
+ * @param     name     name of the output to set
+ * @param     value    value to store. Non-string values will be converted to a string via JSON.stringify
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function setOutput(name, value) {
+    const filePath = process.env['GITHUB_OUTPUT'] || '';
+    if (filePath) {
+        return issueFileCommand('OUTPUT', prepareKeyValueMessage(name, value));
+    }
+    process.stdout.write(os.EOL);
+    issueCommand('set-output', { name }, toCommandValue(value));
+}
 //-----------------------------------------------------------------------
 // Results
 //-----------------------------------------------------------------------
@@ -83121,7 +83136,8 @@ function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
     });
 }
 
-const OCAML_VERSION = '5.4.0';
+const DEFAULT_OCAML_VERSION = '5.4.0';
+const OCAML_VERSION = getInput('ocaml-version') || DEFAULT_OCAML_VERSION;
 const OPAM_VERSION = '2.5.2';
 // The dune version installed into a fresh switch.  This is a floor, not
 // a pin: a restored cache whose switch already has a newer dune keeps
@@ -83151,7 +83167,20 @@ var State;
 (function (State) {
     State["CachePrimaryKey"] = "CACHE_KEY";
     State["CacheMatchedKey"] = "CACHE_RESULT";
+    // Set by the main action once the switch is fully set up and Rocq is
+    // installed.  The post action refuses to save a cache without it.
+    State["SetupComplete"] = "SETUP_COMPLETE";
 })(State || (State = {}));
+// action outputs
+var Output;
+(function (Output) {
+    Output["CacheHit"] = "cache-hit";
+    Output["CachePrimaryKey"] = "cache-primary-key";
+    Output["CacheMatchedKey"] = "cache-matched-key";
+    Output["RocqVersion"] = "rocq-version";
+    Output["OCamlVersion"] = "ocaml-version";
+    Output["OpamSwitchPrefix"] = "opam-switch-prefix";
+})(Output || (Output = {}));
 
 (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -90563,6 +90592,31 @@ async function initializeOpam() {
         '--enable-shell-hook',
     ]);
 }
+// Parse the stdout of `opam env` (Bourne shell syntax) into variable
+// assignments.
+//
+// opam emits one assignment per line, in either of these shapes:
+//
+//   VAR='value'; export VAR;
+//   export VAR='value'
+//
+// A single quote inside a value is written the POSIX way, by closing the
+// quote, emitting an escaped quote, and reopening: 'a'\''b' is the value
+// `a'b`.  Matching the value with [^']* stops at the first of those quotes and
+// silently truncates the variable, so match to the last quote on the line
+// instead and unescape afterwards.
+function parseOpamEnv(stdout) {
+    const vars = new Map();
+    for (const line of stdout.split('\n')) {
+        const match = line.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)='(.*)'\s*(?:;\s*export\s+\1\s*;?)?\s*$/);
+        if (!match) {
+            continue;
+        }
+        const [, varName, rawValue] = match;
+        vars.set(varName, rawValue.split("'\\''").join("'"));
+    }
+    return vars;
+}
 // Set environment variables specified by `opam env`.
 //
 // This has a similar effect to adding `eval $(opam env)` to ~/.profile.
@@ -90571,21 +90625,16 @@ async function setupOpamEnv() {
     const output = await getExecOutput('opam', ['env'], {
         silent: true,
     });
-    // Parse the output and set environment variables
-    const lines = output.stdout.split('\n');
-    for (const line of lines) {
-        // Look for export statements like: export VAR='value'
-        const match = line.match(/^(?:export\s+)?([A-Z_]+)='([^']*)'/);
-        if (match) {
-            const [, varName, value] = match;
-            exportVariable(varName, value);
-            // Special handling for PATH
-            if (varName === 'PATH') {
-                const paths = value.split(path$1.delimiter);
-                for (const p of paths) {
-                    if (p && !process.env.PATH?.includes(p)) {
-                        addPath(p);
-                    }
+    for (const [varName, value] of parseOpamEnv(output.stdout)) {
+        exportVariable(varName, value);
+        // Special handling for PATH.  Compare whole entries: a substring test
+        // reports a hit for any path that merely contains an existing entry, so a
+        // new /usr/local/bin never gets added once /usr/local/bin/foo is present.
+        if (varName === 'PATH') {
+            const existing = new Set((process.env.PATH ?? '').split(path$1.delimiter).filter((p) => p !== ''));
+            for (const p of value.split(path$1.delimiter)) {
+                if (p && !existing.has(p)) {
+                    addPath(p);
                 }
             }
         }
@@ -90597,14 +90646,57 @@ async function setupOpam() {
         await initializeOpam();
     });
 }
+// The name of the global switch this action creates and installs Rocq into.
+const SWITCH_NAME = 'default';
+async function switchCreate() {
+    await exec('opam', [
+        'switch',
+        'create',
+        SWITCH_NAME,
+        `ocaml-base-compiler.${OCAML_VERSION}`,
+    ]);
+}
 async function opamSwitchCreate() {
-    await group('Installing OCaml', async () => {
-        await exec('opam', [
-            'switch',
-            'create',
-            'default',
-            `ocaml-base-compiler.${OCAML_VERSION}`,
-        ]);
+    await group('Installing OCaml', switchCreate);
+}
+async function opamSwitchExists() {
+    const output = await getExecOutput('opam', ['switch', 'list', '--short'], {
+        silent: true,
+        ignoreReturnCode: true,
+    });
+    if (output.exitCode !== 0) {
+        return false;
+    }
+    return output.stdout
+        .split('\n')
+        .map((line) => stripAnsi(line).trim())
+        .includes(SWITCH_NAME);
+}
+// A restored cache is not guaranteed to contain a usable switch: the archive
+// can be partial, and a fallback cache key can match an archive saved by an
+// older version of this action.  main.ts only creates a switch on a cache
+// miss, so without this check a bad restore leaves every later opam command
+// failing for a reason the log does not explain.
+async function ensureSwitch() {
+    await group('Verifying opam switch', async () => {
+        if (!(await opamSwitchExists())) {
+            warning(`Restored cache has no "${SWITCH_NAME}" switch; creating one`);
+            await switchCreate();
+            return;
+        }
+        const ocaml = await opamInstalledVersion('ocaml', SWITCH_NAME);
+        if (ocaml === null) {
+            warning(`Switch "${SWITCH_NAME}" has no OCaml compiler installed; recreating it`);
+        }
+        else if (ocaml !== OCAML_VERSION) {
+            warning(`Switch "${SWITCH_NAME}" has OCaml ${ocaml}, but ${OCAML_VERSION} was requested; recreating it`);
+        }
+        else {
+            info(`Switch "${SWITCH_NAME}" has the requested OCaml ${ocaml}`);
+            return;
+        }
+        await exec('opam', ['switch', 'remove', SWITCH_NAME, '--yes']);
+        await switchCreate();
     });
 }
 async function opamRepoAdd(name, url) {
@@ -90656,21 +90748,32 @@ async function opamInstall(pkgs, options = []) {
     const pkgList = Array.isArray(pkgs) ? pkgs : [pkgs];
     await exec('opam', ['install', ...pkgList, ...options]);
 }
+// initializeOpam exports OPAMCOLOR=always, and opam colorizes even
+// single-field queries and --short listings, so escapes have to come off
+// before anything parses the output -- even where --color=never is passed.
+function stripAnsi(s) {
+    // eslint-disable-next-line no-control-regex
+    return s.replace(/\x1b\[[0-9;]*m/g, '');
+}
 // Parse the stdout of `opam show --field installed-version`.  Returns
 // null for a package that is not installed, which opam prints as `--`.
-//
-// setupOpamEnv exports OPAMCOLOR=always, and opam colorizes even a
-// single-field query, so the escapes have to come off even though
-// --color=never is passed below.
 function parseInstalledVersion(stdout) {
-    // eslint-disable-next-line no-control-regex
-    const version = stdout.replace(/\x1b\[[0-9;]*m/g, '').trim();
+    const version = stripAnsi(stdout).trim();
     return version === '' || version === '--' ? null : version;
 }
-// The version of `pkg` installed in the current switch, or null if it is
-// not installed (or opam cannot answer, e.g. an unknown package name).
-async function opamInstalledVersion(pkg) {
-    const output = await getExecOutput('opam', ['show', '--color=never', '--field', 'installed-version', pkg], { silent: true, ignoreReturnCode: true });
+// The version of `pkg` installed in `switchName` (the current switch when
+// omitted), or null if it is not installed -- or opam cannot answer, e.g. for
+// an unknown package name or when no switch is selected.
+async function opamInstalledVersion(pkg, switchName) {
+    const switchArgs = switchName ? ['--switch', switchName] : [];
+    const output = await getExecOutput('opam', [
+        'show',
+        '--color=never',
+        '--field',
+        'installed-version',
+        ...switchArgs,
+        pkg,
+    ], { silent: true, ignoreReturnCode: true });
     if (output.exitCode !== 0) {
         return null;
     }
@@ -90692,11 +90795,17 @@ async function opamList() {
     });
 }
 
-// Matches the packages that name a Rocq release: the top-level "coq" compat
-// metapackage and the post-rename rocq-* packages.
-const ROCQ_PACKAGE_PATTERN = /^(?:coq|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/;
-// The root of the post-rename Rocq package graph.
-const ROCQ_CORE_PATTERN = /^rocq-core(?:\.|$)/;
+// Matches the packages that make up a Rocq release itself: the coq and
+// rocq-prover metapackages, the post-rename rocq-* packages, and the coq-*
+// compat shims that ship from the same source tree.
+//
+// This is deliberately an explicit list rather than a "starts with coq or
+// rocq" test, which would also match every coq-* library package on the
+// opam repository (coq-mathcomp, coq-iris, ...).  Treating one of those as
+// the Rocq installation would install the wrong thing.
+const ROCQ_PACKAGE_PATTERN = /^(?:coq|coq-core|coq-stdlib|coqide-server|rocq-prover|rocq-core|rocq-runtime|rocq-stdlib)(?:\.|$)/;
+// The roots of the post-rename Rocq package graph.
+const ROCQ_CORE_PATTERN = /^(?:rocq-core|rocq-prover)(?:\.|$)/;
 /**
  * Extract a balanced bracketed list from opam file contents.
  *
@@ -90731,8 +90840,8 @@ function extractList(contents, start) {
 /**
  * Parse Rocq-related pin-depends entries from a single opam file.
  *
- * A valid Rocq pin is any `pin-depends` entry whose package name begins with
- * `coq` or `rocq`.
+ * A valid Rocq pin is any `pin-depends` entry naming a package that is part of
+ * a Rocq release itself; see ROCQ_PACKAGE_PATTERN.
  *
  * @param contents Full opam file contents.
  * @returns Rocq pin entries found in the file, in file order.
@@ -90829,6 +90938,10 @@ function getPinnedRocqInstallPackages(pins) {
     }
     if (pins.some((pin) => pin.pkg === 'coq')) {
         return ['coq'];
+    }
+    const rocqProver = pins.find((pin) => /^rocq-prover(?:\.|$)/.test(pin.pkg));
+    if (rocqProver) {
+        return [rocqProver.pkg];
     }
     if (pins.length === 1) {
         return [pins[0].pkg];
@@ -91054,8 +91167,29 @@ async function installDune() {
     }
     await opamInstall(`dune.${DUNE_VERSION}`);
 }
+// Packages that carry a Rocq release's version number, most specific first.
+// rocq-core is the root of the post-rename package graph; coq is the compat
+// metapackage still used by the 8.x line and by dev/weekly pins.
+const ROCQ_VERSION_PACKAGES = ['rocq-core', 'coq', 'coq-core'];
+// The Rocq version actually present in the switch after installation.  This is
+// what the resolver picked, which for `latest`, `dev`, and a partial version
+// input is not something the caller can predict.  Returns null if no known
+// Rocq package is installed.
+async function getInstalledRocqVersion() {
+    for (const pkg of ROCQ_VERSION_PACKAGES) {
+        const version = await opamInstalledVersion(pkg);
+        if (version !== null) {
+            return version;
+        }
+    }
+    return null;
+}
 async function installRocq(version) {
     await group('Installing Rocq', async () => {
+        // Configure dune before anything is built, not after: Rocq itself is a
+        // dune project, so a cache-enabled config written first lets the Rocq
+        // build populate the dune cache that the post action saves.
+        await configureDune();
         await installDune();
         const pinnedRocqPackages = await getPinnedRocqPackages();
         if (pinnedRocqPackages.length > 0) {
@@ -91074,12 +91208,19 @@ async function installRocq(version) {
             await installRocqVersion(version);
         }
         await setupOpamEnv();
-        await configureDune();
     });
 }
 
-const CACHE_VERSION = 'v3';
-const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}`;
+const CACHE_VERSION = 'v4';
+// The opam root's on-disk format is tied to opam's major.minor, so a cache
+// saved by a different opam series should not be restored into this one.
+const OPAM_SERIES = OPAM_VERSION.split('.').slice(0, 2).join('.');
+// The switch's compiler and the opam root format both have to be part of every
+// key, including the fallback prefixes.  main.ts only creates a switch on a
+// cache miss, so a cache that is allowed to match across OCaml versions pins
+// the switch to whatever compiler it was built with -- bumping OCAML_VERSION
+// would then have no effect at all.
+const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}-opam-${OPAM_SERIES}`;
 async function getRocqVersionCacheKey() {
     const pinnedRocqCacheKey = await getPinnedRocqCacheKeyPart();
     if (pinnedRocqCacheKey) {
@@ -91159,10 +91300,19 @@ async function restoreAptCache() {
         }
     }
 }
+/**
+ * Restore the opam cache.
+ *
+ * The keys are returned rather than left for the caller to read back with
+ * core.getState().  saveState() writes to the state file, but getState() reads
+ * environment variables the runner populates at step *start*, so state written
+ * during this step reads back empty until the post step.  The caller needs
+ * these values now, to report them as outputs.
+ */
 async function restoreCache() {
     if (!isFeatureAvailable()) {
         warning('cache feature is not available, not restoring');
-        return false;
+        return { restored: false, primaryKey: '', matchedKey: '' };
     }
     const cachePaths = await getCachePaths();
     const cacheKey = await getCacheKey();
@@ -91184,18 +91334,18 @@ async function restoreCache() {
             saveState(State.CacheMatchedKey, restoredKey);
             // Restore apt cache to system directories
             await restoreAptCache();
-            return true;
+            return { restored: true, primaryKey: cacheKey, matchedKey: restoredKey };
         }
         else {
             info('Cache not found');
-            return false;
+            return { restored: false, primaryKey: cacheKey, matchedKey: '' };
         }
     }
     catch (error) {
         if (error instanceof Error) {
             warning(`Failed to restore cache: ${error.message}`);
         }
-        return false;
+        return { restored: false, primaryKey: cacheKey, matchedKey: '' };
     }
 }
 
@@ -91251,12 +91401,41 @@ async function installSystemPackages() {
     });
 }
 
+// Report what was actually installed.  For `latest`, `dev`, and a partial
+// version input the resolver's choice is not something the caller can predict,
+// so it has to be read back out of the switch.
+async function setOutputs() {
+    const rocqVersion = await getInstalledRocqVersion();
+    if (rocqVersion === null) {
+        warning('Could not determine the installed Rocq version');
+    }
+    else {
+        info(`Installed Rocq ${rocqVersion}`);
+    }
+    setOutput(Output.RocqVersion, rocqVersion ?? '');
+    const ocamlVersion = await opamInstalledVersion('ocaml');
+    setOutput(Output.OCamlVersion, ocamlVersion ?? '');
+    // setupOpamEnv() ran inside installRocq(), so opam env's variables are in
+    // process.env by now.
+    setOutput(Output.OpamSwitchPrefix, process.env.OPAM_SWITCH_PREFIX ?? '');
+}
 async function run() {
     try {
         info('Setting up Rocq development environment');
         startGroup('Restoring opam cache');
-        const cacheRestored = await restoreCache();
+        const cacheResult = await restoreCache();
+        const cacheRestored = cacheResult.restored;
         endGroup();
+        setOutput(Output.CacheHit, String(cacheRestored));
+        // The keys themselves, not just whether something matched.  A fallback
+        // key is a prefix match, so "restored a cache" does not say *which* one:
+        // only the matched key distinguishes a compatible archive from one that
+        // should never have been eligible.  Empty when nothing was restored.
+        //
+        // These come back from restoreCache() rather than core.getState(), which
+        // cannot see state written during this same step.
+        setOutput(Output.CachePrimaryKey, cacheResult.primaryKey);
+        setOutput(Output.CacheMatchedKey, cacheResult.matchedKey);
         await installSystemPackages();
         await setupOpam();
         await setupOpamRepositories();
@@ -91264,11 +91443,16 @@ async function run() {
             await opamSwitchCreate();
         }
         else {
+            await ensureSwitch();
             await opamUpdate();
         }
         await opamList();
         // Install Rocq
         await installRocq(ROCQ_VERSION);
+        await setOutputs();
+        // Only now is the switch complete enough to be worth caching.  The post
+        // action runs even when the job failed and checks this state.
+        saveState(State.SetupComplete, 'true');
         info('Rocq development environment set up successfully');
     }
     catch (error) {

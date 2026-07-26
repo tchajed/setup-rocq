@@ -2,7 +2,10 @@ import * as core from '@actions/core'
 import * as os from 'os'
 import path from 'path'
 
-export const OCAML_VERSION = '5.4.0'
+export const DEFAULT_OCAML_VERSION = '5.4.0'
+
+export const OCAML_VERSION =
+  core.getInput('ocaml-version') || DEFAULT_OCAML_VERSION
 
 export const OPAM_VERSION = '2.5.2'
 
@@ -43,4 +46,17 @@ export const IS_LINUX = PLATFORM === 'linux'
 export enum State {
   CachePrimaryKey = 'CACHE_KEY',
   CacheMatchedKey = 'CACHE_RESULT',
+  // Set by the main action once the switch is fully set up and Rocq is
+  // installed.  The post action refuses to save a cache without it.
+  SetupComplete = 'SETUP_COMPLETE',
+}
+
+// action outputs
+export enum Output {
+  CacheHit = 'cache-hit',
+  CachePrimaryKey = 'cache-primary-key',
+  CacheMatchedKey = 'cache-matched-key',
+  RocqVersion = 'rocq-version',
+  OCamlVersion = 'ocaml-version',
+  OpamSwitchPrefix = 'opam-switch-prefix',
 }

@@ -126,3 +126,62 @@ pin-depends: [
     ).toThrow(/could not determine which package to install/)
   })
 })
+
+describe('Rocq package recognition', () => {
+  async function pinsFrom(pinDepends: string) {
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'rocq-pin-'))
+    const opamFile = path.join(tempDir, 'project.opam')
+    await fs.writeFile(
+      opamFile,
+      `opam-version: "2.0"\npin-depends: [\n${pinDepends}\n]\n`,
+    )
+    core.getInput.mockImplementation((name: string) =>
+      name === 'cache-key-opam-files' ? opamFile : '',
+    )
+    return getPinnedRocqPackages()
+  }
+
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+
+  // These ship from the Rocq source tree and name a Rocq release, but were
+  // dropped by a pattern that only knew coq and the rocq-* names.
+  it.each(['coq-core.dev', 'coq-stdlib.dev', 'coqide-server.dev'])(
+    'recognizes the compat package %s',
+    async (pkg) => {
+      const url = 'git+https://github.com/rocq-prover/rocq.git#main'
+      const pins = await pinsFrom(`  ["${pkg}" "${url}"]`)
+      expect(pins).toEqual([{ pkg, target: url }])
+    },
+  )
+
+  it('recognizes the rocq-prover metapackage', async () => {
+    const url = 'git+https://github.com/rocq-prover/rocq.git#main'
+    const pins = await pinsFrom(`  ["rocq-prover.dev" "${url}"]`)
+    expect(pins).toEqual([{ pkg: 'rocq-prover.dev', target: url }])
+  })
+
+  // A "starts with coq" test would sweep these in and install a library in
+  // place of the Rocq compiler.
+  it.each(['coq-mathcomp-ssreflect', 'coq-iris.dev', 'rocq-elpi.dev'])(
+    'does not treat the library %s as a Rocq release',
+    async (pkg) => {
+      const pins = await pinsFrom(
+        `  ["${pkg}" "git+https://example.com/x#main"]`,
+      )
+      expect(pins).toEqual([])
+    },
+  )
+
+  it('installs the rocq-prover metapackage in preference to its parts', () => {
+    const target = 'git+https://github.com/rocq-prover/rocq.git#main'
+    expect(
+      getPinnedRocqInstallPackages([
+        { pkg: 'rocq-core.dev', target },
+        { pkg: 'rocq-prover.dev', target },
+        { pkg: 'rocq-runtime.dev', target },
+      ]),
+    ).toEqual(['rocq-prover.dev'])
+  })
+})
