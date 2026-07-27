@@ -23,6 +23,7 @@ GitHub action to install Rocq with opam. Supports caching of opam dependencies.
 | -------------------------- | ----------------------------------------------------------- | -------- | ---------- |
 | `rocq-version`             | The version of Rocq to install                              | No       | `latest`   |
 | `ocaml-version`            | The OCaml compiler to create the switch with                | No       | `5.4.0`    |
+| `dune-version`             | The dune version installed before Rocq (a floor)            | No       | `3.22.1`   |
 | `opam-repositories`        | Additional opam repositories to add (YAML name:url object)  | No       | `''`       |
 | `cache-key-opam-files`     | Opam files to hash for the cache key.                       | No       | `'*.opam'` |
 | `save-if`                  | Whether the post step saves a cache (`true`/`false`/`auto`) | No       | `'auto'`   |
@@ -82,6 +83,25 @@ key.
 current enough for every supported Rocq release; set it to a 4.x compiler (for
 example `4.14.2`) when installing a Rocq 8.x version, which cannot be built with
 OCaml 5.
+
+`dune-version` is the dune installed into the switch before Rocq. It is a floor,
+not a pin: a restored switch whose dune already meets it keeps that dune, since
+downgrading dune recompiles every package built with it. Set it when your
+project's own dependencies require a newer dune than the default:
+
+```yaml
+- uses: tchajed/setup-rocq@v1
+  with:
+    rocq-version: '9.2.0'
+    # matches `"dune" {>= "3.23"}` in the project's opam file
+    dune-version: '3.23.1'
+```
+
+Leaving it at the default in that case still works, but every cold run builds
+Rocq twice — once against the default dune, then again after `opam install`
+upgrades dune to satisfy the project. The requested version is part of the cache
+key, so raising it takes effect on the next run rather than being masked by an
+already-cached switch.
 
 ### Outputs
 

@@ -73,6 +73,7 @@ const {
   shouldSaveCache,
   stripBinaryAnnotations,
   CACHE_PLATFORM_PREFIX,
+  duneCacheKeyPart,
 } = await import('../src/cache.js')
 
 async function opamFileWith(contents: string): Promise<string> {
@@ -157,6 +158,20 @@ pin-depends: [
     for (const key of restoreKeys ?? []) {
       expect(key).toContain(`-ocaml-${realConstants.OCAML_VERSION}-`)
     }
+  })
+
+  // installDune() keeps a restored switch's dune once it meets the floor, so a
+  // key matching across dune versions would make raising `dune-version` a
+  // no-op -- the same trap the OCaml version is in the prefix to avoid.
+  describe('dune-version in the key', () => {
+    it('adds no segment for the default, so existing caches stay valid', () => {
+      expect(duneCacheKeyPart(realConstants.DEFAULT_DUNE_VERSION)).toBe('')
+      expect(CACHE_PLATFORM_PREFIX).not.toContain('-dune-')
+    })
+
+    it('names a non-default floor', () => {
+      expect(duneCacheKeyPart('3.23.1')).toBe('-dune-3.23.1')
+    })
   })
 
   // The opam root's on-disk format is tied to opam's major.minor.

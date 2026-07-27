@@ -83385,6 +83385,17 @@ function saveCacheV2(paths_1, key_1, options_1) {
 const DEFAULT_OCAML_VERSION = '5.4.0';
 getInput('ocaml-version') || DEFAULT_OCAML_VERSION;
 const OPAM_VERSION = '2.5.2';
+const DEFAULT_DUNE_VERSION = '3.22.1';
+// The dune version installed into a fresh switch.  This is a floor, not
+// a pin: a restored cache whose switch already has a newer dune keeps
+// that dune, because a downgrade forces a recompile of every package
+// built with dune -- all of Rocq.  See installDune() in rocq.ts.
+//
+// A project whose own dependencies require a newer dune should raise this
+// floor with the `dune-version` input.  Otherwise the fresh switch gets
+// DEFAULT_DUNE_VERSION, Rocq is built against it, and the project's
+// `opam install` then upgrades dune and rebuilds all of Rocq.
+getInput('dune-version') || DEFAULT_DUNE_VERSION;
 const ROCQ_VERSION = getInput('rocq-version');
 const PLATFORM = os.platform();
 os.arch();

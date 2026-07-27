@@ -248,6 +248,12 @@ export function compareDottedVersions(a: string, b: string): number | null {
 // run, once down and once back up when the project's dependencies are
 // installed.  It also uninstalls any package whose constraint the older
 // dune violates.  So keep a dune that is already new enough.
+//
+// The floor comes from the `dune-version` input.  Leaving it at the default
+// when the project needs a newer dune is not a correctness problem, but it
+// costs a full rebuild of Rocq on every cold run: Rocq is built here against
+// the default dune, and the project's own `opam install` then upgrades dune,
+// which recompiles everything that uses it.
 export async function installDune(): Promise<void> {
   const installed = await opamInstalledVersion('dune')
   if (installed !== null) {

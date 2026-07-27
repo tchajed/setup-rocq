@@ -11,6 +11,8 @@ import {
   ROCQ_VERSION,
   OCAML_VERSION,
   OPAM_VERSION,
+  DUNE_VERSION,
+  DEFAULT_DUNE_VERSION,
   IS_LINUX,
   State,
   DUNE_CACHE_ROOT,
@@ -32,7 +34,22 @@ const OPAM_SERIES = OPAM_VERSION.split('.').slice(0, 2).join('.')
 // cache miss, so a cache that is allowed to match across OCaml versions pins
 // the switch to whatever compiler it was built with -- bumping OCAML_VERSION
 // would then have no effect at all.
-export const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}-opam-${OPAM_SERIES}`
+// The requested dune floor, for the same reason the OCaml version is in the
+// key: installDune() keeps a restored switch's dune when it already meets the
+// floor, so a key that matched across dune versions would let an old cache
+// pin dune to whatever it was built with and make raising `dune-version` a
+// no-op.  It has to be in the fallback prefixes too, not just the primary key.
+//
+// The default is spelled as no segment at all rather than `-dune-3.22.1`.
+// Every cache in existence was written by a run whose floor was the default,
+// so this keeps them all restorable; naming the default explicitly would
+// invalidate every cache in every repository using this action, which is a
+// steep price for a cosmetically more uniform key.
+export function duneCacheKeyPart(duneVersion: string): string {
+  return duneVersion === DEFAULT_DUNE_VERSION ? '' : `-dune-${duneVersion}`
+}
+
+export const CACHE_PLATFORM_PREFIX = `setup-rocq-${CACHE_VERSION}-${PLATFORM}-${ARCHITECTURE}-ocaml-${OCAML_VERSION}-opam-${OPAM_SERIES}${duneCacheKeyPart(DUNE_VERSION)}`
 
 async function getRocqVersionCacheKey(): Promise<string> {
   const pinnedRocqCacheKey = await getPinnedRocqCacheKeyPart()

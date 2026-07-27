@@ -47,6 +47,15 @@ inputs:
       requires an OCaml 4.x compiler.'
     required: false
     default: '5.4.0'
+  dune-version:
+    description:
+      'The dune version installed before Rocq, as a floor rather than a pin: a
+      restored switch whose dune is already at least this version keeps it. Set
+      this to the dune your project requires. Otherwise Rocq is built against
+      the default dune and your `opam install` upgrades dune afterwards, which
+      recompiles all of Rocq.'
+    required: false
+    default: '3.22.1'
 
 outputs:
   cache-hit:
